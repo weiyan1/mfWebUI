@@ -1,0 +1,3 @@
+SXA2607W Command may only be entered via console 
+<SET,IMS,REL-TRANK,DFS$$TOQ>
+SXA2666I End-of-Command 

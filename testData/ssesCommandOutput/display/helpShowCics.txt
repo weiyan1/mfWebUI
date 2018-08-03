@@ -1,0 +1,3 @@
+SXA2613I - SHOW,CICS,"SXTH,..."
+SXA2613I - SHOW,CICS,"CEMT I ..."
+SXA2666I End-of-Command 

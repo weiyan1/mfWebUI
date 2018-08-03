@@ -1,0 +1,17 @@
+SXS0800I -  UoW List Statistics request
+SXS0800I -  UoW Total Allocations     - 1654
+SXS0800I -  UoW List Hi Water Mark    - 1
+SXS0800I -  UoW Currently Active      - 1
+SXS0800I -  UoW Active ent. allowed   - 400
+SXS0800I -  UoW Max List Size         - 600
+SXS0800I -  UoW List Size (bytes)     - 9712
+SXS0800I -  UoW Free Storage          - FALSE
+SXS0800I -  Max Size Free (bytes)     - 50000
+SXS0800I -  Uow Incremental Amount    - 0
+SXS0800I -  UoW Lock Status           - 0
+SXS0800I -  UoW Stress Status         - 0
+SXS0800I -  UoW Stress Restart Level  - 320
+SXS0800I -  UoW Stress occurred       - 0
+SXS0800I -  UoW Next Slot to be Used  - 454
+SXGNULLI 
+SXA2666I End-of-Command 

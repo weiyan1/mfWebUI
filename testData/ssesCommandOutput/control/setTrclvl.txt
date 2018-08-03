@@ -1,0 +1,3 @@
+SXA2607W Command may only be entered via console 
+<SET,TRCLVL=3>
+SXA2666I End-of-Command 

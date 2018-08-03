@@ -1,0 +1,29 @@
+SXS0800I -  UoW List Statistics request
+SXS0800I -  UoW Total Allocations     - 1107
+SXS0800I -  UoW List Hi Water Mark    - 1
+SXS0800I -  UoW Currently Active      - 1
+SXS0800I -  UoW Active ent. allowed   - 400
+SXS0800I -  UoW Max List Size         - 600
+SXS0800I -  UoW List Size (bytes)     - 9712
+SXS0800I -  UoW Free Storage          - FALSE
+SXS0800I -  Max Size Free (bytes)     - 50000
+SXS0800I -  Uow Incremental Amount    - 0
+SXS0800I -  UoW Lock Status           - 0
+SXS0800I -  UoW Stress Status         - 0
+SXS0800I -  UoW Stress Restart Level  - 320
+SXS0800I -  UoW Stress occurred       - 0
+SXS0800I -  UoW Next Slot to be Used  - 507
+SXGNULLI 
+SXS0850I -  IId:TIBSSCE1 UoW Que statistics request
+SXS0851I -  Currently in use Entries        - 0
+SXS0851I -  Currently in use Entries (EOT)  - 0
+SXS0850I -  IId:   ADMIN UoW Que statistics request
+SXS0851I -  Currently in use Entries        - 0
+SXS0850I -  IId:   ESB01 UoW Que statistics request
+SXS0851I -  Currently in use Entries        - 0
+SXS0851I -  Currently in use Entries (EOT)  - 0
+SXS0850I -  IId:   TCP01 UoW Que statistics request
+SXS0851I -  Currently in use Entries        - 0
+SXS0850I -  IId:  CICS01 UoW Que statistics request
+SXS0851I -  Currently in use Entries        - 0
+SXA2666I End-of-Command 

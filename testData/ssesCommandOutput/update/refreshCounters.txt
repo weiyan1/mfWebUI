@@ -1,0 +1,2 @@
+SXA2620I Operational Request successfully processed
+SXA2666I End-of-Command 
