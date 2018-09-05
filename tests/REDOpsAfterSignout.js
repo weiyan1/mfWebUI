@@ -700,7 +700,7 @@ describe('6.4.2 RED Ops Page After Signout', function () {
         }).then(function () {
             Page.eleSearchIcon.click();
         }).then(function () {
-            Page.eleConnNameSearched.isPresent();
+            globalCommons.waitForElementPresent(Page.eleConnNameSearched);
         }).then(function () {
             Page.eleConnNameSearched.click();
         }).then(function () {

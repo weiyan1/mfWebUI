@@ -8,7 +8,9 @@ var suites = {
     configureMessage: 'tests/configureMessage.js',
     configureBuffer: 'tests/configureBuffer.js',
     configureConversionRule: 'tests/configureConversionRule.js',
-    configureTrigger: 'tests/configureTrigger.js',
+    configureTriggerWithEMS: 'tests/configureTriggerWithEMS.js',
+    configureTriggerWithRV: 'tests/configureTriggerWithRV.js',
+    configureRecipeWithCICSEMS: 'tests/configureRecipeWithCICSEMS.js',
     defineEndpointEMS: 'tests/defineEndpointEMS.js',
     defineEndpointRV: 'tests/defineEndpointRV.js',
     defineEndpointCICS: 'tests/defineEndpointCICS.js',
@@ -67,8 +69,8 @@ if (MM < 10) {
 today = yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm + ':' + ss;
 
 // Set the tomcat url
-var hostname = process.env.SERVER_HOSTNAME || "10.97.170.59";
-// var hostname = process.env.SERVER_HOSTNAME || "localhost";
+// var hostname = process.env.SERVER_HOSTNAME || "10.97.170.59";
+var hostname = process.env.SERVER_HOSTNAME || "localhost";
 // var hostname = process.env.SERVER_HOSTNAME || "10.102.17.107";
 var baseport = process.env.SERVER_BASEPORT || "60080";
 var baseUrl = "http://" + hostname + ":" + baseport;

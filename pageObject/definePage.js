@@ -9861,7 +9861,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleIntfAdmIntervalSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleIntfAdmIntervalSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -9880,28 +9879,24 @@ var definePage = (function () {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd2Input.clear().sendKeys(cmd2);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd3Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd3Input.clear().sendKeys(cmd3);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd4Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd4Input.clear().sendKeys(cmd4);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd5Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd5Input.clear().sendKeys(cmd5);
             }
-            ;
         }).then(function () {
             that.eleSaveButton.click();
         }).then(function () {
@@ -9970,7 +9965,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleIntfAdmIntervalSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleIntfAdmIntervalSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -9989,28 +9983,24 @@ var definePage = (function () {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd2Input.clear().sendKeys(cmd2);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd3Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd3Input.clear().sendKeys(cmd3);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd4Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd4Input.clear().sendKeys(cmd4);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd5Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd5Input.clear().sendKeys(cmd5);
             }
-            ;
         }).then(function () {
             that.eleCancelButton.click();
         }).then(function () {
@@ -10081,7 +10071,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleIntfAdmIntervalSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleIntfAdmIntervalSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -10100,28 +10089,24 @@ var definePage = (function () {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd2Input.clear().sendKeys(cmd2);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd3Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd3Input.clear().sendKeys(cmd3);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd4Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd4Input.clear().sendKeys(cmd4);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd5Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd5Input.clear().sendKeys(cmd5);
             }
-            ;
         }).then(function () {
             that.eleCancelButton.click();
         }).then(function () {
@@ -10196,7 +10181,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleIntfAdmIntervalSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleIntfAdmIntervalSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -10215,28 +10199,24 @@ var definePage = (function () {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd2Input.clear().sendKeys(cmd2);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd3Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd3Input.clear().sendKeys(cmd3);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd4Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd4Input.clear().sendKeys(cmd4);
             }
-            ;
         }).then(function () {
             return that.eleIntfAdmHeartbeatCmd5Input.isDisplayed();
         }).then(function (result) {
             if (result === true) {
                 that.eleIntfAdmHeartbeatCmd5Input.clear().sendKeys(cmd5);
             }
-            ;
         }).then(function () {
             that.eleResetButton.click();
         }).then(function () {
@@ -10587,9 +10567,10 @@ var definePage = (function () {
             if (result === false) {
                 that.eleSsLogTrcExtend.click().then(function () {
                     globalCommons.waitForDisplayed(that.eleSsLogLvlSpinner);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             that.eleSsLogLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -10612,9 +10593,10 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsLogDiskFileDdn2Input);
                 }).then(function () {
                     that.eleSsLogDiskFileDdn2Input.clear().sendKeys(logDiskDdn2);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             if (logDiskDdn3 !== undefined) {
                 globalCommons.waitForClickable(that.eleSsLogDiskFileAddButton).then(function () {
@@ -10623,9 +10605,10 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsLogDiskFileDdn3Input);
                 }).then(function () {
                     that.eleSsLogDiskFileDdn3Input.clear().sendKeys(logDiskDdn3);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             if (logDiskDdn4 !== undefined) {
                 globalCommons.waitForClickable(that.eleSsLogDiskFileAddButton).then(function () {
@@ -10634,9 +10617,10 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsLogDiskFileDdn4Input);
                 }).then(function () {
                     that.eleSsLogDiskFileDdn4Input.clear().sendKeys(logDiskDdn4);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             if (logDiskDdn5 !== undefined) {
                 globalCommons.waitForClickable(that.eleSsLogDiskFileAddButton).then(function () {
@@ -10645,9 +10629,10 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsLogDiskFileDdn5Input);
                 }).then(function () {
                     that.eleSsLogDiskFileDdn5Input.clear().sendKeys(logDiskDdn5);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             that._logStartWarmSs(logWarm);
         }).then(function () {
@@ -10686,9 +10671,10 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsTrcDiskFileDdn2Input);
                 }).then(function () {
                     that.eleSsTrcDiskFileDdn2Input.clear().sendKeys(trcDiskDdn2);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             if (trcDiskDdn3 !== undefined) {
                 globalCommons.waitForClickable(that.eleSsTrcDiskFileAddButton).then(function () {
@@ -10697,9 +10683,10 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsTrcDiskFileDdn3Input);
                 }).then(function () {
                     that.eleSsTrcDiskFileDdn3Input.clear().sendKeys(trcDiskDdn3);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             if (trcDiskDdn4 !== undefined) {
                 globalCommons.waitForClickable(that.eleSsTrcDiskFileAddButton).then(function () {
@@ -10708,9 +10695,10 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsTrcDiskFileDdn4Input);
                 }).then(function () {
                     that.eleSsTrcDiskFileDdn4Input.clear().sendKeys(trcDiskDdn4);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             if (trcDiskDdn5 !== undefined) {
                 globalCommons.waitForClickable(that.eleSsTrcDiskFileAddButton).then(function () {
@@ -10719,9 +10707,10 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsTrcDiskFileDdn5Input);
                 }).then(function () {
                     that.eleSsTrcDiskFileDdn5Input.clear().sendKeys(trcDiskDdn5);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             that._trcStartWarmSs(trcWarm);
         }).then(function () {
@@ -10738,9 +10727,10 @@ var definePage = (function () {
             if (result === false) {
                 that.eleSsInitializationExtend.click().then(function () {
                     globalCommons.waitForDisplayed(that.eleSsMaxUnitsOfWorkSpinner);
+                }).then(function () {
+                    deferred.fulfill();
                 });
             }
-            ;
         }).then(function () {
             that.eleSsMaxUnitsOfWorkSpinner.sendKeys(backspaceSeries);
         }).then(function () {
