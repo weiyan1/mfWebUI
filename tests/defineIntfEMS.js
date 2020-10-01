@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -21,7 +21,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         browser.sleep(1000).then(function () {
             Page.delIntfEmsYes("IntfEMS0001");
         }).then(function () {
-            Page.addIntfEms("IntfEMS0001", "", undefined, "EndpointRVA0001");
+            Page.addIntfEms("IntfEMS0001");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -59,7 +59,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
     //
     it('Should add a EMS Interface, then update it successfully', function () {
         Page.delIntfEmsYes("IntfEMS0003").then(function () {
-            Page.addIntfEms("IntfEMS0003", "abcdefg", "INTFID01", "11", "33", "111", false, false, "Bytes", "dmq01");
+            Page.addIntfEms("IntfEMS0003", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "Bytes", "dmq01", "555");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -67,7 +67,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.updateIntfEms("IntfEMS0003", "hijklmn", "INTFID02", "22", "34", "222", true, true, "Text", "dmq02");
+            Page.updateIntfEms("IntfEMS0003", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "Text", "dmq02", "566");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -87,6 +87,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '222').to.be.true;
+        }).then(function () {
             return Page.eleIntfEmsWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '22').to.be.true;
@@ -95,11 +99,11 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === '34').to.be.true;
         }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '222').to.be.true;
-        }).then(function () {
             return Page.eleIntfEmsSuspendServicesCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === 'true').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
@@ -114,6 +118,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
             return Page.eleIntfEmsDeadMsgQueInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'dmq02').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '566').to.be.true;
         });
     });
 
@@ -121,7 +129,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
     //
     it('Should add a EMS Interface, cancel the changes, then confirm the cancel operation', function () {
         Page.delIntfEmsYes("IntfEMS0004").then(function () {
-            Page.addIntfEms("IntfEMS0004", "abcdefg", "INTFID01", "11", "33", "111", false, false, "Bytes", "dmq01");
+            Page.addIntfEms("IntfEMS0004", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "Bytes", "dmq01", "555");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -129,7 +137,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfEmsYes("IntfEMS0004", "hijklmn", "INTFID02", "22", "34", "222", true, true, "Text", "dmq02");
+            Page.cancelIntfEmsYes("IntfEMS0004", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "Text", "dmq02", "566");
         }).then(function () {
             Page.eleIntfsEmsLeftmenu.click();
         }).then(function () {
@@ -159,6 +167,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '131').to.be.true;
+        }).then(function () {
             return Page.eleIntfEmsWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '11').to.be.true;
@@ -167,11 +179,11 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === '33').to.be.true;
         }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '111').to.be.true;
-        }).then(function () {
             return Page.eleIntfEmsSuspendServicesCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
@@ -186,6 +198,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
             return Page.eleIntfEmsDeadMsgQueInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'dmq01').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '555').to.be.true;
         });
     });
 
@@ -193,7 +209,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
     //
     it('Should add a EMS Interface, cancel the changes, then discard the cancel operation', function () {
         Page.delIntfEmsYes("IntfEMS0005").then(function () {
-            Page.addIntfEms("IntfEMS0005", "abcdefg", "INTFID01", "11", "33", "111", false, false, "Bytes", "dmq01");
+            Page.addIntfEms("IntfEMS0005", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "Bytes", "dmq01", "555");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -201,7 +217,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfEmsNo("IntfEMS0005", "hijklmn", "INTFID02", "22", "34", "222", true, true, "Text", "dmq02");
+            Page.cancelIntfEmsNo("IntfEMS0005", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "Text", "dmq02", "566");
         }).then(function () {
             return Page.eleIntfEmsNameInput.getAttribute('value');
         }).then(function (message) {
@@ -215,6 +231,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '222').to.be.true;
+        }).then(function () {
             return Page.eleIntfEmsWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '22').to.be.true;
@@ -223,11 +243,11 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === '34').to.be.true;
         }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '222').to.be.true;
-        }).then(function () {
             return Page.eleIntfEmsSuspendServicesCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === 'true').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
@@ -242,6 +262,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
             return Page.eleIntfEmsDeadMsgQueInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'dmq02').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '566').to.be.true;
         });
     });
 
@@ -249,7 +273,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
     //
     it('Should add a EMS Interface, make some changes, then reset it', function () {
         Page.delIntfEmsYes("IntfEMS0006").then(function () {
-            Page.addIntfEms("IntfEMS0006", "abcdefg", "INTFID01", "11", "33", "111", false, false, "Bytes", "dmq01");
+            Page.addIntfEms("IntfEMS0006", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "Bytes", "dmq01", "555");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -257,7 +281,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.resetIntfEms("IntfEMS0006", "hijklmn", "INTFID02", "22", "34", "222", true, true, "Text", "dmq02");
+            Page.resetIntfEms("IntfEMS0006", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "Text", "dmq02", "566");
         }).then(function () {
             return Page.eleIntfEmsNameInput.getAttribute('value');
         }).then(function (message) {
@@ -271,6 +295,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '131').to.be.true;
+        }).then(function () {
             return Page.eleIntfEmsWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '11').to.be.true;
@@ -279,11 +307,11 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === '33').to.be.true;
         }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '111').to.be.true;
-        }).then(function () {
             return Page.eleIntfEmsSuspendServicesCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
@@ -298,6 +326,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
             return Page.eleIntfEmsDeadMsgQueInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'dmq01').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '555').to.be.true;
         });
     });
 
@@ -305,7 +337,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
     //
     it('Should add a EMS Interface to overwrite a EMS Interface, then confirm the overwrite operation', function () {
         Page.delIntfEmsYes("IntfEMS0007").then(function () {
-            Page.addIntfEms("IntfEMS0007", "abcdefg", "INTFID01", "11", "33", "111", false, false, "Bytes", "dmq01");
+            Page.addIntfEms("IntfEMS0007", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "Bytes", "dmq01", "555");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -313,7 +345,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfEms("IntfEMS0007", "hijklmn", "INTFID02", "22", "34", "222", true, true, "Text", "dmq02");
+            Page.addIntfEms("IntfEMS0007", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "Text", "dmq02", "566");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleOKButton);
         }).then(function () {
@@ -333,6 +365,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '222').to.be.true;
+        }).then(function () {
             return Page.eleIntfEmsWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '22').to.be.true;
@@ -341,11 +377,11 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === '34').to.be.true;
         }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '222').to.be.true;
-        }).then(function () {
             return Page.eleIntfEmsSuspendServicesCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === 'true').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
@@ -360,6 +396,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
             return Page.eleIntfEmsDeadMsgQueInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'dmq02').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '566').to.be.true;
         });
     });
 
@@ -367,7 +407,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
     //
     it('Should add a EMS Interface to overwrite a EMS Interface, then discard the overwrite operation', function () {
         Page.delIntfEmsYes("IntfEMS0008").then(function () {
-            Page.addIntfEms("IntfEMS0008", "abcdefg", "INTFID01", "11", "33", "111", false, false, "Bytes", "dmq01");
+            Page.addIntfEms("IntfEMS0008", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "Bytes", "dmq01", "555");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -375,7 +415,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfEms("IntfEMS0008", "hijklmn", "INTFID02", "22", "34", "222", true, true, "Text", "dmq02");
+            Page.addIntfEms("IntfEMS0008", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "Text", "dmq02", "566");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleNoButton);
         }).then(function () {
@@ -413,6 +453,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '131').to.be.true;
+        }).then(function () {
             return Page.eleIntfEmsWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '11').to.be.true;
@@ -421,11 +465,11 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === '33').to.be.true;
         }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '111').to.be.true;
-        }).then(function () {
             return Page.eleIntfEmsSuspendServicesCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
@@ -440,6 +484,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
             return Page.eleIntfEmsDeadMsgQueInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'dmq01').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '555').to.be.true;
         });
     });
 
@@ -501,11 +549,13 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         Page.delIntfEmsYes("IntfEMS0011").then(function () {
             Page.addIntfEms("IntfEMS0011");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             return Page.eleDeleteButton.getAttribute('disabled');
         }).then(function (message) {
@@ -573,19 +623,23 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        }).then(function () {
             return Page.eleIntfEmsWorkersSpinner.getAttribute('value');
         }).then(function (message) {
-            expect(message === '5').to.be.true;
+            expect(message === '2').to.be.true;
         }).then(function () {
             return Page.eleIntfEmsWorkersEotSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '30').to.be.true;
         }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '0').to.be.true;
-        }).then(function () {
             return Page.eleIntfEmsSuspendServicesCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === "true").to.be.true;
         }).then(function () {
@@ -600,6 +654,10 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
             return Page.eleIntfEmsDeadMsgQueInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'tibss.Dead.Msg.Queue').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '200').to.be.true;
         }).then(function () {
             Page.eleCancelButton.click();
         });
@@ -717,7 +775,9 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -775,12 +835,121 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         });
     });
 
+    // Test field 'EMS Interface Details panel' -> 'Wait Time on Startup (sec)'
+    //
+    it('Test field EMS Interface -> Wait Time on Startup (sec)', function () {
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
+        Page.delIntfEmsYes("IntfEMS0017").then(function () {
+            Page.addIntfEms("IntfEMS0017", "", undefined, "120");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys("119");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys("599");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '599').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys("600");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '600').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys("601");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '600').to.be.true;
+        });
+    });
+
     // Test field 'EMS Interface Details panel' -> 'Workers'
     //
     it('Test field EMS Interface -> Workers', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delIntfEmsYes("IntfEMS0017").then(function () {
-            Page.addIntfEms("IntfEMS0017", "", undefined, "0");
+        Page.delIntfEmsYes("IntfEMS0018").then(function () {
+            Page.addIntfEms("IntfEMS0018", "", undefined, undefined, "2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -790,7 +959,43 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function () {
             return Page.eleIntfEmsWorkersSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '0').to.be.true;
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsWorkersSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsWorkersSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsWorkersSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsWorkersSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsWorkersSpinner.clear().sendKeys("1");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsWorkersSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -834,8 +1039,8 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
     //
     it('Test field EMS Interface -> Workers EOT', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delIntfEmsYes("IntfEMS0018").then(function () {
-            Page.addIntfEms("IntfEMS0018", "", undefined, undefined, "2");
+        Page.delIntfEmsYes("IntfEMS0019").then(function () {
+            Page.addIntfEms("IntfEMS0019", "", undefined, undefined, undefined, "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -845,13 +1050,13 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function () {
             return Page.eleIntfEmsWorkersEotSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '2').to.be.true;
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfEmsWorkersEotSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfEmsWorkersEotSpinner.clear().sendKeys("0");
+            Page.eleIntfEmsWorkersEotSpinner.clear().sendKeys("4");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -863,7 +1068,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function () {
             return Page.eleIntfEmsWorkersEotSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '2').to.be.true;
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -881,7 +1086,25 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function () {
             return Page.eleIntfEmsWorkersEotSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '2').to.be.true;
+            expect(message === '5').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsWorkersEotSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsWorkersEotSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsWorkersEotSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -921,66 +1144,11 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         });
     });
 
-    // Test field 'EMS Interface Details panel' -> 'Message Free List Size'
-    //
-    it('Test field EMS Interface -> Message Free List Size', function () {
-        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
-        Page.delIntfEmsYes("IntfEMS0019").then(function () {
-            Page.addIntfEms("IntfEMS0019", "", undefined, undefined, undefined, "0");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '0').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfEmsMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfEmsMsgFreeListSizeSpinner.clear().sendKeys("300000");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '300000').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfEmsMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfEmsMsgFreeListSizeSpinner.clear().sendKeys("300001");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfEmsMsgFreeListSizeSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '300000').to.be.true;
-        });
-    });
-
     // Test field 'EMS Interface Details panel' -> 'Error Message Type'
     //
     it('Test field EMS Interface -> Error Message Type', function () {
         Page.delIntfEmsYes("IntfEMS0020").then(function () {
-            Page.addIntfEms("IntfEMS0020", "", undefined, undefined, undefined, undefined, undefined, undefined, "Map");
+            Page.addIntfEms("IntfEMS0020", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Map");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1032,7 +1200,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         Page.delIntfEmsYes("IntfEMS0021").then(function () {
             Page.delIntfEmsYes("IntfEMS0022");
         }).then(function () {
-            Page.addIntfEms("IntfEMS0021", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, "ABCDEFGHIJklmnopqrst@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????%%%%%%%%%%!!!!!!!!!!^^^^^^^^^^111111111122222222223333333");
+            Page.addIntfEms("IntfEMS0021", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "ABCDEFGHIJklmnopqrst@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????%%%%%%%%%%!!!!!!!!!!^^^^^^^^^^111111111122222222223333333");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1044,7 +1212,7 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         }).then(function (message) {
             expect(message === 'ABCDEFGHIJklmnopqrst@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????%%%%%%%%%%!!!!!!!!!!^^^^^^^^^^111111111122222222223333333').to.be.true;
         }).then(function () {
-            Page.addIntfEms("IntfEMS0022", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, "ABCDEFGHIJklmnopqrst@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????%%%%%%%%%%!!!!!!!!!!^^^^^^^^^^1111111111222222222233333333");
+            Page.addIntfEms("IntfEMS0022", "", undefined, undefined,undefined, undefined, undefined, undefined, undefined, undefined, "ABCDEFGHIJklmnopqrst@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????%%%%%%%%%%!!!!!!!!!!^^^^^^^^^^1111111111222222222233333333");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1058,6 +1226,114 @@ describe('6.8.11 Define Interfaces EMS Page', function () {
         });
     });
 
+    // Test field 'EMS Interface Details panel' -> 'Maximum Total Size of All Messages'
+    //
+    it('Test field EMS Interface -> Maximum Total Size of All Messages', function () {
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
+        Page.delIntfEmsYes("IntfEMS0023").then(function () {
+            Page.addIntfEms("IntfEMS0023", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "20");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '20').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '20').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys("19");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '20').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys("599");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '599').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys("600");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '600').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys("601");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '600').to.be.true;
+        });
+    });
 
     it('It is only for console', function () {
         console.log("Finish run " + __filename.slice(__dirname.length + 1));

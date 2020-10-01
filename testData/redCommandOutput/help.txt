@@ -1,18 +1,17 @@
-SXX8226I ?,Help       --  Display HUB internal Commands
-SXX8226I Shut         --  Shutdown this HUB
-SXX8226I Show,HUB     --  Display all HUB(s) on this LPAR
-SXX8226I Show,PLEX    --  Display all HUB(s) on this PLEX
-SXX8226I Show,USAGE   --  Display zIIP Enclave usage
-SXX8226I Show,USAGE,JN--  Display GP/zIIP CP usage Jobname
-SXX8226I Enable,zIIP  --  Enable offload to zIIP Processor
-SXX8226I Disable,zIIP --  Disable offload to zIIP Processor
-SXX8226I Quiesce,RED  --  Drain the Red function
-SXX8226I Restart,RED  --  Restart the Red from QUIESCE
-SXX8226I Unload,DLPA  --  Unload modules from DLPA
-SXX8226I Refresh,DLPA --  Unload and Reload DLPA modules
-SXX8226I Reload,ALL   --  Reload all function modules
-SXX8226I Reload,xxxxx --  Reload a function module
-SXX8226I Enable,STATS --  Enable additional Red Stats
-SXX8226I Disable,STATS--  Disable additional Red Stats
-SXX8226I Refresh,WebUI--  Restart WebUI Task and settings
-SXX8226I Set,TF       --  Set Throttle Factor Value (2-99)
+SXX8226I ?,Help         --  Display HUB internal Commands
+SXX8226I Shut           --  Shutdown this HUB
+SXX8226I Show,HUB       --  Display all HUB(s) on this LPAR
+SXX8226I Show,PLEX      --  Display all HUB(s) on this PLEX
+SXX8226I Show,USAGE     --  Display zIIP Enclave usage
+SXX8226I Show,USAGE,<JN>--  Display GP/zIIP CP usage Jobname
+SXX8226I Enable,zIIP    --  Enable offload to zIIP Processor
+SXX8226I Disable,zIIP   --  Disable offload to zIIP Processor
+SXX8226I Set,zIIPPCT    --  Percentage of zIIP nnn (001-100)
+SXX8226I Quiesce,RED    --  Drain the Red function
+SXX8226I Restart,RED    --  Restart the Red from QUIESCE
+SXX8226I Unload,DLPA    --  Unload modules from DLPA
+SXX8226I Refresh,DLPA   --  Unload and Reload DLPA modules
+SXX8226I Reload,ALL     --  Reload all function modules
+SXX8226I Reload,<xxxx>  --  Reload a function module
+SXX8226I Refresh,WebUI  --  Restart WebUI Task and settings
+SXX8226I Set,TF=<xx>    --  Set Throttle Factor Value (2-99)

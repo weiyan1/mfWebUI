@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var Page = require('../utility/page.js');
@@ -29,7 +29,6 @@ var definePage = (function () {
         this.eleIntfsTcpLeftmenu = element(by.xpath('//div[text()="Interfaces"]/../../../../..//div[text()="TCP"]'));
         this.eleIntfsAdmLeftmenu = element(by.xpath('//div[text()="Interfaces"]/../../../../..//div[text()="Admin"]'));
         this.eleSsLeftmenu = element.all(by.xpath('//div[text()="Substation"]')).last();
-        // this.eleSsLeftmenu = element(by.xpath('//div[@aria-level="1" and text()="Substation"]'));
         //Entities List
         this.eleAddButton = element(by.xpath('//button[text()="Add"]'));
         this.eleDeleteButton = element(by.xpath('//button[text()="Delete"]'));
@@ -46,7 +45,7 @@ var definePage = (function () {
         //Entities Details
         this.eleDetailSlideBar = element(by.css('.slide-bar'));
         this.eleDetailHeader = element(by.css('.detailHeader'));
-        this.eleCheckButton = element(by.css('.GCOBQG-CLY'));
+        this.eleCheckButton = element(by.css('.GCOBQG-CCY'));
         this.eleSaveButton = element(by.xpath('//button[text()="Save"]'));
         this.eleReplicateButton = element(by.xpath('//button[text()="Replicate"]'));
         this.eleCancelButton = element(by.xpath('//button[text()="Cancel"]'));
@@ -145,7 +144,7 @@ var definePage = (function () {
         this.eleConnEmsMetricDropdown = element(by.css('.GCOBQG-CPQ'));
         this.eleConnEmsMetricSelected = function (metric) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + metric + '"]'));
-        }
+        };
         this.eleConnEmsNetworkCodepageInput = element(by.xpath('//div[text()="Network Code Page"]/../../..//input'));
         this.eleConnEmsHostCodepageInput = element(by.xpath('//div[text()="Host Code Page"]/../../..//input'));
         this.eleConnEmsTcpipStackNameInput = element(by.xpath('//div[text()="TCP/IP Stack Name"]/../../..//input'));
@@ -196,8 +195,8 @@ var definePage = (function () {
         this.eleConnEmsSslKeyRingLabelInput = element(by.xpath('//div[text()="Key Ring Label"]/../../..//input'));
         this.eleConnEmsSslCipherInput = element(by.xpath('//div[text()="Cipher"]/../../..//input'));
         this.eleConnEmsSslEnableFipsCheck = element(by.xpath('//label[text()="Enable FIPS 140-2"]/..//input'));
-        this.eleConnEmsSslEnableSslv3Check = element(by.xpath('//label[text()="Enable SSLV3"]/..//input'));
-        this.eleConnEmsSslEnableTls1Check = element(by.xpath('//label[text()="Enable TLS1"]/..//input'));
+        this.eleConnEmsSslEnableTls11Check = element(by.xpath('//label[text()="Enable TLS1.1"]/..//input'));
+        this.eleConnEmsSslEnableTls12Check = element(by.xpath('//label[text()="Enable TLS1.2"]/..//input'));
         this.eleConnEmsSslExpectEmsHostnameInput = element(by.xpath('//div[text()="Expect EMS Host Name"]/../../..//input'));
         this.eleConnEmsSslVerifyHostnameCheck = element(by.xpath('//label[text()="Verify Host Name"]/..//input'));
         this.eleConnEmsSslLdapUrlInput = element(by.xpath('//div[text()="LDAP URL"]/../../..//input'));
@@ -213,13 +212,13 @@ var definePage = (function () {
         this.eleConnRvStartupCheck = element(by.xpath('//label[text()="Startup"]/..//input'));
         this.eleConnRvEndpointInput = element(by.xpath('//div[text()="RV Endpoint"]/../../..//input'));
         this.eleConnRvServiceInput = element(by.xpath('//div[text()="Service Port"]/../../..//input'));
-        this.eleConnRvNetworkInput = element(by.xpath('//div[text()="Network"]/../../..//input'));
+        this.eleConnRvNetworkInput = element(by.xpath('//div[text()="Network (IP Address or String)"]/../../..//input'));
         this.eleConnRvNetworkCodepageInput = element(by.xpath('//div[text()="Network Code Page"]/../../..//input'));
         this.eleConnRvHostCodepageInput = element(by.xpath('//div[text()="Host Code Page"]/../../..//input'));
         this.eleConnRvPolicyDropdown = element(by.css('.GCOBQG-CPQ'));
         this.eleConnRvPolicySelected = function (policy) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + policy + '"]'));
-        }
+        };
         this.eleConnRvMaxEventsSpinner = element(by.xpath('//div[text()="Maximum Events"]/../../..//input'));
         this.eleConnRvTcpipStackNameInput = element(by.xpath('//div[text()="TCP/IP Stack Name"]/../../..//input'));
         this.eleConnRvIntfInput = element(by.xpath('//div[text()="Interfaces"]/../../..//input'));
@@ -265,10 +264,11 @@ var definePage = (function () {
         this.eleIntfEmsNameInput = element(by.xpath('//div[text()="Name"]/../../..//input'));
         this.eleIntfEmsDescInput = element(by.xpath('//div[text()="Description"]/../../..//textarea'));
         this.eleIntfEmsIntfidInput = element(by.xpath('//div[text()="Interface ID"]/../../..//input'));
+        this.eleIntfEmsWaitTimeOnStartupSpinner = element(by.xpath('//div[text()="Wait Time on Startup (sec)"]/../../..//input'));
         this.eleIntfEmsWorkersSpinner = element(by.xpath('//div[text()="Workers"]/../../..//input'));
         this.eleIntfEmsWorkersEotSpinner = element(by.xpath('//div[text()="Workers (End of Task)"]/../../..//input'));
-        this.eleIntfEmsMsgFreeListSizeSpinner = element(by.xpath('//div[text()="Message Free List Size"]/../../..//input'));
         this.eleIntfEmsSuspendServicesCheck = element(by.xpath('//label[text()="Suspend Services"]/../../..//input'));
+        this.eleIntfEmsEnableMsgDeliveryCheck = element(by.xpath('//label[text()="Enable message delivery"]/../../..//input'));
         this.eleIntfEmsUsePropCheck = element(by.xpath('//label[text()="Use Properties"]/../../..//input'));
         this.eleIntfEmsErrMsgTypeDropdown = element(by.css('.GCOBQG-CPQ'));
         this.eleIntfEmsErrMsgTypeSelected = function (errMsgType) {
@@ -278,25 +278,30 @@ var definePage = (function () {
         this.eleIntfEmsNameValidateMsg = element(by.xpath('//div[text()="Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfEmsDescValidateMsg = element(by.xpath('//div[text()="Description"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfEmsIntfidValidateMsg = element(by.xpath('//div[text()="Interface ID"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleIntfEmsMaxTotalSizeOfAllMsgSpinner = element(by.xpath('//div[text()="Maximum Total Size of All Messages (megabytes)"]/../../..//input'));
         //RV Interface Details
         this.eleIntfRvNameInput = element(by.xpath('//div[text()="Name"]/../../..//input'));
         this.eleIntfRvDescInput = element(by.xpath('//div[text()="Description"]/../../..//textarea'));
         this.eleIntfRvIntfidInput = element(by.xpath('//div[text()="Interface ID"]/../../..//input'));
+        this.eleIntfRvWaitTimeOnStartupSpinner = element(by.xpath('//div[text()="Wait Time on Startup (sec)"]/../../..//input'));
         this.eleIntfRvWorkersSpinner = element(by.xpath('//div[text()="Workers"]/../../..//input'));
         this.eleIntfRvWorkersEotSpinner = element(by.xpath('//div[text()="Workers (End of Task)"]/../../..//input'));
-        this.eleIntfRvMsgFreeListSizeSpinner = element(by.xpath('//div[text()="Message Free List Size"]/../../..//input'));
         this.eleIntfRvSuspendServicesCheck = element(by.xpath('//label[text()="Suspend Services"]/../../..//input'));
         this.eleIntfRvEnableMsgReceiptCheck = element(by.xpath('//label[text()="Enable message receipt"]/../../..//input'));
         this.eleIntfRvEnableMsgDeliveryCheck = element(by.xpath('//label[text()="Enable message delivery"]/../../..//input'));
+        this.eleIntfRvMsgFreeListSizeSpinner = element(by.xpath('//div[text()="Message Free List Size"]/../../..//input'));
+        this.eleIntfRvIntfServiceInput = element(by.xpath('//div[text()="Interface Service Number (0, 2048-10240)"]/../../..//input'));
+        this.eleIntfRvVectorInputInRvCallbackCheck = element(by.xpath('//label[text()="Vector Input in RV Callback"]/../../..//input'));
         this.eleIntfRvNameValidateMsg = element(by.xpath('//div[text()="Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfRvDescValidateMsg = element(by.xpath('//div[text()="Description"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfRvIntfidValidateMsg = element(by.xpath('//div[text()="Interface ID"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleIntfRvIntfServiceValidateMsg = element(by.xpath('//div[text()="RV Service Number (0, 2048-10240)"]/../../../..//div[@class="validate_msg_show"]'));
         //CICS Interface Details
         this.eleIntfCicsNameInput = element(by.xpath('//div[text()="Name"]/../../..//input'));
         this.eleIntfCicsDescInput = element(by.xpath('//div[text()="Description"]/../../..//textarea'));
         this.eleIntfCicsIntfidInput = element(by.xpath('//div[text()="Interface ID"]/../../..//input'));
-        this.eleIntfCicsOutputIntfInput = element(by.xpath('//div[text()="Output Interface"]/../../..//input'));
-        this.eleIntfCicsOutputIntfPickButton = element(by.xpath('//div[text()="Output Interface"]/../../..//div[@class="pick-list-text-box-button"]'));
+        this.eleIntfCicsEsbIntfInput = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//input'));
+        this.eleIntfCicsEsbIntfPickButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleIntfCicsEndpointInput = element(by.xpath('//div[text()="CICS Endpoint"]/../../..//input'));
         this.eleIntfCicsEndpointPickButton = element(by.xpath('//div[text()="CICS Endpoint"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleIntfCicsMirrorTranidInput = element(by.xpath('//div[text()="Mirror Transaction ID"]/../../..//input'));
@@ -307,9 +312,11 @@ var definePage = (function () {
         this.eleIntfCicsGuaranteedSpinner = element(by.xpath('//div[text()="Guaranteed"]/../../..//input'));
         this.eleIntfCicsReliableSpinner = element(by.xpath('//div[text()="Reliable"]/../../..//input'));
         this.eleIntfCicsRRMaxSizeSpinner = element(by.xpath('//div[text()="CICS Request/Reply Max Size (bytes)"]/../../..//input'));
+        this.eleIntfCicsCicsLoggingLvlSpinner = element(by.xpath('//div[text()="CICS Logging Level"]/../../..//input'));
         this.eleIntfCicsLoopbackNoRadio = element(by.xpath('//div[text()="Loopback:"]/../..//label[text()="No"]/..//input'));
         this.eleIntfCicsLoopbackYesRadio = element(by.xpath('//div[text()="Loopback:"]/../..//label[text()="Yes"]/..//input'));
         this.eleIntfCicsTrcLvlTrgSpinner = element(by.xpath('//div[text()="Trace Level: Trigger"]/../../..//input'));
+        this.eleIntfCicsTrcLvlOnlineSpinner = element(by.xpath('//div[text()="Trace Level: Online"]/../../..//input'));
         this.eleIntfCicsTsqProcessingExtend = element(by.xpath('//td[text()="TSQ Processing"]'));
         this.eleIntfCicsBatchingNoRadio = element(by.xpath('//div[text()="Batching"]/../..//label[text()="No"]/..//input'));
         this.eleIntfCicsBatchingYesRadio = element(by.xpath('//div[text()="Batching"]/../..//label[text()="Yes"]/..//input'));
@@ -319,7 +326,7 @@ var definePage = (function () {
         this.eleIntfCicsNameValidateMsg = element(by.xpath('//div[text()="Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfCicsDescValidateMsg = element(by.xpath('//div[text()="Description"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfCicsIntfidValidateMsg = element(by.xpath('//div[text()="Interface ID"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfCicsOutputIntfValidateMsg = element(by.xpath('//div[text()="Output Interface"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleIntfCicsEsbIntfValidateMsg = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfCicsEndpointValidateMsg = element(by.xpath('//div[text()="CICS Endpoint"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfCicsMirrorTranidValidateMsg = element(by.xpath('//div[text()="Mirror Transaction ID"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfCicsUseridValidateMsg = element(by.xpath('//div[text()="User ID"]/../../../..//div[@class="validate_msg_show"]'));
@@ -330,10 +337,12 @@ var definePage = (function () {
         this.eleIntfImsXcfMemberNameInput = element(by.xpath('//div[text()="XCF Member Name"]/../../..//input'));
         this.eleIntfImsTpipeNameInput = element(by.xpath('//div[text()="TPIPE Name"]/../../..//input'));
         this.eleIntfImsTpipePrefixInput = element(by.xpath('//div[text()="TPIPE Prefix"]/../../..//input'));
-        this.eleIntfImsOutputIntfInput = element(by.xpath('//div[text()="Output Interface"]/../../..//input'));
-        this.eleIntfImsOutputIntfPickButton = element(by.xpath('//div[text()="Output Interface"]/../../..//div[@class="pick-list-text-box-button"]'));
+        this.eleIntfImsEsbIntfInput = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//input'));
+        this.eleIntfImsEsbIntfPickButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleIntfImsEndpointInput = element(by.xpath('//div[text()="IMS Endpoint"]/../../..//input'));
         this.eleIntfImsEndpointPickButton = element(by.xpath('//div[text()="IMS Endpoint"]/../../..//div[@class="pick-list-text-box-button"]'));
+        this.eleIntfImsActiveTrgsCheck = element(by.xpath('//label[text()="Active Triggers"]/../../..//input'));
+        this.eleIntfImsSyncCalloutToSpinner = element(by.xpath('//div[text()="Sync Call-out Timeout (sec)"]/../../..//input'));
         this.eleIntfImsGuaranteedInput = element(by.xpath('//div[text()="Guaranteed"]/../../..//input'));
         this.eleIntfImsReliableInput = element(by.xpath('//div[text()="Reliable"]/../../..//input'));
         this.eleIntfImsSyncCalloutInput = element(by.xpath('//div[text()="Sync Call-out"]/../../..//input'));
@@ -342,15 +351,16 @@ var definePage = (function () {
         this.eleIntfImsWorkersEsbRRSpinner = element(by.xpath('//div[text()="ESB Request/Reply"]/../../..//input'));
         this.eleIntfImsWorkersTrgSpinner = element(by.xpath('//div[text()="Service: Trigger"]/../../..//input'));
         this.eleIntfImsOtmaSettingsExtend = element(by.xpath('//td[text()="OTMA Settings"]'));
-        this.eleIntfImsWaitInitializationInput = element(by.xpath('//div[text()="Initialization"]/../../..//input'));
-        this.eleIntfImsWaitOtmaInput = element(by.xpath('//div[text()="OTMA"]/../../..//input'));
-        this.eleIntfImsWaitMsgInput = element(by.xpath('//div[text()="Message"]/../../..//input'));
-        this.eleIntfImsTranAllocationInput = element.all(by.xpath('//div[text()="Transaction"]/../..//input')).first();
-        this.eleIntfImsTranSizeInput = element.all(by.xpath('//div[text()="Transaction"]/../..//input')).last();
-        this.eleIntfImsSrbAllocationInput = element.all(by.xpath('//div[text()="SRB"]/../..//input')).first();
-        this.eleIntfImsSrbSizeInput = element.all(by.xpath('//div[text()="SRB"]/../..//input')).last();
-        this.eleIntfImsGrpAllocationInput = element.all(by.xpath('//div[text()="Group"]/../..//input')).first();
-        this.eleIntfImsGrpSizeInput = element.all(by.xpath('//div[text()="Group"]/../..//input')).last();
+        this.eleIntfImsWaitInitializationSpinner = element(by.xpath('//div[text()="Initialization"]/../../..//input'));
+        this.eleIntfImsWaitOtmaSpinner = element(by.xpath('//div[text()="OTMA"]/../../..//input'));
+        this.eleIntfImsWaitMsgSpinner = element(by.xpath('//div[text()="Message"]/../../..//input'));
+        this.eleIntfImsWaitTranSpinner = element(by.xpath('//div[text()="Wait time in seconds"]/../../..//div[text()="Transaction"]/../../..//input'));
+        this.eleIntfImsTranAllocationInput = element(by.xpath('//div[@class="groupBoxWrap"]//tr[2]/td[2]//input'));
+        this.eleIntfImsTranSizeInput = element(by.xpath('//div[@class="groupBoxWrap"]//tr[2]/td[3]//input'));
+        this.eleIntfImsSrbAllocationInput = element(by.xpath('//div[@class="groupBoxWrap"]//tr[3]/td[2]//input'));
+        this.eleIntfImsSrbSizeInput = element(by.xpath('//div[@class="groupBoxWrap"]//tr[3]/td[3]//input'));
+        this.eleIntfImsGrpAllocationInput = element(by.xpath('//div[@class="groupBoxWrap"]//tr[4]/td[2]//input'));
+        this.eleIntfImsGrpSizeInput = element(by.xpath('//div[@class="groupBoxWrap"]//tr[4]/td[3]//input'));
         this.eleIntfImsLoopbackNoRadio = element(by.xpath('//label[text()="No"]/..//input'));
         this.eleIntfImsLoopbackYesRadio = element(by.xpath('//label[text()="Yes"]/..//input'));
         this.eleIntfImsTrcLvlTrgSpinner = element(by.xpath('//div[text()="Trace Level: Trigger"]/../../..//input'));
@@ -361,14 +371,11 @@ var definePage = (function () {
         this.eleIntfImsXcfMemberNameValidateMsg = element(by.xpath('//div[text()="XCF Member Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfImsTpipeNameValidateMsg = element(by.xpath('//div[text()="TPIPE Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfImsTpipePrefixValidateMsg = element(by.xpath('//div[text()="TPIPE Prefix"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfImsOutputIntfValidateMsg = element(by.xpath('//div[text()="Output Interface"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleIntfImsEsbIntfValidateMsg = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfImsEndpointValidateMsg = element(by.xpath('//div[text()="IMS Endpoint"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfImsGuaranteedValidateMsg = element(by.xpath('//div[text()="Guaranteed"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfImsReliableValidateMsg = element(by.xpath('//div[text()="Reliable"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfImsSyncCalloutValidateMsg = element(by.xpath('//div[text()="Sync Call-out"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfImsWaitInitializationValidateMsg = element(by.xpath('//div[text()="Initialization"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfImsWaitOtmaValidateMsg = element(by.xpath('//div[text()="OTMA"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfImsWaitMsgValidateMsg = element(by.xpath('//div[text()="Message"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfImsTranAllocationValidateMsg = element(by.xpath('//div[@class="groupBoxWrap"]//tr[2]/td[2]//input[@class="form_text_box form_text_box_warning"]'));
         this.eleIntfImsTranSizeValidateMsg = element(by.xpath('//div[@class="groupBoxWrap"]//tr[2]/td[3]//input[@class="form_text_box form_text_box_warning"]'));
         this.eleIntfImsSrbAllocationValidateMsg = element(by.xpath('//div[@class="groupBoxWrap"]//tr[3]/td[2]//input[@class="form_text_box form_text_box_warning"]'));
@@ -376,41 +383,58 @@ var definePage = (function () {
         this.eleIntfImsGrpAllocationValidateMsg = element(by.xpath('//div[@class="groupBoxWrap"]//tr[4]/td[2]//input[@class="form_text_box form_text_box_warning"]'));
         this.eleIntfImsGrpSizeValidateMsg = element(by.xpath('//div[@class="groupBoxWrap"]//tr[4]/td[3]//input[@class="form_text_box form_text_box_warning"]'));
         //RED Interface Details
-        this.eleIntfRedNameInput = element(by.xpath('//div[text()="Name"]/../../..//input'));
+        this.eleIntfRedNameInput = element.all(by.xpath('//div[text()="Name"]/../../..//input')).first();
         this.eleIntfRedDescInput = element(by.xpath('//div[text()="Description"]/../../..//textarea'));
         this.eleIntfRedIntfidInput = element(by.xpath('//div[text()="Interface ID"]/../../..//input'));
-        this.eleIntfRedOutputIntfInput = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//input'));
-        this.eleIntfRedOutputIntf2Input = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//input'));
-        this.eleIntfRedOutputIntf3Input = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//input'));
-        this.eleIntfRedOutputIntf4Input = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//input'));
-        this.eleIntfRedOutputIntfPickButton = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//div[@class="pick-list-text-box-button"]'));
-        this.eleIntfRedOutputIntf2PickButton = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//div[@class="pick-list-text-box-button"]'));
-        this.eleIntfRedOutputIntf3PickButton = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//div[@class="pick-list-text-box-button"]'));
-        this.eleIntfRedOutputIntf4PickButton = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//div[@class="pick-list-text-box-button"]'));
-        this.eleIntfRedOutputIntfAddButton = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//img'));
-        this.eleIntfRedOutputIntf2RemoveButton = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//img'));
-        this.eleIntfRedOutputIntf3RemoveButton = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//img'));
-        this.eleIntfRedOutputIntf4RemoveButton = element(by.xpath('//div[text()="Output Interface"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//img'));
+        this.eleIntfRedOutboundModeDropdown = element(by.xpath('//div[text()="Outbound Mode"]/../../..//div//div//div//div//div[@class="GCOBQG-CPQ"]'));
+        this.eleIntfRedOutboundModeSelected = function (outboundMode) {
+            return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + outboundMode + '"]'));
+        };
+        this.eleIntfRedOutboundMode01 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[1]/td[1]'));
+        this.eleIntfRedOutboundMode02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
+        this.eleIntfRedEsbIntfInput = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//input'));
+        this.eleIntfRedEsbIntf2Input = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//input'));
+        this.eleIntfRedEsbIntf3Input = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//input'));
+        this.eleIntfRedEsbIntf4Input = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//input'));
+        this.eleIntfRedEsbIntfPickButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//div[@class="pick-list-text-box-button"]'));
+        this.eleIntfRedEsbIntf2PickButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//div[@class="pick-list-text-box-button"]'));
+        this.eleIntfRedEsbIntf3PickButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//div[@class="pick-list-text-box-button"]'));
+        this.eleIntfRedEsbIntf4PickButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//div[@class="pick-list-text-box-button"]'));
+        this.eleIntfRedEsbIntfAddButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//img'));
+        this.eleIntfRedEsbIntf2RemoveButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//img'));
+        this.eleIntfRedEsbIntf3RemoveButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//img'));
+        this.eleIntfRedEsbIntf4RemoveButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//img'));
+        this.eleIntfRedTcpIntfInput = element(by.xpath('//div[text()="Outbound TCP Interface"]/../../..//input'));
+        this.eleIntfRedTcpIntfPickButton = element(by.xpath('//div[text()="Outbound TCP Interface"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleIntfRedEndpointInput = element(by.xpath('//div[text()="CICS Endpoint"]/../../..//input'));
-        this.eleIntfImsCicsEndpointPickButton = element(by.xpath('//div[text()="CICS Endpoint"]/../../..//div[@class="pick-list-text-box-button"]'));
+        this.eleIntfRedEndpointPickButton = element(by.xpath('//div[text()="CICS Endpoint"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleIntfRedHubNameInput = element(by.xpath('//div[text()="Hub Name"]/../../..//input'));
         this.eleIntfRedAdminNameInput = element(by.xpath('//div[text()="Admin Name"]/../../..//input'));
         this.eleIntfRedTrcLvlBesSpinner = element(by.xpath('//div[text()="Trace Level: BES"]/../../..//input'));
         this.eleIntfRedTrcLvlRedSpinner = element(by.xpath('//div[text()="Trace Level: RED"]/../../..//input'));
-
         this.eleIntfRedCicsParasExtend = element(by.xpath('//td[text()="CICS Related Parameters"]'));
-        this.eleIntfRedGrpNameInput = element(by.xpath('//div[text()="Group Name"]/../../..//input'));
         this.eleIntfRedGrpMonitorNameInput = element(by.xpath('//div[text()="Group Monitor Name"]/../../..//input'));
-        this.eleIntfRedLsnNameInput = element(by.xpath('//div[text()="Listener Name"]/../../..//input'));
-        this.eleIntfRedLsnTranidInput = element(by.xpath('//div[text()="Listener Transaction Id"]/../../..//input'));
-        this.eleIntfRedTransForLsnSpinner = element(by.xpath('//div[text()="Transactions for Listener"]/../../..//input'));
-        this.eleIntfRedUserTransSpinner = element(by.xpath('//div[text()="User Transactions"]/../../..//input'));
-        this.eleIntfRedTimeoutMsgReplySpinner = element(by.xpath('//div[text()="General Message Reply (ms)"]/../../..//input'));
-        this.eleIntfRedTimeoutMsgCompletionSpinner = element(by.xpath('//div[text()="General Message Completion (sec)"]/../../..//input'));
+        this.eleIntfRedMyCicsGrpInput = element(by.xpath('//div[text()="My CICS Group"]/../../..//input'));
+        this.eleIntfRedLsnNameInput = element(by.xpath('//div[text()="Listener"]/../../..//div[text()="Name"]/../../..//input'));
+        this.eleIntfRedLsnTranidInput = element(by.xpath('//div[text()="Transaction Id"]/../../..//input'));
+        this.eleIntfRedClearTranWorkareaCheck = element(by.xpath('//label[text()="Clear Transaction Workarea (TWA)"]/../../..//input'));
+        this.eleIntfRedMaxTransConcurrencyLsnSpinner = element(by.xpath('//div[text()="Maximum Transactions Concurrency"]/../../..//div[text()="Listener"]/../../..//input'));
+        this.eleIntfRedMaxTransConcurrencyUserSpinner = element(by.xpath('//div[text()="Maximum Transactions Concurrency"]/../../..//div[text()="User"]/../../..//input'));
+        this.eleIntfRedInactiveSpinner = element(by.xpath('//div[text()="Inactive (ms)"]/../../..//input'));
+        this.eleIntfRedMaxNumAbendsCicsSpinner = element(by.xpath('//div[text()="Maximum number of abends in CICS"]/../../..//input'));
+        this.eleIntfRedTimeoutMsgReplySpinner = element(by.xpath('//div[text()="Message Reply (ms)"]/../../..//input'));
+        this.eleIntfRedTimeoutMsgCompletionSpinner = element(by.xpath('//div[text()="Message Completion (sec)"]/../../..//input'));
 
         this.eleIntfRedTrgOutboundExtend = element(by.xpath('//td[text()="Trigger Service - CICS Outbound Messaging"]'));
         this.eleIntfRedTrg64bitBufsCheck = element.all(by.xpath('//label[text()="64-bit Buffers"]/..//input')).first();
-        this.eleIntfRedTrgOrderedCheck = element.all(by.xpath('//label[text()="Ordered"]/..//input')).first();
+        this.eleIntfRedTrgModeDropdown = element(by.xpath('//div[text()="Mode"]/../../..//div//div//div//div//div[@class="GCOBQG-CPQ"]'));
+        this.eleIntfRedTrgModeSelected = function (mode) {
+            return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + mode + '"]'));
+        };
+        this.eleIntfRedTrgMode01 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[1]/td[1]'));
+        this.eleIntfRedTrgMode02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
+        this.eleIntfRedTrgPrioritySpinner = element(by.xpath('//div[text()="Priority"]/../../..//input'));
+        this.eleIntfRedTrgStressDelaySpinner = element(by.xpath('//div[text()="Stress Delay (ms)"]/../../..//input'));
         this.eleIntfRedTrgMaxMsgLenSpinner = element.all(by.xpath('//div[text()="Maximum Message Length (bytes)"]/../../..//input')).first();
         this.eleIntfRedTrgNumOfBufsPool1Input = element(by.xpath('//div[@class="groupBoxWrap"]//tr[2]/td[2]//input[@class="form_text_box"]'));
         this.eleIntfRedTrgNumOfBufsPool2Input = element(by.xpath('//div[@class="groupBoxWrap"]//tr[2]/td[3]//input[@class="form_text_box"]'));
@@ -440,23 +464,24 @@ var definePage = (function () {
         this.eleIntfRedRecPacingSpinner = element(by.xpath('//div[text()="Pacing (μs)"]/../../..//input[@class="spinner-textbox"]'));
         this.eleIntfRedRecWaitSpinner = element.all(by.xpath('//td[text()="Recipe Service - CICS Inbound Messaging"]/../../../../../../..//input')).get(6);
         this.eleIntfRedRecCicsToWaitSpinner = element(by.xpath('//div[text()="CICS to Wait (ms)"]/../../..//input'));
-        this.eleIntfRedRecBufOverfolwSpinner = element(by.xpath('//div[text()="Buffer Overflow(%)"]/../../..//input'));
-        this.eleIntfRedRecBufThrottlingSpinner = element(by.xpath('//div[text()="Buffer Throttling(%)"]/../../..//input'));
+        this.eleIntfRedRecBufThrottlingSpinner = element(by.xpath('//div[text()="Buffer Throttling (%)"]/../../..//input'));
+        this.eleIntfRedRecNumOfTransBetweenStgChecksSpinner = element(by.xpath('//div[text()="Number of Transactions between Storage Checks"]/../../..//input'));
         this.eleIntfRedRec64bitBufsCheck = element.all(by.xpath('//label[text()="64-bit Buffers"]/..//input')).last();
-        this.eleIntfRedRecOrderedCheck = element.all(by.xpath('//label[text()="Ordered"]/..//input')).last();
+        this.eleIntfRedRecOrderedCheck = element(by.xpath('//label[text()="Ordered"]/..//input'));
         this.eleIntfRedRecSendWithComfimCheck = element(by.xpath('//label[text()="Send With Confirmation"]/..//input'));
 
-        this.eleIntfRedNameValidateMsg = element(by.xpath('//div[text()="Name"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleIntfRedNameValidateMsg = element.all(by.xpath('//div[text()="Name"]/../../../..//div[@class="validate_msg_show"]')).first();
         this.eleIntfRedDescValidateMsg = element(by.xpath('//div[text()="Description"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfRedIntfidValidateMsg = element(by.xpath('//div[text()="Interface ID"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfRedOutputIntfValidateMsg = element(by.css('.GCOBQG-CI- .validate_msg_show'));
+        this.eleIntfRedEsbIntfValidateMsg = element(by.css('.GCOBQG-CPY .validate_msg_show'));
+        this.eleIntfRedTcpIntfValidateMsg = element(by.xpath('//div[text()="Outbound TCP Interface"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfRedEndpointValidateMsg = element(by.xpath('//div[text()="CICS Endpoint"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfRedHubNameValidateMsg = element(by.xpath('//div[text()="Hub Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfRedAdminNameValidateMsg = element(by.xpath('//div[text()="Admin Name"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfRedGrpNameValidateMsg = element(by.xpath('//div[text()="Group Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfRedGrpMonitorNameValidateMsg = element(by.xpath('//div[text()="Group Monitor Name"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfRedLsnNameValidateMsg = element(by.xpath('//div[text()="Listener Name"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfRedLsnTranidValidateMsg = element(by.xpath('//div[text()="Listener Transaction Id"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleIntfRedMyCicsGrpValidateMsg = element(by.xpath('//div[text()="My CICS Group"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleIntfRedLsnNameValidateMsg = element(by.xpath('//div[text()="Listener"]/../../..//div[text()="Name"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleIntfRedLsnTranidValidateMsg = element(by.xpath('//div[text()="Transaction Id"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfRedTrgNumOfBufsPool1ValidateMsg = element(by.xpath('//div[@class="groupBoxWrap"]//tr[2]/td[2]//input[@class="form_text_box form_text_box_warning"]'));
         this.eleIntfRedTrgNumOfBufsPool2ValidateMsg = element(by.xpath('//div[@class="groupBoxWrap"]//tr[2]/td[3]//input[@class="form_text_box form_text_box_warning"]'));
         this.eleIntfRedTrgNumOfBufsPool3ValidateMsg = element(by.xpath('//div[@class="groupBoxWrap"]//tr[2]/td[4]//input[@class="form_text_box form_text_box_warning"]'));
@@ -490,7 +515,6 @@ var definePage = (function () {
         this.eleIntfTcpTcpDirectivesExtend = element(by.xpath('//td[text()="TCP Directives"]'));
         this.eleIntfTcpConnsSpinner = element(by.xpath('//div[text()="Connections"]/../../..//input'));
         this.eleIntfTcpKeepAliveCheck = element(by.xpath('//label[text()="Keep Alive"]/..//input'));
-        this.eleIntfTcpLazyRetrySpinner = element(by.xpath('//div[text()="Lazy Retry (sec)"]/../../..//input'));
         this.eleIntfTcpTimeoutSpinner = element(by.xpath('//div[text()="Timeout (sec)"]/../../..//input'));
         this.eleIntfTcpChunkBufsSpinner = element(by.xpath('//div[text()="Chunk Buffers"]/../../..//input'));
         this.eleIntfTcpChunkMaxSizeSpinner = element(by.xpath('//div[text()="Chunk Max Size (bytes)"]/../../..//input'));
@@ -524,8 +548,8 @@ var definePage = (function () {
         this.eleIntfAdmIntervalSpinner = element(by.xpath('//div[text()="Interval (sec)"]/../../..//input'));
         this.eleIntfAdmServiceTrgInput = element(by.xpath('//div[text()="Service: Trigger"]/../../..//input'));
         this.eleIntfAdmServiceTrgPickButton = element(by.xpath('//div[text()="Service: Trigger"]/../../..//div[@class="pick-list-text-box-button"]'));
-        this.eleIntfAdmOutputIntfInput = element(by.xpath('//div[text()="Output Interface"]/../../..//input'));
-        this.eleIntfAdmOutputIntfPickButton = element(by.xpath('//div[text()="Output Interface"]/../../..//div[@class="pick-list-text-box-button"]'));
+        this.eleIntfAdmEsbIntfInput = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//input'));
+        this.eleIntfAdmEsbIntfPickButton = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleIntfAdmHeartbeatCmdInput = element(by.xpath('//div[text()="Heartbeat Command"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//input'));
         this.eleIntfAdmHeartbeatCmd2Input = element(by.xpath('//div[text()="Heartbeat Command"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//input'));
         this.eleIntfAdmHeartbeatCmd3Input = element(by.xpath('//div[text()="Heartbeat Command"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//input'));
@@ -541,7 +565,7 @@ var definePage = (function () {
         this.eleIntfAdmIntfidValidateMsg = element(by.xpath('//div[text()="Interface ID"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfAdmEndpointValidateMsg = element(by.xpath('//div[text()="Admin Endpoint"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfAdmServiceTrgValidateMsg = element(by.xpath('//div[text()="Service: Trigger"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleIntfAdmOutputIntfValidateMsg = element(by.xpath('//div[text()="Output Interface"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleIntfAdmEsbIntfValidateMsg = element(by.xpath('//div[text()="Outbound ESB Interface"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleIntfAdmHeartbeatCmdValidateMsg = element(by.xpath('//div[text()="Heartbeat Command"]/../../../..//div[@class="validate_msg_show"]'));
         //Substation Details
         this.eleSsNameInput = element(by.xpath('//div[text()="Name"]/../../..//input'));
@@ -555,26 +579,34 @@ var definePage = (function () {
         this.eleSsLogFileDestSelected = function (logFileDest) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + logFileDest + '"]'));
         };
-        this.eleSsLogDiskFileDdnInput = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//input'));
-        this.eleSsLogDiskFileDdn2Input = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//input'));
-        this.eleSsLogDiskFileDdn3Input = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//input'));
-        this.eleSsLogDiskFileDdn4Input = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//input'));
-        this.eleSsLogDiskFileDdn5Input = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//input'));
-        this.eleSsLogDiskFileAddButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//img'));
-        this.eleSsLogDiskFile2RemoveButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//img'));
-        this.eleSsLogDiskFile3RemoveButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//img'));
-        this.eleSsLogDiskFile4RemoveButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//img'));
-        this.eleSsLogDiskFile5RemoveButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//img'));
-        this.eleSsLogStartupWarmRadio = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Startup Method"]/../../..//label[text()="WARM"]/..//input'));
-        this.eleSsLogStartupColdRadio = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Startup Method"]/../../..//label[text()="COLD"]/..//input'));
-        this.eleSsLogDiskFileWrapCheck = element(by.xpath('//div[text()="Log"]/../../..//label[text()="Disk File Wrap"]/..//input'));
+        // this.eleSsLogDiskFileDdnInput = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//input'));
+        // this.eleSsLogDiskFileDdn2Input = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//input'));
+        // this.eleSsLogDiskFileDdn3Input = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//input'));
+        // this.eleSsLogDiskFileDdn4Input = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//input'));
+        // this.eleSsLogDiskFileDdn5Input = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//input'));
+        // this.eleSsLogDiskFileAddButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//img'));
+        // this.eleSsLogDiskFile2RemoveButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//img'));
+        // this.eleSsLogDiskFile3RemoveButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//img'));
+        // this.eleSsLogDiskFile4RemoveButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//img'));
+        // this.eleSsLogDiskFile5RemoveButton = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//img'));
+        // this.eleSsLogStartupWarmRadio = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Startup Method"]/../../..//label[text()="WARM"]/..//input'));
+        // this.eleSsLogStartupColdRadio = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Startup Method"]/../../..//label[text()="COLD"]/..//input'));
+        // this.eleSsLogDiskFileWrapCheck = element(by.xpath('//div[text()="Log"]/../../..//label[text()="Disk File Wrap"]/..//input'));
         this.eleSsLogDebugLvlSpinner = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Debug Level"]/../../..//input'));
-        this.eleSsLogLogToSyslogDropdown = element(by.xpath('//div[text()="Log to SYSLOG"]/../../..//div[@class="GCOBQG-CPQ"]'));
-        this.eleSsLogLogToSyslogSelected = function (logToSyslog) {
-            return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + logToSyslog + '"]'));
-        };
         this.eleSsLogConsoleOutputMsgLogRadio = element(by.xpath('//div[text()="Console Output Message"]/../../..//label[text()="Log"]/..//input'));
         this.eleSsLogConsoleOutputMsgConsoleRadio = element(by.xpath('//div[text()="Console Output Message"]/../../..//label[text()="Console"]/..//input'));
+        this.eleSsLogLogToSyslogSpinner = element(by.xpath('//div[text()="Log to SYSLOG"]/../../..//input'));
+        // this.eleSsLogLogToSyslogSelected = function (logToSyslog) {
+        //     return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + logToSyslog + '"]'));
+        // };
+        // this.eleSsLogLogToSyslog01 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[1]/td[1]'));
+        // this.eleSsLogLogToSyslog02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
+        // this.eleSsLogLogToSyslog03 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[3]/td[1]'));
+        // this.eleSsLogLogToSyslog04 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[4]/td[1]'));
+        this.eleSsStatisticsRecordingCheck = element(by.xpath('//label[text()="Statistics Recording"]/..//input'));
+        this.eleSsMsgStreamInput = element(by.xpath('//div[text()="Substation Messages Stream"]/../../..//input'));
+        this.eleSsStsStreamInput = element(by.xpath('//div[text()="Substation Statistics Stream"]/../../..//input'));
+        this.eleSsTrcStreamInput = element(by.xpath('//div[text()="Substation Trace Stream"]/../../..//input'));
         this.eleSsTrcLvlSpinner = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Level"]/../../..//input'));
         this.eleSsTrcFormatSpinner = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Format"]/../../..//input'));
         this.eleSsTrcFileDdnInput = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="File DDName"]/../../..//input'));
@@ -582,19 +614,19 @@ var definePage = (function () {
         this.eleSsTrcFileDestSelected = function (trcFileDest) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + trcFileDest + '"]'));
         };
-        this.eleSsTrcDiskFileDdnInput = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//input'));
-        this.eleSsTrcDiskFileDdn2Input = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//input'));
-        this.eleSsTrcDiskFileDdn3Input = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//input'));
-        this.eleSsTrcDiskFileDdn4Input = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//input'));
-        this.eleSsTrcDiskFileDdn5Input = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//input'));
-        this.eleSsTrcDiskFileAddButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//img'));
-        this.eleSsTrcDiskFile2RemoveButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//img'));
-        this.eleSsTrcDiskFile3RemoveButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//img'));
-        this.eleSsTrcDiskFile4RemoveButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//img'));
-        this.eleSsTrcDiskFile5RemoveButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//img'));
-        this.eleSsTrcStartupWarmRadio = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Startup Method"]/../../..//label[text()="WARM"]/..//input'));
-        this.eleSsTrcStartupColdRadio = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Startup Method"]/../../..//label[text()="COLD"]/..//input'));
-        this.eleSsTrcDiskFileWrapCheck = element(by.xpath('//div[text()="Trace"]/../../..//label[text()="Disk File Wrap"]/..//input'));
+        // this.eleSsTrcDiskFileDdnInput = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//input'));
+        // this.eleSsTrcDiskFileDdn2Input = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//input'));
+        // this.eleSsTrcDiskFileDdn3Input = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//input'));
+        // this.eleSsTrcDiskFileDdn4Input = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//input'));
+        // this.eleSsTrcDiskFileDdn5Input = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//input'));
+        // this.eleSsTrcDiskFileAddButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//img'));
+        // this.eleSsTrcDiskFile2RemoveButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//img'));
+        // this.eleSsTrcDiskFile3RemoveButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//img'));
+        // this.eleSsTrcDiskFile4RemoveButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//img'));
+        // this.eleSsTrcDiskFile5RemoveButton = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//img'));
+        // this.eleSsTrcStartupWarmRadio = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Startup Method"]/../../..//label[text()="WARM"]/..//input'));
+        // this.eleSsTrcStartupColdRadio = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Startup Method"]/../../..//label[text()="COLD"]/..//input'));
+        // this.eleSsTrcDiskFileWrapCheck = element(by.xpath('//div[text()="Trace"]/../../..//label[text()="Disk File Wrap"]/..//input'));
         this.eleSsTrcDebugLvlSpinner = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Debug Level"]/../../..//input'));
         this.eleSsInitializationExtend = element(by.xpath('//td[text()="Initialization"]'));
         this.eleSsMaxUnitsOfWorkSpinner = element(by.xpath('//div[text()="Maximum Units of Work"]/../../..//input'));
@@ -612,6 +644,9 @@ var definePage = (function () {
         this.eleSsTrcFileDdnValidateMsg = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="File DDName"]/../../..//div[@class="validate_msg_show"]'));
         this.eleSsLogDiskFileDdnValidateMsg = element(by.xpath('//div[text()="Log"]/../../..//div[text()="Disk File DDName"]/../../..//div[@class="validate_msg_show"]'));
         this.eleSsTrcDiskFileDdnValidateMsg = element(by.xpath('//div[text()="Trace"]/../../..//div[text()="Disk File DDName"]/../../..//div[@class="validate_msg_show"]'));
+        this.eleSsMsgStreamValidateMsg = element(by.xpath('//div[text()="Substation Messages Stream"]/../../..//div[@class="validate_msg_show"]'));
+        this.eleSsStsStreamValidateMsg = element(by.xpath('//div[text()="Substation Statistics Stream"]/../../..//div[@class="validate_msg_show"]'));
+        this.eleSsTrcStreamValidateMsg = element(by.xpath('//div[text()="Substation Trace Stream"]/../../..//div[@class="validate_msg_show"]'));
         this.eleSsAdmIntfValidateMsg = element(by.xpath('//div[text()="Admin Interface"]/../../..//div[@class="validate_msg_show"]'));
     };
 
@@ -3900,29 +3935,29 @@ var definePage = (function () {
         return deferred.promise;
     };
     //
-    // This function is used for set 'EMS SSL Definition Details' -> 'Enable SSLV3'
+    // This function is used for set 'EMS SSL Definition Details' -> 'Enable TLS1.1'
     // false: not selected
     // true: selected
     //
-    definePage.prototype._enableSslv3ConnEmsSsl = function (sslv3) {
+    definePage.prototype._enableTls11ConnEmsSsl = function (tls11) {
         var deferred = protractor.promise.defer(), that = this;
 
-        globalCommons.waitForElementPresent(that.eleConnEmsSslEnableSslv3Check).then(function () {
-            return that.eleConnEmsSslEnableSslv3Check.getAttribute("checked");
+        globalCommons.waitForElementPresent(that.eleConnEmsSslEnableTls11Check).then(function () {
+            return that.eleConnEmsSslEnableTls11Check.getAttribute("checked");
         }).then(function (message) {
             if (message === null) {
-                if (sslv3) {
-                    that.eleConnEmsSslEnableSslv3Check.click().then(function () {
+                if (tls11) {
+                    that.eleConnEmsSslEnableTls11Check.click().then(function () {
                         deferred.fulfill();
                     });
                 } else {
                     deferred.fulfill();
                 }
             } else {
-                if (sslv3) {
+                if (tls11) {
                     deferred.fulfill();
                 } else {
-                    that.eleConnEmsSslEnableSslv3Check.click().then(function () {
+                    that.eleConnEmsSslEnableTls11Check.click().then(function () {
                         deferred.fulfill();
                     });
                 }
@@ -3931,29 +3966,29 @@ var definePage = (function () {
         return deferred.promise;
     };
     //
-    // This function is used for set 'EMS SSL Definition Details' -> 'Enable TLS1'
+    // This function is used for set 'EMS SSL Definition Details' -> 'Enable TLS1.2'
     // false: not selected
     // true: selected
     //
-    definePage.prototype._enableTls1ConnEmsSsl = function (tls1) {
+    definePage.prototype._enableTls12ConnEmsSsl = function (tls12) {
         var deferred = protractor.promise.defer(), that = this;
 
-        globalCommons.waitForElementPresent(that.eleConnEmsSslEnableTls1Check).then(function () {
-            return that.eleConnEmsSslEnableTls1Check.getAttribute("checked");
+        globalCommons.waitForElementPresent(that.eleConnEmsSslEnableTls12Check).then(function () {
+            return that.eleConnEmsSslEnableTls12Check.getAttribute("checked");
         }).then(function (message) {
             if (message === null) {
-                if (tls1) {
-                    that.eleConnEmsSslEnableTls1Check.click().then(function () {
+                if (tls12) {
+                    that.eleConnEmsSslEnableTls12Check.click().then(function () {
                         deferred.fulfill();
                     });
                 } else {
                     deferred.fulfill();
                 }
             } else {
-                if (tls1) {
+                if (tls12) {
                     deferred.fulfill();
                 } else {
-                    that.eleConnEmsSslEnableTls1Check.click().then(function () {
+                    that.eleConnEmsSslEnableTls12Check.click().then(function () {
                         deferred.fulfill();
                     });
                 }
@@ -4057,7 +4092,7 @@ var definePage = (function () {
     //
     // The function is used for add a EMS SSL Definition.
     //
-    definePage.prototype.addConnEmsSsl = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, ssv3, tls1, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
+    definePage.prototype.addConnEmsSsl = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, tls11, tls12, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
         var deferred = protractor.promise.defer(), that = this;
         desc = desc === undefined ? "" : desc;
         authOnly = authOnly === undefined ? "true" : authOnly;
@@ -4094,9 +4129,9 @@ var definePage = (function () {
         }).then(function () {
             that._enableFips1402ConnEmsSsl(fips);
         }).then(function () {
-            that._enableSslv3ConnEmsSsl(ssv3);
+            that._enableTls11ConnEmsSsl(tls11);
         }).then(function () {
-            that._enableTls1ConnEmsSsl(tls1);
+            that._enableTls12ConnEmsSsl(tls12);
         }).then(function () {
             that.eleConnEmsSslExpectEmsHostnameInput.clear().sendKeys(hostname);
         }).then(function () {
@@ -4230,7 +4265,7 @@ var definePage = (function () {
     //
     // The function is used for update a EMS SSL Definition.
     //
-    definePage.prototype.updateConnEmsSsl = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, ssv3, tls1, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
+    definePage.prototype.updateConnEmsSsl = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, tls11, tls12, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
         var deferred = protractor.promise.defer(), that = this;
         desc = desc === undefined ? "" : desc;
         authOnly = authOnly === undefined ? "true" : authOnly;
@@ -4275,9 +4310,9 @@ var definePage = (function () {
         }).then(function () {
             that._enableFips1402ConnEmsSsl(fips);
         }).then(function () {
-            that._enableSslv3ConnEmsSsl(ssv3);
+            that._enableTls11ConnEmsSsl(tls11);
         }).then(function () {
-            that._enableTls1ConnEmsSsl(tls1);
+            that._enableTls12ConnEmsSsl(tls12);
         }).then(function () {
             that.eleConnEmsSslExpectEmsHostnameInput.clear().sendKeys(hostname);
         }).then(function () {
@@ -4302,7 +4337,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a EMS SSL Definition, then confirm the cancel operation.
     //
-    definePage.prototype.cancelConnEmsSslYes = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, ssv3, tls1, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
+    definePage.prototype.cancelConnEmsSslYes = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, tls11, tls12, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
         var deferred = protractor.promise.defer(), that = this;
         desc = desc === undefined ? "" : desc;
         authOnly = authOnly === undefined ? "true" : authOnly;
@@ -4347,9 +4382,9 @@ var definePage = (function () {
         }).then(function () {
             that._enableFips1402ConnEmsSsl(fips);
         }).then(function () {
-            that._enableSslv3ConnEmsSsl(ssv3);
+            that._enableTls11ConnEmsSsl(tls11);
         }).then(function () {
-            that._enableTls1ConnEmsSsl(tls1);
+            that._enableTls12ConnEmsSsl(tls12);
         }).then(function () {
             that.eleConnEmsSslExpectEmsHostnameInput.clear().sendKeys(hostname);
         }).then(function () {
@@ -4376,7 +4411,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a EMS SSL Definition, then discard the cancel operation.
     //
-    definePage.prototype.cancelConnEmsSslNo = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, ssv3, tls1, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
+    definePage.prototype.cancelConnEmsSslNo = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, tls11, tls12, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
         var deferred = protractor.promise.defer(), that = this;
         desc = desc === undefined ? "" : desc;
         authOnly = authOnly === undefined ? "true" : authOnly;
@@ -4421,9 +4456,9 @@ var definePage = (function () {
         }).then(function () {
             that._enableFips1402ConnEmsSsl(fips);
         }).then(function () {
-            that._enableSslv3ConnEmsSsl(ssv3);
+            that._enableTls11ConnEmsSsl(tls11);
         }).then(function () {
-            that._enableTls1ConnEmsSsl(tls1);
+            that._enableTls12ConnEmsSsl(tls12);
         }).then(function () {
             that.eleConnEmsSslExpectEmsHostnameInput.clear().sendKeys(hostname);
         }).then(function () {
@@ -4454,7 +4489,7 @@ var definePage = (function () {
     //
     // The function is used for reset a EMS SSL Definition.
     //
-    definePage.prototype.resetConnEmsSsl = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, ssv3, tls1, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
+    definePage.prototype.resetConnEmsSsl = function (name, desc, authOnly, keyRingFile, keyRingLabel, Cipher, fips, tls11, tls12, hostname, verifyHost, ldapUrl, ldapUserid, ldapPswd, trc, debugTrc) {
         var deferred = protractor.promise.defer(), that = this;
         desc = desc === undefined ? "" : desc;
         authOnly = authOnly === undefined ? "true" : authOnly;
@@ -4499,9 +4534,9 @@ var definePage = (function () {
         }).then(function () {
             that._enableFips1402ConnEmsSsl(fips);
         }).then(function () {
-            that._enableSslv3ConnEmsSsl(ssv3);
+            that._enableTls11ConnEmsSsl(tls11);
         }).then(function () {
-            that._enableTls1ConnEmsSsl(tls1);
+            that._enableTls12ConnEmsSsl(tls12);
         }).then(function () {
             that.eleConnEmsSslExpectEmsHostnameInput.clear().sendKeys(hostname);
         }).then(function () {
@@ -5170,6 +5205,37 @@ var definePage = (function () {
         return deferred.promise;
     };
     //
+    // This function is used for set 'EMS Interface Details' -> 'Enable message delivery'
+    // false: not selected
+    // true: selected
+    //
+    definePage.prototype._enableMsgDeliveryIntfEms = function (enableMsgDelivery) {
+        var deferred = protractor.promise.defer(), that = this;
+
+        globalCommons.waitForElementPresent(that.eleIntfEmsEnableMsgDeliveryCheck).then(function () {
+            return that.eleIntfEmsEnableMsgDeliveryCheck.getAttribute("checked");
+        }).then(function (message) {
+            if (message === null) {
+                if (enableMsgDelivery) {
+                    that.eleIntfEmsEnableMsgDeliveryCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                } else {
+                    deferred.fulfill();
+                }
+            } else {
+                if (enableMsgDelivery) {
+                    deferred.fulfill();
+                } else {
+                    that.eleIntfEmsEnableMsgDeliveryCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                }
+            }
+        });
+        return deferred.promise;
+    };
+    //
     // This function is used for set 'EMS Interface Details' -> 'Use Properties'
     // false: not selected
     // true: selected
@@ -5226,17 +5292,19 @@ var definePage = (function () {
     //
     // The function is used for add a EMS Interface.
     //
-    definePage.prototype.addIntfEms = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, useProp, errMsgType, deadMsgQue) {
+    definePage.prototype.addIntfEms = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgDelivery, useProp, errMsgType, deadMsgQue, maxTotalSizeAllMsg) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfEMS.intfid;
-        workers = workers === undefined ? "5" : workers;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
+        workers = workers === undefined ? "2" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
+        enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
         errMsgType = errMsgType === undefined ? "Map" : errMsgType;
         deadMsgQue = deadMsgQue === undefined ? "tibss.Dead.Msg.Queue" : deadMsgQue;
+        maxTotalSizeAllMsg = maxTotalSizeAllMsg === undefined ? "200" : maxTotalSizeAllMsg;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsEmsLeftmenu);
@@ -5255,6 +5323,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfEmsWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfEmsWorkersSpinner.clear().sendKeys(workers);
@@ -5263,17 +5335,19 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServicesIntfEms(suspendServices);
+        }).then(function () {
+            that._enableMsgDeliveryIntfEms(enableMsgDelivery);
         }).then(function () {
             that._usePropIntfEms(useProp);
         }).then(function () {
             that._errMsgTypeIntfEms(errMsgType);
         }).then(function () {
             that.eleIntfEmsDeadMsgQueInput.clear().sendKeys(deadMsgQue);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys(maxTotalSizeAllMsg);
         }).then(function () {
             that.eleSaveButton.click();
         }).then(function () {
@@ -5393,17 +5467,19 @@ var definePage = (function () {
     //
     // The function is used for update a EMS Interface.
     //
-    definePage.prototype.updateIntfEms = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, useProp, errMsgType, deadMsgQue) {
+    definePage.prototype.updateIntfEms = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgDelivery, useProp, errMsgType, deadMsgQue, maxTotalSizeAllMsg) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfEMS.intfid;
-        workers = workers === undefined ? "5" : workers;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
+        workers = workers === undefined ? "2" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
+        enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
         errMsgType = errMsgType === undefined ? "Map" : errMsgType;
         deadMsgQue = deadMsgQue === undefined ? "tibss.Dead.Msg.Queue" : deadMsgQue;
+        maxTotalSizeAllMsg = maxTotalSizeAllMsg === undefined ? "200" : maxTotalSizeAllMsg;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsEmsLeftmenu);
@@ -5429,6 +5505,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfEmsWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfEmsWorkersSpinner.clear().sendKeys(workers);
@@ -5437,17 +5517,19 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServicesIntfEms(suspendServices);
+        }).then(function () {
+            that._enableMsgDeliveryIntfEms(enableMsgDelivery);
         }).then(function () {
             that._usePropIntfEms(useProp);
         }).then(function () {
             that._errMsgTypeIntfEms(errMsgType);
         }).then(function () {
             that.eleIntfEmsDeadMsgQueInput.clear().sendKeys(deadMsgQue);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys(maxTotalSizeAllMsg);
         }).then(function () {
             that.eleSaveButton.click();
         }).then(function () {
@@ -5458,17 +5540,19 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a EMS Interface, then confirm the cancel operation.
     //
-    definePage.prototype.cancelIntfEmsYes = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, useProp, errMsgType, deadMsgQue) {
+    definePage.prototype.cancelIntfEmsYes = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgDelivery, useProp, errMsgType, deadMsgQue, maxTotalSizeAllMsg) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfEMS.intfid;
-        workers = workers === undefined ? "5" : workers;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
+        workers = workers === undefined ? "2" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
+        enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
         errMsgType = errMsgType === undefined ? "Map" : errMsgType;
         deadMsgQue = deadMsgQue === undefined ? "tibss.Dead.Msg.Queue" : deadMsgQue;
+        maxTotalSizeAllMsg = maxTotalSizeAllMsg === undefined ? "200" : maxTotalSizeAllMsg;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsEmsLeftmenu);
@@ -5495,6 +5579,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfEmsWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfEmsWorkersSpinner.clear().sendKeys(workers);
@@ -5503,17 +5591,19 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServicesIntfEms(suspendServices);
+        }).then(function () {
+            that._enableMsgDeliveryIntfEms(enableMsgDelivery);
         }).then(function () {
             that._usePropIntfEms(useProp);
         }).then(function () {
             that._errMsgTypeIntfEms(errMsgType);
         }).then(function () {
             that.eleIntfEmsDeadMsgQueInput.clear().sendKeys(deadMsgQue);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys(maxTotalSizeAllMsg);
         }).then(function () {
             that.eleCancelButton.click();
         }).then(function () {
@@ -5526,17 +5616,19 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a EMS Interface, then discard the cancel operation.
     //
-    definePage.prototype.cancelIntfEmsNo = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, useProp, errMsgType, deadMsgQue) {
+    definePage.prototype.cancelIntfEmsNo = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgDelivery, useProp, errMsgType, deadMsgQue, maxTotalSizeAllMsg) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfEMS.intfid;
-        workers = workers === undefined ? "5" : workers;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
+        workers = workers === undefined ? "2" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
+        enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
         errMsgType = errMsgType === undefined ? "Map" : errMsgType;
         deadMsgQue = deadMsgQue === undefined ? "tibss.Dead.Msg.Queue" : deadMsgQue;
+        maxTotalSizeAllMsg = maxTotalSizeAllMsg === undefined ? "200" : maxTotalSizeAllMsg;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsEmsLeftmenu);
@@ -5563,6 +5655,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfEmsWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfEmsWorkersSpinner.clear().sendKeys(workers);
@@ -5571,17 +5667,19 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServicesIntfEms(suspendServices);
+        }).then(function () {
+            that._enableMsgDeliveryIntfEms(enableMsgDelivery);
         }).then(function () {
             that._usePropIntfEms(useProp);
         }).then(function () {
             that._errMsgTypeIntfEms(errMsgType);
         }).then(function () {
             that.eleIntfEmsDeadMsgQueInput.clear().sendKeys(deadMsgQue);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys(maxTotalSizeAllMsg);
         }).then(function () {
             that.eleCancelButton.click();
         }).then(function () {
@@ -5598,17 +5696,19 @@ var definePage = (function () {
     //
     // The function is used for reset a EMS Interface.
     //
-    definePage.prototype.resetIntfEms = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, useProp, errMsgType, deadMsgQue) {
+    definePage.prototype.resetIntfEms = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgDelivery, useProp, errMsgType, deadMsgQue, maxTotalSizeAllMsg) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfEMS.intfid;
-        workers = workers === undefined ? "5" : workers;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
+        workers = workers === undefined ? "2" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
+        enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
         errMsgType = errMsgType === undefined ? "Map" : errMsgType;
         deadMsgQue = deadMsgQue === undefined ? "tibss.Dead.Msg.Queue" : deadMsgQue;
+        maxTotalSizeAllMsg = maxTotalSizeAllMsg === undefined ? "200" : maxTotalSizeAllMsg;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsEmsLeftmenu);
@@ -5635,6 +5735,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfEmsWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfEmsWorkersSpinner.clear().sendKeys(workers);
@@ -5643,17 +5747,19 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfEmsWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfEmsMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServicesIntfEms(suspendServices);
+        }).then(function () {
+            that._enableMsgDeliveryIntfEms(enableMsgDelivery);
         }).then(function () {
             that._usePropIntfEms(useProp);
         }).then(function () {
             that._errMsgTypeIntfEms(errMsgType);
         }).then(function () {
             that.eleIntfEmsDeadMsgQueInput.clear().sendKeys(deadMsgQue);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfEmsMaxTotalSizeOfAllMsgSpinner.clear().sendKeys(maxTotalSizeAllMsg);
         }).then(function () {
             that.eleResetButton.click();
         }).then(function () {
@@ -5757,19 +5863,53 @@ var definePage = (function () {
         return deferred.promise;
     };
     //
+    // This function is used for set 'RV Interface Details' -> 'Vector Input in RV Callback'
+    // false: not selected
+    // true: selected
+    //
+    definePage.prototype._vectorInputInRvCallbackIntfRv = function (vector) {
+        var deferred = protractor.promise.defer(), that = this;
+
+        globalCommons.waitForElementPresent(that.eleIntfRvVectorInputInRvCallbackCheck).then(function () {
+            return that.eleIntfRvVectorInputInRvCallbackCheck.getAttribute("checked");
+        }).then(function (message) {
+            if (message === null) {
+                if (vector) {
+                    that.eleIntfRvVectorInputInRvCallbackCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                } else {
+                    deferred.fulfill();
+                }
+            } else {
+                if (vector) {
+                    deferred.fulfill();
+                } else {
+                    that.eleIntfRvVectorInputInRvCallbackCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                }
+            }
+        });
+        return deferred.promise;
+    };
+    //
     // The function is used for add a RV Interface.
     //
-    definePage.prototype.addIntfRv = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, enableMsgReceipt, enableMsgDelivery) {
+    definePage.prototype.addIntfRv = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgReceipt, enableMsgDelivery, msgFreeListSize, service, vector) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfRV.intfid;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
         workers = workers === undefined ? "5" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
         enableMsgReceipt = enableMsgReceipt === undefined ? "true" : enableMsgReceipt;
         enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
+        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
+        service = service === undefined ? "0" : service;
+        vector = vector === undefined ? "true" : vector;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsRvLeftmenu);
@@ -5788,6 +5928,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfRvWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfRvWorkersSpinner.clear().sendKeys(workers);
@@ -5796,15 +5940,21 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServiceIntfRv(suspendServices);
         }).then(function () {
             that._enableMsgReceiptIntfRv(enableMsgReceipt);
         }).then(function () {
             that._enableMsgDeliveryIntfRv(enableMsgDelivery);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.clear().sendKeys(service);
+        }).then(function () {
+            that._vectorInputInRvCallbackIntfRv(vector);
         }).then(function () {
             that.eleSaveButton.click();
         }).then(function () {
@@ -5924,17 +6074,20 @@ var definePage = (function () {
     //
     // The function is used for update a RV Interface.
     //
-    definePage.prototype.updateIntfRv = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, enableMsgReceipt, enableMsgDelivery) {
+    definePage.prototype.updateIntfRv = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgReceipt, enableMsgDelivery, msgFreeListSize, service, vector) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfRV.intfid;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
         workers = workers === undefined ? "5" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
         enableMsgReceipt = enableMsgReceipt === undefined ? "true" : enableMsgReceipt;
         enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
+        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
+        service = service === undefined ? "0" : service;
+        vector = vector === undefined ? "true" : vector;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsRvLeftmenu);
@@ -5961,6 +6114,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfRvWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfRvWorkersSpinner.clear().sendKeys(workers);
@@ -5969,15 +6126,21 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServiceIntfRv(suspendServices);
         }).then(function () {
             that._enableMsgReceiptIntfRv(enableMsgReceipt);
         }).then(function () {
             that._enableMsgDeliveryIntfRv(enableMsgDelivery);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.clear().sendKeys(service);
+        }).then(function () {
+            that._vectorInputInRvCallbackIntfRv(vector);
         }).then(function () {
             that.eleSaveButton.click();
         }).then(function () {
@@ -5988,17 +6151,20 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a RV Interface, then confirm the cancel operation.
     //
-    definePage.prototype.cancelIntfRvYes = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, enableMsgReceipt, enableMsgDelivery) {
+    definePage.prototype.cancelIntfRvYes = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgReceipt, enableMsgDelivery, msgFreeListSize, service, vector) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfRV.intfid;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
         workers = workers === undefined ? "5" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
         enableMsgReceipt = enableMsgReceipt === undefined ? "true" : enableMsgReceipt;
         enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
+        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
+        service = service === undefined ? "0" : service;
+        vector = vector === undefined ? "true" : vector;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsRvLeftmenu);
@@ -6025,6 +6191,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfRvWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfRvWorkersSpinner.clear().sendKeys(workers);
@@ -6033,15 +6203,21 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServiceIntfRv(suspendServices);
         }).then(function () {
             that._enableMsgReceiptIntfRv(enableMsgReceipt);
         }).then(function () {
             that._enableMsgDeliveryIntfRv(enableMsgDelivery);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.clear().sendKeys(service);
+        }).then(function () {
+            that._vectorInputInRvCallbackIntfRv(vector);
         }).then(function () {
             that.eleCancelButton.click();
         }).then(function () {
@@ -6054,17 +6230,20 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a RV Interface, then discard the cancel operation.
     //
-    definePage.prototype.cancelIntfRvNo = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, enableMsgReceipt, enableMsgDelivery) {
+    definePage.prototype.cancelIntfRvNo = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgReceipt, enableMsgDelivery, msgFreeListSize, service, vector) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfRV.intfid;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
         workers = workers === undefined ? "5" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
         enableMsgReceipt = enableMsgReceipt === undefined ? "true" : enableMsgReceipt;
         enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
+        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
+        service = service === undefined ? "0" : service;
+        vector = vector === undefined ? "true" : vector;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsRvLeftmenu);
@@ -6091,6 +6270,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfRvWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfRvWorkersSpinner.clear().sendKeys(workers);
@@ -6099,15 +6282,21 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServiceIntfRv(suspendServices);
         }).then(function () {
             that._enableMsgReceiptIntfRv(enableMsgReceipt);
         }).then(function () {
             that._enableMsgDeliveryIntfRv(enableMsgDelivery);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.clear().sendKeys(service);
+        }).then(function () {
+            that._vectorInputInRvCallbackIntfRv(vector);
         }).then(function () {
             that.eleCancelButton.click();
         }).then(function () {
@@ -6124,17 +6313,20 @@ var definePage = (function () {
     //
     // The function is used for reset a RV Interface.
     //
-    definePage.prototype.resetIntfRv = function (name, desc, intfid, workers, workersEOT, msgFreeListSize, suspendServices, enableMsgReceipt, enableMsgDelivery) {
+    definePage.prototype.resetIntfRv = function (name, desc, intfid, waitTimeOnStartup, workers, workersEOT, suspendServices, enableMsgReceipt, enableMsgDelivery, msgFreeListSize, service, vector) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         intfid = intfid || browser.params.intfRV.intfid;
+        waitTimeOnStartup = waitTimeOnStartup === undefined ? "120" : waitTimeOnStartup;
         workers = workers === undefined ? "5" : workers;
         workersEOT = workersEOT === undefined ? "30" : workersEOT;
-        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
         suspendServices = suspendServices === undefined ? "true" : suspendServices;
         enableMsgReceipt = enableMsgReceipt === undefined ? "true" : enableMsgReceipt;
         enableMsgDelivery = enableMsgDelivery === undefined ? "true" : enableMsgDelivery;
+        msgFreeListSize = msgFreeListSize === undefined ? "0" : msgFreeListSize;
+        service = service === undefined ? "0" : service;
+        vector = vector === undefined ? "true" : vector;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleIntfsRvLeftmenu);
@@ -6161,6 +6353,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys(waitTimeOnStartup);
+        }).then(function () {
             that.eleIntfRvWorkersSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfRvWorkersSpinner.clear().sendKeys(workers);
@@ -6169,15 +6365,21 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRvWorkersEotSpinner.clear().sendKeys(workersEOT);
         }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
-        }).then(function () {
             that._suspendServiceIntfRv(suspendServices);
         }).then(function () {
             that._enableMsgReceiptIntfRv(enableMsgReceipt);
         }).then(function () {
             that._enableMsgDeliveryIntfRv(enableMsgDelivery);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys(msgFreeListSize);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfRvIntfServiceInput.clear().sendKeys(service);
+        }).then(function () {
+            that._vectorInputInRvCallbackIntfRv(vector);
         }).then(function () {
             that.eleResetButton.click();
         }).then(function () {
@@ -6387,7 +6589,7 @@ var definePage = (function () {
     //
     // The function is used for add a CICS Interface.
     //
-    definePage.prototype.addIntfCics = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, loopbackNo, loopbackYes, trcLvlTrg, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
+    definePage.prototype.addIntfCics = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, cicsLoggingLvl, loopbackNo, loopbackYes, trcLvlTrg, trcLvlOnline, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
@@ -6398,7 +6600,9 @@ var definePage = (function () {
         guaranteed = guaranteed === undefined ? "0" : guaranteed;
         reliable = reliable === undefined ? "0" : reliable;
         rrMaxSize = rrMaxSize === undefined ? "16000" : rrMaxSize;
+        cicsLoggingLvl = cicsLoggingLvl === undefined ? "0" : cicsLoggingLvl;
         trcLvlTrg = trcLvlTrg === undefined ? "0" : trcLvlTrg;
+        trcLvlOnline = trcLvlOnline === undefined ? "0" : trcLvlOnline;
         workers = workers === undefined ? "0" : workers;
         batchSize = batchSize === undefined ? "50" : batchSize;
         trcLvlTsq = trcLvlTsq === undefined ? "1" : trcLvlTsq;
@@ -6420,7 +6624,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that.eleIntfCicsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfCicsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfCicsEndpointInput.clear().sendKeys(endpoint);
         }).then(function () {
@@ -6448,6 +6652,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsRRMaxSizeSpinner.clear().sendKeys(rrMaxSize);
         }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys(cicsLoggingLvl);
+        }).then(function () {
             that._loopbackNoIntfCics(loopbackNo);
         }).then(function () {
             that._loopbackYesIntfCics(loopbackYes);
@@ -6455,6 +6663,10 @@ var definePage = (function () {
             that.eleIntfCicsTrcLvlTrgSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys(trcLvlTrg);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys(trcLvlOnline);
         }).then(function () {
             that._tsqProcessingIntfCics(batchingNo, batchingYes, workers, batchSize, trcLvlTsq);
         }).then(function () {
@@ -6576,7 +6788,7 @@ var definePage = (function () {
     //
     // The function is used for update a CICS Interface.
     //
-    definePage.prototype.updateIntfCics = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, loopback, trcLvlTrg, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
+    definePage.prototype.updateIntfCics = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, cicsLoggingLvl, loopback, trcLvlTrg, trcLvlOnline, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
@@ -6587,7 +6799,9 @@ var definePage = (function () {
         guaranteed = guaranteed === undefined ? "0" : guaranteed;
         reliable = reliable === undefined ? "0" : reliable;
         rrMaxSize = rrMaxSize === undefined ? "16000" : rrMaxSize;
+        cicsLoggingLvl = cicsLoggingLvl === undefined ? "0" : cicsLoggingLvl;
         trcLvlTrg = trcLvlTrg === undefined ? "0" : trcLvlTrg;
+        trcLvlOnline = trcLvlOnline === undefined ? "0" : trcLvlOnline;
         workers = workers === undefined ? "0" : workers;
         batchSize = batchSize === undefined ? "50" : batchSize;
         trcLvlTsq = trcLvlTsq === undefined ? "1" : trcLvlTsq;
@@ -6617,7 +6831,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that.eleIntfCicsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfCicsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfCicsEndpointInput.clear().sendKeys(endpoint);
         }).then(function () {
@@ -6645,17 +6859,21 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsRRMaxSizeSpinner.clear().sendKeys(rrMaxSize);
         }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys(cicsLoggingLvl);
+        }).then(function () {
             browser.sleep(500);
         }).then(function () {
             that._loopbackIntfCics(loopback);
-            // }).then(function () {
-            //     that._loopbackNoIntfCics(loopbackNo);
-            // }).then(function () {
-            //     that._loopbackYesIntfCics(loopbackYes);
         }).then(function () {
             that.eleIntfCicsTrcLvlTrgSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys(trcLvlTrg);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys(trcLvlOnline);
         }).then(function () {
             that._tsqProcessingIntfCics(batchingNo, batchingYes, workers, batchSize, trcLvlTsq);
         }).then(function () {
@@ -6668,7 +6886,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a CICS Interface, then confirm the cancel operation.
     //
-    definePage.prototype.cancelIntfCicsYes = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, loopbackNo, loopbackYes, trcLvlTrg, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
+    definePage.prototype.cancelIntfCicsYes = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, cicsLoggingLvl, loopbackNo, loopbackYes, trcLvlTrg, trcLvlOnline, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
@@ -6679,7 +6897,9 @@ var definePage = (function () {
         guaranteed = guaranteed === undefined ? "0" : guaranteed;
         reliable = reliable === undefined ? "0" : reliable;
         rrMaxSize = rrMaxSize === undefined ? "16000" : rrMaxSize;
+        cicsLoggingLvl = cicsLoggingLvl === undefined ? "0" : cicsLoggingLvl;
         trcLvlTrg = trcLvlTrg === undefined ? "0" : trcLvlTrg;
+        trcLvlOnline = trcLvlOnline === undefined ? "0" : trcLvlOnline;
         workers = workers === undefined ? "0" : workers;
         batchSize = batchSize === undefined ? "50" : batchSize;
         trcLvlTsq = trcLvlTsq === undefined ? "1" : trcLvlTsq;
@@ -6709,7 +6929,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that.eleIntfCicsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfCicsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfCicsEndpointInput.clear().sendKeys(endpoint);
         }).then(function () {
@@ -6737,6 +6957,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsRRMaxSizeSpinner.clear().sendKeys(rrMaxSize);
         }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys(cicsLoggingLvl);
+        }).then(function () {
             that._loopbackNoIntfCics(loopbackNo);
         }).then(function () {
             that._loopbackYesIntfCics(loopbackYes);
@@ -6744,6 +6968,10 @@ var definePage = (function () {
             that.eleIntfCicsTrcLvlTrgSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys(trcLvlTrg);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys(trcLvlOnline);
         }).then(function () {
             that._tsqProcessingIntfCics(batchingNo, batchingYes, workers, batchSize, trcLvlTsq);
         }).then(function () {
@@ -6758,7 +6986,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a CICS Interface, then discard the cancel operation.
     //
-    definePage.prototype.cancelIntfCicsNo = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, loopbackNo, loopbackYes, trcLvlTrg, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
+    definePage.prototype.cancelIntfCicsNo = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, cicsLoggingLvl, loopbackNo, loopbackYes, trcLvlTrg, trcLvlOnline, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
@@ -6769,7 +6997,9 @@ var definePage = (function () {
         guaranteed = guaranteed === undefined ? "0" : guaranteed;
         reliable = reliable === undefined ? "0" : reliable;
         rrMaxSize = rrMaxSize === undefined ? "16000" : rrMaxSize;
+        cicsLoggingLvl = cicsLoggingLvl === undefined ? "0" : cicsLoggingLvl;
         trcLvlTrg = trcLvlTrg === undefined ? "0" : trcLvlTrg;
+        trcLvlOnline = trcLvlOnline === undefined ? "0" : trcLvlOnline;
         workers = workers === undefined ? "0" : workers;
         batchSize = batchSize === undefined ? "50" : batchSize;
         trcLvlTsq = trcLvlTsq === undefined ? "1" : trcLvlTsq;
@@ -6799,7 +7029,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that.eleIntfCicsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfCicsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfCicsEndpointInput.clear().sendKeys(endpoint);
         }).then(function () {
@@ -6827,6 +7057,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsRRMaxSizeSpinner.clear().sendKeys(rrMaxSize);
         }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys(cicsLoggingLvl);
+        }).then(function () {
             that._loopbackNoIntfCics(loopbackNo);
         }).then(function () {
             that._loopbackYesIntfCics(loopbackYes);
@@ -6834,6 +7068,10 @@ var definePage = (function () {
             that.eleIntfCicsTrcLvlTrgSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys(trcLvlTrg);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys(trcLvlOnline);
         }).then(function () {
             that._tsqProcessingIntfCics(batchingNo, batchingYes, workers, batchSize, trcLvlTsq);
         }).then(function () {
@@ -6852,7 +7090,7 @@ var definePage = (function () {
     //
     // The function is used for reset a CICS Interface.
     //
-    definePage.prototype.resetIntfCics = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, loopbackNo, loopbackYes, trcLvlTrg, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
+    definePage.prototype.resetIntfCics = function (name, desc, intfid, outputIntf, endpoint, mirrorTranid, userid, ordered, requestReply, esbRequestReply, guaranteed, reliable, rrMaxSize, cicsLoggingLvl, loopbackNo, loopbackYes, trcLvlTrg, trcLvlOnline, batchingNo, batchingYes, workers, batchSize, trcLvlTsq) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
@@ -6863,7 +7101,9 @@ var definePage = (function () {
         guaranteed = guaranteed === undefined ? "0" : guaranteed;
         reliable = reliable === undefined ? "0" : reliable;
         rrMaxSize = rrMaxSize === undefined ? "16000" : rrMaxSize;
+        cicsLoggingLvl = cicsLoggingLvl === undefined ? "0" : cicsLoggingLvl;
         trcLvlTrg = trcLvlTrg === undefined ? "0" : trcLvlTrg;
+        trcLvlOnline = trcLvlOnline === undefined ? "0" : trcLvlOnline;
         workers = workers === undefined ? "0" : workers;
         batchSize = batchSize === undefined ? "50" : batchSize;
         trcLvlTsq = trcLvlTsq === undefined ? "1" : trcLvlTsq;
@@ -6893,7 +7133,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that.eleIntfCicsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfCicsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfCicsEndpointInput.clear().sendKeys(endpoint);
         }).then(function () {
@@ -6921,6 +7161,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfCicsRRMaxSizeSpinner.clear().sendKeys(rrMaxSize);
         }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys(cicsLoggingLvl);
+        }).then(function () {
             that._loopbackNoIntfCics(loopbackNo);
         }).then(function () {
             that._loopbackYesIntfCics(loopbackYes);
@@ -6928,6 +7172,10 @@ var definePage = (function () {
             that.eleIntfCicsTrcLvlTrgSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys(trcLvlTrg);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys(trcLvlOnline);
         }).then(function () {
             that._tsqProcessingIntfCics(batchingNo, batchingYes, workers, batchSize, trcLvlTsq);
         }).then(function () {
@@ -6938,6 +7186,38 @@ var definePage = (function () {
         return deferred.promise;
     };
 
+
+    //
+    // This function is used for set 'IMS Interface Details' -> 'Active Triggers'
+    // false: not selected
+    // true: selected
+    //
+    definePage.prototype._activeTrgsIntfIms = function (actTrgs) {
+        var deferred = protractor.promise.defer(), that = this;
+
+        globalCommons.waitForElementPresent(that.eleIntfImsActiveTrgsCheck).then(function () {
+            return that.eleIntfImsActiveTrgsCheck.getAttribute("checked");
+        }).then(function (message) {
+            if (message === null) {
+                if (actTrgs) {
+                    that.eleIntfImsActiveTrgsCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                } else {
+                    deferred.fulfill();
+                }
+            } else {
+                if (actTrgs) {
+                    deferred.fulfill();
+                } else {
+                    that.eleIntfImsActiveTrgsCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                }
+            }
+        });
+        return deferred.promise;
+    };
     //
     // This function is used for set 'IMS Interface Details -> IMS Commit Mode 0'
     // false: not click
@@ -7007,16 +7287,27 @@ var definePage = (function () {
     // false: not click
     // true: click
     //
-    definePage.prototype._otmaIntfIms = function (waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize) {
+    definePage.prototype._otmaIntfIms = function (waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize) {
         var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         globalCommons.waitForElementPresent(that.eleIntfImsOtmaSettingsExtend).then(function () {
-            return that.eleIntfImsWaitInitializationInput.isDisplayed();
+            return that.eleIntfImsWaitInitializationSpinner.isDisplayed();
         }).then(function (result) {
             if (result) {
-                that.eleIntfImsWaitInitializationInput.clear().sendKeys(waitInitial).then(function () {
-                    that.eleIntfImsWaitOtmaInput.clear().sendKeys(waitOtma);
+                that.eleIntfImsWaitInitializationSpinner.sendKeys(backspaceSeries).then(function () {
+                    that.eleIntfImsWaitInitializationSpinner.clear().sendKeys(waitInitial);
                 }).then(function () {
-                    that.eleIntfImsWaitMsgInput.clear().sendKeys(waitMsg);
+                    that.eleIntfImsWaitOtmaSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfImsWaitOtmaSpinner.clear().sendKeys(waitOtma);
+                }).then(function () {
+                    that.eleIntfImsWaitMsgSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfImsWaitMsgSpinner.clear().sendKeys(waitMsg);
+                }).then(function () {
+                    that.eleIntfImsWaitTranSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfImsWaitTranSpinner.clear().sendKeys(waitTran);
                 }).then(function () {
                     that.eleIntfImsTranAllocationInput.clear().sendKeys(tranAllocation);
                 }).then(function () {
@@ -7034,13 +7325,23 @@ var definePage = (function () {
                 });
             } else {
                 that.eleIntfImsOtmaSettingsExtend.click().then(function () {
-                    globalCommons.waitForDisplayed(that.eleIntfImsWaitInitializationInput);
+                    globalCommons.waitForDisplayed(that.eleIntfImsWaitInitializationSpinner);
                 }).then(function () {
-                    that.eleIntfImsWaitInitializationInput.clear().sendKeys(waitInitial);
+                    that.eleIntfImsWaitInitializationSpinner.sendKeys(backspaceSeries);
                 }).then(function () {
-                    that.eleIntfImsWaitOtmaInput.clear().sendKeys(waitOtma);
+                    that.eleIntfImsWaitInitializationSpinner.clear().sendKeys(waitInitial);
                 }).then(function () {
-                    that.eleIntfImsWaitMsgInput.clear().sendKeys(waitMsg);
+                    that.eleIntfImsWaitOtmaSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfImsWaitOtmaSpinner.clear().sendKeys(waitOtma);
+                }).then(function () {
+                    that.eleIntfImsWaitMsgSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfImsWaitMsgSpinner.clear().sendKeys(waitMsg);
+                }).then(function () {
+                    that.eleIntfImsWaitTranSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfImsWaitTranSpinner.clear().sendKeys(waitTran);
                 }).then(function () {
                     that.eleIntfImsTranAllocationInput.clear().sendKeys(tranAllocation);
                 }).then(function () {
@@ -7063,13 +7364,15 @@ var definePage = (function () {
     //
     // The function is used for add a IMS Interface.
     //
-    definePage.prototype.addIntfIms = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
+    definePage.prototype.addIntfIms = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, actTrgs, syncCalloutTo, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfIMS.intfid;
         xcfMember = xcfMember || browser.params.intfIMS.xcfMemberName;
         tpipe = tpipe || browser.params.intfIMS.tpipeName;
         tpipePrefix = tpipePrefix || browser.params.intfIMS.tpipePrefix;
+        outputIntf = outputIntf || "";
+        syncCalloutTo = syncCalloutTo || "10";
         guaranteed = guaranteed || browser.params.intfIMS.tpipeForTriggerGuaranteed;
         reliable = reliable || browser.params.intfIMS.tpipeForTriggerReliable;
         syncCallout = syncCallout || browser.params.intfIMS.tpipeForSyncCallout;
@@ -7080,6 +7383,7 @@ var definePage = (function () {
         waitInitial = waitInitial || "2";
         waitOtma = waitOtma || "2";
         waitMsg = waitMsg || "30";
+        waitTran = waitTran || "3";
         tranAllocation = tranAllocation || "20";
         tranSize = tranSize || "4096";
         srbAllocation = srbAllocation || "64";
@@ -7113,9 +7417,15 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsTpipePrefixInput.clear().sendKeys(tpipePrefix);
         }).then(function () {
-            that.eleIntfImsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfImsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfImsEndpointInput.clear().sendKeys(endpoint);
+        }).then(function () {
+            that._activeTrgsIntfIms(actTrgs);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.clear().sendKeys(syncCalloutTo);
         }).then(function () {
             that.eleIntfImsGuaranteedInput.clear().sendKeys(guaranteed);
         }).then(function () {
@@ -7135,7 +7445,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsWorkersTrgSpinner.clear().sendKeys(serviceTrg);
         }).then(function () {
-            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
+            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
         }).then(function () {
             that._loopbackNoIntfIms(lookbackNo);
         }).then(function () {
@@ -7267,13 +7577,14 @@ var definePage = (function () {
     //
     // The function is used for update a IMS Interface.
     //
-    definePage.prototype.updateIntfIms = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
+    definePage.prototype.updateIntfIms = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, actTrgs, syncCalloutTo, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfIMS.intfid;
         xcfMember = xcfMember || browser.params.intfIMS.xcfMemberName;
         tpipe = tpipe || browser.params.intfIMS.tpipeName;
         tpipePrefix = tpipePrefix || browser.params.intfIMS.tpipePrefix;
+        syncCalloutTo = syncCalloutTo || "10";
         guaranteed = guaranteed || browser.params.intfIMS.tpipeForTriggerGuaranteed;
         reliable = reliable || browser.params.intfIMS.tpipeForTriggerReliable;
         syncCallout = syncCallout || browser.params.intfIMS.tpipeForSyncCallout;
@@ -7284,6 +7595,7 @@ var definePage = (function () {
         waitInitial = waitInitial || "2";
         waitOtma = waitOtma || "2";
         waitMsg = waitMsg || "30";
+        waitTran = waitTran || "3";
         tranAllocation = tranAllocation || "20";
         tranSize = tranSize || "4096";
         srbAllocation = srbAllocation || "64";
@@ -7325,9 +7637,15 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsTpipePrefixInput.clear().sendKeys(tpipePrefix);
         }).then(function () {
-            that.eleIntfImsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfImsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfImsEndpointInput.clear().sendKeys(endpoint);
+        }).then(function () {
+            that._activeTrgsIntfIms(actTrgs);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.clear().sendKeys(syncCalloutTo);
         }).then(function () {
             that.eleIntfImsGuaranteedInput.clear().sendKeys(guaranteed);
         }).then(function () {
@@ -7347,7 +7665,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsWorkersTrgSpinner.clear().sendKeys(serviceTrg);
         }).then(function () {
-            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
+            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
         }).then(function () {
             that._loopbackNoIntfIms(lookbackNo);
         }).then(function () {
@@ -7370,13 +7688,14 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a IMS Interface, then confirm the cancel operation.
     //
-    definePage.prototype.cancelIntfImsYes = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
+    definePage.prototype.cancelIntfImsYes = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, actTrgs, syncCalloutTo, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfIMS.intfid;
         xcfMember = xcfMember || browser.params.intfIMS.xcfMemberName;
         tpipe = tpipe || browser.params.intfIMS.tpipeName;
         tpipePrefix = tpipePrefix || browser.params.intfIMS.tpipePrefix;
+        syncCalloutTo = syncCalloutTo || "10";
         guaranteed = guaranteed || browser.params.intfIMS.tpipeForTriggerGuaranteed;
         reliable = reliable || browser.params.intfIMS.tpipeForTriggerReliable;
         syncCallout = syncCallout || browser.params.intfIMS.tpipeForSyncCallout;
@@ -7387,6 +7706,7 @@ var definePage = (function () {
         waitInitial = waitInitial || "2";
         waitOtma = waitOtma || "2";
         waitMsg = waitMsg || "30";
+        waitTran = waitTran || "3";
         tranAllocation = tranAllocation || "20";
         tranSize = tranSize || "4096";
         srbAllocation = srbAllocation || "64";
@@ -7428,9 +7748,15 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsTpipePrefixInput.clear().sendKeys(tpipePrefix);
         }).then(function () {
-            that.eleIntfImsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfImsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfImsEndpointInput.clear().sendKeys(endpoint);
+        }).then(function () {
+            that._activeTrgsIntfIms(actTrgs);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.clear().sendKeys(syncCalloutTo);
         }).then(function () {
             that.eleIntfImsGuaranteedInput.clear().sendKeys(guaranteed);
         }).then(function () {
@@ -7450,7 +7776,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsWorkersTrgSpinner.clear().sendKeys(serviceTrg);
         }).then(function () {
-            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
+            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
         }).then(function () {
             that._loopbackNoIntfIms(lookbackNo);
         }).then(function () {
@@ -7475,13 +7801,14 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a IMS Interface, then discard the cancel operation.
     //
-    definePage.prototype.cancelIntfImsNo = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
+    definePage.prototype.cancelIntfImsNo = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, actTrgs, syncCalloutTo, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfIMS.intfid;
         xcfMember = xcfMember || browser.params.intfIMS.xcfMemberName;
         tpipe = tpipe || browser.params.intfIMS.tpipeName;
         tpipePrefix = tpipePrefix || browser.params.intfIMS.tpipePrefix;
+        syncCalloutTo = syncCalloutTo || "10";
         guaranteed = guaranteed || browser.params.intfIMS.tpipeForTriggerGuaranteed;
         reliable = reliable || browser.params.intfIMS.tpipeForTriggerReliable;
         syncCallout = syncCallout || browser.params.intfIMS.tpipeForSyncCallout;
@@ -7492,6 +7819,7 @@ var definePage = (function () {
         waitInitial = waitInitial || "2";
         waitOtma = waitOtma || "2";
         waitMsg = waitMsg || "30";
+        waitTran = waitTran || "3";
         tranAllocation = tranAllocation || "20";
         tranSize = tranSize || "4096";
         srbAllocation = srbAllocation || "64";
@@ -7533,9 +7861,15 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsTpipePrefixInput.clear().sendKeys(tpipePrefix);
         }).then(function () {
-            that.eleIntfImsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfImsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfImsEndpointInput.clear().sendKeys(endpoint);
+        }).then(function () {
+            that._activeTrgsIntfIms(actTrgs);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.clear().sendKeys(syncCalloutTo);
         }).then(function () {
             that.eleIntfImsGuaranteedInput.clear().sendKeys(guaranteed);
         }).then(function () {
@@ -7555,7 +7889,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsWorkersTrgSpinner.clear().sendKeys(serviceTrg);
         }).then(function () {
-            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
+            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
         }).then(function () {
             that._loopbackNoIntfIms(lookbackNo);
         }).then(function () {
@@ -7584,13 +7918,14 @@ var definePage = (function () {
     //
     // The function is used for reset a IMS Interface.
     //
-    definePage.prototype.resetIntfIms = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
+    definePage.prototype.resetIntfIms = function (name, desc, intfid, xcfMember, tpipe, tpipePrefix, outputIntf, endpoint, actTrgs, syncCalloutTo, guaranteed, reliable, syncCallout, commit0, commit1, esbRequestReply, serviceTrg, waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize, lookbackNo, loopbackYes, trcLvlTrg, trcLvlOtma) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfIMS.intfid;
         xcfMember = xcfMember || browser.params.intfIMS.xcfMemberName;
         tpipe = tpipe || browser.params.intfIMS.tpipeName;
         tpipePrefix = tpipePrefix || browser.params.intfIMS.tpipePrefix;
+        syncCalloutTo = syncCalloutTo || "10";
         guaranteed = guaranteed || browser.params.intfIMS.tpipeForTriggerGuaranteed;
         reliable = reliable || browser.params.intfIMS.tpipeForTriggerReliable;
         syncCallout = syncCallout || browser.params.intfIMS.tpipeForSyncCallout;
@@ -7601,6 +7936,7 @@ var definePage = (function () {
         waitInitial = waitInitial || "2";
         waitOtma = waitOtma || "2";
         waitMsg = waitMsg || "30";
+        waitTran = waitTran || "3";
         tranAllocation = tranAllocation || "20";
         tranSize = tranSize || "4096";
         srbAllocation = srbAllocation || "64";
@@ -7642,9 +7978,15 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsTpipePrefixInput.clear().sendKeys(tpipePrefix);
         }).then(function () {
-            that.eleIntfImsOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfImsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfImsEndpointInput.clear().sendKeys(endpoint);
+        }).then(function () {
+            that._activeTrgsIntfIms(actTrgs);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleIntfImsSyncCalloutToSpinner.clear().sendKeys(syncCalloutTo);
         }).then(function () {
             that.eleIntfImsGuaranteedInput.clear().sendKeys(guaranteed);
         }).then(function () {
@@ -7664,7 +8006,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfImsWorkersTrgSpinner.clear().sendKeys(serviceTrg);
         }).then(function () {
-            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
+            that._otmaIntfIms(waitInitial, waitOtma, waitMsg, waitTran, tranAllocation, tranSize, srbAllocation, srbSize, grpAllocation, grpSize);
         }).then(function () {
             that._loopbackNoIntfIms(lookbackNo);
         }).then(function () {
@@ -7687,53 +8029,76 @@ var definePage = (function () {
 
 
     //
-    // This function is used for set 'RED Interface Details -> Output Interface'
+    // This function is used for set 'RED Interface Details -> Outbound Mode'
     //
-    definePage.prototype._outputIntfIntfRed = function (outputIntf, outputIntf2, outputIntf3, outputIntf4) {
+    definePage.prototype._outboundModeIntfRed = function (outboundMode) {
         var deferred = protractor.promise.defer(), that = this;
 
-        globalCommons.waitForClickable(that.eleIntfRedOutputIntfPickButton).then(function () {
-            if (outputIntf === null) {
+        globalCommons.waitForElementPresent(that.eleIntfRedOutboundModeDropdown).then(function () {
+            return that.eleIntfRedOutboundModeDropdown.getText();
+        }).then(function (message) {
+            if (message === outboundMode) {
                 deferred.fulfill();
             } else {
-                that.eleIntfRedOutputIntfPickButton.click().then(function () {
-                    globalPage.entitySelect(outputIntf);
+                that.eleIntfRedOutboundModeDropdown.click().then(function () {
+                    globalCommons.waitForElementPresent(that.eleIntfRedOutboundModeSelected(outboundMode));
                 }).then(function () {
-                    if (outputIntf2 === null) {
+                    that.eleIntfRedOutboundModeSelected(outboundMode).click();
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        });
+        return deferred.promise;
+    };
+    //
+    // This function is used for set 'RED Interface Details -> Outbound ESB Interface'
+    //
+    definePage.prototype._esbIntfIntfRed = function (esbIntf, esbIntf2, esbIntf3, esbIntf4) {
+        var deferred = protractor.promise.defer(), that = this;
+
+        globalCommons.waitForClickable(that.eleIntfRedEsbIntfPickButton).then(function () {
+            if (esbIntf === null) {
+                deferred.fulfill();
+            } else {
+                that.eleIntfRedEsbIntfPickButton.click().then(function () {
+                    globalPage.entitySelect(esbIntf);
+                }).then(function () {
+                    if (esbIntf2 === null) {
                         deferred.fulfill();
                     } else {
-                        globalCommons.waitForClickable(that.eleIntfRedOutputIntfAddButton).then(function () {
-                            that.eleIntfRedOutputIntfAddButton.click();
+                        globalCommons.waitForClickable(that.eleIntfRedEsbIntfAddButton).then(function () {
+                            that.eleIntfRedEsbIntfAddButton.click();
                         }).then(function () {
-                            globalCommons.waitForClickable(that.eleIntfRedOutputIntf2PickButton);
+                            globalCommons.waitForClickable(that.eleIntfRedEsbIntf2PickButton);
                         }).then(function () {
-                            that.eleIntfRedOutputIntf2PickButton.click();
+                            that.eleIntfRedEsbIntf2PickButton.click();
                         }).then(function () {
-                            globalPage.entitySelect(outputIntf2);
+                            globalPage.entitySelect(esbIntf2);
                         }).then(function () {
-                            if (outputIntf3 === null) {
+                            if (esbIntf3 === null) {
                                 deferred.fulfill();
                             } else {
-                                globalCommons.waitForClickable(that.eleIntfRedOutputIntfAddButton).then(function () {
-                                    that.eleIntfRedOutputIntfAddButton.click();
+                                globalCommons.waitForClickable(that.eleIntfRedEsbIntfAddButton).then(function () {
+                                    that.eleIntfRedEsbIntfAddButton.click();
                                 }).then(function () {
-                                    globalCommons.waitForClickable(that.eleIntfRedOutputIntf3PickButton);
+                                    globalCommons.waitForClickable(that.eleIntfRedEsbIntf3PickButton);
                                 }).then(function () {
-                                    that.eleIntfRedOutputIntf3PickButton.click();
+                                    that.eleIntfRedEsbIntf3PickButton.click();
                                 }).then(function () {
-                                    globalPage.entitySelect(outputIntf3);
+                                    globalPage.entitySelect(esbIntf3);
                                 }).then(function () {
-                                    if (outputIntf4 === null) {
+                                    if (esbIntf4 === null) {
                                         deferred.fulfill();
                                     } else {
-                                        globalCommons.waitForClickable(that.eleIntfRedOutputIntfAddButton).then(function () {
-                                            that.eleIntfRedOutputIntfAddButton.click();
+                                        globalCommons.waitForClickable(that.eleIntfRedEsbIntfAddButton).then(function () {
+                                            that.eleIntfRedEsbIntfAddButton.click();
                                         }).then(function () {
-                                            globalCommons.waitForClickable(that.eleIntfRedOutputIntf4PickButton);
+                                            globalCommons.waitForClickable(that.eleIntfRedEsbIntf4PickButton);
                                         }).then(function () {
-                                            that.eleIntfRedOutputIntf4PickButton.click();
+                                            that.eleIntfRedEsbIntf4PickButton.click();
                                         }).then(function () {
-                                            globalPage.entitySelect(outputIntf4);
+                                            globalPage.entitySelect(esbIntf4);
                                         }).then(function () {
                                             deferred.fulfill();
                                         });
@@ -7743,6 +8108,37 @@ var definePage = (function () {
                         });
                     }
                 });
+            }
+        });
+        return deferred.promise;
+    };
+    //
+    // This function is used for set 'RED Interface Details -> CICS Related Parameters -> Clear Transaction Workarea (TWA)'
+    // false: not selected
+    // true: selected
+    //
+    definePage.prototype._clearTWAIntfRed = function (clearTWA) {
+        var deferred = protractor.promise.defer(), that = this;
+
+        globalCommons.waitForElementPresent(that.eleIntfRedClearTranWorkareaCheck).then(function () {
+            return that.eleIntfRedClearTranWorkareaCheck.getAttribute("checked");
+        }).then(function (message) {
+            if (message === null) {
+                if (clearTWA) {
+                    that.eleIntfRedClearTranWorkareaCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                } else {
+                    deferred.fulfill();
+                }
+            } else {
+                if (clearTWA) {
+                    deferred.fulfill();
+                } else {
+                    that.eleIntfRedClearTranWorkareaCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                }
             }
         });
         return deferred.promise;
@@ -7779,32 +8175,24 @@ var definePage = (function () {
         return deferred.promise;
     };
     //
-    // This function is used for set 'RED Interface Details -> Trigger Service -> Ordered'
-    // false: not selected
-    // true: selected
+    // This function is used for set 'RED Interface Details' -> Trigger Service -> 'Mode'
     //
-    definePage.prototype._trgOrderedIntfRed = function (trgOrdered) {
+    definePage.prototype._modeIntfRed = function (mode) {
         var deferred = protractor.promise.defer(), that = this;
 
-        globalCommons.waitForElementPresent(that.eleIntfRedTrgOrderedCheck).then(function () {
-            return that.eleIntfRedTrgOrderedCheck.getAttribute("checked");
+        globalCommons.waitForElementPresent(that.eleIntfRedTrgModeDropdown).then(function () {
+            return that.eleIntfRedTrgModeDropdown.getText();
         }).then(function (message) {
-            if (message === null) {
-                if (trgOrdered) {
-                    that.eleIntfRedTrgOrderedCheck.click().then(function () {
-                        deferred.fulfill();
-                    });
-                } else {
-                    deferred.fulfill();
-                }
+            if (message === mode) {
+                deferred.fulfill();
             } else {
-                if (trgOrdered) {
+                that.eleIntfRedTrgModeDropdown.click().then(function () {
+                    globalCommons.waitForElementPresent(that.eleIntfRedTrgModeSelected(mode));
+                }).then(function () {
+                    that.eleIntfRedTrgModeSelected(mode).click();
+                }).then(function () {
                     deferred.fulfill();
-                } else {
-                    that.eleIntfRedTrgOrderedCheck.click().then(function () {
-                        deferred.fulfill();
-                    });
-                }
+                });
             }
         });
         return deferred.promise;
@@ -7905,28 +8293,34 @@ var definePage = (function () {
     //
     // This function is used for set 'RED Interface Details -> CICS Related Parameters'
     //
-    definePage.prototype._cicsParasIntfRed = function (grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple) {
+    definePage.prototype._cicsParasIntfRed = function (monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
 
         globalCommons.waitForElementPresent(that.eleIntfRedCicsParasExtend).then(function () {
-            return that.eleIntfRedGrpNameInput.isDisplayed();
+            return that.eleIntfRedMyCicsGrpInput.isDisplayed();
         }).then(function (result) {
             if (result) {
-                that.eleIntfRedGrpNameInput.clear().sendKeys(grpname).then(function () {
-                    that.eleIntfRedGrpMonitorNameInput.clear().sendKeys(monitorname);
+                that.eleIntfRedGrpMonitorNameInput.clear().sendKeys(monitorname).then(function () {
+                    that.eleIntfRedMyCicsGrpInput.clear().sendKeys(grpname);
                 }).then(function () {
                     that.eleIntfRedLsnNameInput.clear().sendKeys(lsnname);
                 }).then(function () {
                     that.eleIntfRedLsnTranidInput.clear().sendKeys(lsnTranid);
                 }).then(function () {
-                    that.eleIntfRedTransForLsnSpinner.sendKeys(backspaceSeries);
+                    that._clearTWAIntfRed(clearTWA);
                 }).then(function () {
-                    that.eleIntfRedTransForLsnSpinner.clear().sendKeys(maxTranLsn);
+                    that.eleIntfRedMaxTransConcurrencyLsnSpinner.sendKeys(backspaceSeries);
                 }).then(function () {
-                    that.eleIntfRedUserTransSpinner.sendKeys(backspaceSeries);
+                    that.eleIntfRedMaxTransConcurrencyLsnSpinner.clear().sendKeys(maxTranLsn);
                 }).then(function () {
-                    that.eleIntfRedUserTransSpinner.clear().sendKeys(maxUserTran);
+                    that.eleIntfRedMaxTransConcurrencyUserSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfRedMaxTransConcurrencyUserSpinner.clear().sendKeys(maxTranUser);
+                }).then(function () {
+                    that.eleIntfRedInactiveSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfRedInactiveSpinner.clear().sendKeys(inactive);
                 }).then(function () {
                     that.eleIntfRedTimeoutMsgReplySpinner.sendKeys(backspaceSeries);
                 }).then(function () {
@@ -7940,23 +8334,29 @@ var definePage = (function () {
                 });
             } else {
                 that.eleIntfRedCicsParasExtend.click().then(function () {
-                    globalCommons.waitForDisplayed(that.eleIntfRedGrpNameInput);
-                }).then(function () {
-                    that.eleIntfRedGrpNameInput.clear().sendKeys(grpname);
+                    globalCommons.waitForDisplayed(that.eleIntfRedGrpMonitorNameInput);
                 }).then(function () {
                     that.eleIntfRedGrpMonitorNameInput.clear().sendKeys(monitorname);
+                }).then(function () {
+                    that.eleIntfRedMyCicsGrpInput.clear().sendKeys(grpname);
                 }).then(function () {
                     that.eleIntfRedLsnNameInput.clear().sendKeys(lsnname);
                 }).then(function () {
                     that.eleIntfRedLsnTranidInput.clear().sendKeys(lsnTranid);
                 }).then(function () {
-                    that.eleIntfRedTransForLsnSpinner.sendKeys(backspaceSeries);
+                    that._clearTWAIntfRed(clearTWA);
                 }).then(function () {
-                    that.eleIntfRedTransForLsnSpinner.clear().sendKeys(maxTranLsn);
+                    that.eleIntfRedMaxTransConcurrencyLsnSpinner.sendKeys(backspaceSeries);
                 }).then(function () {
-                    that.eleIntfRedUserTransSpinner.sendKeys(backspaceSeries);
+                    that.eleIntfRedMaxTransConcurrencyLsnSpinner.clear().sendKeys(maxTranLsn);
                 }).then(function () {
-                    that.eleIntfRedUserTransSpinner.clear().sendKeys(maxUserTran);
+                    that.eleIntfRedMaxTransConcurrencyUserSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfRedMaxTransConcurrencyUserSpinner.clear().sendKeys(maxTranUser);
+                }).then(function () {
+                    that.eleIntfRedInactiveSpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfRedInactiveSpinner.clear().sendKeys(inactive);
                 }).then(function () {
                     that.eleIntfRedTimeoutMsgReplySpinner.sendKeys(backspaceSeries);
                 }).then(function () {
@@ -7975,7 +8375,7 @@ var definePage = (function () {
     //
     // This function is used for set 'RED Interface Details -> Trigger Service - CICS Outbound Messaging'
     //
-    definePage.prototype._trgServiceIntfRed = function (trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3) {
+    definePage.prototype._trgServiceIntfRed = function (trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
 
@@ -7984,7 +8384,15 @@ var definePage = (function () {
         }).then(function (result) {
             if (result) {
                 that._trg64bitIntfRed(trg64).then(function () {
-                    that._trgOrderedIntfRed(trgOrdered);
+                    that._modeIntfRed(mode);
+                }).then(function () {
+                    that.eleIntfRedTrgPrioritySpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfRedTrgPrioritySpinner.clear().sendKeys(priority);
+                }).then(function () {
+                    that.eleIntfRedTrgStressDelaySpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfRedTrgStressDelaySpinner.clear().sendKeys(stressDelay);
                 }).then(function () {
                     that.eleIntfRedTrgMaxMsgLenSpinner.sendKeys(backspaceSeries);
                 }).then(function () {
@@ -8032,7 +8440,15 @@ var definePage = (function () {
                 that.eleIntfRedTrgOutboundExtend.click().then(function () {
                     that._trg64bitIntfRed(trg64);
                 }).then(function () {
-                    that._trgOrderedIntfRed(trgOrdered);
+                    that._modeIntfRed(mode);
+                }).then(function () {
+                    that.eleIntfRedTrgPrioritySpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfRedTrgPrioritySpinner.clear().sendKeys(priority);
+                }).then(function () {
+                    that.eleIntfRedTrgStressDelaySpinner.sendKeys(backspaceSeries);
+                }).then(function () {
+                    that.eleIntfRedTrgStressDelaySpinner.clear().sendKeys(stressDelay);
                 }).then(function () {
                     that.eleIntfRedTrgMaxMsgLenSpinner.sendKeys(backspaceSeries);
                 }).then(function () {
@@ -8083,7 +8499,7 @@ var definePage = (function () {
     //
     // This function is used for set 'RED Interface Details -> Recipe Service - CICS Inbound Messaging'
     //
-    definePage.prototype._recServiceIntfRed = function (workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm) {
+    definePage.prototype._recServiceIntfRed = function (workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
 
@@ -8121,10 +8537,6 @@ var definePage = (function () {
                     that.eleIntfRedRecCicsToWaitSpinner.sendKeys(backspaceSeries);
                 }).then(function () {
                     that.eleIntfRedRecCicsToWaitSpinner.clear().sendKeys(cicsToWait);
-                }).then(function () {
-                    that.eleIntfRedRecBufOverfolwSpinner.sendKeys(backspaceSeries);
-                }).then(function () {
-                    that.eleIntfRedRecBufOverfolwSpinner.clear().sendKeys(bufOverflow);
                 }).then(function () {
                     that.eleIntfRedRecBufThrottlingSpinner.sendKeys(backspaceSeries);
                 }).then(function () {
@@ -8174,10 +8586,6 @@ var definePage = (function () {
                 }).then(function () {
                     that.eleIntfRedRecCicsToWaitSpinner.clear().sendKeys(cicsToWait);
                 }).then(function () {
-                    that.eleIntfRedRecBufOverfolwSpinner.sendKeys(backspaceSeries);
-                }).then(function () {
-                    that.eleIntfRedRecBufOverfolwSpinner.clear().sendKeys(bufOverflow);
-                }).then(function () {
                     that.eleIntfRedRecBufThrottlingSpinner.sendKeys(backspaceSeries);
                 }).then(function () {
                     that.eleIntfRedRecBufThrottlingSpinner.clear().sendKeys(bufThrottling);
@@ -8197,7 +8605,7 @@ var definePage = (function () {
     //
     // The function is used for add a RED Interface.
     //
-    definePage.prototype.addIntfRed = function (name, desc, intfid, outputIntf, outputIntf2, outputIntf3, outputIntf4, endpoint, hubname, adminname, trclvlBES, trclvlRED, grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple, trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm) {
+    definePage.prototype.addIntfRed = function (name, desc, intfid, outboundMode, esbIntf, esbIntf2, esbIntf3, esbIntf4, tcpIntf, endpoint, hubname, adminname, trclvlBES, trclvlRED, monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple, trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfRED.intfid;
@@ -8208,13 +8616,17 @@ var definePage = (function () {
         lsnname = lsnname || browser.params.intfRED.listenerName;
         lsnTranid = lsnTranid || browser.params.intfRED.listenerTranid;
         desc = desc || "";
+        outboundMode = outboundMode || "ESB";
         trclvlBES = trclvlBES || "0";
         trclvlRED = trclvlRED || "0";
         maxTranLsn = maxTranLsn || "21";
-        maxUserTran = maxUserTran || "50";
+        maxTranUser = maxTranUser || "50";
+        inactive = inactive || "500";
         toReply = toReply || "3000";
         toComple = toComple || "1";
-        trgOrdered = trgOrdered === undefined ? "true" : trgOrdered;
+        mode = mode || "First";
+        priority = priority || "1";
+        stressDelay = stressDelay || "300";
         trgMaxMsgLen = trgMaxMsgLen || "40000";
         numBufP1 = numBufP1 || "1000";
         numBufP2 = numBufP2 || "1000";
@@ -8242,7 +8654,6 @@ var definePage = (function () {
         pacing = pacing || "0";
         wait = wait || "20";
         cicsToWait = cicsToWait || "10000";
-        bufOverflow = bufOverflow || "80";
         bufThrottling = bufThrottling || "70";
         recOrdered = recOrdered === undefined ? "true" : recOrdered;
 
@@ -8263,9 +8674,21 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that._outputIntfIntfRed(outputIntf, outputIntf2, outputIntf3, outputIntf4);
+            that._outboundModeIntfRed(outboundMode);
         }).then(function () {
-            globalCommons.waitForDisplayed(that.eleIntfRedEndpointInput);
+            if (outboundMode === "ESB") {
+                that._esbIntfIntfRed(esbIntf, esbIntf2, esbIntf3, esbIntf4).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                if (tcpIntf !== null) {
+                    that.eleIntfRedTcpIntfInput.clear().sendKeys(tcpIntf).then(function () {
+                        deferred.fulfill();
+                    });
+                }
+            }
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             that.eleIntfRedEndpointInput.clear().sendKeys(endpoint);
         }).then(function () {
@@ -8281,11 +8704,11 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedTrcLvlRedSpinner.clear().sendKeys(trclvlRED);
         }).then(function () {
-            that._cicsParasIntfRed(grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple);
+            that._cicsParasIntfRed(monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple);
         }).then(function () {
-            that._trgServiceIntfRed(trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
+            that._trgServiceIntfRed(trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
         }).then(function () {
-            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm);
+            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm);
         }).then(function () {
             globalCommons.waitForClickable(that.eleSaveButton);
         }).then(function () {
@@ -8407,7 +8830,7 @@ var definePage = (function () {
     //
     // The function is used for update a RED Interface.
     //
-    definePage.prototype.updateIntfRed = function (name, desc, intfid, outputIntf, outputIntf2, outputIntf3, outputIntf4, endpoint, hubname, adminname, trclvlBES, trclvlRED, grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple, trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm) {
+    definePage.prototype.updateIntfRed = function (name, desc, intfid, outboundMode, esbIntf, esbIntf2, esbIntf3, esbIntf4, tcpIntf, endpoint, hubname, adminname, trclvlBES, trclvlRED, monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple, trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfRED.intfid;
@@ -8418,13 +8841,17 @@ var definePage = (function () {
         lsnname = lsnname || browser.params.intfRED.listenerName;
         lsnTranid = lsnTranid || browser.params.intfRED.listenerTranid;
         desc = desc || "";
+        outboundMode = outboundMode || "ESB";
         trclvlBES = trclvlBES || "0";
         trclvlRED = trclvlRED || "0";
         maxTranLsn = maxTranLsn || "21";
-        maxUserTran = maxUserTran || "50";
+        maxTranUser = maxTranUser || "50";
+        inactive = inactive || "500";
         toReply = toReply || "3000";
         toComple = toComple || "1";
-        trgOrdered = trgOrdered === undefined ? "true" : trgOrdered;
+        mode = mode || "First";
+        priority = priority || "1";
+        stressDelay = stressDelay || "300";
         trgMaxMsgLen = trgMaxMsgLen || "40000";
         numBufP1 = numBufP1 || "1000";
         numBufP2 = numBufP2 || "1000";
@@ -8445,14 +8872,13 @@ var definePage = (function () {
         msgnameP2 = msgnameP2 || "P2AMSG";
         msgnameP3 = msgnameP3 || "P3AMSG";
         workers = workers || "5";
-        dynLsnlvl = dynLsnlvl || "7";
+        dynLsnlvl = dynLsnlvl || "10";
         recMaxMsgLen = recMaxMsgLen || "16382";
         numBuf = numBuf || "100";
         bufSize = bufSize || "4096";
         pacing = pacing || "0";
         wait = wait || "20";
         cicsToWait = cicsToWait || "10000";
-        bufOverflow = bufOverflow || "80";
         bufThrottling = bufThrottling || "70";
         recOrdered = recOrdered === undefined ? "true" : recOrdered;
 
@@ -8481,7 +8907,17 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that._outputIntfIntfRed(outputIntf, outputIntf2, outputIntf3, outputIntf4);
+            that._outboundModeIntfRed(outboundMode);
+        }).then(function () {
+            if (outboundMode === "ESB") {
+                that._esbIntfIntfRed(esbIntf, esbIntf2, esbIntf3, esbIntf4).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                that.eleIntfRedTcpIntfInput.clear().sendKeys(tcpIntf).then(function () {
+                    deferred.fulfill();
+                });
+            }
         }).then(function () {
             globalCommons.waitForDisplayed(that.eleIntfRedEndpointInput);
         }).then(function () {
@@ -8499,11 +8935,11 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedTrcLvlRedSpinner.clear().sendKeys(trclvlRED);
         }).then(function () {
-            that._cicsParasIntfRed(grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple);
+            that._cicsParasIntfRed(monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple);
         }).then(function () {
-            that._trgServiceIntfRed(trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
+            that._trgServiceIntfRed(trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
         }).then(function () {
-            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm);
+            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm);
         }).then(function () {
             that.eleSaveButton.click();
         }).then(function () {
@@ -8514,7 +8950,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a RED Interface, then confirm the cancel operation.
     //
-    definePage.prototype.cancelIntfRedYes = function (name, desc, intfid, outputIntf, outputIntf2, outputIntf3, outputIntf4, endpoint, hubname, adminname, trclvlBES, trclvlRED, grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple, trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm) {
+    definePage.prototype.cancelIntfRedYes = function (name, desc, intfid, outboundMode, esbIntf, esbIntf2, esbIntf3, esbIntf4, tcpIntf, endpoint, hubname, adminname, trclvlBES, trclvlRED, monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple, trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfRED.intfid;
@@ -8525,13 +8961,17 @@ var definePage = (function () {
         lsnname = lsnname || browser.params.intfRED.listenerName;
         lsnTranid = lsnTranid || browser.params.intfRED.listenerTranid;
         desc = desc || "";
+        outboundMode = outboundMode || "ESB";
         trclvlBES = trclvlBES || "0";
         trclvlRED = trclvlRED || "0";
         maxTranLsn = maxTranLsn || "21";
-        maxUserTran = maxUserTran || "50";
+        maxTranUser = maxTranUser || "50";
+        inactive = inactive || "500";
         toReply = toReply || "3000";
         toComple = toComple || "1";
-        trgOrdered = trgOrdered === undefined ? "true" : trgOrdered;
+        mode = mode || "First";
+        priority = priority || "1";
+        stressDelay = stressDelay || "300";
         trgMaxMsgLen = trgMaxMsgLen || "40000";
         numBufP1 = numBufP1 || "1000";
         numBufP2 = numBufP2 || "1000";
@@ -8552,14 +8992,13 @@ var definePage = (function () {
         msgnameP2 = msgnameP2 || "P2AMSG";
         msgnameP3 = msgnameP3 || "P3AMSG";
         workers = workers || "5";
-        dynLsnlvl = dynLsnlvl || "7";
+        dynLsnlvl = dynLsnlvl || "10";
         recMaxMsgLen = recMaxMsgLen || "16382";
         numBuf = numBuf || "100";
         bufSize = bufSize || "4096";
         pacing = pacing || "0";
         wait = wait || "20";
         cicsToWait = cicsToWait || "10000";
-        bufOverflow = bufOverflow || "80";
         bufThrottling = bufThrottling || "70";
         recOrdered = recOrdered === undefined ? "true" : recOrdered;
 
@@ -8588,7 +9027,17 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that._outputIntfIntfRed(outputIntf, outputIntf2, outputIntf3, outputIntf4);
+            that._outboundModeIntfRed(outboundMode);
+        }).then(function () {
+            if (outboundMode === "ESB") {
+                that._esbIntfIntfRed(esbIntf, esbIntf2, esbIntf3, esbIntf4).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                that.eleIntfRedTcpIntfInput.clear().sendKeys(tcpIntf).then(function () {
+                    deferred.fulfill();
+                });
+            }
         }).then(function () {
             globalCommons.waitForDisplayed(that.eleIntfRedEndpointInput);
         }).then(function () {
@@ -8606,11 +9055,11 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedTrcLvlRedSpinner.clear().sendKeys(trclvlRED);
         }).then(function () {
-            that._cicsParasIntfRed(grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple);
+            that._cicsParasIntfRed(monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple);
         }).then(function () {
-            that._trgServiceIntfRed(trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
+            that._trgServiceIntfRed(trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
         }).then(function () {
-            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm);
+            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm);
         }).then(function () {
             that.eleCancelButton.click();
         }).then(function () {
@@ -8623,7 +9072,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a RED Interface, then discard the cancel operation.
     //
-    definePage.prototype.cancelIntfRedNo = function (name, desc, intfid, outputIntf, outputIntf2, outputIntf3, outputIntf4, endpoint, hubname, adminname, trclvlBES, trclvlRED, grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple, trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm) {
+    definePage.prototype.cancelIntfRedNo = function (name, desc, intfid, outboundMode, esbIntf, esbIntf2, esbIntf3, esbIntf4, tcpIntf, endpoint, hubname, adminname, trclvlBES, trclvlRED, monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple, trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfRED.intfid;
@@ -8634,13 +9083,17 @@ var definePage = (function () {
         lsnname = lsnname || browser.params.intfRED.listenerName;
         lsnTranid = lsnTranid || browser.params.intfRED.listenerTranid;
         desc = desc || "";
+        outboundMode = outboundMode || "ESB";
         trclvlBES = trclvlBES || "0";
         trclvlRED = trclvlRED || "0";
         maxTranLsn = maxTranLsn || "21";
-        maxUserTran = maxUserTran || "50";
+        maxTranUser = maxTranUser || "50";
+        inactive = inactive || "500";
         toReply = toReply || "3000";
         toComple = toComple || "1";
-        trgOrdered = trgOrdered === undefined ? "true" : trgOrdered;
+        mode = mode || "First";
+        priority = priority || "1";
+        stressDelay = stressDelay || "300";
         trgMaxMsgLen = trgMaxMsgLen || "40000";
         numBufP1 = numBufP1 || "1000";
         numBufP2 = numBufP2 || "1000";
@@ -8661,14 +9114,13 @@ var definePage = (function () {
         msgnameP2 = msgnameP2 || "P2AMSG";
         msgnameP3 = msgnameP3 || "P3AMSG";
         workers = workers || "5";
-        dynLsnlvl = dynLsnlvl || "7";
+        dynLsnlvl = dynLsnlvl || "10";
         recMaxMsgLen = recMaxMsgLen || "16382";
         numBuf = numBuf || "100";
         bufSize = bufSize || "4096";
         pacing = pacing || "0";
         wait = wait || "20";
         cicsToWait = cicsToWait || "10000";
-        bufOverflow = bufOverflow || "80";
         bufThrottling = bufThrottling || "70";
         recOrdered = recOrdered === undefined ? "true" : recOrdered;
 
@@ -8697,7 +9149,17 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that._outputIntfIntfRed(outputIntf, outputIntf2, outputIntf3, outputIntf4);
+            that._outboundModeIntfRed(outboundMode);
+        }).then(function () {
+            if (outboundMode === "ESB") {
+                that._esbIntfIntfRed(esbIntf, esbIntf2, esbIntf3, esbIntf4).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                that.eleIntfRedTcpIntfInput.clear().sendKeys(tcpIntf).then(function () {
+                    deferred.fulfill();
+                });
+            }
         }).then(function () {
             globalCommons.waitForDisplayed(that.eleIntfRedEndpointInput);
         }).then(function () {
@@ -8715,11 +9177,11 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedTrcLvlRedSpinner.clear().sendKeys(trclvlRED);
         }).then(function () {
-            that._cicsParasIntfRed(grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple);
+            that._cicsParasIntfRed(monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple);
         }).then(function () {
-            that._trgServiceIntfRed(trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
+            that._trgServiceIntfRed(trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
         }).then(function () {
-            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm);
+            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm);
         }).then(function () {
             that.eleCancelButton.click();
         }).then(function () {
@@ -8736,7 +9198,7 @@ var definePage = (function () {
     //
     // The function is used for reset a RED Interface.
     //
-    definePage.prototype.resetIntfRed = function (name, desc, intfid, outputIntf, outputIntf2, outputIntf3, outputIntf4, endpoint, hubname, adminname, trclvlBES, trclvlRED, grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple, trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm) {
+    definePage.prototype.resetIntfRed = function (name, desc, intfid, outboundMode, esbIntf, esbIntf2, esbIntf3, esbIntf4, tcpIntf, endpoint, hubname, adminname, trclvlBES, trclvlRED, monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple, trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3, workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfRED.intfid;
@@ -8747,13 +9209,17 @@ var definePage = (function () {
         lsnname = lsnname || browser.params.intfRED.listenerName;
         lsnTranid = lsnTranid || browser.params.intfRED.listenerTranid;
         desc = desc || "";
+        outboundMode = outboundMode || "ESB";
         trclvlBES = trclvlBES || "0";
         trclvlRED = trclvlRED || "0";
         maxTranLsn = maxTranLsn || "21";
-        maxUserTran = maxUserTran || "50";
+        maxTranUser = maxTranUser || "50";
+        inactive = inactive || "500";
         toReply = toReply || "3000";
         toComple = toComple || "1";
-        trgOrdered = trgOrdered === undefined ? "true" : trgOrdered;
+        mode = mode || "First";
+        priority = priority || "1";
+        stressDelay = stressDelay || "300";
         trgMaxMsgLen = trgMaxMsgLen || "40000";
         numBufP1 = numBufP1 || "1000";
         numBufP2 = numBufP2 || "1000";
@@ -8774,14 +9240,13 @@ var definePage = (function () {
         msgnameP2 = msgnameP2 || "P2AMSG";
         msgnameP3 = msgnameP3 || "P3AMSG";
         workers = workers || "5";
-        dynLsnlvl = dynLsnlvl || "7";
+        dynLsnlvl = dynLsnlvl || "10";
         recMaxMsgLen = recMaxMsgLen || "16382";
         numBuf = numBuf || "100";
         bufSize = bufSize || "4096";
         pacing = pacing || "0";
         wait = wait || "20";
         cicsToWait = cicsToWait || "10000";
-        bufOverflow = bufOverflow || "80";
         bufThrottling = bufThrottling || "70";
         recOrdered = recOrdered === undefined ? "true" : recOrdered;
 
@@ -8810,7 +9275,17 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedIntfidInput.clear().sendKeys(intfid);
         }).then(function () {
-            that._outputIntfIntfRed(outputIntf, outputIntf2, outputIntf3, outputIntf4);
+            that._outboundModeIntfRed(outboundMode);
+        }).then(function () {
+            if (outboundMode === "ESB") {
+                that._esbIntfIntfRed(esbIntf, esbIntf2, esbIntf3, esbIntf4).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                that.eleIntfRedTcpIntfInput.clear().sendKeys(tcpIntf).then(function () {
+                    deferred.fulfill();
+                });
+            }
         }).then(function () {
             globalCommons.waitForDisplayed(that.eleIntfRedEndpointInput);
         }).then(function () {
@@ -8828,11 +9303,11 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfRedTrcLvlRedSpinner.clear().sendKeys(trclvlRED);
         }).then(function () {
-            that._cicsParasIntfRed(grpname, monitorname, lsnname, lsnTranid, maxTranLsn, maxUserTran, toReply, toComple);
+            that._cicsParasIntfRed(monitorname, grpname, lsnname, lsnTranid, clearTWA, maxTranLsn, maxTranUser, inactive, toReply, toComple);
         }).then(function () {
-            that._trgServiceIntfRed(trg64, trgOrdered, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
+            that._trgServiceIntfRed(trg64, mode, priority, stressDelay, trgMaxMsgLen, numBufP1, numBufP2, numBufP3, bufSizeP1, bufSizeP2, bufSizeP3, pacP1, pacP2, pacP3, trclvlP1, trclvlP2, trclvlP3, workerP1, workerP2, workerP3, msgnameP1, msgnameP2, msgnameP3);
         }).then(function () {
-            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufOverflow, bufThrottling, rec64, recOrdered, confirm);
+            that._recServiceIntfRed(workers, dynLsnlvl, recMaxMsgLen, numBuf, bufSize, pacing, wait, cicsToWait, bufThrottling, rec64, recOrdered, confirm);
         }).then(function () {
             that.eleResetButton.click();
         }).then(function () {
@@ -8908,7 +9383,7 @@ var definePage = (function () {
     //
     // This function is used for set 'TCP Interface Details -> TCP Directives'
     //
-    definePage.prototype._tcpDirectivesIntfTcp = function (conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn) {
+    definePage.prototype._tcpDirectivesIntfTcp = function (conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
 
@@ -8926,10 +9401,6 @@ var definePage = (function () {
             that.eleIntfTcpConnsSpinner.clear().sendKeys(conns);
         }).then(function () {
             that._keepAliveIntfTcp(alive);
-        }).then(function () {
-            that.eleIntfTcpLazyRetrySpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleIntfTcpLazyRetrySpinner.clear().sendKeys(lazyRetry);
         }).then(function () {
             that.eleIntfTcpTimeoutSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -9017,7 +9488,7 @@ var definePage = (function () {
     //
     // The function is used for add a TCP Interface.
     //
-    definePage.prototype.addIntfTcp = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
+    definePage.prototype.addIntfTcp = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfTCP.intfid;
@@ -9030,7 +9501,6 @@ var definePage = (function () {
         uiBufSize = uiBufSize || "8192";
         conns = conns || "5";
         alive = alive === undefined ? "true" : alive;
-        lazyRetry = lazyRetry || "60";
         timeout = timeout || "10";
         chunkBufs = chunkBufs || "32";
         chunkMaxSize = chunkMaxSize || "64000";
@@ -9080,7 +9550,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys(uiBufSize);
         }).then(function () {
-            that._tcpDirectivesIntfTcp(conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
+            that._tcpDirectivesIntfTcp(conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
         }).then(function () {
             that._sslDirectivesIntfTcp(ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl);
         }).then(function () {
@@ -9202,7 +9672,7 @@ var definePage = (function () {
     //
     // The function is used for update a TCP Interface.
     //
-    definePage.prototype.updateIntfTcp = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
+    definePage.prototype.updateIntfTcp = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfTCP.intfid;
@@ -9215,7 +9685,6 @@ var definePage = (function () {
         uiBufSize = uiBufSize || "8192";
         conns = conns || "5";
         alive = alive === undefined ? "true" : alive;
-        lazyRetry = lazyRetry || "60";
         timeout = timeout || "10";
         chunkBufs = chunkBufs || "32";
         chunkMaxSize = chunkMaxSize || "64000";
@@ -9273,7 +9742,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys(uiBufSize);
         }).then(function () {
-            that._tcpDirectivesIntfTcp(conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
+            that._tcpDirectivesIntfTcp(conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
         }).then(function () {
             that._sslDirectivesIntfTcp(ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl);
         }).then(function () {
@@ -9286,7 +9755,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a TCP Interface, then confirm the cancel operation.
     //
-    definePage.prototype.cancelIntfTcpYes = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
+    definePage.prototype.cancelIntfTcpYes = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfTCP.intfid;
@@ -9299,7 +9768,6 @@ var definePage = (function () {
         uiBufSize = uiBufSize || "8192";
         conns = conns || "5";
         alive = alive === undefined ? "true" : alive;
-        lazyRetry = lazyRetry || "60";
         timeout = timeout || "10";
         chunkBufs = chunkBufs || "32";
         chunkMaxSize = chunkMaxSize || "64000";
@@ -9357,7 +9825,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys(uiBufSize);
         }).then(function () {
-            that._tcpDirectivesIntfTcp(conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
+            that._tcpDirectivesIntfTcp(conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
         }).then(function () {
             that._sslDirectivesIntfTcp(ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl);
         }).then(function () {
@@ -9372,7 +9840,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a TCP Interface, then discard the cancel operation.
     //
-    definePage.prototype.cancelIntfTcpNo = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
+    definePage.prototype.cancelIntfTcpNo = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfTCP.intfid;
@@ -9385,7 +9853,6 @@ var definePage = (function () {
         uiBufSize = uiBufSize || "8192";
         conns = conns || "5";
         alive = alive === undefined ? "true" : alive;
-        lazyRetry = lazyRetry || "60";
         timeout = timeout || "10";
         chunkBufs = chunkBufs || "32";
         chunkMaxSize = chunkMaxSize || "64000";
@@ -9443,7 +9910,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys(uiBufSize);
         }).then(function () {
-            that._tcpDirectivesIntfTcp(conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
+            that._tcpDirectivesIntfTcp(conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
         }).then(function () {
             that._sslDirectivesIntfTcp(ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl);
         }).then(function () {
@@ -9462,7 +9929,7 @@ var definePage = (function () {
     //
     // The function is used for reset a TCP Interface.
     //
-    definePage.prototype.resetIntfTcp = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
+    definePage.prototype.resetIntfTcp = function (name, desc, intfid, url, tls, hostStackName, trclvl, dispatchers, workers, uiBufSize, conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn, ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfid = intfid || browser.params.intfTCP.intfid;
@@ -9475,7 +9942,6 @@ var definePage = (function () {
         uiBufSize = uiBufSize || "8192";
         conns = conns || "5";
         alive = alive === undefined ? "true" : alive;
-        lazyRetry = lazyRetry || "60";
         timeout = timeout || "10";
         chunkBufs = chunkBufs || "32";
         chunkMaxSize = chunkMaxSize || "64000";
@@ -9533,7 +9999,7 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys(uiBufSize);
         }).then(function () {
-            that._tcpDirectivesIntfTcp(conns, alive, lazyRetry, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
+            that._tcpDirectivesIntfTcp(conns, alive, timeout, chunkBufs, chunkMaxSize, hostLogDdn);
         }).then(function () {
             that._sslDirectivesIntfTcp(ringFile, ringLabel, cipher, clientAuth, gskFile, tlsTrclvl);
         }).then(function () {
@@ -9635,9 +10101,9 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfAdmServiceTrgInput.clear().sendKeys(serviceTrg);
         }).then(function () {
-            globalCommons.waitForDisplayed(that.eleIntfAdmOutputIntfInput);
+            globalCommons.waitForDisplayed(that.replicateSs);
         }).then(function () {
-            that.eleIntfAdmOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfAdmEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             if (cmd !== undefined) {
                 that.eleIntfAdmHeartbeatCmdInput.clear().sendKeys(cmd);
@@ -9647,7 +10113,7 @@ var definePage = (function () {
                 globalCommons.waitForClickable(that.eleIntfAdmHeartbeatCmdAddButton).then(function () {
                     that.eleIntfAdmHeartbeatCmdAddButton.click();
                 }).then(function () {
-                    globalCommons.waitForDisplayed(that.eleIntfAdmHeartbeatCmd2Input);
+                    globalCommons. waitForDisplayed(that.eleIntfAdmHeartbeatCmd2Input);
                 }).then(function () {
                     that.eleIntfAdmHeartbeatCmd2Input.clear().sendKeys(cmd2);
                 });
@@ -9868,9 +10334,9 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfAdmServiceTrgInput.clear().sendKeys(serviceTrg);
         }).then(function () {
-            globalCommons.waitForDisplayed(that.eleIntfAdmOutputIntfInput);
+            globalCommons.waitForDisplayed(that.eleIntfAdmEsbIntfInput);
         }).then(function () {
-            that.eleIntfAdmOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfAdmEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfAdmHeartbeatCmdInput.clear().sendKeys(cmd);
         }).then(function () {
@@ -9972,9 +10438,9 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfAdmServiceTrgInput.clear().sendKeys(serviceTrg);
         }).then(function () {
-            globalCommons.waitForDisplayed(that.eleIntfAdmOutputIntfInput);
+            globalCommons.waitForDisplayed(that.eleIntfAdmEsbIntfInput);
         }).then(function () {
-            that.eleIntfAdmOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfAdmEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfAdmHeartbeatCmdInput.clear().sendKeys(cmd);
         }).then(function () {
@@ -10078,9 +10544,9 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfAdmServiceTrgInput.clear().sendKeys(serviceTrg);
         }).then(function () {
-            globalCommons.waitForDisplayed(that.eleIntfAdmOutputIntfInput);
+            globalCommons.waitForDisplayed(that.eleIntfAdmEsbIntfInput);
         }).then(function () {
-            that.eleIntfAdmOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfAdmEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfAdmHeartbeatCmdInput.clear().sendKeys(cmd);
         }).then(function () {
@@ -10188,9 +10654,9 @@ var definePage = (function () {
         }).then(function () {
             that.eleIntfAdmServiceTrgInput.clear().sendKeys(serviceTrg);
         }).then(function () {
-            globalCommons.waitForDisplayed(that.eleIntfAdmOutputIntfInput);
+            globalCommons.waitForDisplayed(that.eleIntfAdmEsbIntfInput);
         }).then(function () {
-            that.eleIntfAdmOutputIntfInput.clear().sendKeys(outputIntf);
+            that.eleIntfImsEsbIntfInput.clear().sendKeys(outputIntf);
         }).then(function () {
             that.eleIntfAdmHeartbeatCmdInput.clear().sendKeys(cmd);
         }).then(function () {
@@ -10313,28 +10779,6 @@ var definePage = (function () {
         return deferred.promise;
     };
     //
-    // This function is used for set 'Substation Details' -> 'Log to SYSLOG'
-    //
-    definePage.prototype._logToSyslogSs = function (logToSyslog) {
-        var deferred = protractor.promise.defer(), that = this;
-        globalCommons.waitForElementPresent(that.eleSsLogLogToSyslogDropdown).then(function () {
-            return that.eleSsLogLogToSyslogDropdown.getText();
-        }).then(function (message) {
-            if (message === logToSyslog) {
-                deferred.fulfill();
-            } else {
-                that.eleSsLogLogToSyslogDropdown.click().then(function () {
-                    globalCommons.waitForElementPresent(that.eleSsLogLogToSyslogSelected(logToSyslog));
-                }).then(function () {
-                    that.eleSsLogLogToSyslogSelected(logToSyslog).click();
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        });
-        return deferred.promise;
-    };
-    //
     // This function is used for set 'Substation Details -> Console Output Message Log'
     // false: not click
     // true: click
@@ -10348,7 +10792,6 @@ var definePage = (function () {
         } else {
             deferred.fulfill();
         }
-        ;
         return deferred.promise;
     };
     //
@@ -10455,6 +10898,36 @@ var definePage = (function () {
         return deferred.promise;
     };
     //
+    // This function is used for set 'Substation Details' -> 'Statistics Recording'
+    // false: not select
+    // true: select
+    //
+    definePage.prototype._stsRecordingSs = function (stsRecording) {
+        var deferred = protractor.promise.defer(), that = this;
+        globalCommons.waitForElementPresent(that.eleSsStatisticsRecordingCheck).then(function () {
+            return that.eleSsStatisticsRecordingCheck.getAttribute("checked");
+        }).then(function (message) {
+            if (message === null) {
+                if (stsRecording) {
+                    that.eleSsStatisticsRecordingCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                } else {
+                    deferred.fulfill();
+                }
+            } else {
+                if (stsRecording) {
+                    deferred.fulfill();
+                } else {
+                    that.eleSsStatisticsRecordingCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                }
+            }
+        });
+        return deferred.promise;
+    };
+    //
     // This function is used for set 'Substation Details' -> 'Storage Protect'
     // false: not select
     // true: select
@@ -10517,7 +10990,7 @@ var definePage = (function () {
     //
     // The function is used for add a Substation.
     //
-    definePage.prototype.addSs = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDiskDdn, logDiskDdn2, logDiskDdn3, logDiskDdn4, logDiskDdn5, logWarm, logCold, logDiskWrap, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDiskDdn, trcDiskDdn2, trcDiskDdn3, trcDiskDdn4, trcDiskDdn5, trcWarm, trcCold, trcDiskWrap, trcDebugLvl, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
+    definePage.prototype.addSs = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDebugLvl, stsRecording, msgStream, stsStream, trcStream, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         ssid = ssid || browser.params.substation.ssid;
@@ -10525,19 +10998,18 @@ var definePage = (function () {
         logLvl = logLvl || "2";
         logFormat = logFormat || "2";
         logFileDdn = logFileDdn || "TIBLOGPR";
-        logFileDest = logFileDest || "Printer";
-        logDiskDdn = logDiskDdn || "";
-        logWarm = logWarm === undefined ? "true" : logWarm;
+        logFileDest = logFileDest || "Print";
         logDebugLvl = logDebugLvl || "0";
         logToSyslog = logToSyslog || "20";
         msgLog = msgLog === undefined ? "true" : msgLog;
         trcLvl = trcLvl || "0";
         trcFormat = trcFormat || "3";
         trcFileDdn = trcFileDdn || "TIBTRCPR";
-        trcFileDest = trcFileDest || "Printer";
-        trcDiskDdn = trcDiskDdn || "";
-        trcWarm = trcWarm === undefined ? "true" : trcWarm;
+        trcFileDest = trcFileDest || "Print";
         trcDebugLvl = trcDebugLvl || "0";
+        msgStream = msgStream || "";
+        stsStream = stsStream || "";
+        trcStream = trcStream || "";
         maxUnitWork = maxUnitWork || "400";
         workers = workers || "10";
         workersEOT = workersEOT || "10";
@@ -10584,67 +11056,13 @@ var definePage = (function () {
         }).then(function () {
             that._logFileDestSs(logFileDest);
         }).then(function () {
-            that.eleSsLogDiskFileDdnInput.clear().sendKeys(logDiskDdn);
-        }).then(function () {
-            if (logDiskDdn2 !== undefined) {
-                globalCommons.waitForClickable(that.eleSsLogDiskFileAddButton).then(function () {
-                    that.eleSsLogDiskFileAddButton.click();
-                }).then(function () {
-                    globalCommons.waitForDisplayed(that.eleSsLogDiskFileDdn2Input);
-                }).then(function () {
-                    that.eleSsLogDiskFileDdn2Input.clear().sendKeys(logDiskDdn2);
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (logDiskDdn3 !== undefined) {
-                globalCommons.waitForClickable(that.eleSsLogDiskFileAddButton).then(function () {
-                    that.eleSsLogDiskFileAddButton.click();
-                }).then(function () {
-                    globalCommons.waitForDisplayed(that.eleSsLogDiskFileDdn3Input);
-                }).then(function () {
-                    that.eleSsLogDiskFileDdn3Input.clear().sendKeys(logDiskDdn3);
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (logDiskDdn4 !== undefined) {
-                globalCommons.waitForClickable(that.eleSsLogDiskFileAddButton).then(function () {
-                    that.eleSsLogDiskFileAddButton.click();
-                }).then(function () {
-                    globalCommons.waitForDisplayed(that.eleSsLogDiskFileDdn4Input);
-                }).then(function () {
-                    that.eleSsLogDiskFileDdn4Input.clear().sendKeys(logDiskDdn4);
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (logDiskDdn5 !== undefined) {
-                globalCommons.waitForClickable(that.eleSsLogDiskFileAddButton).then(function () {
-                    that.eleSsLogDiskFileAddButton.click();
-                }).then(function () {
-                    globalCommons.waitForDisplayed(that.eleSsLogDiskFileDdn5Input);
-                }).then(function () {
-                    that.eleSsLogDiskFileDdn5Input.clear().sendKeys(logDiskDdn5);
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            that._logStartWarmSs(logWarm);
-        }).then(function () {
-            that._logStartColdSs(logCold);
-        }).then(function () {
-            that._logDiskWrapSs(logDiskWrap);
-        }).then(function () {
             that.eleSsLogDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsLogDebugLvlSpinner.clear().sendKeys(logDebugLvl);
         }).then(function () {
-            that._logToSyslogSs(logToSyslog);
+            that.eleSsLogLogToSyslogSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleSsLogLogToSyslogSpinner.clear().sendKeys(logToSyslog);
         }).then(function () {
             that._outputMsgLogSs(msgLog);
         }).then(function () {
@@ -10662,65 +11080,17 @@ var definePage = (function () {
         }).then(function () {
             that._trcFileDestSs(trcFileDest);
         }).then(function () {
-            that.eleSsTrcDiskFileDdnInput.clear().sendKeys(trcDiskDdn);
-        }).then(function () {
-            if (trcDiskDdn2 !== undefined) {
-                globalCommons.waitForClickable(that.eleSsTrcDiskFileAddButton).then(function () {
-                    that.eleSsTrcDiskFileAddButton.click();
-                }).then(function () {
-                    globalCommons.waitForDisplayed(that.eleSsTrcDiskFileDdn2Input);
-                }).then(function () {
-                    that.eleSsTrcDiskFileDdn2Input.clear().sendKeys(trcDiskDdn2);
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (trcDiskDdn3 !== undefined) {
-                globalCommons.waitForClickable(that.eleSsTrcDiskFileAddButton).then(function () {
-                    that.eleSsTrcDiskFileAddButton.click();
-                }).then(function () {
-                    globalCommons.waitForDisplayed(that.eleSsTrcDiskFileDdn3Input);
-                }).then(function () {
-                    that.eleSsTrcDiskFileDdn3Input.clear().sendKeys(trcDiskDdn3);
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (trcDiskDdn4 !== undefined) {
-                globalCommons.waitForClickable(that.eleSsTrcDiskFileAddButton).then(function () {
-                    that.eleSsTrcDiskFileAddButton.click();
-                }).then(function () {
-                    globalCommons.waitForDisplayed(that.eleSsTrcDiskFileDdn4Input);
-                }).then(function () {
-                    that.eleSsTrcDiskFileDdn4Input.clear().sendKeys(trcDiskDdn4);
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (trcDiskDdn5 !== undefined) {
-                globalCommons.waitForClickable(that.eleSsTrcDiskFileAddButton).then(function () {
-                    that.eleSsTrcDiskFileAddButton.click();
-                }).then(function () {
-                    globalCommons.waitForDisplayed(that.eleSsTrcDiskFileDdn5Input);
-                }).then(function () {
-                    that.eleSsTrcDiskFileDdn5Input.clear().sendKeys(trcDiskDdn5);
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            that._trcStartWarmSs(trcWarm);
-        }).then(function () {
-            that._trcStartColdSs(trcCold);
-        }).then(function () {
-            that._trcDiskWrapSs(trcDiskWrap);
-        }).then(function () {
             that.eleSsTrcDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsTrcDebugLvlSpinner.clear().sendKeys(trcDebugLvl);
+        }).then(function () {
+            that._stsRecordingSs(stsRecording);
+        }).then(function () {
+            that.eleSsMsgStreamInput.clear().sendKeys(msgStream);
+        }).then(function () {
+            that.eleSsStsStreamInput.clear().sendKeys(stsStream);
+        }).then(function () {
+            that.eleSsTrcStreamInput.clear().sendKeys(trcStream);
         }).then(function () {
             return that.eleSsMaxUnitsOfWorkSpinner.isDisplayed();
         }).then(function (result) {
@@ -10843,7 +11213,7 @@ var definePage = (function () {
     //
     // The function is used for replicate a Substation.
     //
-    definePage.prototype.replicateSs = function (name) {
+    definePage.prototype.replicateSs = function (name, ssid) {
         var deferred = protractor.promise.defer(), that = this;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
@@ -10863,6 +11233,10 @@ var definePage = (function () {
         }).then(function () {
             that.eleDetailSlideBar.click();
         }).then(function () {
+            globalCommons.waitForElementPresent(that.eleSsSsidInput)
+        }).then(function () {
+            that.eleSsSsidInput.clear().sendKeys(ssid);
+        }).then(function () {
             globalCommons.waitForClickable(that.eleReplicateButton);
         }).then(function () {
             that.eleReplicateButton.click();
@@ -10878,7 +11252,7 @@ var definePage = (function () {
     //
     // The function is used for update a Substation.
     //
-    definePage.prototype.updateSs = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDiskDdn, logDiskDdn2, logDiskDdn3, logDiskDdn4, logDiskDdn5, logWarm, logCold, logDiskWrap, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDiskDdn, trcDiskDdn2, trcDiskDdn3, trcDiskDdn4, trcDiskDdn5, trcWarm, trcCold, trcDiskWrap, trcDebugLvl, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
+    definePage.prototype.updateSs = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDebugLvl, stsRecording, msgStream, stsStream, trcStream, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         ssid = ssid || browser.params.substation.ssid;
@@ -10886,19 +11260,18 @@ var definePage = (function () {
         logLvl = logLvl || "2";
         logFormat = logFormat || "2";
         logFileDdn = logFileDdn || "TIBLOGPR";
-        logFileDest = logFileDest || "Printer";
-        logDiskDdn = logDiskDdn || "";
-        logWarm = logWarm === undefined ? "true" : logWarm;
+        logFileDest = logFileDest || "Print";
         logDebugLvl = logDebugLvl || "0";
         logToSyslog = logToSyslog || "20";
         msgLog = msgLog === undefined ? "true" : msgLog;
         trcLvl = trcLvl || "0";
         trcFormat = trcFormat || "3";
         trcFileDdn = trcFileDdn || "TIBTRCPR";
-        trcFileDest = trcFileDest || "Printer";
-        trcDiskDdn = trcDiskDdn || "";
-        trcWarm = trcWarm === undefined ? "true" : trcWarm;
+        trcFileDest = trcFileDest || "Print";
         trcDebugLvl = trcDebugLvl || "0";
+        msgStream = msgStream || "";
+        stsStream = stsStream || "";
+        trcStream = trcStream || "";
         maxUnitWork = maxUnitWork || "400";
         workers = workers || "10";
         workersEOT = workersEOT || "10";
@@ -10938,7 +11311,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsLogLvlSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleSsLogLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -10952,47 +11324,13 @@ var definePage = (function () {
         }).then(function () {
             that._logFileDestSs(logFileDest);
         }).then(function () {
-            that.eleSsLogDiskFileDdnInput.clear().sendKeys(logDiskDdn);
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn2Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn2Input.clear().sendKeys(logDiskDdn2);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn3Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn3Input.clear().sendKeys(logDiskDdn3);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn4Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn4Input.clear().sendKeys(logDiskDdn4);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn5Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn5Input.clear().sendKeys(logDiskDdn5);
-            }
-            ;
-        }).then(function () {
-            that._logStartWarmSs(logWarm);
-        }).then(function () {
-            that._logStartColdSs(logCold);
-        }).then(function () {
-            that._logDiskWrapSs(logDiskWrap);
-        }).then(function () {
             that.eleSsLogDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsLogDebugLvlSpinner.clear().sendKeys(logDebugLvl);
         }).then(function () {
-            that._logToSyslogSs(logToSyslog);
+            that.eleSsLogLogToSyslogSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleSsLogLogToSyslogSpinner.clear().sendKeys(logToSyslog);
         }).then(function () {
             that._outputMsgLogSs(msgLog);
         }).then(function () {
@@ -11010,45 +11348,17 @@ var definePage = (function () {
         }).then(function () {
             that._trcFileDestSs(trcFileDest);
         }).then(function () {
-            that.eleSsTrcDiskFileDdnInput.clear().sendKeys(trcDiskDdn);
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn2Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn2Input.clear().sendKeys(trcDiskDdn2);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn3Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn3Input.clear().sendKeys(trcDiskDdn3);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn4Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn4Input.clear().sendKeys(trcDiskDdn4);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn5Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn5Input.clear().sendKeys(trcDiskDdn5);
-            }
-            ;
-        }).then(function () {
-            that._trcStartWarmSs(trcWarm);
-        }).then(function () {
-            that._trcStartColdSs(trcCold);
-        }).then(function () {
-            that._trcDiskWrapSs(trcDiskWrap);
-        }).then(function () {
             that.eleSsTrcDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsTrcDebugLvlSpinner.clear().sendKeys(trcDebugLvl);
+        }).then(function () {
+            that._stsRecordingSs(stsRecording);
+        }).then(function () {
+            that.eleSsMsgStreamInput.clear().sendKeys(msgStream);
+        }).then(function () {
+            that.eleSsStsStreamInput.clear().sendKeys(stsStream);
+        }).then(function () {
+            that.eleSsTrcStreamInput.clear().sendKeys(trcStream);
         }).then(function () {
             return that.eleSsMaxUnitsOfWorkSpinner.isDisplayed();
         }).then(function (result) {
@@ -11057,7 +11367,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsMaxUnitsOfWorkSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleSsMaxUnitsOfWorkSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -11094,7 +11403,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a Substation, then confirm the cancel operation.
     //
-    definePage.prototype.cancelSsYes = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDiskDdn, logDiskDdn2, logDiskDdn3, logDiskDdn4, logDiskDdn5, logWarm, logCold, logDiskWrap, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDiskDdn, trcDiskDdn2, trcDiskDdn3, trcDiskDdn4, trcDiskDdn5, trcWarm, trcCold, trcDiskWrap, trcDebugLvl, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
+    definePage.prototype.cancelSsYes = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDebugLvl, stsRecording, msgStream, stsStream, trcStream, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         ssid = ssid || browser.params.substation.ssid;
@@ -11102,19 +11411,18 @@ var definePage = (function () {
         logLvl = logLvl || "2";
         logFormat = logFormat || "2";
         logFileDdn = logFileDdn || "TIBLOGPR";
-        logFileDest = logFileDest || "Printer";
-        logDiskDdn = logDiskDdn || "";
-        logWarm = logWarm === undefined ? "true" : logWarm;
+        logFileDest = logFileDest || "Print";
         logDebugLvl = logDebugLvl || "0";
         logToSyslog = logToSyslog || "20";
         msgLog = msgLog === undefined ? "true" : msgLog;
         trcLvl = trcLvl || "0";
         trcFormat = trcFormat || "3";
         trcFileDdn = trcFileDdn || "TIBTRCPR";
-        trcFileDest = trcFileDest || "Printer";
-        trcDiskDdn = trcDiskDdn || "";
-        trcWarm = trcWarm === undefined ? "true" : trcWarm;
+        trcFileDest = trcFileDest || "Print";
         trcDebugLvl = trcDebugLvl || "0";
+        msgStream = msgStream || "";
+        stsStream = stsStream || "";
+        trcStream = trcStream || "";
         maxUnitWork = maxUnitWork || "400";
         workers = workers || "10";
         workersEOT = workersEOT || "10";
@@ -11154,7 +11462,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsLogLvlSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleSsLogLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -11168,47 +11475,13 @@ var definePage = (function () {
         }).then(function () {
             that._logFileDestSs(logFileDest);
         }).then(function () {
-            that.eleSsLogDiskFileDdnInput.clear().sendKeys(logDiskDdn);
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn2Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn2Input.clear().sendKeys(logDiskDdn2);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn3Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn3Input.clear().sendKeys(logDiskDdn3);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn4Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn4Input.clear().sendKeys(logDiskDdn4);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn5Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn5Input.clear().sendKeys(logDiskDdn5);
-            }
-            ;
-        }).then(function () {
-            that._logStartWarmSs(logWarm);
-        }).then(function () {
-            that._logStartColdSs(logCold);
-        }).then(function () {
-            that._logDiskWrapSs(logDiskWrap);
-        }).then(function () {
             that.eleSsLogDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsLogDebugLvlSpinner.clear().sendKeys(logDebugLvl);
         }).then(function () {
-            that._logToSyslogSs(logToSyslog);
+            that.eleSsLogLogToSyslogSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleSsLogLogToSyslogSpinner.clear().sendKeys(logToSyslog);
         }).then(function () {
             that._outputMsgLogSs(msgLog);
         }).then(function () {
@@ -11226,45 +11499,17 @@ var definePage = (function () {
         }).then(function () {
             that._trcFileDestSs(trcFileDest);
         }).then(function () {
-            that.eleSsTrcDiskFileDdnInput.clear().sendKeys(trcDiskDdn);
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn2Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn2Input.clear().sendKeys(trcDiskDdn2);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn3Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn3Input.clear().sendKeys(trcDiskDdn3);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn4Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn4Input.clear().sendKeys(trcDiskDdn4);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn5Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn5Input.clear().sendKeys(trcDiskDdn5);
-            }
-            ;
-        }).then(function () {
-            that._trcStartWarmSs(trcWarm);
-        }).then(function () {
-            that._trcStartColdSs(trcCold);
-        }).then(function () {
-            that._trcDiskWrapSs(trcDiskWrap);
-        }).then(function () {
             that.eleSsTrcDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsTrcDebugLvlSpinner.clear().sendKeys(trcDebugLvl);
+        }).then(function () {
+            that._stsRecordingSs(stsRecording);
+        }).then(function () {
+            that.eleSsMsgStreamInput.clear().sendKeys(msgStream);
+        }).then(function () {
+            that.eleSsStsStreamInput.clear().sendKeys(stsStream);
+        }).then(function () {
+            that.eleSsTrcStreamInput.clear().sendKeys(trcStream);
         }).then(function () {
             return that.eleSsMaxUnitsOfWorkSpinner.isDisplayed();
         }).then(function (result) {
@@ -11273,7 +11518,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsMaxUnitsOfWorkSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleSsMaxUnitsOfWorkSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -11312,7 +11556,7 @@ var definePage = (function () {
     //
     // The function is used for cancel the changes of a Substation, then discard the cancel operation.
     //
-    definePage.prototype.cancelSsNo = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDiskDdn, logDiskDdn2, logDiskDdn3, logDiskDdn4, logDiskDdn5, logWarm, logCold, logDiskWrap, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDiskDdn, trcDiskDdn2, trcDiskDdn3, trcDiskDdn4, trcDiskDdn5, trcWarm, trcCold, trcDiskWrap, trcDebugLvl, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
+    definePage.prototype.cancelSsNo = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDebugLvl, stsRecording, msgStream, stsStream, trcStream, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         ssid = ssid || browser.params.substation.ssid;
@@ -11320,19 +11564,18 @@ var definePage = (function () {
         logLvl = logLvl || "2";
         logFormat = logFormat || "2";
         logFileDdn = logFileDdn || "TIBLOGPR";
-        logFileDest = logFileDest || "Printer";
-        logDiskDdn = logDiskDdn || "";
-        logWarm = logWarm === undefined ? "true" : logWarm;
+        logFileDest = logFileDest || "Print";
         logDebugLvl = logDebugLvl || "0";
         logToSyslog = logToSyslog || "20";
         msgLog = msgLog === undefined ? "true" : msgLog;
         trcLvl = trcLvl || "0";
         trcFormat = trcFormat || "3";
         trcFileDdn = trcFileDdn || "TIBTRCPR";
-        trcFileDest = trcFileDest || "Printer";
-        trcDiskDdn = trcDiskDdn || "";
-        trcWarm = trcWarm === undefined ? "true" : trcWarm;
+        trcFileDest = trcFileDest || "Print";
         trcDebugLvl = trcDebugLvl || "0";
+        msgStream = msgStream || "";
+        stsStream = stsStream || "";
+        trcStream = trcStream || "";
         maxUnitWork = maxUnitWork || "400";
         workers = workers || "10";
         workersEOT = workersEOT || "10";
@@ -11372,7 +11615,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsLogLvlSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleSsLogLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -11386,47 +11628,13 @@ var definePage = (function () {
         }).then(function () {
             that._logFileDestSs(logFileDest);
         }).then(function () {
-            that.eleSsLogDiskFileDdnInput.clear().sendKeys(logDiskDdn);
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn2Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn2Input.clear().sendKeys(logDiskDdn2);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn3Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn3Input.clear().sendKeys(logDiskDdn3);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn4Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn4Input.clear().sendKeys(logDiskDdn4);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn5Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn5Input.clear().sendKeys(logDiskDdn5);
-            }
-            ;
-        }).then(function () {
-            that._logStartWarmSs(logWarm);
-        }).then(function () {
-            that._logStartColdSs(logCold);
-        }).then(function () {
-            that._logDiskWrapSs(logDiskWrap);
-        }).then(function () {
             that.eleSsLogDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsLogDebugLvlSpinner.clear().sendKeys(logDebugLvl);
         }).then(function () {
-            that._logToSyslogSs(logToSyslog);
+            that.eleSsLogLogToSyslogSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleSsLogLogToSyslogSpinner.clear().sendKeys(logToSyslog);
         }).then(function () {
             that._outputMsgLogSs(msgLog);
         }).then(function () {
@@ -11444,45 +11652,17 @@ var definePage = (function () {
         }).then(function () {
             that._trcFileDestSs(trcFileDest);
         }).then(function () {
-            that.eleSsTrcDiskFileDdnInput.clear().sendKeys(trcDiskDdn);
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn2Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn2Input.clear().sendKeys(trcDiskDdn2);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn3Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn3Input.clear().sendKeys(trcDiskDdn3);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn4Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn4Input.clear().sendKeys(trcDiskDdn4);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn5Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn5Input.clear().sendKeys(trcDiskDdn5);
-            }
-            ;
-        }).then(function () {
-            that._trcStartWarmSs(trcWarm);
-        }).then(function () {
-            that._trcStartColdSs(trcCold);
-        }).then(function () {
-            that._trcDiskWrapSs(trcDiskWrap);
-        }).then(function () {
             that.eleSsTrcDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsTrcDebugLvlSpinner.clear().sendKeys(trcDebugLvl);
+        }).then(function () {
+            that._stsRecordingSs(stsRecording);
+        }).then(function () {
+            that.eleSsMsgStreamInput.clear().sendKeys(msgStream);
+        }).then(function () {
+            that.eleSsStsStreamInput.clear().sendKeys(stsStream);
+        }).then(function () {
+            that.eleSsTrcStreamInput.clear().sendKeys(trcStream);
         }).then(function () {
             return that.eleSsMaxUnitsOfWorkSpinner.isDisplayed();
         }).then(function (result) {
@@ -11491,7 +11671,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsMaxUnitsOfWorkSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleSsMaxUnitsOfWorkSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -11534,7 +11713,7 @@ var definePage = (function () {
     //
     // The function is used for reset a Substation.
     //
-    definePage.prototype.resetSs = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDiskDdn, logDiskDdn2, logDiskDdn3, logDiskDdn4, logDiskDdn5, logWarm, logCold, logDiskWrap, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDiskDdn, trcDiskDdn2, trcDiskDdn3, trcDiskDdn4, trcDiskDdn5, trcWarm, trcCold, trcDiskWrap, trcDebugLvl, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
+    definePage.prototype.resetSs = function (name, desc, ssid, logLvl, logFormat, logFileDdn, logFileDest, logDebugLvl, logToSyslog, msgLog, msgConsole, trcLvl, trcFormat, trcFileDdn, trcFileDest, trcDebugLvl, stsRecording, msgStream, stsStream, trcStream, maxUnitWork, workers, workersEOT, snapshot, stgProtect, stgFree, stgSizeMax, admIntf) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
         ssid = ssid || browser.params.substation.ssid;
@@ -11542,19 +11721,18 @@ var definePage = (function () {
         logLvl = logLvl || "2";
         logFormat = logFormat || "2";
         logFileDdn = logFileDdn || "TIBLOGPR";
-        logFileDest = logFileDest || "Printer";
-        logDiskDdn = logDiskDdn || "";
-        logWarm = logWarm === undefined ? "true" : logWarm;
+        logFileDest = logFileDest || "Print";
         logDebugLvl = logDebugLvl || "0";
         logToSyslog = logToSyslog || "20";
         msgLog = msgLog === undefined ? "true" : msgLog;
         trcLvl = trcLvl || "0";
         trcFormat = trcFormat || "3";
         trcFileDdn = trcFileDdn || "TIBTRCPR";
-        trcFileDest = trcFileDest || "Printer";
-        trcDiskDdn = trcDiskDdn || "";
-        trcWarm = trcWarm === undefined ? "true" : trcWarm;
+        trcFileDest = trcFileDest || "Print";
         trcDebugLvl = trcDebugLvl || "0";
+        msgStream = msgStream || "";
+        stsStream = stsStream || "";
+        trcStream = trcStream || "";
         maxUnitWork = maxUnitWork || "400";
         workers = workers || "10";
         workersEOT = workersEOT || "10";
@@ -11594,7 +11772,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsLogLvlSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleSsLogLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -11608,47 +11785,13 @@ var definePage = (function () {
         }).then(function () {
             that._logFileDestSs(logFileDest);
         }).then(function () {
-            that.eleSsLogDiskFileDdnInput.clear().sendKeys(logDiskDdn);
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn2Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn2Input.clear().sendKeys(logDiskDdn2);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn3Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn3Input.clear().sendKeys(logDiskDdn3);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn4Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn4Input.clear().sendKeys(logDiskDdn4);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsLogDiskFileDdn5Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsLogDiskFileDdn5Input.clear().sendKeys(logDiskDdn5);
-            }
-            ;
-        }).then(function () {
-            that._logStartWarmSs(logWarm);
-        }).then(function () {
-            that._logStartColdSs(logCold);
-        }).then(function () {
-            that._logDiskWrapSs(logDiskWrap);
-        }).then(function () {
             that.eleSsLogDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsLogDebugLvlSpinner.clear().sendKeys(logDebugLvl);
         }).then(function () {
-            that._logToSyslogSs(logToSyslog);
+            that.eleSsLogLogToSyslogSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleSsLogLogToSyslogSpinner.clear().sendKeys(logToSyslog);
         }).then(function () {
             that._outputMsgLogSs(msgLog);
         }).then(function () {
@@ -11666,45 +11809,17 @@ var definePage = (function () {
         }).then(function () {
             that._trcFileDestSs(trcFileDest);
         }).then(function () {
-            that.eleSsTrcDiskFileDdnInput.clear().sendKeys(trcDiskDdn);
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn2Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn2Input.clear().sendKeys(trcDiskDdn2);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn3Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn3Input.clear().sendKeys(trcDiskDdn3);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn4Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn4Input.clear().sendKeys(trcDiskDdn4);
-            }
-            ;
-        }).then(function () {
-            return that.eleSsTrcDiskFileDdn5Input.isDisplayed();
-        }).then(function (result) {
-            if (result === true) {
-                that.eleSsTrcDiskFileDdn5Input.clear().sendKeys(trcDiskDdn5);
-            }
-            ;
-        }).then(function () {
-            that._trcStartWarmSs(trcWarm);
-        }).then(function () {
-            that._trcStartColdSs(trcCold);
-        }).then(function () {
-            that._trcDiskWrapSs(trcDiskWrap);
-        }).then(function () {
             that.eleSsTrcDebugLvlSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleSsTrcDebugLvlSpinner.clear().sendKeys(trcDebugLvl);
+        }).then(function () {
+            that._stsRecordingSs(stsRecording);
+        }).then(function () {
+            that.eleSsMsgStreamInput.clear().sendKeys(msgStream);
+        }).then(function () {
+            that.eleSsStsStreamInput.clear().sendKeys(stsStream);
+        }).then(function () {
+            that.eleSsTrcStreamInput.clear().sendKeys(trcStream);
         }).then(function () {
             return that.eleSsMaxUnitsOfWorkSpinner.isDisplayed();
         }).then(function (result) {
@@ -11713,7 +11828,6 @@ var definePage = (function () {
                     globalCommons.waitForDisplayed(that.eleSsMaxUnitsOfWorkSpinner);
                 });
             }
-            ;
         }).then(function () {
             that.eleSsMaxUnitsOfWorkSpinner.sendKeys(backspaceSeries);
         }).then(function () {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -465,7 +465,9 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         Page.delEndpointCicsYes("EndpointCICS0011").then(function () {
             Page.addEndpointCics("EndpointCICS0011");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -605,7 +607,9 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -685,7 +689,9 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -763,7 +769,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -779,7 +785,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -795,7 +801,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -811,7 +817,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -823,13 +829,13 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleEndpointCicsApplidInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -841,7 +847,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -855,7 +861,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         Page.delEndpointCicsYes("EndpointCICS0017").then(function () {
             Page.addEndpointCics("EndpointCICS0017", "", undefined, "", "", false, false, "", "0");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -883,7 +889,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -899,7 +905,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -915,7 +921,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -931,7 +937,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -959,7 +965,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -987,7 +993,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1015,7 +1021,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1043,7 +1049,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1063,8 +1069,6 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleEndpointCicsAdministrationInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleEndpointCicsServiceRecInput.clear().sendKeys("H");
@@ -1073,7 +1077,9 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1089,7 +1095,7 @@ describe('6.8.3 Define Endpoints CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {

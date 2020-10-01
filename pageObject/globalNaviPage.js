@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var Page = require('../utility/page.js');
@@ -58,7 +58,7 @@ var globalNaviPage = (function () {
         username = username || browser.params.signin.username;
         password = password || browser.params.signin.password;
 
-        globalCommons.waitForClickable(this.eleSigninMenu).then(function () {
+        globalCommons.waitForClickable(that.eleSigninMenu).then(function () {
             globalCommons.waitForElementPresent(that.eleScreenElement, false, {timeout: 10000});
         }).then(function () {
             that.eleSigninMenu.click();

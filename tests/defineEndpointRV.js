@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -35,6 +35,8 @@ describe('6.8.2 Define Endpoints RV Page', function () {
     //
     it('Should add a RV Endpoint, then replicate it successfully', function () {
         Page.delConnRvYes("EndpointRV0002-copy").then(function () {
+            Page.delConnRvYes("EndpointRV0002");
+        }).then(function () {
             Page.delEndpointRvYes("EndpointRV0002-copy");
         }).then(function () {
             Page.delEndpointRvYes("EndpointRV0002");
@@ -73,7 +75,7 @@ describe('6.8.2 Define Endpoints RV Page', function () {
         }).then(function () {
             Page.updateEndpointRv("EndpointRV0003", "HiJkLmN", "HiJkLmN:5678");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -233,7 +235,7 @@ describe('6.8.2 Define Endpoints RV Page', function () {
         }).then(function () {
             globalPage.eleOKButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleEndpointRvNameInput.getAttribute('value');
         }).then(function (message) {
@@ -369,7 +371,9 @@ describe('6.8.2 Define Endpoints RV Page', function () {
         Page.delEndpointRvYes("EndpointRV0011").then(function () {
             Page.addEndpointRv("EndpointRV0011");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -457,7 +461,7 @@ describe('6.8.2 Define Endpoints RV Page', function () {
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
-            expect(message === 'Invalid daemon (URL) [invalid]; should be "host:port"').to.be.true;
+            expect(message === 'Invalid daemon [invalid]; should be in the "host:port" format').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -472,6 +476,8 @@ describe('6.8.2 Define Endpoints RV Page', function () {
             expect(message.includes('Failed to connect to daemon')).to.be.true;
         }).then(function () {
             Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         });
     });
 
@@ -609,7 +615,9 @@ describe('6.8.2 Define Endpoints RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {

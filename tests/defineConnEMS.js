@@ -117,7 +117,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.updateConnEms("ConnEMS0003", "hij", true, true, "EndpointEMSA0004", "ConnEMSSSLB0002", "U2", "P2", "222", "444", "666", "888", "28888", "30000", "Byterate", "N2", "H2", "T2", "IntfEMSA0002", true, "U4", "P4");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1035,7 +1035,9 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.addConnEms("ConnEMS0011", "", false, false, "EndpointEMSA0017");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1297,7 +1299,9 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1535,13 +1539,13 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function (message) {
             expect(message === 'There are errors on this form').to.be.true;
         }).then(function () {
-            return Page.eleConnEmsAttemptsConnValidateMsg.getAttribute('title');
+            return Page.eleConnEmsAttemptsConnInput.getAttribute('value');
         }).then(function (message) {
-            expect(message.toString() === '10000000 is invalid, must be equal to or less than 9,999,999').to.be.true;
+            expect(message === '1000000').to.be.true;
         }).then(function () {
-            return Page.eleConnEmsAttemptsReconnValidateMsg.getAttribute('title');
+            return Page.eleConnEmsAttemptsReconnInput.getAttribute('value');
         }).then(function (message) {
-            expect(message.toString() === '10000000 is invalid, must be equal to or less than 9,999,999').to.be.true;
+            expect(message === '1000000').to.be.true;
         }).then(function () {
             return Page.eleConnEmsDelayConnValidateMsg.getAttribute('title');
         }).then(function (message) {
@@ -1739,7 +1743,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1755,7 +1759,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1771,7 +1775,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1787,7 +1791,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1799,13 +1803,13 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleConnEmsTcpipStackNameInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1817,7 +1821,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1927,7 +1931,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2001,7 +2005,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2031,7 +2035,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2079,7 +2083,7 @@ describe('6.8.8 Define Connections EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {

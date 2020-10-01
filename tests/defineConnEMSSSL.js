@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -103,11 +103,11 @@ describe('6.8.9 Define Connections EMS SSL Page', function () {
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableSslv3Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls11Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableTls1Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls12Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
@@ -199,11 +199,11 @@ describe('6.8.9 Define Connections EMS SSL Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableSslv3Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls11Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableTls1Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls12Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
@@ -279,11 +279,11 @@ describe('6.8.9 Define Connections EMS SSL Page', function () {
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableSslv3Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls11Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableTls1Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls12Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
@@ -359,11 +359,11 @@ describe('6.8.9 Define Connections EMS SSL Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableSslv3Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls11Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableTls1Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls12Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
@@ -445,11 +445,11 @@ describe('6.8.9 Define Connections EMS SSL Page', function () {
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableSslv3Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls11Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableTls1Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls12Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
@@ -551,11 +551,11 @@ describe('6.8.9 Define Connections EMS SSL Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableSslv3Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls11Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableTls1Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls12Check.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
@@ -647,7 +647,9 @@ describe('6.8.9 Define Connections EMS SSL Page', function () {
         Page.delConnEmsSslYes("ConnEMSSSL0011").then(function () {
             Page.addConnEmsSsl("ConnEMSSSL0011");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -735,13 +737,13 @@ describe('6.8.9 Define Connections EMS SSL Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableSslv3Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls11Check.getAttribute("checked");
         }).then(function (message) {
-            expect(message === null).to.be.true;
+            expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleConnEmsSslEnableTls1Check.getAttribute("checked");
+            return Page.eleConnEmsSslEnableTls12Check.getAttribute("checked");
         }).then(function (message) {
-            expect(message === null).to.be.true;
+            expect(message === 'true').to.be.true;
         }).then(function () {
             return Page.eleConnEmsSslExpectEmsHostnameInput.getAttribute('value');
         }).then(function (message) {
@@ -877,7 +879,9 @@ describe('6.8.9 Define Connections EMS SSL Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -15,9 +15,9 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         globalNaviPage.eleDefineMenu.click();
     });
 
-    // Add a RED Interface with EMS Output Interface.
+    // Add a RED Interface with Outbound EMS Interface.
     //
-    it('Should add a RED Interface with EMS Output Interface successfully', function () {
+    it('Should add a RED Interface with Outbound EMS Interface successfully', function () {
         browser.sleep(1000).then(function () {
             Page.delIntfRedYes("IntfRED0001");
         }).then(function () {
@@ -33,7 +33,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0001", "", undefined, "IntfEMSD0001", null, null, null, "EndpointCICSB0001");
+            Page.addIntfRed("IntfRED0001", "", undefined, "ESB", "IntfEMSD0001", null, null, null, null, "EndpointCICSB0001");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -43,9 +43,9 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         });
     });
 
-    // Add a RED Interface with RV Output Interface, then replicate it.
+    // Add a RED Interface with Outbound RV Interface, then replicate it.
     //
-    it('Should add a RED Interface with RV Output Interface, then replicate it successfully', function () {
+    it('Should add a RED Interface with Outbound RV Interface, then replicate it successfully', function () {
         Page.delIntfRedYes("IntfRED0002-copy").then(function () {
             Page.delIntfRedYes("IntfRED0002");
         }).then(function () {
@@ -61,7 +61,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0002", "", undefined, "IntfRVD0001", null, null, null, "EndpointCICSB0002");
+            Page.addIntfRed("IntfRED0002", "", undefined, "ESB", "IntfRVD0001", null, null, null, null, "EndpointCICSB0002");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -107,7 +107,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0003", "abcdefg", "INTFID01", "IntfEMSD0002", null, null, null, "EndpointCICSB0003", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", "11", "333", "555", "7", false, false, "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "55", "77", false, false, false);
+            Page.addIntfRed("IntfRED0003", "abcdefg", "INTFID01", "ESB", "IntfEMSD0002", null, null, null, null, "EndpointCICSB0003", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", false, "11", "333", "1111", "555", "7", false, "First", "33", "5555", "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "77", false, false, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -115,7 +115,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.updateIntfRed("IntfRED0003", "hijklmn", "INTFID02", "IntfRVD0002", null, null, null, "EndpointCICSB0004", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", "22", "340", "666", "8", true, true, "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "444444", "66", "88", true, true, true);
+            Page.updateIntfRed("IntfRED0003", "hijklmn", "INTFID02", "ESB", "IntfRVD0002", null, null, null, null, "EndpointCICSB0004", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", true, "22", "340", "2222", "666", "8", true, "Round Robin", "44", "6666", "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "444444", "88", true, true, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -135,7 +135,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute('value');
+            return Page.eleIntfRedEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVD0002').to.be.true;
         }).then(function () {
@@ -159,11 +159,11 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '4').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpNameInput.getAttribute('value');
+            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'JJ').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
+            return Page.eleIntfRedMyCicsGrpInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'KK').to.be.true;
         }).then(function () {
@@ -175,13 +175,21 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'MM').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute('value');
+            return Page.eleIntfRedClearTranWorkareaCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute('value');
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '340').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '2222').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTimeoutMsgReplySpinner.getAttribute('value');
         }).then(function (message) {
@@ -195,9 +203,17 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === "true").to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTrgOrderedCheck.getAttribute("checked");
+            return Page.eleIntfRedTrgModeDropdown.getText();
         }).then(function (message) {
-            expect(message === 'true').to.be.true;
+            expect(message === "Round Robin").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '44').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '6666').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTrgMaxMsgLenSpinner.getAttribute('value');
         }).then(function (message) {
@@ -306,10 +322,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
             return Page.eleIntfRedRecCicsToWaitSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '44444').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '66').to.be.true;
         }).then(function () {
             return Page.eleIntfRedRecBufThrottlingSpinner.getAttribute('value');
         }).then(function (message) {
@@ -357,7 +369,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0004", "abcdefg", "INTFID01", "IntfEMSD0003", null, null, null, "EndpointCICSB0005", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", "11", "333", "555", "7", false, false, "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "55", "77", false, false, false);
+            Page.addIntfRed("IntfRED0004", "abcdefg", "INTFID01", "ESB", "IntfEMSD0003", null, null, null, null, "EndpointCICSB0005", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", false, "11", "333", "1111", "555", "7", false, "First", "33", "5555", "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "77", false, false, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -365,7 +377,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfRedYes("IntfRED0004", "hijklmn", "INTFID02", "IntfRVD0003", null, null, null, "EndpointCICSB0006", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", "22", "340", "666", "8", true, true, "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "44444", "66", "88", true, true, true);
+            Page.cancelIntfRedYes("IntfRED0004", "hijklmn", "INTFID02", "ESB", "IntfRVD0003", null, null, null, null, "EndpointCICSB0006", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", true, "22", "340", "2222", "666", "8", true, "Round Robin", "44", "6666", "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "444444", "88", true, true, true);
         }).then(function () {
             globalCommons.waitForClickable(Page.eleIntfsRedLeftmenu);
         }).then(function () {
@@ -397,7 +409,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute('value');
+            return Page.eleIntfRedEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSD0003').to.be.true;
         }).then(function () {
@@ -421,11 +433,11 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '3').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpNameInput.getAttribute('value');
+            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'CC').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
+            return Page.eleIntfRedMyCicsGrpInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'DD').to.be.true;
         }).then(function () {
@@ -437,13 +449,21 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'FF').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute('value');
+            return Page.eleIntfRedClearTranWorkareaCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '11').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute('value');
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '333').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '1111').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTimeoutMsgReplySpinner.getAttribute('value');
         }).then(function (message) {
@@ -457,9 +477,17 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTrgOrderedCheck.getAttribute("checked");
+            return Page.eleIntfRedTrgModeDropdown.getText();
         }).then(function (message) {
-            expect(message === null).to.be.true;
+            expect(message === "First").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '33').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '5555').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTrgMaxMsgLenSpinner.getAttribute('value');
         }).then(function (message) {
@@ -568,10 +596,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
             return Page.eleIntfRedRecCicsToWaitSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '33333').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '55').to.be.true;
         }).then(function () {
             return Page.eleIntfRedRecBufThrottlingSpinner.getAttribute('value');
         }).then(function (message) {
@@ -619,7 +643,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0005", "abcdefg", "INTFID01", "IntfEMSD0004", null, null, null, "EndpointCICSB0007", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", "11", "333", "555", "7", false, false, "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "55", "77", false, false, false);
+            Page.addIntfRed("IntfRED0005", "abcdefg", "INTFID01", "ESB", "IntfEMSD0004", null, null, null, null, "EndpointCICSB0007", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", false, "11", "333", "1111", "555", "7", false, "First", "33", "5555", "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "77", false, false, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -627,7 +651,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfRedNo("IntfRED0005", "hijklmn", "INTFID02", "IntfRVD0004", null, null, null, "EndpointCICSB0008", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", "22", "340", "666", "8", true, true, "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "44444", "66", "88", true, true, true);
+            Page.cancelIntfRedNo("IntfRED0005", "hijklmn", "INTFID02", "ESB", "IntfRVD0004", null, null, null, null, "EndpointCICSB0008", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", true, "22", "340", "2222", "666", "8", true, "Round Robin", "44", "6666", "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "444444", "88", true, true, true);
         }).then(function () {
             return Page.eleIntfRedNameInput.getAttribute('value');
         }).then(function (message) {
@@ -641,7 +665,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute('value');
+            return Page.eleIntfRedEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVD0004').to.be.true;
         }).then(function () {
@@ -665,11 +689,11 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '4').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpNameInput.getAttribute('value');
+            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'JJ').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
+            return Page.eleIntfRedMyCicsGrpInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'KK').to.be.true;
         }).then(function () {
@@ -681,13 +705,21 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'MM').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute('value');
+            return Page.eleIntfRedClearTranWorkareaCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute('value');
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '340').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '2222').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTimeoutMsgReplySpinner.getAttribute('value');
         }).then(function (message) {
@@ -701,9 +733,17 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === "true").to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTrgOrderedCheck.getAttribute("checked");
+            return Page.eleIntfRedTrgModeDropdown.getText();
         }).then(function (message) {
-            expect(message === 'true').to.be.true;
+            expect(message === "Round Robin").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '44').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '6666').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTrgMaxMsgLenSpinner.getAttribute('value');
         }).then(function (message) {
@@ -812,10 +852,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
             return Page.eleIntfRedRecCicsToWaitSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '44444').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '66').to.be.true;
         }).then(function () {
             return Page.eleIntfRedRecBufThrottlingSpinner.getAttribute('value');
         }).then(function (message) {
@@ -863,7 +899,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0006", "abcdefg", "INTFID01", "IntfEMSD0005", null, null, null, "EndpointCICSB0009", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", "11", "333", "555", "7", false, false, "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "55", "77", false, false, false);
+            Page.addIntfRed("IntfRED0006", "abcdefg", "INTFID01", "ESB", "IntfEMSD0005", null, null, null, null, "EndpointCICSB0009", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", false, "11", "333", "1111", "555", "7", false, "First", "33", "5555", "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "77", false, false, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -871,7 +907,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.resetIntfRed("IntfRED0006", "hijklmn", "INTFID02", "IntfRVD0005", null, null, null, "EndpointCICSB0010", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", "22", "340", "666", "8", true, true, "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "44444", "66", "88", true, true, true);
+            Page.resetIntfRed("IntfRED0006", "hijklmn", "INTFID02", "ESB", "IntfRVD0005", null, null, null, null, "EndpointCICSB0010", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", true, "22", "340", "2222", "666", "8", true, "Round Robin", "44", "6666", "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "444444", "88", true, true, true);
         }).then(function () {
             return Page.eleIntfRedNameInput.getAttribute('value');
         }).then(function (message) {
@@ -885,7 +921,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute('value');
+            return Page.eleIntfRedEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSD0005').to.be.true;
         }).then(function () {
@@ -909,11 +945,11 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '3').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpNameInput.getAttribute('value');
+            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'CC').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
+            return Page.eleIntfRedMyCicsGrpInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'DD').to.be.true;
         }).then(function () {
@@ -925,13 +961,21 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'FF').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute('value');
+            return Page.eleIntfRedClearTranWorkareaCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '11').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute('value');
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '333').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '1111').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTimeoutMsgReplySpinner.getAttribute('value');
         }).then(function (message) {
@@ -945,9 +989,17 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTrgOrderedCheck.getAttribute("checked");
+            return Page.eleIntfRedTrgModeDropdown.getText();
         }).then(function (message) {
-            expect(message === null).to.be.true;
+            expect(message === "First").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '33').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '5555').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTrgMaxMsgLenSpinner.getAttribute('value');
         }).then(function (message) {
@@ -1057,10 +1109,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '33333').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '55').to.be.true;
-        }).then(function () {
             return Page.eleIntfRedRecBufThrottlingSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '77').to.be.true;
@@ -1107,7 +1155,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0007", "abcdefg", "INTFID01", "IntfEMSD0006", null, null, null, "EndpointCICSB0011", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", "11", "333", "555", "7", false, false, "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "55", "77", false, false, false);
+            Page.addIntfRed("IntfRED0007", "abcdefg", "INTFID01", "ESB", "IntfEMSD0006", null, null, null, null, "EndpointCICSB0011", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", false, "11", "333", "1111", "555", "7", false, "First", "33", "5555", "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "77", false, false, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1115,7 +1163,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfRed("IntfRED0007", "hijklmn", "INTFID02", "IntfRVD0006", null, null, null, "EndpointCICSB0012", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", "22", "340", "666", "8", true, true, "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "44444", "66", "88", true, true, true);
+            Page.addIntfRed("IntfRED0007", "hijklmn", "INTFID02", "ESB", "IntfRVD0006", null, null, null, null, "EndpointCICSB0012", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", true, "22", "340", "2222", "666", "8", true, "Round Robin", "44", "6666", "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "444444", "88", true, true, true);
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleOKButton);
         }).then(function () {
@@ -1135,7 +1183,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute('value');
+            return Page.eleIntfRedEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVD0006').to.be.true;
         }).then(function () {
@@ -1159,11 +1207,11 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '4').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpNameInput.getAttribute('value');
+            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'JJ').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
+            return Page.eleIntfRedMyCicsGrpInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'KK').to.be.true;
         }).then(function () {
@@ -1175,13 +1223,21 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'MM').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute('value');
+            return Page.eleIntfRedClearTranWorkareaCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute('value');
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '340').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '2222').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTimeoutMsgReplySpinner.getAttribute('value');
         }).then(function (message) {
@@ -1195,9 +1251,17 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === "true").to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTrgOrderedCheck.getAttribute("checked");
+            return Page.eleIntfRedTrgModeDropdown.getText();
         }).then(function (message) {
-            expect(message === 'true').to.be.true;
+            expect(message === "Round Robin").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '44').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '6666').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTrgMaxMsgLenSpinner.getAttribute('value');
         }).then(function (message) {
@@ -1307,10 +1371,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '44444').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '66').to.be.true;
-        }).then(function () {
             return Page.eleIntfRedRecBufThrottlingSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '88').to.be.true;
@@ -1357,7 +1417,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0008", "abcdefg", "INTFID01", "IntfEMSD0007", null, null, null, "EndpointCICSB0013", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", "11", "333", "555", "7", false, false, "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "55", "77", false, false, false);
+            Page.addIntfRed("IntfRED0008", "abcdefg", "INTFID01", "ESB", "IntfEMSD0007", null, null, null, null, "EndpointCICSB0013", "AA", "BB", "1", "3", "CC", "DD", "EE", "FF", false, "11", "333", "1111", "555", "7", false, "First", "33", "5555", "1111", "5", "333", "111", "777", "999", "1111", "11", "333", "5555", "1", "3", "5", "11", "21", "31", "P1", "P3", "P5", "41", "111", "3333", "55", "7777", "9999", "1", "33333", "77", false, false, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1365,7 +1425,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfRed("IntfRED0008", "hijklmn", "INTFID02", "IntfRVD0007", null, null, null, "EndpointCICSB0014", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", "22", "340", "666", "8", true, true, "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "44444", "66", "88", true, true, true);
+            Page.addIntfRed("IntfRED0008", "hijklmn", "INTFID02", "ESB", "IntfRVD0007", null, null, null, null, "EndpointCICSB0014", "HH", "II", "2", "4", "JJ", "KK", "LL", "MM", true, "22", "340", "2222", "666", "8", true, "Round Robin", "44", "6666", "2222", "6", "444", "222", "888", "1000", "2222", "22", "444", "6666", "0", "2", "4", "12", "22", "32", "P2", "P4", "P6", "42", "222", "4444", "66", "8888", "10000", "2", "444444", "88", true, true, true);
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleNoButton);
         }).then(function () {
@@ -1403,7 +1463,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute('value');
+            return Page.eleIntfRedEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSD0007').to.be.true;
         }).then(function () {
@@ -1427,11 +1487,11 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '3').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpNameInput.getAttribute('value');
+            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'CC').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
+            return Page.eleIntfRedMyCicsGrpInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'DD').to.be.true;
         }).then(function () {
@@ -1443,13 +1503,21 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'FF').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute('value');
+            return Page.eleIntfRedClearTranWorkareaCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '11').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute('value');
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '333').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '1111').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTimeoutMsgReplySpinner.getAttribute('value');
         }).then(function (message) {
@@ -1463,9 +1531,17 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTrgOrderedCheck.getAttribute("checked");
+            return Page.eleIntfRedTrgModeDropdown.getText();
         }).then(function (message) {
-            expect(message === null).to.be.true;
+            expect(message === "First").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '33').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '5555').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTrgMaxMsgLenSpinner.getAttribute('value');
         }).then(function (message) {
@@ -1575,10 +1651,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '33333').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '55').to.be.true;
-        }).then(function () {
             return Page.eleIntfRedRecBufThrottlingSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '77').to.be.true;
@@ -1607,7 +1679,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0009", "", undefined, null, null, null, null, "EndpointCICSB0015");
+            Page.addIntfRed("IntfRED0009", "", undefined, "ESB", null, null, null, null, null, "EndpointCICSB0015");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1639,7 +1711,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0010", "", undefined, null, null, null, null, "EndpointCICSB0016");
+            Page.addIntfRed("IntfRED0010", "", undefined, "ESB", null, null, null, null, null, "EndpointCICSB0016");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1671,13 +1743,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0011", "", undefined, null, null, null, null, "EndpointCICSB0017");
+            Page.addIntfRed("IntfRED0011", "", undefined, "ESB", null, null, null, null, null, "EndpointCICSB0017");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             return Page.eleDeleteButton.getAttribute('disabled');
         }).then(function (message) {
@@ -1743,7 +1817,23 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute('value');
+            return Page.eleIntfRedOutboundModeDropdown.getText();
+        }).then(function (message) {
+            expect(message === "ESB").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedEsbIntfInput.getAttribute("readonly");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTcpIntfInput.getAttribute("readonly");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedEsbIntfInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTcpIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
@@ -1767,29 +1857,37 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '0').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpNameInput.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'TIBSS').to.be.true;
-        }).then(function () {
             return Page.eleIntfRedGrpMonitorNameInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'TIBMON').to.be.true;
         }).then(function () {
+            return Page.eleIntfRedMyCicsGrpInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'TIBSS').to.be.true;
+        }).then(function () {
             return Page.eleIntfRedLsnNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'MSGS#RED').to.be.true;
+            expect(message === '&APPLID').to.be.true;
         }).then(function () {
             return Page.eleIntfRedLsnTranidInput.getAttribute('value');
         }).then(function (message) {
             expect(message === '#RED').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute('value');
+            return Page.eleIntfRedClearTranWorkareaCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '21').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute('value');
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '50').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '500').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTimeoutMsgReplySpinner.getAttribute('value');
         }).then(function (message) {
@@ -1803,9 +1901,17 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTrgOrderedCheck.getAttribute("checked");
+            return Page.eleIntfRedTrgModeDropdown.getText();
         }).then(function (message) {
-            expect(message === 'true').to.be.true;
+            expect(message === "First").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '300').to.be.true;
         }).then(function () {
             return Page.eleIntfRedTrgMaxMsgLenSpinner.getAttribute('value');
         }).then(function (message) {
@@ -1915,10 +2021,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === '10000').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '80').to.be.true;
-        }).then(function () {
             return Page.eleIntfRedRecBufThrottlingSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '70').to.be.true;
@@ -1959,7 +2061,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleIntfRedIntfidInput.clear();
         }).then(function () {
-            Page.eleIntfRedOutputIntfInput.clear();
+            Page.eleIntfRedEsbIntfInput.clear();
         }).then(function () {
             Page.eleIntfRedEndpointInput.clear();
         }).then(function () {
@@ -1967,15 +2069,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleIntfRedAdminNameInput.clear();
         }).then(function () {
-            return Page.eleIntfRedGrpNameInput.isDisplayed();
+            return Page.eleIntfRedMyCicsGrpInput.isDisplayed();
         }).then(function (result) {
             if (result === false) {
                 Page.eleIntfRedCicsParasExtend.click();
             }
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleIntfRedGrpNameInput);
+            globalCommons.waitForDisplayed(Page.eleIntfRedMyCicsGrpInput);
         }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear();
+            Page.eleIntfRedMyCicsGrpInput.clear();
         }).then(function () {
             Page.eleIntfRedGrpMonitorNameInput.clear();
         }).then(function () {
@@ -2031,7 +2133,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2053,11 +2155,11 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'A non-empty value is required').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpNameValidateMsg.getText();
+            return Page.eleIntfRedGrpMonitorNameValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'A non-empty value is required').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedGrpMonitorNameValidateMsg.getText();
+            return Page.eleIntfRedMyCicsGrpValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'A non-empty value is required').to.be.true;
         }).then(function () {
@@ -2087,7 +2189,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0012_@#$_22223333333333444444444", "", undefined, null, null, null, null, "EndpointCICSB0018");
+            Page.addIntfRed("IntfRED0012_@#$_22223333333333444444444", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0018");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2099,7 +2201,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'IntfRED0012_@#$_22223333333333444444444').to.be.true;
         }).then(function () {
-            Page.addIntfRed("IntfRED0013_@#$_222233333333334444444444", "", undefined, null, null, null, null, "EndpointCICSB0018");
+            Page.addIntfRed("IntfRED0013_@#$_222233333333334444444444", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0018");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2125,7 +2227,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0014", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111", undefined, null, null, null, null, "EndpointCICSB0019");
+            Page.addIntfRed("IntfRED0014", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111", undefined, undefined, null, null, null, null, null, "EndpointCICSB0019");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2137,7 +2239,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111').to.be.true;
         }).then(function () {
-            Page.addIntfRed("IntfRED0015", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????111111111122222222223333333333444444444455555555551111111111222222222233333333334444444444555555555511111", undefined, null, null, null, null, "EndpointCICSB0019");
+            Page.addIntfRed("IntfRED0015", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????111111111122222222223333333333444444444455555555551111111111222222222233333333334444444444555555555511111", undefined, undefined, null, null, null, null, null, "EndpointCICSB0019");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2161,7 +2263,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             browser.sleep(500);
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2179,7 +2281,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0016", "", "!@#$%^&*", null, null, null, null, "EndpointCICSB0020");
+            Page.addIntfRed("IntfRED0016", "", "!@#$%^&*", undefined, null, null, null, null, null, "EndpointCICSB0020");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2225,9 +2327,9 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         });
     });
 
-    // Test field 'RED Interface Details panel -> Output Interface'
+    // Test field 'RED Interface Details panel -> Outbound ESB Interface'
     // Related jiras: ZWUI-951(fixed)
-    it('Test field RED Interface -> Output Interface', function () {
+    it('Test field RED Interface -> Outbound ESB Interface', function () {
         Page.delIntfRedYes("IntfRED0017").then(function () {
             Page.delIntfRedYes("IntfRED0018");
         }).then(function () {
@@ -2261,7 +2363,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0017", "", undefined, "IntfEMSD0008_@#$_2223333333333444444444", null, null, null, "EndpointCICSB0021");
+            Page.addIntfRed("IntfRED0017", "", undefined, "ESB", "IntfEMSD0008_@#$_2223333333333444444444", null, null, null, null, "EndpointCICSB0021");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2269,75 +2371,53 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute("value");
+            return Page.eleIntfRedEsbIntfInput.getAttribute("value");
         }).then(function (message) {
             expect(message === 'IntfEMSD0008_@#$_2223333333333444444444').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
-            Page.eleIntfRedOutputIntfInput.clear().sendKeys("AAA");
+            Page.eleIntfRedEsbIntfInput.clear().sendKeys("AAA");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'There is an error on this form').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfValidateMsg.getText();
+            return Page.eleIntfRedEsbIntfValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
-            Page.eleIntfRedOutputIntfInput.clear().sendKeys("IntfEMSD0008_@#$_22233333333334444444444");
+            Page.eleIntfRedEsbIntfInput.clear().sendKeys("IntfEMSD0008_@#$_22233333333334444444444");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'There is an error on this form').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfValidateMsg.getText();
+            return Page.eleIntfRedEsbIntfValidateMsg.getText();
         }).then(function (message) {
             expect(message === '"IntfEMSD00...": the value is too long, must be at most 39 characters').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(1000);
-        }).then(function () {
-            Page.eleIntfRedOutputIntfInput.clear();
+            Page.eleIntfRedEsbIntfInput.clear();
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '').to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleIntfRedOutputIntfAddButton);
-        }).then(function () {
-            Page.eleIntfRedOutputIntfAddButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleIntfRedOutputIntfValidateMsg)
-        }).then(function () {
-            return Page.eleIntfRedOutputIntfValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Empty Value').to.be.true;
-        }).then(function () {
-            Page.addIntfRed("IntfRED0018", "", undefined, "IntfEMSD0008_@#$_2223333333333444444444", "IntfEMSD0009", "IntfEMSD0010", "IntfEMSD0011", "EndpointCICSB0021");
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2345,25 +2425,47 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute('value');
+            return Page.eleIntfRedEsbIntfInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleIntfRedEsbIntfAddButton);
+        }).then(function () {
+            Page.eleIntfRedEsbIntfAddButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleIntfRedEsbIntfValidateMsg)
+        }).then(function () {
+            return Page.eleIntfRedEsbIntfValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Empty Value').to.be.true;
+        }).then(function () {
+            Page.addIntfRed("IntfRED0018", "", undefined, "ESB", "IntfEMSD0008_@#$_2223333333333444444444", "IntfEMSD0009", "IntfEMSD0010", "IntfEMSD0011", null, "EndpointCICSB0021");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSD0008_@#$_2223333333333444444444').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntf2Input.getAttribute('value');
+            return Page.eleIntfRedEsbIntf2Input.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSD0009').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntf3Input.getAttribute('value');
+            return Page.eleIntfRedEsbIntf3Input.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSD0010').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntf4Input.getAttribute('value');
+            return Page.eleIntfRedEsbIntf4Input.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSD0011').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedOutputIntfAddButton.click();
+            Page.eleIntfRedEsbIntfAddButton.click();
         }).then(function () {
             globalCommons.waitForElementPresent(globalPage.eleWarningInfo);
         }).then(function () {
@@ -2373,9 +2475,9 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalPage.eleWarningClose.click();
         }).then(function () {
-            Page.eleIntfRedOutputIntf4RemoveButton.click();
+            Page.eleIntfRedEsbIntf4RemoveButton.click();
         }).then(function () {
-            Page.eleIntfRedOutputIntf2RemoveButton.click();
+            Page.eleIntfRedEsbIntf2RemoveButton.click();
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2385,31 +2487,31 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntfInput.getAttribute('value');
+            return Page.eleIntfRedEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSD0008_@#$_2223333333333444444444').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedOutputIntf2Input.getAttribute('value');
+            return Page.eleIntfRedEsbIntf2Input.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSD0010').to.be.true;
         }).then(function () {
-            Page.eleIntfRedOutputIntfAddButton.click();
+            Page.eleIntfRedEsbIntfAddButton.click();
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleIntfRedOutputIntf3PickButton);
+            globalCommons.waitForClickable(Page.eleIntfRedEsbIntf3PickButton);
         }).then(function () {
-            Page.eleIntfRedOutputIntf3PickButton.click();
+            Page.eleIntfRedEsbIntf3PickButton.click();
         }).then(function () {
             globalPage.entitySelect("IntfEMSD0010");
         }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleIntfRedOutputIntfValidateMsg);
+            globalCommons.waitForElementPresent(Page.eleIntfRedEsbIntfValidateMsg);
         }).then(function () {
-            return Page.eleIntfRedOutputIntfValidateMsg.getText();
+            return Page.eleIntfRedEsbIntfValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'Duplicate Interface!').to.be.true;
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleIntfRedOutputIntf3RemoveButton);
+            globalCommons.waitForClickable(Page.eleIntfRedEsbIntf3RemoveButton);
         }).then(function () {
-            Page.eleIntfRedOutputIntf3RemoveButton.click();
+            Page.eleIntfRedEsbIntf3RemoveButton.click();
         }).then(function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
@@ -2433,7 +2535,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0019", "", undefined, null, null, null, null, "ABC");
+            Page.addIntfRed("IntfRED0019", "", undefined, undefined, null, null, null, null, null, "ABC");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2475,7 +2577,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0020", "", undefined, null, null, null, null, "EndpointCICSB0023", "@#$A");
+            Page.addIntfRed("IntfRED0020", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0023", "@#$A");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2601,13 +2703,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleIntfRedHubNameInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2618,8 +2720,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
             Page.eleIntfRedHubNameInput.clear().sendKeys("A2");
         }).then(function () {
             Page.eleSaveButton.click();
-        }).then(function () {
-            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2639,7 +2739,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0021", "", undefined, null, null, null, null, "EndpointCICSB0024", undefined, "@#$ABC789012");
+            Page.addIntfRed("IntfRED0021", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0024", undefined, "@#$ABC789012");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2777,13 +2877,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleIntfRedAdminNameInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2794,8 +2894,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
             Page.eleIntfRedAdminNameInput.clear().sendKeys("A2");
         }).then(function () {
             Page.eleSaveButton.click();
-        }).then(function () {
-            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2816,7 +2914,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0022", "", undefined, null, null, null, null, "EndpointCICSB0025", undefined, undefined, "0", "0");
+            Page.addIntfRed("IntfRED0022", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0025", undefined, undefined, "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2990,9 +3088,9 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         });
     });
 
-    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Group Name'
+    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Group Monitor Name'
     //
-    it('Test field RED Interface -> CICS Related Parameters -> Group Name', function () {
+    it('Test field RED Interface -> CICS Related Parameters -> Group Monitor Name', function () {
         Page.delIntfRedYes("IntfRED0023").then(function () {
             Page.delEndpointCicsYes("EndpointCICSB0026");
         }).then(function () {
@@ -3000,171 +3098,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0023", "", undefined, null, null, null, null, "EndpointCICSB0026", undefined, undefined, "0", "0", "@#$AB123");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("#@$123AB");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("$#@123AB");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("AB120@#$");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("A23456789");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedGrpNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'A2345678').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("123@#$AB");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedGrpNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("aBCDE");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedGrpNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("AbCDE");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedGrpNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("ABCDe");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedGrpNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("A");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedGrpNameInput.clear().sendKeys("A2");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        });
-    });
-
-    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Group Monitor Name'
-    //
-    it('Test field RED Interface -> CICS Related Parameters -> Group Monitor Name', function () {
-        Page.delIntfRedYes("IntfRED0024").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0027");
-        }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0027");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addIntfRed("IntfRED0024", "", undefined, null, null, null, null, "EndpointCICSB0027", undefined, undefined, "0", "0", undefined, "@#$AB123");
+            Page.addIntfRed("IntfRED0023", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0026", undefined, undefined, "0", "0", "@#$AB123");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3290,13 +3224,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleIntfRedGrpMonitorNameInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3308,7 +3242,167 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        });
+    });
+
+    // Test field 'RED Interface Details panel -> CICS Related Parameters -> My CICS Group'
+    //
+    it('Test field RED Interface -> CICS Related Parameters -> My CICS Group', function () {
+        Page.delIntfRedYes("IntfRED0024").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0027");
+        }).then(function () {
+            Page.addEndpointCics("EndpointCICSB0027");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfRed("IntfRED0024", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0027", undefined, undefined, "0", "0", undefined, "@#$AB123");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("#@$123AB");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("$#@123AB");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("AB120@#$");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("A23456789");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMyCicsGrpInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'A2345678').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("123@#$AB");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMyCicsGrpValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("aBCDE");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMyCicsGrpValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("AbCDE");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMyCicsGrpValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("ABCDe");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMyCicsGrpValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("A");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
             browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMyCicsGrpInput.clear().sendKeys("A2");
+        }).then(function () {
+            Page.eleSaveButton.click();
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3328,7 +3422,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0025", "", undefined, null, null, null, null, "EndpointCICSB0028", undefined, undefined, "0", "0", undefined, undefined, "@#$AB6789012345");
+            Page.addIntfRed("IntfRED0025", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0028", undefined, undefined, "0", "0", undefined, undefined, "@#$AB6789012345");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3406,7 +3500,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedLsnNameValidateMsg.getText();
         }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+            expect(message === 'Please enter &APPLID or use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -3422,7 +3516,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedLsnNameValidateMsg.getText();
         }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+            expect(message === 'Please enter &APPLID or use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -3438,7 +3532,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedLsnNameValidateMsg.getText();
         }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+            expect(message === 'Please enter &APPLID or use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -3454,17 +3548,17 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedLsnNameValidateMsg.getText();
         }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+            expect(message === 'Please enter &APPLID or use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
-        }).then(function () {
-            browser.sleep(500);
         }).then(function () {
             Page.eleIntfRedLsnNameInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3476,7 +3570,17 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            browser.sleep(500);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedLsnNameInput.clear().sendKeys("&APPLID");
+        }).then(function () {
+            Page.eleSaveButton.click();
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3496,7 +3600,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0026", "", undefined, null, null, null, null, "EndpointCICSB0029", undefined, undefined, "0", "0", undefined, undefined, undefined, "@#$A");
+            Page.addIntfRed("IntfRED0026", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0029", undefined, undefined, "0", "0", undefined, undefined, undefined, "@#$A");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3626,7 +3730,9 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3638,8 +3744,6 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
@@ -3648,9 +3752,9 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         });
     });
 
-    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Max Concurrency Transactions for Listener'
+    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Maximum Transactions Concurrency Listener'
     //
-    it('Test field RED Interface -> CICS Related Parameters -> Max Concurrency Transactions for Listener', function () {
+    it('Test field RED Interface -> CICS Related Parameters -> Maximum Transactions Concurrency Listener', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         Page.delIntfRedYes("IntfRED0027").then(function () {
             Page.delEndpointCicsYes("EndpointCICSB0030");
@@ -3659,7 +3763,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0027", "", undefined, null, null, null, null, "EndpointCICSB0030", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "5");
+            Page.addIntfRed("IntfRED0027", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0030", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3667,15 +3771,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.clear().sendKeys("4");
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.clear().sendKeys("4");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3685,15 +3789,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.clear().sendKeys("0");
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.clear().sendKeys("0");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3703,15 +3807,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.clear().sendKeys("6");
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.clear().sendKeys("6");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3721,15 +3825,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '6').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.clear().sendKeys("99");
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.clear().sendKeys("799");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3739,15 +3843,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '99').to.be.true;
+            expect(message === '799').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.clear().sendKeys("100");
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.clear().sendKeys("800");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3757,15 +3861,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '100').to.be.true;
+            expect(message === '800').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedTransForLsnSpinner.clear().sendKeys("101");
+            Page.eleIntfRedMaxTransConcurrencyLsnSpinner.clear().sendKeys("801");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3775,15 +3879,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedTransForLsnSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyLsnSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '100').to.be.true;
+            expect(message === '800').to.be.true;
         });
     });
 
-    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Max Concurrency User Transactions'
+    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Maximum Transactions Concurrency User'
     //
-    it('Test field RED Interface -> CICS Related Parameters -> Max Concurrency User Transactions', function () {
+    it('Test field RED Interface -> CICS Related Parameters -> Maximum Transactions Concurrency User', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         Page.delIntfRedYes("IntfRED0028").then(function () {
             Page.delEndpointCicsYes("EndpointCICSB0031");
@@ -3792,7 +3896,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0028", "", undefined, null, null, null, null, "EndpointCICSB0031", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "20");
+            Page.addIntfRed("IntfRED0028", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0031", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3800,15 +3904,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '20').to.be.true;
+            expect(message === '0').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedUserTransSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedUserTransSpinner.clear().sendKeys("19");
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.clear().sendKeys("1");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3818,15 +3922,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '20').to.be.true;
+            expect(message === '1').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedUserTransSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedUserTransSpinner.clear().sendKeys("0");
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.clear().sendKeys("300");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3836,15 +3940,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '20').to.be.true;
+            expect(message === '300').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedUserTransSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedUserTransSpinner.clear().sendKeys("21");
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.clear().sendKeys("400");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3854,51 +3958,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '21').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedUserTransSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedUserTransSpinner.clear().sendKeys("399");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '399').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedUserTransSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedUserTransSpinner.clear().sendKeys("400");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '400').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfRedUserTransSpinner.sendKeys(backspaceSeries);
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedUserTransSpinner.clear().sendKeys("401");
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.clear().sendKeys("499");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -3908,15 +3976,51 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfRedUserTransSpinner.getAttribute("value");
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '400').to.be.true;
+            expect(message === '499').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.clear().sendKeys("500");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '500').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedMaxTransConcurrencyUserSpinner.clear().sendKeys("501");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedMaxTransConcurrencyUserSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '500').to.be.true;
         });
     });
 
-    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Timeout General Message Reply'
+    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Maximum Transactions Concurrency Inactive (ms)'
     //
-    it('Test field RED Interface -> CICS Related Parameters -> Timeout General Message Reply', function () {
+    it('Test field RED Interface -> CICS Related Parameters -> Maximum Transactions Concurrency Inactive (ms)', function () {
         var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
         Page.delIntfRedYes("IntfRED0029").then(function () {
             Page.delEndpointCicsYes("EndpointCICSB0032");
@@ -3925,7 +4029,140 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0029", "", undefined, null, null, null, null, "EndpointCICSB0032", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "1");
+            Page.addIntfRed("IntfRED0029", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0032", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, "500");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '500').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.clear().sendKeys("499");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '500').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '500').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.clear().sendKeys("5000");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5000').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.clear().sendKeys("9999");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '9999').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.clear().sendKeys("10000");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '10000').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedInactiveSpinner.clear().sendKeys("10001");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedInactiveSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '10000').to.be.true;
+        });
+    });
+
+    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Timeout For Transaction Message Reply'
+    //
+    it('Test field RED Interface -> CICS Related Parameters -> Timeout For Transaction Message Reply', function () {
+        var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
+        Page.delIntfRedYes("IntfRED0030").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0033");
+        }).then(function () {
+            Page.addEndpointCics("EndpointCICSB0033");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfRed("IntfRED0030", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0033", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4047,18 +4284,18 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         });
     });
 
-    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Timeout General Message Completion'
+    // Test field 'RED Interface Details panel -> CICS Related Parameters -> Timeout For Transaction Message Completion'
     //
-    it('Test field RED Interface -> CICS Related Parameters -> Timeout General Message Completion', function () {
+    it('Test field RED Interface -> CICS Related Parameters -> Timeout For Transaction Message Completion', function () {
         var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0030").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0033");
+        Page.delIntfRedYes("IntfRED0031").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0034");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0033");
+            Page.addEndpointCics("EndpointCICSB0034");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0030", "", undefined, null, null, null, null, "EndpointCICSB0033", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1");
+            Page.addIntfRed("IntfRED0031", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0034", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4180,18 +4417,338 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         });
     });
 
+    // Test field 'RED Interface Details panel -> Trigger Service -> Mode'
+    //
+    it('Test field RED Interface -> Trigger Service -> Mode', function () {
+        Page.delIntfRedYes("IntfRED0032").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0035");
+        }).then(function () {
+            Page.addEndpointCics("EndpointCICSB0035");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfRed("IntfRED0032", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0035", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "First");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgModeDropdown.getText();
+        }).then(function (message) {
+            expect(message === 'First').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleIntfRedTrgModeDropdown);
+        }).then(function () {
+            Page.eleIntfRedTrgModeDropdown.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleIntfRedTrgMode01);
+        }).then(function () {
+            return Page.eleIntfRedTrgMode01.getText();
+        }).then(function (message) {
+            expect(message === 'First').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgMode02.getText();
+        }).then(function (message) {
+            expect(message === 'Round Robin').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page._modeIntfRed("Round Robin");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgModeDropdown.getText();
+        }).then(function (message) {
+            expect(message === 'Round Robin').to.be.true;
+        });
+    });
+
+    // Test field 'RED Interface Details panel -> Trigger Service -> Priority'
+    //
+    it('Test field RED Interface -> Trigger Service -> Priority', function () {
+        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
+        Page.delIntfRedYes("IntfRED0033").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0036");
+        }).then(function () {
+            Page.addEndpointCics("EndpointCICSB0036");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfRed("IntfRED0033", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0036", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "1");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.clear().sendKeys("2");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.clear().sendKeys("50");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '50').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.clear().sendKeys("98");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '98').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.clear().sendKeys("99");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '99').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgPrioritySpinner.clear().sendKeys("100");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgPrioritySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '10').to.be.true;
+        });
+    });
+
+    // Test field 'RED Interface Details panel -> Trigger Service -> Stress Delay (ms)'
+    //
+    it('Test field RED Interface -> Trigger Service -> Stress Delay (ms)', function () {
+        var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
+        Page.delIntfRedYes("IntfRED0034").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0037");
+        }).then(function () {
+            Page.addEndpointCics("EndpointCICSB0037");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfRed("IntfRED0034", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0037", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "1");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.clear().sendKeys("2");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.clear().sendKeys("5000");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5000').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.clear().sendKeys("9999");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '9999').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.clear().sendKeys("10000");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '10000').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRedTrgStressDelaySpinner.clear().sendKeys("10001");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTrgStressDelaySpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '10000').to.be.true;
+        });
+    });
+
     // Test field 'RED Interface Details panel -> Trigger Service -> Maximum Message Length (bytes)'
     //
     it('Test field RED Interface -> Trigger Service -> Maximum Message Length (bytes)', function () {
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0031").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0034");
+        Page.delIntfRedYes("IntfRED0035").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0038");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0034");
+            Page.addEndpointCics("EndpointCICSB0038");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0031", "", undefined, null, null, null, null, "EndpointCICSB0034", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "1024");
+            Page.addIntfRed("IntfRED0035", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0038", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "1024");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4334,14 +4891,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     // Test field 'RED Interface Details panel -> Trigger Service -> Number of Buffers'
     //
     it('Test field RED Interface -> Trigger Service -> Number of Buffers', function () {
-        Page.delIntfRedYes("IntfRED0032").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0035");
+        Page.delIntfRedYes("IntfRED0036").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0039");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0035");
+            Page.addEndpointCics("EndpointCICSB0039");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0032", "", undefined, null, null, null, null, "EndpointCICSB0035", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "4", "3", "2");
+            Page.addIntfRed("IntfRED0036", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0039", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "4", "3", "2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4512,14 +5069,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     // Test field 'RED Interface Details panel -> Trigger Service -> Buffer Size (bytes)'
     //
     it('Test field RED Interface -> Trigger Service -> Buffer Size (bytes)', function () {
-        Page.delIntfRedYes("IntfRED0033").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0036");
+        Page.delIntfRedYes("IntfRED0037").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0040");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0036");
+            Page.addEndpointCics("EndpointCICSB0040");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0033", "", undefined, null, null, null, null, "EndpointCICSB0036", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "255", "254", "253");
+            Page.addIntfRed("IntfRED0037", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0040", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "255", "254", "253");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4694,14 +5251,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     // Test field 'RED Interface Details panel -> Trigger Service -> Pacing (μs)'
     //
     it('Test field RED Interface -> Trigger Service -> Pacing (μs)', function () {
-        Page.delIntfRedYes("IntfRED0034").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0037");
+        Page.delIntfRedYes("IntfRED0038").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0041");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0037");
+            Page.addEndpointCics("EndpointCICSB0041");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0034", "", undefined, null, null, null, null, "EndpointCICSB0037", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0");
+            Page.addIntfRed("IntfRED0038", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0041", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "0", "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4840,14 +5397,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     // Test field 'RED Interface Details panel -> Trigger Service -> Trace Level'
     //
     it('Test field RED Interface -> Trigger Service -> Trace Level', function () {
-        Page.delIntfRedYes("IntfRED0035").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0038");
+        Page.delIntfRedYes("IntfRED0039").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0042");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0038");
+            Page.addEndpointCics("EndpointCICSB0042");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0035", "", undefined, null, null, null, null, "EndpointCICSB0038", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0");
+            Page.addIntfRed("IntfRED0039", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0042", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "0", "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5019,7 +5576,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -5042,14 +5599,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     // Test field 'RED Interface Details panel -> Trigger Service -> Workers'
     //
     it('Test field RED Interface -> Trigger Service -> Workers', function () {
-        Page.delIntfRedYes("IntfRED0036").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0039");
+        Page.delIntfRedYes("IntfRED0040").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0043");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0039");
+            Page.addEndpointCics("EndpointCICSB0043");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0036", "", undefined, null, null, null, null, "EndpointCICSB0039", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0");
+            Page.addIntfRed("IntfRED0040", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0043", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "0", "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5244,14 +5801,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     // Test field 'RED Interface Details panel -> Trigger Service -> Message Name'
     // Related jiras: ZWUI-952(fixed)
     it('Test field RED Interface -> Trigger Service -> Message Name', function () {
-        Page.delIntfRedYes("IntfRED0037").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0040");
+        Page.delIntfRedYes("IntfRED0041").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0044");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0040");
+            Page.addEndpointCics("EndpointCICSB0044");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0037", "", undefined, null, null, null, null, "EndpointCICSB0040", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "@#$ABC789012", "@#$HIJ789012", "@#$OPQ789012");
+            Page.addIntfRed("IntfRED0041", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0044", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "@#$ABC789012", "@#$HIJ789012", "@#$OPQ789012");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5477,7 +6034,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -5623,14 +6180,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     //
     it('Test field RED Interface -> Recipe Service -> Workers', function () {
         var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0038").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0041");
+        Page.delIntfRedYes("IntfRED0042").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0045");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0041");
+            Page.addEndpointCics("EndpointCICSB0045");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0038", "", undefined, null, null, null, null, "EndpointCICSB0041", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "0");
+            Page.addIntfRed("IntfRED0042", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0045", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5774,14 +6331,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     //
     it('Test field RED Interface -> Recipe Service -> Start Dynamic Listeners Level', function () {
         var backspaceSeries = Array(5).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0039").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0042");
+        Page.delIntfRedYes("IntfRED0043").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0046");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0042");
+            Page.addEndpointCics("EndpointCICSB0046");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0039", "", undefined, null, null, null, null, "EndpointCICSB0042", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "5", "2");
+            Page.addIntfRed("IntfRED0043", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0046", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5925,14 +6482,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     //
     it('Test field RED Interface -> Recipe Service -> Maximum Message Length (bytes)', function () {
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0040").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0043");
+        Page.delIntfRedYes("IntfRED0044").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0047");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0043");
+            Page.addEndpointCics("EndpointCICSB0047");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0040", "", undefined, null, null, null, null, "EndpointCICSB0043", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "5", "10", "1024");
+            Page.addIntfRed("IntfRED0044", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0047", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "1024");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -6075,15 +6632,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     // Test field 'RED Interface Details panel -> Recipe Service -> Number of Buffers'
     //
     it('Test field RED Interface -> Recipe Service -> Number of Buffers', function () {
-        var backspaceSeries = Array(5).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0041").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0044");
+        var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
+        Page.delIntfRedYes("IntfRED0045").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0048");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0044");
+            Page.addEndpointCics("EndpointCICSB0048");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0041", "", undefined, null, null, null, null, "EndpointCICSB0044", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "5", "10", "16382", "5");
+            Page.addIntfRed("IntfRED0045", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0048", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -6153,7 +6710,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleIntfRedRecNumOfBufsSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedRecNumOfBufsSpinner.clear().sendKeys("3000");
+            Page.eleIntfRedRecNumOfBufsSpinner.clear().sendKeys("50000");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6165,13 +6722,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedRecNumOfBufsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '3000').to.be.true;
+            expect(message === '50000').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfRedRecNumOfBufsSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedRecNumOfBufsSpinner.clear().sendKeys("4999");
+            Page.eleIntfRedRecNumOfBufsSpinner.clear().sendKeys("99999");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6183,13 +6740,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedRecNumOfBufsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '4999').to.be.true;
+            expect(message === '99999').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfRedRecNumOfBufsSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedRecNumOfBufsSpinner.clear().sendKeys("5000");
+            Page.eleIntfRedRecNumOfBufsSpinner.clear().sendKeys("100000");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6201,13 +6758,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedRecNumOfBufsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '5000').to.be.true;
+            expect(message === '100000').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfRedRecNumOfBufsSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedRecNumOfBufsSpinner.clear().sendKeys("5001");
+            Page.eleIntfRedRecNumOfBufsSpinner.clear().sendKeys("100001");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6219,7 +6776,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedRecNumOfBufsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '5000').to.be.true;
+            expect(message === '100000').to.be.true;
         });
     });
 
@@ -6227,14 +6784,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     //
     it('Test field RED Interface -> Recipe Service -> Buffer Size (bytes)', function () {
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0042").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0045");
+        Page.delIntfRedYes("IntfRED0046").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0049");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0045");
+            Page.addEndpointCics("EndpointCICSB0049");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0042", "", undefined, null, null, null, null, "EndpointCICSB0045", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "5", "10", "16382", "100", "1024");
+            Page.addIntfRed("IntfRED0046", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0049", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "1024");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -6378,14 +6935,14 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     //
     it('Test field RED Interface -> Recipe Service -> Pacing (μs)', function () {
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0043").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0046");
+        Page.delIntfRedYes("IntfRED0047").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0050");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0046");
+            Page.addEndpointCics("EndpointCICSB0050");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0043", "", undefined, null, null, null, null, "EndpointCICSB0046", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "5", "10", "16382", "100", "4096", "0");
+            Page.addIntfRed("IntfRED0047", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0050", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -6528,15 +7085,15 @@ describe('6.8.15 Define Interfaces RED Page', function () {
     // Test field 'RED Interface Details panel -> Recipe Service -> Wait (sec)'
     //
     it('Test field RED Interface -> Recipe Service -> Wait (sec)', function () {
-        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0044").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0047");
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
+        Page.delIntfRedYes("IntfRED0048").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0051");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0047");
+            Page.addEndpointCics("EndpointCICSB0051");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0044", "", undefined, null, null, null, null, "EndpointCICSB0047", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "5", "10", "16382", "100", "4096", "0", "0");
+            Page.addIntfRed("IntfRED0048", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0051", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -6570,7 +7127,7 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             Page.eleIntfRedRecWaitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("11");
+            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("66");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6582,13 +7139,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedRecWaitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '11').to.be.true;
+            expect(message === '66').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfRedRecWaitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("22");
+            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("100");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6600,13 +7157,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedRecWaitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '22').to.be.true;
+            expect(message === '100').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfRedRecWaitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("44");
+            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("119");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6618,13 +7175,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedRecWaitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '44').to.be.true;
+            expect(message === '119').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfRedRecWaitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("59");
+            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("120");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6636,13 +7193,13 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedRecWaitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '59').to.be.true;
+            expect(message === '120').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfRedRecWaitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("60");
+            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("121");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6654,40 +7211,22 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         }).then(function () {
             return Page.eleIntfRedRecWaitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '60').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedRecWaitSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedRecWaitSpinner.clear().sendKeys("61");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecWaitSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '60').to.be.true;
+            expect(message === '120').to.be.true;
         });
     });
 
     // Test field 'RED Interface Details panel -> Recipe Service -> CICS to Wait (ms)'
     //
-    it('Test field RED Interface -> Recipe Service -> CICS Reply Wait (ms)', function () {
+    it('Test field RED Interface -> Recipe Service -> CICS to Wait (ms)', function () {
         var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0045").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0048");
+        Page.delIntfRedYes("IntfRED0049").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0052");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0048");
+            Page.addEndpointCics("EndpointCICSB0052");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0045", "", undefined, null, null, null, null, "EndpointCICSB0048", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "5", "10", "16382", "100", "4096", "0", "10", "5000");
+            Page.addIntfRed("IntfRED0049", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0052", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "5000");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -6827,169 +7366,18 @@ describe('6.8.15 Define Interfaces RED Page', function () {
         });
     });
 
-    // Test field 'RED Interface Details panel -> Recipe Service -> Buffer Overflow'
-    //
-    it('Test field RED Interface -> Recipe Service -> Buffer Overflow', function () {
-        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0046").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0049");
-        }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0049");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addIntfRed("IntfRED0046", "", undefined, null, null, null, null, "EndpointCICSB0049", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "5", "10", "16382", "100", "4096", "0", "20", "10000", "50");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '50').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.clear().sendKeys("49");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '50').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.clear().sendKeys("0");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '50').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.clear().sendKeys("66");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '66').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.clear().sendKeys("77");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '77').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.clear().sendKeys("94");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '94').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.clear().sendKeys("95");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '95').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfRedRecBufOverfolwSpinner.clear().sendKeys("96");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRedRecBufOverfolwSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '95').to.be.true;
-        });
-    });
-
     // Test field 'RED Interface Details panel -> Recipe Service -> Buffer Throttling'
     //
     it('Test field RED Interface -> Recipe Service -> Buffer Throttling', function () {
         var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRedYes("IntfRED0047").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSB0050");
+        Page.delIntfRedYes("IntfRED0050").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0053");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSB0050");
+            Page.addEndpointCics("EndpointCICSB0053");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfRed("IntfRED0047", "", undefined, null, null, null, null, "EndpointCICSB0050", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, "21", "50", "3000", "1", false, true, "40000", "1000", "1000", "1000", "8192", "8192", "8192", "0", "0", "0", "0", "0", "0", "0", "0", "0", "AA", "BB", "CC", "5", "10", "16382", "100", "4096", "0", "20", "10000", "80", "40");
+            Page.addIntfRed("IntfRED0050", "", undefined, undefined, null, null, null, null, null, "EndpointCICSB0053", undefined, undefined, "0", "0", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "40");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -7126,6 +7514,141 @@ describe('6.8.15 Define Interfaces RED Page', function () {
             return Page.eleIntfRedRecBufThrottlingSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '95').to.be.true;
+        });
+    });
+
+    // Test field 'RED Interface Details panel -> Outbound Mode'
+    //
+    it('Test field RED Interface -> Outbound Mode', function () {
+        Page.delIntfRedYes("IntfRED0051").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0054");
+        }).then(function () {
+            Page.addEndpointCics("EndpointCICSB0054");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfRed("IntfRED0051", "", undefined, "TCP", null, null, null, null, null, "EndpointCICSB0054");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedOutboundModeDropdown.getText();
+        }).then(function (message) {
+            expect(message === 'TCP').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedEsbIntfInput.getAttribute("readonly");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTcpIntfInput.getAttribute("readonly");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleIntfRedOutboundModeDropdown);
+        }).then(function () {
+            Page.eleIntfRedOutboundModeDropdown.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleIntfRedOutboundMode01);
+        }).then(function () {
+            return Page.eleIntfRedOutboundMode01.getText();
+        }).then(function (message) {
+            expect(message === 'ESB').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedOutboundMode02.getText();
+        }).then(function (message) {
+            expect(message === 'TCP').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page._outboundModeIntfRed("ESB");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedOutboundModeDropdown.getText();
+        }).then(function (message) {
+            expect(message === 'ESB').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedEsbIntfInput.getAttribute("readonly");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTcpIntfInput.getAttribute("readonly");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        });
+    });
+
+    // Test field 'RED Interface Details panel -> Outbound TCP Interface'
+    //
+    it('Test field RED Interface -> Outbound TCP Interface', function () {
+        Page.delIntfRedYes("IntfRED0052").then(function () {
+            Page.delIntfTcpYes("IntfTCPA0001_@#$_2223333333333444444444");
+        }).then(function () {
+            Page.delEndpointCicsYes("EndpointCICSB0055");
+        }).then(function () {
+            Page.addEndpointCics("EndpointCICSB0055");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfTcp("IntfTCPA0001_@#$_2223333333333444444444");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfRed("IntfRED0052", "", undefined, "TCP", null, null, null, null, "IntfTCPA0001_@#$_2223333333333444444444", "EndpointCICSB0055");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTcpIntfInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfTCPA0001_@#$_2223333333333444444444').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTcpIntfInput.clear().sendKeys("ABC");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTcpIntfValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Invalid Reference').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRedTcpIntfInput.clear().sendKeys("IntfTCPA0001_@#$_22233333333334444444444");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            browser.sleep(500);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRedTcpIntfInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfTCPA0001_@#$_2223333333333444444444').to.be.true;
         });
     });
 

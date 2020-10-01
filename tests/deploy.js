@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var deployPage = require('../pageObject/deployPage.js');
@@ -315,7 +315,7 @@ describe('6.7 Deploy Page', function () {
         Page.delWorkspaceYes("Workspace0011").then(function () {
             Page.addWorkspace("Workspace0011", "AAAAAaaaaa11111");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -345,7 +345,6 @@ describe('6.7 Deploy Page', function () {
 
     // Add a workspace successfully, then load workspace from a file.
     // Related jiras: ZWUI-902
-    /*
     it('Test load workspace from a normal file', function () {
         Page.delWorkspaceYes("Workspace0012").then(function () {
             Page.addWorkspace("Workspace0012", "Load workspace from a file");
@@ -365,7 +364,7 @@ describe('6.7 Deploy Page', function () {
             expect(message === 'Workspace(Workspace0012) loaded successfully!').to.be.true;
         });
     });
-    */
+
     // Add a workspace successfully, then load workspace from an empty file.
     //
     it('Test load workspace from an empty file', function () {
@@ -449,63 +448,63 @@ describe('6.7 Deploy Page', function () {
             expect(message === 'Workspace(Workspace0015) loaded successfully!').to.be.true;
         });
     });
-    /*
-        // Add a workspace successfully, then load workspace from an existing workspace(IMS_EMS)
-        //
-        it('Test load workspace from an existing workspace(IMS_EMS)', function () {
-            Page.delWorkspaceYes("Workspace0016").then(function () {
-                Page.addWorkspace("Workspace0016", "Load workspace from an existing workspace IMS_EMS");
-            }).then(function () {
-                globalCommons.waitForClickable(Page.eleWorkspacesLeftmenu);
-            }).then(function () {
-                Page.eleWorkspacesLeftmenu.click();
-            }).then(function () {
-                globalCommons.waitForDisplayed(Page.eleSearchInput);
-            }).then(function () {
-                Page.eleSearchInput.clear().sendKeys("Workspace0016");
-            }).then(function () {
-                Page.eleSearchIcon.click();
-            }).then(function () {
-                expect(Page.eleWorkspaceNameSearched.isDisplayed()).to.eventually.be.true;
-            }).then(function () {
-                Page.loadWorkspaceFromWorkspace("Workspace0016", "IMS_EMS");
-            }).then(function () {
-                globalCommons.waitForElementPresent(Page.eleMsgInfo);
-            }).then(function () {
-                return Page.eleMsgInfo.getText();
-            }).then(function (message) {
-                expect(message === 'Workspace(Workspace0016) loaded successfully!').to.be.true;
-            });
-        });
 
-        // Add a workspace successfully, then load workspace from an existing workspace(IMS_RV)
-        //
-        it('Test load workspace from an existing workspace(IMS_RV)', function () {
-            Page.delWorkspaceYes("Workspace0017").then(function () {
-                Page.addWorkspace("Workspace0017", "Load workspace from an existing workspace IMS_RV");
-            }).then(function () {
-                globalCommons.waitForClickable(Page.eleWorkspacesLeftmenu);
-            }).then(function () {
-                Page.eleWorkspacesLeftmenu.click();
-            }).then(function () {
-                globalCommons.waitForDisplayed(Page.eleSearchInput);
-            }).then(function () {
-                Page.eleSearchInput.clear().sendKeys("Workspace0017");
-            }).then(function () {
-                Page.eleSearchIcon.click();
-            }).then(function () {
-                expect(Page.eleWorkspaceNameSearched.isDisplayed()).to.eventually.be.true;
-            }).then(function () {
-                Page.loadWorkspaceFromWorkspace("Workspace0017", "IMS_RV");
-            }).then(function () {
-                globalCommons.waitForElementPresent(Page.eleMsgInfo);
-            }).then(function () {
-                return Page.eleMsgInfo.getText();
-            }).then(function (message) {
-                expect(message === 'Workspace(Workspace0017) loaded successfully!').to.be.true;
-            });
+    // Add a workspace successfully, then load workspace from an existing workspace(IMS_EMS)
+    //
+    it('Test load workspace from an existing workspace(IMS_EMS)', function () {
+        Page.delWorkspaceYes("Workspace0016").then(function () {
+            Page.addWorkspace("Workspace0016", "Load workspace from an existing workspace IMS_EMS");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleWorkspacesLeftmenu);
+        }).then(function () {
+            Page.eleWorkspacesLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleSearchInput);
+        }).then(function () {
+            Page.eleSearchInput.clear().sendKeys("Workspace0016");
+        }).then(function () {
+            Page.eleSearchIcon.click();
+        }).then(function () {
+            expect(Page.eleWorkspaceNameSearched.isDisplayed()).to.eventually.be.true;
+        }).then(function () {
+            Page.loadWorkspaceFromWorkspace("Workspace0016", "IMS_EMS");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleMsgInfo);
+        }).then(function () {
+            return Page.eleMsgInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Workspace(Workspace0016) loaded successfully!').to.be.true;
         });
-    */
+    });
+
+    // Add a workspace successfully, then load workspace from an existing workspace(IMS_RV)
+    //
+    it('Test load workspace from an existing workspace(IMS_RV)', function () {
+        Page.delWorkspaceYes("Workspace0017").then(function () {
+            Page.addWorkspace("Workspace0017", "Load workspace from an existing workspace IMS_RV");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleWorkspacesLeftmenu);
+        }).then(function () {
+            Page.eleWorkspacesLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleSearchInput);
+        }).then(function () {
+            Page.eleSearchInput.clear().sendKeys("Workspace0017");
+        }).then(function () {
+            Page.eleSearchIcon.click();
+        }).then(function () {
+            expect(Page.eleWorkspaceNameSearched.isDisplayed()).to.eventually.be.true;
+        }).then(function () {
+            Page.loadWorkspaceFromWorkspace("Workspace0017", "IMS_RV");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleMsgInfo);
+        }).then(function () {
+            return Page.eleMsgInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Workspace(Workspace0017) loaded successfully!').to.be.true;
+        });
+    });
+
     // Add a workspace successfully, then load workspace from an empty workspace
     //
     it('Test load workspace from an empty workspace', function () {

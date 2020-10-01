@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var SSESOpsPage = require('../pageObject/SSESOpsPage.js');
@@ -507,7 +507,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
         }).then(function () {
             Page.eleCheckButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -541,7 +541,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
         }).then(function () {
             Page.eleCheckButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -575,7 +575,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
         }).then(function () {
             Page.eleCheckButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -609,7 +609,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
         }).then(function () {
             Page.eleCheckButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1876,7 +1876,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
             return Page.eleCommandOutput.getText();
         }).then(function (message) {
             var msgLine02 = message.split("\n")[1];
-            expect(msgLine02 === "SXS0880I -  LTA:LOG Disk File statistics request" || msgLine02 === "SXG1815E LTA Admin call <STATS> Failed with RC:8").to.be.true;
+            expect(msgLine02 === "SXS0880I -  LTA:LOG Disk File statistics request" || msgLine02 === "SXG1815E LTA Admin call <ROUTE> Failed with RC:8").to.be.true;
         }).then(function () {
             Page.eleCommandInput.sendKeys(backspaceSeries);
         }).then(function () {
@@ -1889,7 +1889,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
             return Page.eleCommandOutput.getText();
         }).then(function (message) {
             var msgLine02 = message.split("\n")[1];
-            expect(msgLine02 === "SXS0880I -  LTA:TRACE Disk File statistics request" || msgLine02 === "SXG1815E LTA Admin call <STATS> Failed with RC:8").to.be.true;
+            expect(msgLine02 === "SXS0880I -  LTA:TRACE Disk File statistics request" || msgLine02 === "SXG1815E LTA Admin call <ROUTE> Failed with RC:8").to.be.true;
         }).then(function () {
             Page.eleCommandInput.sendKeys(backspaceSeries);
         }).then(function () {
@@ -2303,7 +2303,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
         }).then(function () {
             Page.eleCommandInput.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleCommandInput.clear().sendKeys("SET,RED,TRCLVL=3");
+            Page.eleCommandInput.clear().sendKeys("SET,RED,ABEND-RESET=2");
         }).then(function () {
             Page.eleCommandSubmit.click();
         }).then(function () {
@@ -2312,7 +2312,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
             return Page.eleCommandOutput.getText();
         }).then(function (message) {
             var dataStr = message.split("\n").slice(1).join("\n");
-            var filePath = projectPath + "/testData/ssesCommandOutput/control/setRedTrclvl.txt";
+            var filePath = projectPath + "/testData/ssesCommandOutput/control/setRedAbendReset.txt";
             var readTextFile = require('fs');
             readTextFile.readFile(filePath, "utf8", function (err, buffer) {
                 expect(buffer === dataStr).to.be.true;
@@ -2320,7 +2320,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
         }).then(function () {
             Page.eleCommandInput.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleCommandInput.clear().sendKeys("SET,RED,TRCLVL-AMSG=3");
+            Page.eleCommandInput.clear().sendKeys("SET,RED,TRCLVL-AMSG=2");
         }).then(function () {
             Page.eleCommandSubmit.click();
         }).then(function () {
@@ -2330,6 +2330,91 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
         }).then(function (message) {
             var dataStr = message.split("\n").slice(1).join("\n");
             var filePath = projectPath + "/testData/ssesCommandOutput/control/setRedTrclvlAmsg.txt";
+            var readTextFile = require('fs');
+            readTextFile.readFile(filePath, "utf8", function (err, buffer) {
+                expect(buffer === dataStr).to.be.true;
+            });
+        }).then(function () {
+            Page.eleCommandInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleCommandInput.clear().sendKeys("SET,RED,TRCLVL-SSRED=2");
+        }).then(function () {
+            Page.eleCommandSubmit.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleCommandOutput);
+        }).then(function () {
+            return Page.eleCommandOutput.getText();
+        }).then(function (message) {
+            var dataStr = message.split("\n").slice(1).join("\n");
+            var filePath = projectPath + "/testData/ssesCommandOutput/control/setRedTrclvlSSRed.txt";
+            var readTextFile = require('fs');
+            readTextFile.readFile(filePath, "utf8", function (err, buffer) {
+                expect(buffer === dataStr).to.be.true;
+            });
+        }).then(function () {
+            Page.eleCommandInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleCommandInput.clear().sendKeys("SET,RED,TRCLVL-CICS=2");
+        }).then(function () {
+            Page.eleCommandSubmit.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleCommandOutput);
+        }).then(function () {
+            return Page.eleCommandOutput.getText();
+        }).then(function (message) {
+            var dataStr = message.split("\n").slice(1).join("\n");
+            var filePath = projectPath + "/testData/ssesCommandOutput/control/setRedTrclvlCics.txt";
+            var readTextFile = require('fs');
+            readTextFile.readFile(filePath, "utf8", function (err, buffer) {
+                expect(buffer === dataStr).to.be.true;
+            });
+        }).then(function () {
+            Page.eleCommandInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleCommandInput.clear().sendKeys("SET,RED,TRCLVL-#RED=2");
+        }).then(function () {
+            Page.eleCommandSubmit.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleCommandOutput);
+        }).then(function () {
+            return Page.eleCommandOutput.getText();
+        }).then(function (message) {
+            var dataStr = message.split("\n").slice(1).join("\n");
+            var filePath = projectPath + "/testData/ssesCommandOutput/control/setRedTrclvl#Red.txt";
+            var readTextFile = require('fs');
+            readTextFile.readFile(filePath, "utf8", function (err, buffer) {
+                expect(buffer === dataStr).to.be.true;
+            });
+        }).then(function () {
+            Page.eleCommandInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleCommandInput.clear().sendKeys("SET,RED,TRCLVL-TRG=2");
+        }).then(function () {
+            Page.eleCommandSubmit.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleCommandOutput);
+        }).then(function () {
+            return Page.eleCommandOutput.getText();
+        }).then(function (message) {
+            var dataStr = message.split("\n").slice(1).join("\n");
+            var filePath = projectPath + "/testData/ssesCommandOutput/control/setRedTrclvlTrg.txt";
+            var readTextFile = require('fs');
+            readTextFile.readFile(filePath, "utf8", function (err, buffer) {
+                expect(buffer === dataStr).to.be.true;
+            });
+        }).then(function () {
+            Page.eleCommandInput.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleCommandInput.clear().sendKeys("SET,RED,TRCLVL-VIEW=2");
+        }).then(function () {
+            Page.eleCommandSubmit.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleCommandOutput);
+        }).then(function () {
+            return Page.eleCommandOutput.getText();
+        }).then(function (message) {
+            var dataStr = message.split("\n").slice(1).join("\n");
+            var filePath = projectPath + "/testData/ssesCommandOutput/control/setRedTrclvlView.txt";
             var readTextFile = require('fs');
             readTextFile.readFile(filePath, "utf8", function (err, buffer) {
                 expect(buffer === dataStr).to.be.true;
@@ -2898,7 +2983,7 @@ describe('6.3.1 SS-ES Ops Page After Signin', function () {
         }).then(function () {
             return Page.eleUserNameInput.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'admin').to.be.true;
+            expect(message === 'ADMIN').to.be.true;
         }).then(function () {
             return Page.elePasswordInput.getAttribute("value");
         }).then(function (message) {

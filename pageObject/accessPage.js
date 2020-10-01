@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var Page = require('../utility/page.js');
@@ -39,7 +39,7 @@ var accessPage = (function () {
         this.eleEntitiesTypeDropdownList15 = element(by.xpath('//div[@class="uxcore-dropdown-PopupPanel"]//div[@class="popupContent"]//tr[17]/td'));  // EMS SSL Definitions
         // Entity Security Details
         this.eleEntityNameSearched = element(by.css('.GCOBQG-CJO'));
-        this.eleEntitySecuName = element(by.css('.GCOBQG-CDX'));
+        this.eleEntitySecuName = element(by.css('.GCOBQG-CMW'));
         this.eleEntitySecuOwnerGlobalCheck = element(by.xpath('//label[text()="Owner"]/..//input'));
         this.eleEntitySecuViewerGlobalCheck = element(by.xpath('//label[text()="Viewer"]/..//input'));
         this.eleEntitySecuPermissionRow1Name = element(by.xpath('//div[@class="GCOBQG-CMH"]//tr[1]/td[1]/div'));
@@ -60,7 +60,7 @@ var accessPage = (function () {
         this.eleMyAccountRowsToDisplaySpinner = element(by.xpath('//div[text()="Rows To Display (10-100)"]/../../..//input'));
         this.eleMyAccountSndsToShowErrSpinner = element(by.xpath('//div[text()="Seconds To Show Error"]/../../..//input'));
         this.eleMyAccountIdleSessionTOSpinner = element(by.xpath('//div[text()="Idle Session Timeout (min)"]/../../..//input'));
-        this.eleMyAccountWorkspaceStatus = element(by.css('.GCOBQG-COX'));
+        this.eleMyAccountWorkspaceStatus = element(by.css('.GCOBQG-CHX'));
         this.eleMyAccountConfirmPasswordValidateMsg = element(by.xpath('//div[text()="Confirm Password"]/../../../..//div[@class="validate_msg_show"]'));
         // User Management
         this.eleAddButton = element(by.xpath('//button[text()="Add"]'));
@@ -87,12 +87,12 @@ var accessPage = (function () {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + workspace + '"]'));
         };
         this.eleUserDetailsAccessDeniedCheck = element(by.xpath('//label[text()="Access denied"]/..//input'));
-        this.eleUserDetailsSsesOpsCheck = element(by.xpath('//div[@class="GCOBQG-CGX"]//tr[2]/td[1]//input'));
-        this.eleUserDetailsRedOpsCheck = element(by.xpath('//div[@class="GCOBQG-CGX"]//tr[2]/td[2]//input'));
-        this.eleUserDetailsConfigureCheck = element(by.xpath('//div[@class="GCOBQG-CGX"]//tr[2]/td[3]//input'));
-        this.eleUserDetailsDeployCheck = element(by.xpath('//div[@class="GCOBQG-CGX"]//tr[2]/td[4]//input'));
-        this.eleUserDetailsDefineCheck = element(by.xpath('//div[@class="GCOBQG-CGX"]//tr[2]/td[5]//input'));
-        this.eleUserDetailsAccessCheck = element(by.xpath('//div[@class="GCOBQG-CGX"]//tr[2]/td[6]//input'));
+        this.eleUserDetailsSsesOpsCheck = element(by.xpath('//div[@class="GCOBQG-CPW"]//tr[2]/td[1]//input'));
+        this.eleUserDetailsRedOpsCheck = element(by.xpath('//div[@class="GCOBQG-CPW"]//tr[2]/td[2]//input'));
+        this.eleUserDetailsConfigureCheck = element(by.xpath('//div[@class="GCOBQG-CPW"]//tr[2]/td[3]//input'));
+        this.eleUserDetailsDeployCheck = element(by.xpath('//div[@class="GCOBQG-CPW"]//tr[2]/td[4]//input'));
+        this.eleUserDetailsDefineCheck = element(by.xpath('//div[@class="GCOBQG-CPW"]//tr[2]/td[5]//input'));
+        this.eleUserDetailsAccessCheck = element(by.xpath('//div[@class="GCOBQG-CPW"]//tr[2]/td[6]//input'));
         this.eleUserDetailsEntityPermissionDropdown = element(by.xpath('//div[text()="Entity Permission"]/..//div[@class="GCOBQG-CPQ"]'));
         this.eleUserDetailsEntityPermissionSelected = function (entityType) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + entityType + '"]'));

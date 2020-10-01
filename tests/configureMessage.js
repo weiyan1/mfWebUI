@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var configurePage = require('../pageObject/configurePage.js');
@@ -679,7 +679,9 @@ describe('6.6.1 Configure Message Page', function () {
         Page.delMsgYes("Message0011").then(function () {
             Page.addMsg("Message0011", "aBcDeFg", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -887,7 +889,9 @@ describe('6.6.1 Configure Message Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1476,6 +1480,8 @@ describe('6.6.1 Configure Message Page', function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
             Page.eleSaveButton.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleMsgFieldNameValidateMsg);
         }).then(function () {

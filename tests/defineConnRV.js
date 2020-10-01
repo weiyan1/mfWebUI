@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -867,7 +867,9 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.addConnRv("ConnRV0011", "", undefined, "EndpointRVA0017");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -993,11 +995,11 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             return Page.eleConnRvDqMemoryLimitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '100').to.be.true;
+            expect(message === '0').to.be.true;
         }).then(function () {
             return Page.eleConnRvDqMsgLimitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '100').to.be.true;
+            expect(message === '0').to.be.true;
         }).then(function () {
             return Page.eleConnRvDqIdentityInput.getAttribute("value");
         }).then(function (message) {
@@ -1029,7 +1031,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1137,7 +1139,9 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1211,7 +1215,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1227,7 +1231,9 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1243,7 +1249,9 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1548,7 +1556,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1564,7 +1572,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1580,7 +1588,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1596,7 +1604,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1608,13 +1616,13 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleConnRvTcpipStackNameInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1626,7 +1634,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1943,7 +1951,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleConnRvDqMemoryLimitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleConnRvDqMemoryLimitSpinner.clear().sendKeys("3000");
+            Page.eleConnRvDqMemoryLimitSpinner.clear().sendKeys("8000");
         }).then(function () {
             Page.eleConnRvDqMsgLimitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -1967,7 +1975,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             return Page.eleConnRvDqMemoryLimitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '3000').to.be.true;
+            expect(message === '8000').to.be.true;
         }).then(function () {
             return Page.eleConnRvDqMsgLimitSpinner.getAttribute("value");
         }).then(function (message) {
@@ -1985,7 +1993,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleConnRvDqMemoryLimitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleConnRvDqMemoryLimitSpinner.clear().sendKeys("3001");
+            Page.eleConnRvDqMemoryLimitSpinner.clear().sendKeys("8001");
         }).then(function () {
             Page.eleConnRvDqMsgLimitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -2009,7 +2017,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             return Page.eleConnRvDqMemoryLimitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '3000').to.be.true;
+            expect(message === '8000').to.be.true;
         }).then(function () {
             return Page.eleConnRvDqMsgLimitSpinner.getAttribute("value");
         }).then(function (message) {
@@ -2089,7 +2097,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2105,7 +2113,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2121,7 +2129,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2137,7 +2145,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2153,7 +2161,9 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2165,7 +2175,7 @@ describe('6.8.10 Define Connections RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {

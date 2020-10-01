@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -107,7 +107,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0003", "abcdefg", "INTFID01", "IntfEMSB0002", "EndpointCICSA0003", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", true, false, "1", true, false, "3", "111", "1");
+            Page.addIntfCics("IntfCICS0003", "abcdefg", "INTFID01", "IntfEMSB0002", "EndpointCICSA0003", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", "3", true, false, "1", "3", true, false, "3", "111", "1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -115,7 +115,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.updateIntfCics("IntfCICS0003", "hijklmn", "INTFID02", "IntfRVB0002", "EndpointCICSA0004", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", true, "2", false, true, "4", "222", "2");
+            Page.updateIntfCics("IntfCICS0003", "hijklmn", "INTFID02", "IntfRVB0002", "EndpointCICSA0004", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", "4", true, "2", "4", false, true, "4", "222", "2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -135,7 +135,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
-            return Page.eleIntfCicsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfCicsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVB0002').to.be.true;
         }).then(function () {
@@ -175,6 +175,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '22222').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
+        }).then(function () {
             return Page.eleIntfCicsLoopbackNoRadio.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
@@ -186,6 +190,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
             return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '2').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
         }).then(function () {
             return Page.eleIntfCicsBatchingNoRadio.getAttribute("checked");
         }).then(function (message) {
@@ -237,7 +245,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0004", "abcdefg", "INTFID01", "IntfEMSB0003", "EndpointCICSA0005", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", true, false, "1", true, false, "3", "111", "1");
+            Page.addIntfCics("IntfCICS0004", "abcdefg", "INTFID01", "IntfEMSB0003", "EndpointCICSA0005", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", "3", true, false, "1", "3", true, false, "3", "111", "1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -245,7 +253,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfCicsYes("IntfCICS0004", "hijklmn", "INTFID02", "IntfRVB0003", "EndpointCICSA0006", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", false, true, "2", false, true, "4", "222", "2");
+            Page.cancelIntfCicsYes("IntfCICS0004", "hijklmn", "INTFID02", "IntfRVB0003", "EndpointCICSA0006", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", "4", false, true, "2", "4", false, true, "4", "222", "2");
         }).then(function () {
             Page.eleIntfsCicsLeftmenu.click();
         }).then(function () {
@@ -275,7 +283,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
-            return Page.eleIntfCicsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfCicsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSB0003').to.be.true;
         }).then(function () {
@@ -315,6 +323,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '11111').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
+        }).then(function () {
             return Page.eleIntfCicsLoopbackNoRadio.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
@@ -326,6 +338,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
             return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '1').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
         }).then(function () {
             return Page.eleIntfCicsBatchingNoRadio.getAttribute("checked");
         }).then(function (message) {
@@ -377,7 +393,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0005", "abcdefg", "INTFID01", "IntfEMSB0004", "EndpointCICSA0007", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", true, false, "1", true, false, "3", "111", "1");
+            Page.addIntfCics("IntfCICS0005", "abcdefg", "INTFID01", "IntfEMSB0004", "EndpointCICSA0007", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", "3", true, false, "1", "3", true, false, "3", "111", "1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -385,7 +401,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfCicsNo("IntfCICS0005", "hijklmn", "INTFID02", "IntfRVB0004", "EndpointCICSA0008", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", false, true, "2", false, true, "4", "222", "2");
+            Page.cancelIntfCicsNo("IntfCICS0005", "hijklmn", "INTFID02", "IntfRVB0004", "EndpointCICSA0008", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", "4", false, true, "2", "4", false, true, "4", "222", "2");
         }).then(function () {
             return Page.eleIntfCicsNameInput.getAttribute('value');
         }).then(function (message) {
@@ -399,7 +415,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
-            return Page.eleIntfCicsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfCicsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVB0004').to.be.true;
         }).then(function () {
@@ -439,6 +455,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '22222').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
+        }).then(function () {
             return Page.eleIntfCicsLoopbackNoRadio.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
@@ -450,6 +470,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
             return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '2').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
         }).then(function () {
             return Page.eleIntfCicsBatchingNoRadio.getAttribute("checked");
         }).then(function (message) {
@@ -501,7 +525,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0006", "abcdefg", "INTFID01", "IntfEMSB0005", "EndpointCICSA0009", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", true, false, "1", true, false, "3", "111", "1");
+            Page.addIntfCics("IntfCICS0006", "abcdefg", "INTFID01", "IntfEMSB0005", "EndpointCICSA0009", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", "3", true, false, "1", "3", true, false, "3", "111", "1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -509,7 +533,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.resetIntfCics("IntfCICS0006", "hijklmn", "INTFID02", "IntfRVB0005", "EndpointCICSA0010", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", false, true, "2", false, true, "4", "222", "2");
+            Page.resetIntfCics("IntfCICS0006", "hijklmn", "INTFID02", "IntfRVB0005", "EndpointCICSA0010", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", "4", false, true, "2", "4", false, true, "4", "222", "2");
         }).then(function () {
             return Page.eleIntfCicsNameInput.getAttribute('value');
         }).then(function (message) {
@@ -523,7 +547,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
-            return Page.eleIntfCicsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfCicsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSB0005').to.be.true;
         }).then(function () {
@@ -563,6 +587,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '11111').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
+        }).then(function () {
             return Page.eleIntfCicsLoopbackNoRadio.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
@@ -574,6 +602,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
             return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '1').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
         }).then(function () {
             return Page.eleIntfCicsBatchingNoRadio.getAttribute("checked");
         }).then(function (message) {
@@ -625,7 +657,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0007", "abcdefg", "INTFID01", "IntfEMSB0006", "EndpointCICSA0011", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", true, false, "1", true, false, "3", "111", "1");
+            Page.addIntfCics("IntfCICS0007", "abcdefg", "INTFID01", "IntfEMSB0006", "EndpointCICSA0011", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", "3", true, false, "1", "3", true, false, "3", "111", "1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -633,7 +665,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfCics("IntfCICS0007", "hijklmn", "INTFID02", "IntfRVB0006", "EndpointCICSA0012", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", false, true, "2", false, true, "4", "222", "2");
+            Page.addIntfCics("IntfCICS0007", "hijklmn", "INTFID02", "IntfRVB0006", "EndpointCICSA0012", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", "4",  false, true, "2", "4", false, true, "4", "222", "2");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleOKButton);
         }).then(function () {
@@ -653,7 +685,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
-            return Page.eleIntfCicsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfCicsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVB0006').to.be.true;
         }).then(function () {
@@ -693,6 +725,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '22222').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
+        }).then(function () {
             return Page.eleIntfCicsLoopbackNoRadio.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
@@ -704,6 +740,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
             return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '2').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
         }).then(function () {
             return Page.eleIntfCicsBatchingNoRadio.getAttribute("checked");
         }).then(function (message) {
@@ -755,7 +795,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0008", "abcdefg", "INTFID01", "IntfEMSB0007", "EndpointCICSA0013", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", true, false, "1", true, false, "3", "111", "1");
+            Page.addIntfCics("IntfCICS0008", "abcdefg", "INTFID01", "IntfEMSB0007", "EndpointCICSA0013", "ABCD", "USERID01", false, false, "11", "1", "3", "11111", "3", true, false, "1", "3", true, false, "3", "111", "1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -763,7 +803,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfCics("IntfCICS0008", "hijklmn", "INTFID02", "IntfRVB0007", "EndpointCICSA0014", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", false, true, "2", false, true, "4", "222", "2");
+            Page.addIntfCics("IntfCICS0008", "hijklmn", "INTFID02", "IntfRVB0007", "EndpointCICSA0014", "HIJK", "USERID02", true, true, "22", "2", "4", "22222", "4", false, true, "2", "4", false, true, "4", "222", "2");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleNoButton);
         }).then(function () {
@@ -801,7 +841,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
-            return Page.eleIntfCicsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfCicsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSB0007').to.be.true;
         }).then(function () {
@@ -841,6 +881,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '11111').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
+        }).then(function () {
             return Page.eleIntfCicsLoopbackNoRadio.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
@@ -852,6 +896,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
             return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '1').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
         }).then(function () {
             return Page.eleIntfCicsBatchingNoRadio.getAttribute("checked");
         }).then(function (message) {
@@ -951,7 +999,9 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.addIntfCics("IntfCICS0015", "", undefined, "", "EndpointCICSA0019");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1023,7 +1073,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
-            return Page.eleIntfCicsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfCicsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
@@ -1063,6 +1113,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '16000').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
             return Page.eleIntfCicsLoopbackNoRadio.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
@@ -1072,6 +1126,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
             expect(message === null).to.be.true;
         }).then(function () {
             return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '0').to.be.true;
         }).then(function () {
@@ -1221,7 +1279,9 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1309,7 +1369,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'There are errors on this form').to.be.true;
         }).then(function () {
-            return Page.eleIntfCicsOutputIntfValidateMsg.getText();
+            return Page.eleIntfCicsEsbIntfValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
         }).then(function () {
@@ -1319,7 +1379,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfCicsOutputIntfInput.clear().sendKeys("IntfEMSB0008_@#$_2223333333333444444444");
+            Page.eleIntfCicsEsbIntfInput.clear().sendKeys("IntfEMSB0008_@#$_2223333333333444444444");
         }).then(function () {
             Page.eleIntfCicsEndpointInput.clear().sendKeys("EndpointCICSA0020_@#$_33333333444444444");
         }).then(function () {
@@ -1331,7 +1391,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfCicsOutputIntfInput.getAttribute("value");
+            return Page.eleIntfCicsEsbIntfInput.getAttribute("value");
         }).then(function (message) {
             expect(message === 'IntfEMSB0008_@#$_2223333333333444444444').to.be.true;
         }).then(function () {
@@ -1369,7 +1429,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1385,7 +1445,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1397,13 +1457,13 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleIntfCicsMirrorTranidInput.clear().sendKeys("#");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1419,7 +1479,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1435,7 +1495,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1451,7 +1511,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1467,7 +1527,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1479,11 +1539,11 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfCicsMirrorTranidInput.clear().sendKeys("2A$@");
+            Page.eleIntfCicsMirrorTranidInput.clear().sendKeys("2A$@5");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1567,7 +1627,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1583,7 +1643,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1599,7 +1659,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1615,7 +1675,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1627,13 +1687,13 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleIntfCicsUseridInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1645,7 +1705,7 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1768,9 +1828,9 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         });
     });
 
-    // Test field 'CICS Interface Details panel' -> 'Workers Triggers Guaranteed'
+    // Test field 'CICS Interface Details panel' -> 'Workers High Volume Triggers Guaranteed'
     //
-    it('Test field CICS Interface -> Workers Triggers Guaranteed', function () {
+    it('Test field CICS Interface -> Workers High Volume Triggers Guaranteed', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         Page.delIntfCicsYes("IntfCICS0020").then(function () {
             Page.delEndpointCicsYes("EndpointCICSA0024");
@@ -1883,9 +1943,9 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         });
     });
 
-    // Test field 'CICS Interface Details panel' -> 'Workers Triggers Reliable'
+    // Test field 'CICS Interface Details panel' -> 'Workers High Volume Triggers Reliable'
     //
-    it('Test field CICS Interface -> Workers Triggers Reliable', function () {
+    it('Test field CICS Interface -> Workers High Volume Triggers Reliable', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         Page.delIntfCicsYes("IntfCICS0021").then(function () {
             Page.delEndpointCicsYes("EndpointCICSA0025");
@@ -2149,10 +2209,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         });
     });
 
-    // Test field 'CICS Interface Details panel' -> 'Trace Level: Trigger'
+    // Test field 'CICS Interface Details panel' -> 'CICS Logging Level'
     //
-    it('Test field CICS Interface -> Trace Level: Trigger', function () {
-        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
+    it('Test field CICS Interface -> CICS Logging Level', function () {
+        var backspaceSeries = Array(5).join(protractor.Key.BACK_SPACE);
         Page.delIntfCicsYes("IntfCICS0023").then(function () {
             Page.delEndpointCicsYes("EndpointCICSA0027");
         }).then(function () {
@@ -2160,7 +2220,140 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0023", "", undefined, "", "EndpointCICSA0027", "", "", false, false, "1", "0", "0", "16000", false, false, "0");
+            Page.addIntfCics("IntfCICS0023", "", undefined, "", "EndpointCICSA0027", "", "", false, false, "1", "0", "0", "16000", "0");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys("1");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys("2");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys("3");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys("4");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+    }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys("5");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+    }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsCicsLoggingLvlSpinner.clear().sendKeys("6");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+    }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsCicsLoggingLvlSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
+        });
+    });
+
+    // Test field 'CICS Interface Details panel' -> 'Trace Level: Trigger' & 'Trace Level: Online'
+    //
+    it('Test field CICS Interface -> Trace Level: Trigger & Trace Level: Online', function () {
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
+        Page.delIntfCicsYes("IntfCICS0024").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSA0028");
+        }).then(function () {
+            Page.addEndpointCics("EndpointCICSA0028");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfCics("IntfCICS0024", "", undefined, "", "EndpointCICSA0028", "", "", false, false, "1", "0", "0", "16000", "0", false, false, "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2172,11 +2365,19 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '0').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfCicsTrcLvlTrgSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             Page.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys("1");
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys("1");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2190,11 +2391,19 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '1').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfCicsTrcLvlTrgSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             Page.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys("2");
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys("2");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2208,11 +2417,19 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function (message) {
             expect(message === '2').to.be.true;
         }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfCicsTrcLvlTrgSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             Page.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys("3");
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys("3");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2223,6 +2440,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
             return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '3').to.be.true;
         }).then(function () {
@@ -2232,6 +2453,10 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
         }).then(function () {
             Page.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys("4");
         }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys("4");
+        }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
@@ -2243,6 +2468,36 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
             return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '3').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlTrgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlTrgSpinner.clear().sendKeys("5");
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfCicsTrcLvlOnlineSpinner.clear().sendKeys("5");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlTrgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
+        }).then(function () {
+            return Page.eleIntfCicsTrcLvlOnlineSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
         });
     });
 
@@ -2250,14 +2505,14 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
     //
     it('Test field CICS Interface -> TSQ Processing Workers', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delIntfCicsYes("IntfCICS0024").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSA0028");
+        Page.delIntfCicsYes("IntfCICS0025").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSA0029");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSA0028");
+            Page.addEndpointCics("EndpointCICSA0029");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0024", "", undefined, "", "EndpointCICSA0028", "", "", false, false, "1", "0", "0", "16000", false, false, "0", false, false, "0");
+            Page.addIntfCics("IntfCICS0025", "", undefined, "", "EndpointCICSA0029", "", "", false, false, "1", "0", "0", "16000", "0", false, false, "0", "0", false, false, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2401,14 +2656,14 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
     //
     it('Test field CICS Interface -> TSQ Processing Batch Size', function () {
         var backspaceSeries = Array(5).join(protractor.Key.BACK_SPACE);
-        Page.delIntfCicsYes("IntfCICS0025").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSA0029");
+        Page.delIntfCicsYes("IntfCICS0026").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSA0030");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSA0029");
+            Page.addEndpointCics("EndpointCICSA0030");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0025", "", undefined, "", "EndpointCICSA0029", "", "", false, false, "1", "0", "0", "16000", false, false, "0", false, false, "0", "5");
+            Page.addIntfCics("IntfCICS0026", "", undefined, "", "EndpointCICSA0030", "", "", false, false, "1", "0", "0", "16000", "0", false, false, "0", "0", false, false, "0", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2534,14 +2789,14 @@ describe('6.8.13 Define Interfaces CICS Page', function () {
     //
     it('Test field CICS Interface -> TSQ Processing Trace Level: TSQ', function () {
         var backspaceSeries = Array(5).join(protractor.Key.BACK_SPACE);
-        Page.delIntfCicsYes("IntfCICS0026").then(function () {
-            Page.delEndpointCicsYes("EndpointCICSA0030");
+        Page.delIntfCicsYes("IntfCICS0027").then(function () {
+            Page.delEndpointCicsYes("EndpointCICSA0031");
         }).then(function () {
-            Page.addEndpointCics("EndpointCICSA0030");
+            Page.addEndpointCics("EndpointCICSA0031");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfCics("IntfCICS0026", "", undefined, "", "EndpointCICSA0030", "", "", false, false, "1", "0", "0", "16000", false, false, "0", false, false, "0", "50", "0");
+            Page.addIntfCics("IntfCICS0027", "", undefined, "", "EndpointCICSA0031", "", "", false, false, "1", "0", "0", "16000", "0", false, false, "0", "0", false, false, "0", "50", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {

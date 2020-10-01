@@ -5,13 +5,17 @@
 1. Install node.js (https://nodejs.org/en/download/current/);
 2. Install JDK and the system PATH includes a reference to it;
 3. Checkout code: copy mfWebUI.zip and unzip it on Mac/Ubuntu, for example: /Users/xxx/e2e/mfWebUI;
-4. Submit commands:
-  #cd /Users/xxx/e2e/mfWebUI/
-  #npm install    (/Users/xxx/e2e/mfWebUI/node_modules/ will be generated)
-  #grunt install
+4. #cd /Users/xxx/e2e/mfWebUI/ 
+   And then Submit commands:
+   #npm install    (/Users/xxx/e2e/mfWebUI/node_modules/ will be generated)
+   #grunt install
+   Before submit the above 2 commands, maybe you need to submit the following commands to upgrade package.json
+   #npm install -g npm-check-updates
+   #ncu
+   #ncu -u
 5. Run automation:
-  #grunt test    (Run all the spec files listed in /Users/xxx/e2e/mfWebUI/conf.js)
-  #grunt test:single    (Run individual spec file specified in line 36 of /Users/xxx/e2e/mfWebUI/Gruntfile.js, the spec file must be defined in conf.js)
+   #grunt test    (Run all the spec files listed in /Users/xxx/e2e/mfWebUI/conf.js)
+   #grunt test:single    (Run individual spec file specified in line 36 of /Users/xxx/e2e/mfWebUI/Gruntfile.js, the spec file must be defined in conf.js)
 6. Check the test result: 
   /Users/xxx/e2e/mfWebUI/report/protractor/.../report.html
 
@@ -41,7 +45,7 @@
 3. Run protractor automation test in docker
   #cd /Users/xxx/e2e/mfWebUI
   #./run-in-docker.sh    (Run all the spec files listed in C:\e2e\mfWebUI\conf.js)
-  #./run-uitest.sh defineIntfEMS    (Run individual spec file, the spec file must be defined in conf.js)
+  #./run-uitest.sh globalNavi    (Run individual spec file, the spec file must be defined in conf.js)
   Maybe you need to submit below command to make it executable:
   #chmod +x run-uitest.sh
 4. Check the test result:
@@ -78,3 +82,10 @@ Startup EMS Server
 ## defineEndpointRV.js
 Setup 'Access -> General Settings -> Rendezvous Installation Path', then restart tomcat
 Startup RV Daemon
+
+
+
+# Some useful commands:
+npm -version
+node -v
+docker image

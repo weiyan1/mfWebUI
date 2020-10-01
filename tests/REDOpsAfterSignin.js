@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var REDOpsPage = require('../pageObject/REDOpsPage.js');
@@ -501,9 +501,11 @@ describe('6.4.1 RED Ops Page After Signin', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
+            globalCommons.waitForClickable(Page.eleCheckButton);
+        }).then(function () {
             Page.eleCheckButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -535,9 +537,11 @@ describe('6.4.1 RED Ops Page After Signin', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
+            globalCommons.waitForClickable(Page.eleCheckButton);
+        }).then(function () {
             Page.eleCheckButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -569,9 +573,11 @@ describe('6.4.1 RED Ops Page After Signin', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
+            globalCommons.waitForClickable(Page.eleCheckButton);
+        }).then(function () {
             Page.eleCheckButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -603,9 +609,11 @@ describe('6.4.1 RED Ops Page After Signin', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
+            globalCommons.waitForClickable(Page.eleCheckButton);
+        }).then(function () {
             Page.eleCheckButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -834,6 +842,18 @@ describe('6.4.1 RED Ops Page After Signin', function () {
         }).then(function () {
             Page.eleCommandInput.sendKeys(backspaceSeries);
         }).then(function () {
+            Page.eleCommandInput.clear().sendKeys("Set,zIIPPCT=100");
+        }).then(function () {
+            Page.eleCommandSubmit.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleCommandOutput);
+        }).then(function () {
+            return Page.eleCommandOutput.getText();
+        }).then(function (message) {
+            expect(message === "The above command may only be entered via Host Console").to.be.true;
+        }).then(function () {
+            Page.eleCommandInput.sendKeys(backspaceSeries);
+        }).then(function () {
             Page.eleCommandInput.clear().sendKeys("QUIESCE,RED");
         }).then(function () {
             Page.eleCommandSubmit.click();
@@ -902,7 +922,7 @@ describe('6.4.1 RED Ops Page After Signin', function () {
         }).then(function () {
             return Page.eleCommandOutput.getText();
         }).then(function (message) {
-            expect(message === "The above command may only be entered via Host Console").to.be.true;
+            expect(message === "Invalid HUB command detected").to.be.true;
         }).then(function () {
             Page.eleCommandInput.sendKeys(backspaceSeries);
         }).then(function () {
@@ -914,7 +934,7 @@ describe('6.4.1 RED Ops Page After Signin', function () {
         }).then(function () {
             return Page.eleCommandOutput.getText();
         }).then(function (message) {
-            expect(message === "The above command may only be entered via Host Console").to.be.true;
+            expect(message === "Invalid HUB command detected").to.be.true;
         }).then(function () {
             Page.eleCommandInput.sendKeys(backspaceSeries);
         }).then(function () {
@@ -930,7 +950,7 @@ describe('6.4.1 RED Ops Page After Signin', function () {
         }).then(function () {
             Page.eleCommandInput.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleCommandInput.clear().sendKeys("Set,TF");
+            Page.eleCommandInput.clear().sendKeys("Set,TF=11");
         }).then(function () {
             Page.eleCommandSubmit.click();
         }).then(function () {
@@ -1072,7 +1092,7 @@ describe('6.4.1 RED Ops Page After Signin', function () {
         }).then(function () {
             return Page.eleUserNameInput.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'admin').to.be.true;
+            expect(message === 'ADMIN').to.be.true;
         }).then(function () {
             return Page.elePasswordInput.getAttribute("value");
         }).then(function (message) {

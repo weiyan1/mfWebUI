@@ -11,6 +11,11 @@ var suites = {
     configureTriggerWithEMS: 'tests/configureTriggerWithEMS.js',
     configureTriggerWithRV: 'tests/configureTriggerWithRV.js',
     configureRecipeWithCICSEMS: 'tests/configureRecipeWithCICSEMS.js',
+    configureRecipeWithCICSRV: 'tests/configureRecipeWithCICSRV.js',
+    // configureRecipeWithREDEMS: 'tests/configureRecipeWithREDEMS.js',
+    // configureRecipeWithREDRV: 'tests/configureRecipeWithREDRV.js',
+    configureRecipeWithIMSEMS: 'tests/configureRecipeWithIMSEMS.js',
+    // configureRecipeWithIMSRV: 'tests/configureRecipeWithIMSRV.js',
     defineEndpointEMS: 'tests/defineEndpointEMS.js',
     defineEndpointRV: 'tests/defineEndpointRV.js',
     defineEndpointCICS: 'tests/defineEndpointCICS.js',
@@ -72,7 +77,7 @@ today = yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm + ':' + ss;
 // var hostname = process.env.SERVER_HOSTNAME || "10.97.170.59";
 var hostname = process.env.SERVER_HOSTNAME || "localhost";
 // var hostname = process.env.SERVER_HOSTNAME || "10.102.17.107";
-var baseport = process.env.SERVER_BASEPORT || "60080";
+var baseport = process.env.SERVER_BASEPORT || "8080";
 var baseUrl = "http://" + hostname + ":" + baseport;
 
 // Select the browser type
@@ -152,13 +157,13 @@ exports.config = {
         endpointEMS: {
             userid: 'admin',
             password: 'admin',
-            url: '10.97.170.59:8100',
+            url: '10.97.170.59:8101',
             ssl: '',
             connFactory: ''
         },
         // Define -> RV Endpoint Details default settings
         endpointRV: {
-            url: 'WEED:10001'
+            url: 'CAFE:8300'
         },
         // Define -> CICS Endpoint Details default settings
         endpointCICS: {
@@ -180,9 +185,9 @@ exports.config = {
         },
         // Define -> RED Endpoint Details default settings
         endpointRED: {
-            url: 'CAFE:23529',
-            userid: 'DEMO2',
-            password: 'WEBUI'
+            url: 'CAFE:8109',
+            userid: 'YAN2',
+            password: 'ywanie'
         },
         // Define -> EMS Connection Details default settings
         connEMS: {
@@ -250,18 +255,18 @@ exports.config = {
         access: {
             userDetailsWorkspace: 'CICS_EMS',
             userDetailsWorkspace2: 'CICS_RV',
-            rvInstallationPath: 'C:/tibco/tibrv/8.4'
-            // rvInstallationPath: '/opt/mfqa/tibco/tibrv/8.4'
+            rvInstallationPath: 'C:/tibco/tibrv/8.5'
+            // rvInstallationPath: '/opt/mfqa/tibco/tibrv/8.5'
         }
     },
 
-    allScriptsTimeout: 500000,
+    allScriptsTimeout: 900000,
     capabilities: capabilities,
 
     suites: suites,
 
     jasmineNodeOpts: {
-        defaultTimeoutInterval: 500000
+        defaultTimeoutInterval: 900000
     },
 
     beforeLaunch: function () {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var globalCommons = {
@@ -42,23 +42,24 @@ var globalCommons = {
         timeout = timeout || 30000;
         return browser.wait(EC.elementToBeClickable(elem), timeout);
     },
+
     waitForDisplayed: function (elem, timeout) {
         var deferred = protractor.promise.defer(), that = this;
         timeout = timeout || 10000;
-        browser.wait(function () {
+        //browser.sleep(5000).then(function(){
+        browser.wait(function(){
             return elem.isPresent();
-        }, timeout).then(function () {
-            browser.wait(function () {
+        },timeout).then(function(){
+            browser.wait(function(){
                 return elem.isDisplayed();
-            }, timeout);
-        }).then(function () {
+            },timeout);
+        }).then(function(){
             browser.sleep(500);
-        }).then(function () {
+        }).then(function(){
             deferred.fulfill();
         });
         return deferred.promise;
     },
-
 };
 
 module.exports = globalCommons;

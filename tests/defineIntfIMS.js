@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -108,7 +108,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0003", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0002", "EndpointIMSA0003", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
+            Page.addIntfIms("IntfIMS0003", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0002", "EndpointIMSA0003", false, "33", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "11", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -116,7 +116,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.updateIntfIms("IntfIMS0003", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0002", "EndpointIMSA0004", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
+            Page.updateIntfIms("IntfIMS0003", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0002", "EndpointIMSA0004", true, "44", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "22", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -148,13 +148,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'JJJ').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfImsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVC0002').to.be.true;
         }).then(function () {
             return Page.eleIntfImsEndpointInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'EndpointIMSA0004').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsActiveTrgsCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '44').to.be.true;
         }).then(function () {
             return Page.eleIntfImsGuaranteedInput.getAttribute('value');
         }).then(function (message) {
@@ -184,17 +192,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute('value');
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '14').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute('value');
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '6').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute('value');
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '444').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '22').to.be.true;
         }).then(function () {
             return Page.eleIntfImsTranAllocationInput.getAttribute('value');
         }).then(function (message) {
@@ -266,7 +278,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0004", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0003", "EndpointIMSA0005", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
+            Page.addIntfIms("IntfIMS0004", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0003", "EndpointIMSA0005", false, "33", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "11", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -274,7 +286,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfImsYes("IntfIMS0004", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0003", "EndpointIMSA0006", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
+            Page.cancelIntfImsYes("IntfIMS0004", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0003", "EndpointIMSA0006", true, "44", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "22", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
         }).then(function () {
             Page.eleIntfsImsLeftmenu.click();
         }).then(function () {
@@ -316,13 +328,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'CCC').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfImsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSC0003').to.be.true;
         }).then(function () {
             return Page.eleIntfImsEndpointInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'EndpointIMSA0005').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsActiveTrgsCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '33').to.be.true;
         }).then(function () {
             return Page.eleIntfImsGuaranteedInput.getAttribute('value');
         }).then(function (message) {
@@ -352,17 +372,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === '21').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute('value');
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '13').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute('value');
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '5').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute('value');
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '333').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '11').to.be.true;
         }).then(function () {
             return Page.eleIntfImsTranAllocationInput.getAttribute('value');
         }).then(function (message) {
@@ -434,7 +458,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0005", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0004", "EndpointIMSA0007", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
+            Page.addIntfIms("IntfIMS0005", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0004", "EndpointIMSA0007", false, "33", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "11", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -442,7 +466,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfImsNo("IntfIMS0005", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0004", "EndpointIMSA0008", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
+            Page.cancelIntfImsNo("IntfIMS0005", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0004", "EndpointIMSA0008", true, "44", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "22", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
         }).then(function () {
             return Page.eleIntfImsNameInput.getAttribute('value');
         }).then(function (message) {
@@ -468,13 +492,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'JJJ').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfImsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVC0004').to.be.true;
         }).then(function () {
             return Page.eleIntfImsEndpointInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'EndpointIMSA0008').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsActiveTrgsCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '44').to.be.true;
         }).then(function () {
             return Page.eleIntfImsGuaranteedInput.getAttribute('value');
         }).then(function (message) {
@@ -504,17 +536,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute('value');
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '14').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute('value');
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '6').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute('value');
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '444').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '22').to.be.true;
         }).then(function () {
             return Page.eleIntfImsTranAllocationInput.getAttribute('value');
         }).then(function (message) {
@@ -586,7 +622,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0006", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0005", "EndpointIMSA0009", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
+            Page.addIntfIms("IntfIMS0006", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0005", "EndpointIMSA0009", false, "33", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "11", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -594,7 +630,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.resetIntfIms("IntfIMS0006", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0005", "EndpointIMSA0010", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
+            Page.resetIntfIms("IntfIMS0006", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0005", "EndpointIMSA0010", true, "44", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "22", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
         }).then(function () {
             return Page.eleIntfImsNameInput.getAttribute('value');
         }).then(function (message) {
@@ -620,13 +656,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'CCC').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfImsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSC0005').to.be.true;
         }).then(function () {
             return Page.eleIntfImsEndpointInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'EndpointIMSA0009').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsActiveTrgsCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '33').to.be.true;
         }).then(function () {
             return Page.eleIntfImsGuaranteedInput.getAttribute('value');
         }).then(function (message) {
@@ -656,17 +700,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === '21').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute('value');
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '13').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute('value');
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '5').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute('value');
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '333').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '11').to.be.true;
         }).then(function () {
             return Page.eleIntfImsTranAllocationInput.getAttribute('value');
         }).then(function (message) {
@@ -738,7 +786,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0007", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0006", "EndpointIMSA0011", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
+            Page.addIntfIms("IntfIMS0007", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0006", "EndpointIMSA0011", false, "33", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "11", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -746,7 +794,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfIms("IntfIMS0007", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0006", "EndpointIMSA0012", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
+            Page.addIntfIms("IntfIMS0007", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0006", "EndpointIMSA0012", true, "44", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "22", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleOKButton);
         }).then(function () {
@@ -778,13 +826,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'JJJ').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfImsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVC0006').to.be.true;
         }).then(function () {
             return Page.eleIntfImsEndpointInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'EndpointIMSA0012').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsActiveTrgsCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '44').to.be.true;
         }).then(function () {
             return Page.eleIntfImsGuaranteedInput.getAttribute('value');
         }).then(function (message) {
@@ -814,17 +870,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute('value');
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '14').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute('value');
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '6').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute('value');
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '444').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '22').to.be.true;
         }).then(function () {
             return Page.eleIntfImsTranAllocationInput.getAttribute('value');
         }).then(function (message) {
@@ -896,7 +956,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0008", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0007", "EndpointIMSA0013", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
+            Page.addIntfIms("IntfIMS0008", "abcdefg", "INTFID01", "AAA", "BBB", "CCC", "IntfEMSC0007", "EndpointIMSA0013", false, "33", "DDD", "EEE", "FFF", true, false, "11", "21", "13", "5", "333", "11", "111", "33333", "555", "7777", "33", "9999", true, false, "1", "3");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -904,7 +964,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfIms("IntfIMS0008", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0007", "EndpointIMSA0014", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
+            Page.addIntfIms("IntfIMS0008", "hijklmn", "INTFID02", "HHH", "III", "JJJ", "IntfRVC0007", "EndpointIMSA0014", true, "44", "KKK", "LLL", "MMM", false, true, "12", "22", "14", "6", "444", "22", "122", "44444", "666", "8888", "44", "2222", false, true, "2", "4");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleNoButton);
         }).then(function () {
@@ -954,13 +1014,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'CCC').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfImsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSC0007').to.be.true;
         }).then(function () {
             return Page.eleIntfImsEndpointInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'EndpointIMSA0013').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsActiveTrgsCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '33').to.be.true;
         }).then(function () {
             return Page.eleIntfImsGuaranteedInput.getAttribute('value');
         }).then(function (message) {
@@ -990,17 +1058,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === '21').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute('value');
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '13').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute('value');
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '5').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute('value');
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '333').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '11').to.be.true;
         }).then(function () {
             return Page.eleIntfImsTranAllocationInput.getAttribute('value');
         }).then(function (message) {
@@ -1120,7 +1192,9 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.addIntfIms("IntfIMS0011", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0017");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1202,13 +1276,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'SXITP').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsOutputIntfInput.getAttribute('value');
+            return Page.eleIntfImsEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
             return Page.eleIntfImsEndpointInput.getAttribute('value');
         }).then(function (message) {
             expect(message === '').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsActiveTrgsCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '10').to.be.true;
         }).then(function () {
             return Page.eleIntfImsGuaranteedInput.getAttribute('value');
         }).then(function (message) {
@@ -1238,17 +1320,21 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === '2').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute('value');
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '2').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute('value');
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '2').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute('value');
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '30').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
         }).then(function () {
             return Page.eleIntfImsTranAllocationInput.getAttribute('value');
         }).then(function (message) {
@@ -1318,7 +1404,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleIntfImsTpipePrefixInput.clear();
         }).then(function () {
-            Page.eleIntfImsOutputIntfInput.clear();
+            Page.eleIntfImsEsbIntfInput.clear();
         }).then(function () {
             Page.eleIntfImsEndpointInput.clear();
         }).then(function () {
@@ -1328,11 +1414,11 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleIntfImsSyncCalloutInput.clear();
         }).then(function () {
-            Page.eleIntfImsWaitInitializationInput.clear();
+            Page.eleIntfImsWaitInitializationSpinner.clear();
         }).then(function () {
-            Page.eleIntfImsWaitOtmaInput.clear();
+            Page.eleIntfImsWaitOtmaSpinner.clear();
         }).then(function () {
-            Page.eleIntfImsWaitMsgInput.clear();
+            Page.eleIntfImsWaitMsgSpinner.clear();
         }).then(function () {
             Page.eleIntfImsTranAllocationInput.clear();
         }).then(function () {
@@ -1350,7 +1436,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1375,18 +1461,6 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
             return Page.eleIntfImsEndpointValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'A non-empty value is required').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitInitializationValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Not a valid number').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitOtmaValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Not a valid number').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitMsgValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Not a valid number').to.be.true;
         }).then(function () {
             return Page.eleIntfImsTranAllocationValidateMsg.getAttribute('title');
         }).then(function (message) {
@@ -1502,7 +1576,9 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1702,13 +1778,13 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleIntfImsXcfMemberNameInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1870,7 +1946,9 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2032,7 +2110,9 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2044,7 +2124,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2076,7 +2156,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'There are errors on this form').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsOutputIntfValidateMsg.getText();
+            return Page.eleIntfImsEsbIntfValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
         }).then(function () {
@@ -2086,7 +2166,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfImsOutputIntfInput.clear().sendKeys("IntfEMSC0008_@#$_2223333333333444444444");
+            Page.eleIntfImsEsbIntfInput.clear().sendKeys("IntfEMSC0008_@#$_2223333333333444444444");
         }).then(function () {
             Page.eleIntfImsEndpointInput.clear().sendKeys("EndpointIMSA0024_@#$_333333333444444444");
         }).then(function () {
@@ -2098,7 +2178,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsOutputIntfInput.getAttribute("value");
+            return Page.eleIntfImsEsbIntfInput.getAttribute("value");
         }).then(function (message) {
             expect(message === 'IntfEMSC0008_@#$_2223333333333444444444').to.be.true;
         }).then(function () {
@@ -2108,9 +2188,10 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         });
     });
 
-    // Test field 'IMS Interface Details panel -> TPIPE Name for trigger services Guaranteed'
+    // Test field 'IMS Interface Details panel -> Sync Call-out Timeout (sec)'
     //
-    it('Test field IMS Interface -> TPIPE Name for trigger services Guaranteed', function () {
+    it('Test field IMS Interface -> Sync Call-out Timeout (sec)', function () {
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         Page.delIntfImsYes("IntfIMS0021").then(function () {
             Page.delEndpointImsYes("EndpointIMSA0025");
         }).then(function () {
@@ -2118,7 +2199,121 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0021", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0025", "@#$AB12390123456");
+            Page.addIntfIms("IntfIMS0021", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0025", undefined, "1");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.clear().sendKeys("2");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.clear().sendKeys("99");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '99').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.clear().sendKeys("120");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsSyncCalloutToSpinner.clear().sendKeys("121");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsSyncCalloutToSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        });
+    });
+
+    // Test field 'IMS Interface Details panel -> TPIPE Name for trigger services Guaranteed'
+    //
+    it('Test field IMS Interface -> TPIPE Name for trigger services Guaranteed', function () {
+        Page.delIntfImsYes("IntfIMS0022").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0026");
+        }).then(function () {
+            Page.addEndpointIms("EndpointIMSA0026");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfIms("IntfIMS0022", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0026", undefined, undefined, "@#$AB12390123456");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2244,13 +2439,13 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleIntfImsGuaranteedInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2275,14 +2470,14 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     // Test field 'IMS Interface Details panel -> TPIPE Name for trigger services Reliable'
     //
     it('Test field IMS Interface -> TPIPE Name for trigger services Reliable', function () {
-        Page.delIntfImsYes("IntfIMS0022").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0026");
+        Page.delIntfImsYes("IntfIMS0023").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0027");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0026");
+            Page.addEndpointIms("EndpointIMSA0027");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0022", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0026", "", "@#$AB12390123456");
+            Page.addIntfIms("IntfIMS0023", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0027", undefined, undefined, "", "@#$AB12390123456");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2332,7 +2527,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2348,7 +2543,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2364,7 +2559,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2380,7 +2575,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2396,7 +2591,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2412,7 +2607,9 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2424,7 +2621,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2435,14 +2632,14 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     // Test field 'IMS Interface Details panel -> TPIPE Name for trigger services Sync Call-out'
     //
     it('Test field IMS Interface -> TPIPE Name for trigger services Sync Call-out', function () {
-        Page.delIntfImsYes("IntfIMS0023").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0027");
+        Page.delIntfImsYes("IntfIMS0024").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0028");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0027");
+            Page.addEndpointIms("EndpointIMSA0028");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0023", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0027", "", "", "@#$AB12390123456");
+            Page.addIntfIms("IntfIMS0024", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0028", undefined, undefined, "", "", "@#$AB12390123456");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2492,7 +2689,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2508,7 +2705,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2524,7 +2721,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2540,7 +2737,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2556,7 +2753,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2572,7 +2769,9 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2584,7 +2783,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -2596,14 +2795,14 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     //
     it('Test field IMS Interface -> Workers ESB Request/Reply', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delIntfImsYes("IntfIMS0024").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0028");
+        Page.delIntfImsYes("IntfIMS0025").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0029");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0028");
+            Page.addEndpointIms("EndpointIMSA0029");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0024", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0028", "", "", "", false, true, "2");
+            Page.addIntfIms("IntfIMS0025", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0029", undefined, undefined, "", "", "", false, true, "2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2729,14 +2928,14 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     //
     it('Test field IMS Interface -> Workers Service Trigger', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delIntfImsYes("IntfIMS0025").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0029");
+        Page.delIntfImsYes("IntfIMS0026").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0030");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0029");
+            Page.addEndpointIms("EndpointIMSA0030");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0025", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0029", "", "", "", false, true, "2", "1");
+            Page.addIntfIms("IntfIMS0026", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0030", undefined, undefined, "", "", "", false, true, "2", "1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2840,129 +3039,10 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         });
     });
 
-    // Test field 'IMS Interface Details panel' -> 'OTMA Wait time Initialization'
+    // Test field 'IMS Interface Details panel' -> 'Wait time in seconds Initialization'
     //
-    it('Test field IMS Interface -> OTMA Wait time Initialization', function () {
-        Page.delIntfImsYes("IntfIMS0026").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0030");
-        }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0030");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addIntfIms("IntfIMS0026", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0030", "", "", "", false, true, "2", "2", "a");
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitInitializationValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Not a valid number').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitInitializationInput.clear().sendKeys("0");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitInitializationValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === '0 is invalid, must be equal to or greater than 1').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitInitializationInput.clear().sendKeys("1");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '1').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitInitializationInput.clear().sendKeys("11");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '11').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitInitializationInput.clear().sendKeys("22");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '22').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitInitializationInput.clear().sendKeys("31");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitInitializationValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === '31 is invalid, must be equal to or less than 30').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitInitializationInput.clear().sendKeys("30");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitInitializationInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '30').to.be.true;
-        });
-    });
-
-    // Test field 'IMS Interface Details panel' -> 'OTMA Wait time OTMA'
-    //
-    it('Test field IMS Interface -> OTMA Wait time OTMA', function () {
+    it('Test field IMS Interface -> Wait time in seconds Initialization', function () {
+        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
         Page.delIntfImsYes("IntfIMS0027").then(function () {
             Page.delEndpointImsYes("EndpointIMSA0031");
         }).then(function () {
@@ -2970,119 +3050,114 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0027", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0031", "", "", "", false, true, "2", "2", "2", "A");
+            Page.addIntfIms("IntfIMS0027", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0031", undefined, undefined, "", "", "", false, true, "2", "2", "1");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitOtmaValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Not a valid number').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitOtmaInput.clear().sendKeys("0");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitOtmaValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === '0 is invalid, must be equal to or greater than 1').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitOtmaInput.clear().sendKeys("1");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute("value");
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '1').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfImsWaitOtmaInput.clear().sendKeys("2");
+            Page.eleIntfImsWaitInitializationSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitInitializationSpinner.clear().sendKeys("0");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute("value");
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '2').to.be.true;
+            expect(message === '1').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfImsWaitOtmaInput.clear().sendKeys("9");
+            Page.eleIntfImsWaitInitializationSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitInitializationSpinner.clear().sendKeys("11");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute("value");
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '9').to.be.true;
+            expect(message === '11').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfImsWaitOtmaInput.clear().sendKeys("11");
+            Page.eleIntfImsWaitInitializationSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitInitializationSpinner.clear().sendKeys("22");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitOtmaValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === '11 is invalid, must be equal to or less than 10').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitOtmaInput.clear().sendKeys("10");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitOtmaInput.getAttribute("value");
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '10').to.be.true;
+            expect(message === '22').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitInitializationSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitInitializationSpinner.clear().sendKeys("30");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '30').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitInitializationSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitInitializationSpinner.clear().sendKeys("31");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitInitializationSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '30').to.be.true;
         });
     });
 
-    // Test field 'IMS Interface Details panel' -> 'OTMA Wait time Message'
+    // Test field 'IMS Interface Details panel' -> 'Wait time in seconds OTMA'
     //
-    it('Test field IMS Interface -> OTMA Wait time Message', function () {
+    it('Test field IMS Interface -> Wait time in seconds OTMA', function () {
+        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
         Page.delIntfImsYes("IntfIMS0028").then(function () {
             Page.delEndpointImsYes("EndpointIMSA0032");
         }).then(function () {
@@ -3090,119 +3165,114 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0028", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0032", "", "", "", false, true, "2", "2", "2", "2", "#");
+            Page.addIntfIms("IntfIMS0028", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0032", undefined, undefined, "", "", "", false, true, "2", "2", "2", "1");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitMsgValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Not a valid number').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitMsgInput.clear().sendKeys("0");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitMsgValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === '0 is invalid, must be equal to or greater than 1').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitMsgInput.clear().sendKeys("1");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute("value");
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '1').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfImsWaitMsgInput.clear().sendKeys("2");
+            Page.eleIntfImsWaitOtmaSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitOtmaSpinner.clear().sendKeys("0");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute("value");
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitOtmaSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitOtmaSpinner.clear().sendKeys("2");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '2').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfImsWaitMsgInput.clear().sendKeys("599");
+            Page.eleIntfImsWaitOtmaSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitOtmaSpinner.clear().sendKeys("9");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute("value");
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '599').to.be.true;
+            expect(message === '9').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleIntfImsWaitMsgInput.clear().sendKeys("601");
+            Page.eleIntfImsWaitOtmaSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitOtmaSpinner.clear().sendKeys("10");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleIntfImsWaitMsgValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === '601 is invalid, must be equal to or less than 600').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfImsWaitMsgInput.clear().sendKeys("600");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfImsWaitMsgInput.getAttribute("value");
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '600').to.be.true;
+            expect(message === '10').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitOtmaSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitOtmaSpinner.clear().sendKeys("11");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitOtmaSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '10').to.be.true;
         });
     });
 
-    // Test field 'IMS Interface Details panel' -> 'Transaction Buffer Allocation Value'
+    // Test field 'IMS Interface Details panel' -> 'Wait time in seconds Message'
     //
-    it('Test field IMS Interface -> Transaction Buffer Allocation Value', function () {
+    it('Test field IMS Interface -> Wait time in seconds Message', function () {
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         Page.delIntfImsYes("IntfIMS0029").then(function () {
             Page.delEndpointImsYes("EndpointIMSA0033");
         }).then(function () {
@@ -3210,9 +3280,238 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0029", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0033", "", "", "", false, true, "2", "2", "2", "2", "30", "15");
+            Page.addIntfIms("IntfIMS0029", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0033", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "1");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.clear().sendKeys("2");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.clear().sendKeys("599");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '599').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.clear().sendKeys("600");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '600').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitMsgSpinner.clear().sendKeys("601");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitMsgSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '600').to.be.true;
+        });
+    });
+
+    // Test field 'IMS Interface Details panel' -> 'Wait time in seconds Transaction'
+    //
+    it('Test field IMS Interface -> Wait time in seconds Transaction', function () {
+        var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
+        Page.delIntfImsYes("IntfIMS0030").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0034");
+        }).then(function () {
+            Page.addEndpointIms("EndpointIMSA0034");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfIms("IntfIMS0030", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0034", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "30", "1");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.clear().sendKeys("2");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.clear().sendKeys("29");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '29').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.clear().sendKeys("30");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '30').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfImsWaitTranSpinner.clear().sendKeys("31");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfImsWaitTranSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '30').to.be.true;
+        });
+    });
+
+    // Test field 'IMS Interface Details panel' -> 'Transaction Buffer Allocation Value'
+    //
+    it('Test field IMS Interface -> Transaction Buffer Allocation Value', function () {
+        Page.delIntfImsYes("IntfIMS0031").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0035");
+        }).then(function () {
+            Page.addEndpointIms("EndpointIMSA0035");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addIntfIms("IntfIMS0031", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0035", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "30", "3", "15");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3228,7 +3527,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3244,7 +3543,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3260,7 +3559,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3276,7 +3575,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3292,7 +3591,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3307,16 +3606,16 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     // Test field 'IMS Interface Details panel' -> 'Transaction Buffer Size Value (bytes)'
     //
     it('Test field IMS Interface -> Transaction Buffer Size Value (bytes)', function () {
-        Page.delIntfImsYes("IntfIMS0030").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0034");
+        Page.delIntfImsYes("IntfIMS0032").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0036");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0034");
+            Page.addEndpointIms("EndpointIMSA0036");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0030", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0034", "", "", "", false, true, "2", "2", "2", "2", "30", "20", "4095");
+            Page.addIntfIms("IntfIMS0032", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0036", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "30", "3", "20", "4095");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3332,7 +3631,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3348,7 +3647,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3364,7 +3663,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3380,7 +3679,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3396,7 +3695,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3411,16 +3710,16 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     // Test field 'IMS Interface Details panel' -> 'SRB Buffer Allocation Value'
     //
     it('Test field IMS Interface -> SRB Buffer Allocation Value', function () {
-        Page.delIntfImsYes("IntfIMS0031").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0035");
+        Page.delIntfImsYes("IntfIMS0033").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0037");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0035");
+            Page.addEndpointIms("EndpointIMSA0037");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0031", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0035", "", "", "", false, true, "2", "2", "2", "2", "30", "20", "4096", "31");
+            Page.addIntfIms("IntfIMS0033", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0037", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "30", "3", "20", "4096", "31");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3436,7 +3735,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3452,7 +3751,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3468,7 +3767,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3484,7 +3783,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3500,7 +3799,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3515,16 +3814,16 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     // Test field 'IMS Interface Details panel' -> 'SRB Buffer Size Value (bytes)'
     //
     it('Test field IMS Interface -> SRB Buffer Size Value (bytes)', function () {
-        Page.delIntfImsYes("IntfIMS0032").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0036");
+        Page.delIntfImsYes("IntfIMS0034").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0038");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0036");
+            Page.addEndpointIms("EndpointIMSA0038");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0032", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0036", "", "", "", false, true, "2", "2", "2", "2", "30", "20", "4096", "64", "4095");
+            Page.addIntfIms("IntfIMS0034", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0038", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "30", "3", "20", "4096", "64", "4095");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3540,7 +3839,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3556,7 +3855,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3572,7 +3871,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3588,7 +3887,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3604,7 +3903,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3619,16 +3918,16 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     // Test field 'IMS Interface Details panel' -> 'Group Buffer Allocation Value'
     //
     it('Test field IMS Interface -> Group Buffer Allocation Value', function () {
-        Page.delIntfImsYes("IntfIMS0033").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0037");
+        Page.delIntfImsYes("IntfIMS0035").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0039");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0037");
+            Page.addEndpointIms("EndpointIMSA0039");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0033", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0037", "", "", "", false, true, "2", "2", "2", "2", "30", "20", "4096", "64", "4096", "7");
+            Page.addIntfIms("IntfIMS0035", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0039", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "30", "3", "20", "4096", "64", "4096", "7");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3644,7 +3943,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3660,7 +3959,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3676,7 +3975,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3692,7 +3991,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3708,7 +4007,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3723,16 +4022,16 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     // Test field 'IMS Interface Details panel' -> 'Group Buffer Size Value (bytes)'
     //
     it('Test field IMS Interface -> Group Buffer Size Value (bytes)', function () {
-        Page.delIntfImsYes("IntfIMS0034").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0038");
+        Page.delIntfImsYes("IntfIMS0036").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0040");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0038");
+            Page.addEndpointIms("EndpointIMSA0040");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0034", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0038", "", "", "", false, true, "2", "2", "2", "2", "30", "20", "4096", "64", "4096", "8", "511");
+            Page.addIntfIms("IntfIMS0036", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0040", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "30", "3", "20", "4096", "64", "4096", "8", "511");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3748,7 +4047,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3764,7 +4063,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3780,7 +4079,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3796,7 +4095,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3812,7 +4111,7 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3828,14 +4127,14 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     //
     it('Test field IMS Interface -> Trace Level Trigger', function () {
         var backspaceSeries = Array(2).join(protractor.Key.BACK_SPACE);
-        Page.delIntfImsYes("IntfIMS0035").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0039");
+        Page.delIntfImsYes("IntfIMS0037").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0041");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0039");
+            Page.addEndpointIms("EndpointIMSA0041");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0035", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0039", "", "", "", false, true, "2", "2", "2", "2", "30", "20", "4096", "64", "4096", "8", "2048", true, false, "0");
+            Page.addIntfIms("IntfIMS0037", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0041", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "30", "3", "20", "4096", "64", "4096", "8", "2048", true, false, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3925,14 +4224,14 @@ describe('6.8.14 Define Interfaces IMS Page', function () {
     //
     it('Test field IMS Interface -> Trace Level OTMA', function () {
         var backspaceSeries = Array(2).join(protractor.Key.BACK_SPACE);
-        Page.delIntfImsYes("IntfIMS0036").then(function () {
-            Page.delEndpointImsYes("EndpointIMSA0040");
+        Page.delIntfImsYes("IntfIMS0038").then(function () {
+            Page.delEndpointImsYes("EndpointIMSA0042");
         }).then(function () {
-            Page.addEndpointIms("EndpointIMSA0040");
+            Page.addEndpointIms("EndpointIMSA0042");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addIntfIms("IntfIMS0036", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0040", "", "", "", false, true, "2", "2", "2", "2", "30", "20", "4096", "64", "4096", "8", "2048", true, false, "0", "0");
+            Page.addIntfIms("IntfIMS0038", "", undefined, undefined, undefined, undefined, "", "EndpointIMSA0042", undefined, undefined, "", "", "", false, true, "2", "2", "2", "2", "30", "3", "20", "4096", "64", "4096", "8", "2048", true, false, "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -21,7 +21,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         browser.sleep(1000).then(function () {
             Page.delIntfRvYes("IntfRV0001");
         }).then(function () {
-            Page.addIntfRv("IntfRV0001", "", undefined, "EndpointRVA0001");
+            Page.addIntfRv("IntfRV0001");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -59,7 +59,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
     //
     it('Should add a RV Interface, then update it successfully', function () {
         Page.delIntfRvYes("IntfRV0003").then(function () {
-            Page.addIntfRv("IntfRV0003", "abcdefg", "INTFID01", "11", "33", "111", false, false, false);
+            Page.addIntfRv("IntfRV0003", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "555", "7777", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -67,7 +67,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.updateIntfRv("IntfRV0003", "hijklmn", "INTFID02", "22", "34", "222", true, true, true);
+            Page.updateIntfRv("IntfRV0003", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "666", "8888", true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -87,6 +87,10 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '222').to.be.true;
+        }).then(function () {
             return Page.eleIntfRvWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '22').to.be.true;
@@ -94,10 +98,6 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '34').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '222').to.be.true;
         }).then(function () {
             return Page.eleIntfRvSuspendServicesCheck.getAttribute("checked");
         }).then(function (message) {
@@ -110,6 +110,18 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '666').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '8888').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvVectorInputInRvCallbackCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === 'true').to.be.true;
         });
     });
 
@@ -117,7 +129,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
     //
     it('Should add a RV Interface, cancel the changes, then confirm the cancel operation', function () {
         Page.delIntfRvYes("IntfRV0004").then(function () {
-            Page.addIntfRv("IntfRV0004", "abcdefg", "INTFID01", "11", "33", "111", false, false, false);
+            Page.addIntfRv("IntfRV0004", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "555", "7777", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -125,7 +137,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfRvYes("IntfRV0004", "hijklmn", "INTFID02", "22", "34", "222", true, true, true);
+            Page.cancelIntfRvYes("IntfRV0004", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "666", "8888", true);
         }).then(function () {
             Page.eleIntfsRvLeftmenu.click();
         }).then(function () {
@@ -155,6 +167,10 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '131').to.be.true;
+        }).then(function () {
             return Page.eleIntfRvWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '11').to.be.true;
@@ -162,10 +178,6 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '33').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '111').to.be.true;
         }).then(function () {
             return Page.eleIntfRvSuspendServicesCheck.getAttribute("checked");
         }).then(function (message) {
@@ -178,6 +190,18 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '555').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '7777').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvVectorInputInRvCallbackCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
         });
     });
 
@@ -185,7 +209,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
     //
     it('Should add a RV Interface, cancel the changes, then discard the cancel operation', function () {
         Page.delIntfRvYes("IntfRV0005").then(function () {
-            Page.addIntfRv("IntfRV0005", "abcdefg", "INTFID01", "11", "33", "111", false, false, false);
+            Page.addIntfRv("IntfRV0005", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "555", "7777", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -193,7 +217,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfRvNo("IntfRV0005", "hijklmn", "INTFID02", "22", "34", "222", true, true, true);
+            Page.cancelIntfRvNo("IntfRV0005", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "666", "8888", true);
         }).then(function () {
             return Page.eleIntfRvNameInput.getAttribute('value');
         }).then(function (message) {
@@ -207,6 +231,10 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '222').to.be.true;
+        }).then(function () {
             return Page.eleIntfRvWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '22').to.be.true;
@@ -214,10 +242,6 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '34').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '222').to.be.true;
         }).then(function () {
             return Page.eleIntfRvSuspendServicesCheck.getAttribute("checked");
         }).then(function (message) {
@@ -230,6 +254,18 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '666').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '8888').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvVectorInputInRvCallbackCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === 'true').to.be.true;
         });
     });
 
@@ -237,7 +273,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
     //
     it('Should add a RV Interface, make some changes, then reset it', function () {
         Page.delIntfRvYes("IntfRV0006").then(function () {
-            Page.addIntfRv("IntfRV0006", "abcdefg", "INTFID01", "11", "33", "111", false, false, false);
+            Page.addIntfRv("IntfRV0006", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "555", "7777", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -245,7 +281,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.resetIntfRv("IntfRV0006", "hijklmn", "INTFID02", "22", "34", "222", true, true, true);
+            Page.resetIntfRv("IntfRV0006", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "666", "8888", true);
         }).then(function () {
             return Page.eleIntfRvNameInput.getAttribute('value');
         }).then(function (message) {
@@ -259,6 +295,10 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '131').to.be.true;
+        }).then(function () {
             return Page.eleIntfRvWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '11').to.be.true;
@@ -266,10 +306,6 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '33').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '111').to.be.true;
         }).then(function () {
             return Page.eleIntfRvSuspendServicesCheck.getAttribute("checked");
         }).then(function (message) {
@@ -282,6 +318,18 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '555').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '7777').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvVectorInputInRvCallbackCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
         });
     });
 
@@ -289,7 +337,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
     //
     it('Should add a RV Interface to overwrite a RV Interface, then confirm the overwrite operation', function () {
         Page.delIntfRvYes("IntfRV0007").then(function () {
-            Page.addIntfRv("IntfRV0007", "abcdefg", "INTFID01", "11", "33", "111", false, false, false);
+            Page.addIntfRv("IntfRV0007", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "555", "7777", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -297,7 +345,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfRv("IntfRV0007", "hijklmn", "INTFID02", "22", "34", "222", true, true, true);
+            Page.addIntfRv("IntfRV0007", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "666", "8888", true);
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleOKButton);
         }).then(function () {
@@ -317,6 +365,10 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID02').to.be.true;
         }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '222').to.be.true;
+        }).then(function () {
             return Page.eleIntfRvWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '22').to.be.true;
@@ -324,10 +376,6 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '34').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '222').to.be.true;
         }).then(function () {
             return Page.eleIntfRvSuspendServicesCheck.getAttribute("checked");
         }).then(function (message) {
@@ -340,6 +388,18 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvEnableMsgDeliveryCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '666').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '8888').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvVectorInputInRvCallbackCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === 'true').to.be.true;
         });
     });
 
@@ -347,7 +407,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
     //
     it('Should add a RV Interface to overwrite a RV Interface, then discard the overwrite operation', function () {
         Page.delIntfRvYes("IntfRV0008").then(function () {
-            Page.addIntfRv("IntfRV0008", "abcdefg", "INTFID01", "11", "33", "111", false, false, false);
+            Page.addIntfRv("IntfRV0008", "abcdefg", "INTFID01", "131", "11", "33", false, false, false, "555", "7777", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -355,7 +415,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfRv("IntfRV0008", "hijklmn", "INTFID02", "22", "34", "222", true, true, true);
+            Page.addIntfRv("IntfRV0008", "hijklmn", "INTFID02", "222", "22", "34", true, true, true, "666", "8888", true);
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleNoButton);
         }).then(function () {
@@ -393,6 +453,10 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === 'INTFID01').to.be.true;
         }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '131').to.be.true;
+        }).then(function () {
             return Page.eleIntfRvWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '11').to.be.true;
@@ -400,10 +464,6 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '33').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '111').to.be.true;
         }).then(function () {
             return Page.eleIntfRvSuspendServicesCheck.getAttribute("checked");
         }).then(function (message) {
@@ -414,6 +474,18 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             expect(message === null).to.be.true;
         }).then(function () {
             return Page.eleIntfRvEnableMsgDeliveryCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '555').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '7777').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvVectorInputInRvCallbackCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         });
@@ -477,11 +549,13 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         Page.delIntfRvYes("IntfRV0011").then(function () {
             Page.addIntfRv("IntfRV0011");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             return Page.eleDeleteButton.getAttribute('disabled');
         }).then(function (message) {
@@ -549,6 +623,10 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        }).then(function () {
             return Page.eleIntfRvWorkersSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '5').to.be.true;
@@ -556,10 +634,6 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '30').to.be.true;
-        }).then(function () {
-            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '0').to.be.true;
         }).then(function () {
             return Page.eleIntfRvSuspendServicesCheck.getAttribute("checked");
         }).then(function (message) {
@@ -570,6 +644,18 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             expect(message === "true").to.be.true;
         }).then(function () {
             return Page.eleIntfRvEnableMsgDeliveryCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvVectorInputInRvCallbackCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === "true").to.be.true;
         });
@@ -681,7 +767,9 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -739,12 +827,121 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         });
     });
 
+    // Test field 'RV Interface Details panel' -> 'Wait Time on Startup (sec)'
+    //
+    it('Test field RV Interface -> Wait Time on Startup (sec)', function () {
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
+        Page.delIntfRvYes("IntfRV0017").then(function () {
+            Page.addIntfRv("IntfRV0017", "", undefined, "120");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys("119");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '120').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys("599");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '599').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys("600");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '600').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvWaitTimeOnStartupSpinner.clear().sendKeys("601");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWaitTimeOnStartupSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '600').to.be.true;
+        });
+    });
+
     // Test field 'RV Interface Details panel' -> 'Workers'
     //
     it('Test field RV Interface -> Workers', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRvYes("IntfRV0017").then(function () {
-            Page.addIntfRv("IntfRV0017", "", undefined, "0");
+        Page.delIntfRvYes("IntfRV0018").then(function () {
+            Page.addIntfRv("IntfRV0018", "", undefined, undefined, "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -754,7 +951,61 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function () {
             return Page.eleIntfRvWorkersSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '0').to.be.true;
+            expect(message === '5').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvWorkersSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvWorkersSpinner.clear().sendKeys("4");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWorkersSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvWorkersSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvWorkersSpinner.clear().sendKeys("1");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWorkersSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvWorkersSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvWorkersSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWorkersSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -798,8 +1049,8 @@ describe('6.8.12 Define Interfaces RV Page', function () {
     //
     it('Test field RV Interface -> Workers EOT', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRvYes("IntfRV0018").then(function () {
-            Page.addIntfRv("IntfRV0018", "", undefined, undefined, "2");
+        Page.delIntfRvYes("IntfRV0019").then(function () {
+            Page.addIntfRv("IntfRV0019", "", undefined, undefined, undefined, "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -809,13 +1060,13 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '2').to.be.true;
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfRvWorkersEotSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfRvWorkersEotSpinner.clear().sendKeys("0");
+            Page.eleIntfRvWorkersEotSpinner.clear().sendKeys("4");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -827,7 +1078,7 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '2').to.be.true;
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -845,7 +1096,25 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         }).then(function () {
             return Page.eleIntfRvWorkersEotSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '2').to.be.true;
+            expect(message === '5').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvWorkersEotSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvWorkersEotSpinner.clear().sendKeys("0");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvWorkersEotSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -888,9 +1157,9 @@ describe('6.8.12 Define Interfaces RV Page', function () {
     // Test field 'RV Interface Details panel' -> 'Message Free List Size'
     //
     it('Test field RV Interface -> Message Free List Size', function () {
-        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
-        Page.delIntfRvYes("IntfRV0019").then(function () {
-            Page.addIntfRv("IntfRV0019", "", undefined, undefined, undefined, "0");
+        var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
+        Page.delIntfRvYes("IntfRV0020").then(function () {
+            Page.addIntfRv("IntfRV0020", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -901,6 +1170,60 @@ describe('6.8.12 Define Interfaces RV Page', function () {
             return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '0').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys("1");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys("100000");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '100000').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvMsgFreeListSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfRvMsgFreeListSizeSpinner.clear().sendKeys("299999");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvMsgFreeListSizeSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '299999').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -940,6 +1263,160 @@ describe('6.8.12 Define Interfaces RV Page', function () {
         });
     });
 
+    // Test field 'RV Interface Details panel' -> 'Interface Service Number (0, 2048-10240)'
+    //
+    it('Test field RV Interface -> Interface Service Number (0, 2048-10240)', function () {
+        var backspaceSeries = Array(7).join(protractor.Key.BACK_SPACE);
+        Page.delIntfRvYes("IntfRV0021").then(function () {
+            Page.addIntfRv("IntfRV0021", "", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "0");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvIntfServiceInput.clear().sendKeys("abc");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvIntfServiceInput.clear().sendKeys("ABC");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvIntfServiceInput.clear().sendKeys("1");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        // }).then(function () {
+        //     return Page.eleIntfRvIntfServiceValidateMsg.getText();
+        // }).then(function (message) {
+        //     expect(message === '65536 is invalid, must be equal to or less than 65,535').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvIntfServiceInput.clear().sendKeys("2047");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        // }).then(function () {
+        //     return Page.eleIntfRvIntfServiceValidateMsg.getText();
+        // }).then(function (message) {
+        //     expect(message === '65536 is invalid, must be equal to or less than 65,535').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvIntfServiceInput.clear().sendKeys("2048");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2048').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvIntfServiceInput.clear().sendKeys("2049");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '2049').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvIntfServiceInput.clear().sendKeys("10239");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '10239').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvIntfServiceInput.clear().sendKeys("10241");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        // }).then(function () {
+        //     return Page.eleIntfRvIntfServiceValidateMsg.getText();
+        // }).then(function (message) {
+        //     expect(message === '65536 is invalid, must be equal to or less than 65,535').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfRvIntfServiceInput.clear().sendKeys("10240");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfRvIntfServiceInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '10240').to.be.true;
+        });
+    });
 
     it('It is only for console', function () {
         console.log("Finish run " + __filename.slice(__dirname.length + 1));

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var Page = require('../utility/page.js');
@@ -45,7 +45,7 @@ var SSESOpsPage = (function () {
         this.eleTLSConnectionCheck = element(by.xpath('//label[text()="Use TLS Connection"]/..//input'));
         this.eleSelectionListCheck = element(by.xpath('//label[text()="Selection List"]/..//input'));
 
-        this.eleCheckButton = element(by.css('.GCOBQG-CLY'));
+        this.eleCheckButton = element(by.css('.GCOBQG-CEY'));
         this.eleSaveButton = element(by.xpath('//button[text()="Save"]'));
         this.eleReplicateButton = element(by.xpath('//button[text()="Replicate"]'));
         this.eleCancelButton = element(by.xpath('//button[text()="Cancel"]'));

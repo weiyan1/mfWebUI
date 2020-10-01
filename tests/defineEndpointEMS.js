@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -35,6 +35,8 @@ describe('6.8.1 Define Endpoints EMS Page', function () {
     //
     it('Should add a EMS Endpoint, then replicate it successfully', function () {
         Page.delConnEmsYes("EndpointEMS0002-copy").then(function () {
+            Page.delConnEmsYes("EndpointEMS0002");
+        }).then(function () {
             Page.delEndpointEmsYes("EndpointEMS0002-copy");
         }).then(function () {
             Page.delEndpointEmsYes("EndpointEMS0002");
@@ -531,11 +533,13 @@ describe('6.8.1 Define Endpoints EMS Page', function () {
         Page.delEndpointEmsYes("EndpointEMS0011").then(function () {
             Page.addEndpointEms("EndpointEMS0011");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             return Page.eleDeleteButton.getAttribute('disabled');
         }).then(function (message) {
@@ -825,7 +829,9 @@ describe('6.8.1 Define Endpoints EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {

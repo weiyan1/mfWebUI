@@ -161,11 +161,13 @@ var configurePage = (function () {
         this.eleCvrNameInput = element(by.xpath('//div[text()="Name"]/../../..//input'));
         this.eleCvrNameValidateMsg = element(by.xpath('//div[text()="Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleCvrMsgInput = element(by.xpath('//div[text()="Message" and @class="form_label"]/../../..//input'));
+        this.eleCvrMsgPickButton = element(by.xpath('//div[text()="Message"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleCvrMsgValidateMsg = element(by.xpath('//div[text()="Message"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleCvrBufInput = element(by.xpath('//div[text()="Buffer" and @class="form_label"]/../../..//input'));
+        this.eleCvrBufPickButton = element(by.xpath('//div[text()="Buffer"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleCvrBufValidateMsg = element(by.xpath('//div[text()="Buffer"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleCvrMaxBufSizeSpinner = element(by.css('.spinner-textbox'));
-        this.eleCvrMappingButton = element(by.css('.GCOBQG-CMU'));
+        this.eleCvrMappingButton = element(by.css('.GCOBQG-CCU'));
         this.eleCvrInputMsgTypeDropdown = element(by.xpath('//div[text()="Input Message Type"]/../../..//div[@class="GCOBQG-CPQ"]'));
         this.eleCvrInputMsgTypeSelected = function (inputMsgType) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + inputMsgType + '"]'));
@@ -180,7 +182,7 @@ var configurePage = (function () {
         };
         this.eleCvrUseSizeFrom01 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[1]/td[1]'));
         this.eleCvrUseSizeFrom02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
-        this.eleCvrMappingDailogTitle = element(by.css('.GCOBQG-CHY'));
+        this.eleCvrMappingDailogTitle = element(by.css('.GCOBQG-CAY'));
         this.eleCvrMappingFinishButton = element(by.xpath('//button[text()="Finish"]'));
         this.eleCvrMsgFieldSearchInput = element.all(by.xpath('//div[@class="GCOBQG-CGR"]//input[@class="GCOBQG-CLM"]')).get(1);
         this.eleCvrMsgFieldSearchIcon = element.all(by.xpath('//div[@class="GCOBQG-CGR"]//a[@class="GCOBQG-CKM"]')).get(1);
@@ -217,13 +219,13 @@ var configurePage = (function () {
             return element(by.xpath('//input[@type="checkbox"]/../../../..//tr[' + lineNum + ']/td[1]/div'));
         };
         this.eleCvrMappingReqCheck = function (lineNum) {
-            return element(by.xpath('//div[@class="GCOBQG-CFY"]//tr[' + lineNum + ']/td[2]//input'));
+            return element(by.xpath('//div[@class="GCOBQG-CH"]//tr[' + lineNum + ']/td[2]//input'));
         };
         this.eleCvrMappingSystemCheck = function (lineNum) {
-            return element(by.xpath('//div[@class="GCOBQG-CFY"]//tr[' + lineNum + ']/td[3]//input'));
+            return element(by.xpath('//div[@class="GCOBQG-CH"]//tr[' + lineNum + ']/td[3]//input'));
         };
         this.eleCvrMappingTruncCheck = function (lineNum) {
-            return element(by.xpath('//div[@class="GCOBQG-CFY"]//tr[' + lineNum + ']/td[4]//input'));
+            return element(by.xpath('//div[@class="GCOBQG-CH"]//tr[' + lineNum + ']/td[4]//input'));
         };
         this.eleCvrMappingBufFieldName = function (lineNum) {
             return element(by.xpath('//input[@type="checkbox"]/../../../..//tr[' + lineNum + ']/td[5]/div'));
@@ -240,6 +242,7 @@ var configurePage = (function () {
         this.eleTrgConnValidateMsg = element(by.xpath('//div[text()="Connection"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleTrgOutputConversionInput = element(by.xpath('//div[text()="Output Conversion"]/../../..//input'));
         this.eleTrgOutputConversionValidateMsg = element(by.xpath('//div[text()="Output Conversion"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleTrgFldNameForCvrlessMsgInput = element(by.xpath('//div[text()="Field Name for Conversionless Message"]/../../..//input'));
         this.eleTrgDisableOnErrorNumSpinner = element(by.xpath('//div[text()="Disable on Error (#)"]/../../..//input'));
         this.eleTrgDisableOnErrorPercentSpinner = element(by.xpath('//div[text()="Disable on Error (%)"]/../../..//input'));
         this.eleTrgTrclvlSpinner = element(by.xpath('//div[text()="Trace Level"]/../../..//input'));
@@ -250,9 +253,8 @@ var configurePage = (function () {
         this.eleTrgOutputMethod01 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[1]/td[1]'));
         this.eleTrgOutputMethod02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
         this.eleTrgOutputMethod03 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[3]/td[1]'));
-        this.eleTrgServiceKeyLocatorStartSpinner = element(by.xpath('//div[text()="Service Key Locator"]/../../..//input[@class="spinner-textbox"]'));
-        // this.eleTrgServiceKeyLocatorLengthInput = element(by.xpath('//div[text()="Length"]/../../..//input[@class="form_text_box"]'));
-        this.eleTrgServiceKeyLocatorLengthInput = element(by.xpath('//div[text()="Length"]/../../..//input[contains(@class,"form_text_box")]'));
+        this.eleTrgServiceKeyLocatorStartSpinner = element(by.xpath('//div[text()="Service Key Locator"]/../../..//div[text()="Start"]/../../..//input'));
+        this.eleTrgServiceKeyLocatorLengthSpinner = element(by.xpath('//div[text()="Service Key Locator"]/../../..//div[text()="Length"]/../../..//input'));
         this.eleTrgServiceKeyLocatorLengthValidateMsg = element(by.xpath('//div[text()="Length"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleTrgServiceKeyLocatorValueInput = element(by.xpath('//div[text()="Value"]/../../..//input[@class="form_text_box"]'));
         this.eleTrgRequeueOnErrorCheck = element(by.xpath('//label[text()="Requeue on Error"]/..//input'));
@@ -327,14 +329,14 @@ var configurePage = (function () {
         this.eleTrgEmsPropValue = function (lineNum) {
             return element(by.xpath('//div[@class="GCOBQG-CFO"]//tr[' + lineNum + ']/td[3]/div'));
         };
-        this.eleTrgEmsPropTypeDropdown = element(by.css('.GCOBQG-CA0 .GCOBQG-CPQ'));
+        this.eleTrgEmsPropTypeDropdown = element(by.css('.GCOBQG-CG- .GCOBQG-COQ .GCOBQG-CPQ'));
         this.eleTrgEmsPropTypeSelected = function (propType) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + propType + '"]'));
         };
         this.eleTrgEmsPropType01 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[1]/td[1]'));
         this.eleTrgEmsPropType02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
         this.eleTrgEmsPropType03 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[3]/td[1]'));
-        this.eleTrgEmsPropNameDropdown = element(by.css('.GCOBQG-CB0 .GCOBQG-CPQ'));
+        this.eleTrgEmsPropNameDropdown = element(by.css('.GCOBQG-CH- .GCOBQG-COQ .GCOBQG-CPQ'));
         this.eleTrgEmsPropSysNameSelected = function (propName) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + propName + '"]'));
         };
@@ -345,7 +347,7 @@ var configurePage = (function () {
         this.eleTrgEmsPropValValueInput = element(by.xpath('//input[@maxlength="254"]'));
         this.eleTrgEmsPropBufValueInput = element(by.xpath('//input[@style="width: 170px;"]'));
         this.eleTrgEmsPropSysValueInput = element(by.xpath('//input[@style="width: 100%; height: 100%;"]'));
-        this.eleTrgEmsPropValuePicklistButton = element(by.css('.GCOBQG-CB0 .pick-list-text-box-button'));
+        this.eleTrgEmsPropValuePicklistButton = element(by.css('.GCOBQG-CH- .pick-list-text-box-button'));
         this.eleTrgEmsPropValueFromBufFieldSearchInput = element(by.css('.gwt-DialogBox .GCOBQG-CLM'));
         this.eleTrgEmsPropValueFromBufFieldSearchIcon = element(by.css('.gwt-DialogBox .GCOBQG-CKM'));
         this.eleTrgEmsPropValueFromBufFieldSelected = function (bufField) {
@@ -380,9 +382,15 @@ var configurePage = (function () {
         this.eleRecIntfInput = element(by.xpath('//div[text()="Interface Name"]/../../..//input'));
         this.eleRecIntfPickButton = element(by.xpath('//div[text()="Interface Name"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleRecIntfValidateMsg = element(by.xpath('//div[text()="Interface Name"]/../../../..//div[@class="validate_msg_show"]'));
-        this.eleRecIntf2Input = element(by.xpath('//div[text()="Interface Name (alternate)"]/../../..//input'));
-        this.eleRecIntf2PickButton = element(by.xpath('//div[text()="Interface Name (alternate)"]/../../..//div[@class="pick-list-text-box-button"]'));
-        this.eleRecIntf2ValidateMsg = element(by.xpath('//div[text()="Interface Name (alternate)"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleRecIntf2Input = element(by.xpath('//div[text()="Interface Names (alternate)"]/../../..//input'));
+        this.eleRecIntf2PickButton = element(by.xpath('//div[text()="Interface Names (alternate)"]/../../..//div[@class="pick-list-text-box-button"]'));
+        this.eleRecIntf2ValidateMsg = element(by.xpath('//div[text()="Interface Names (alternate)"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleRecIntf3Input = element.all(by.css('.pick-list-text-box .form_text_box')).get(2);
+        this.eleRecIntf3PickButton = element.all(by.css('.pick-list-text-box-button')).get(2);
+        this.eleRecIntf3ValidateMsg = element.all(by.css('div[class^="validate_msg"]')).get(5);
+        this.eleRecIntf4Input = element.all(by.css('.pick-list-text-box .form_text_box')).get(3);
+        this.eleRecIntf4PickButton = element.all(by.css('.pick-list-text-box-button')).get(3);
+        this.eleRecIntf4ValidateMsg = element.all(by.css('div[class^="validate_msg"]')).get(6);
         this.eleRecConnInput = element(by.xpath('//div[text()="Connection"]/../../..//input'));
         this.eleRecConnPickButton = element(by.xpath('//div[text()="Connection"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleRecConnValidateMsg = element(by.xpath('//div[text()="Connection"]/../../../..//div[@class="validate_msg_show"]'));
@@ -396,6 +404,7 @@ var configurePage = (function () {
         this.eleRecOutputConversionPickButton = element(by.xpath('//div[text()="Output Conversion"]/../../..//div[@class="pick-list-text-box-button"]'));
         this.eleRecOutputConversionValidateMsg = element(by.xpath('//div[text()="Output Conversion"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleRecResourceNameInput = element(by.xpath('//div[text()="Resource Name"]/../../..//input'));
+        this.eleRecResourceNameValidateMsg = element(by.xpath('//div[text()="Resource Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleRecSsidFilterCheck = element(by.xpath('//label[text()="SS-Id Filter"]/..//input'));
         this.eleRecMethodReplyDropdown = element(by.xpath('//div[text()="Method of Reply"]/../../..//div[@class="GCOBQG-CPQ"]'));
         this.eleRecMethodReplySelected = function (methodReply) {
@@ -422,11 +431,16 @@ var configurePage = (function () {
         this.eleRecCicsMethodInvocation08 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[8]/td[1]'));
         this.eleRecCicsMethodInvocation09 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[9]/td[1]'));
         this.eleRecCicsMirrorTranIdInput = element(by.xpath('//div[text()="Mirror Transaction ID "]/../../..//input'));
+        this.eleRecCicsMirrorTranIdValidateMsg = element(by.xpath('//div[text()="Mirror Transaction ID "]/../../../..//div[@class="validate_msg_show"]'));
         this.eleRecCicsCsmiUserTranCheck = element(by.xpath('//label[text()="CSMI User Transaction"]/..//input'));
         this.eleRecCicsRRETranIdInput = element(by.xpath('//div[text()="Transaction ID"]/../../..//input'));
+        this.eleRecCicsRRETranIdValidateMsg = element(by.xpath('//div[text()="Transaction ID"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleRecCicsRRESysNameInput = element(by.xpath('//div[text()="System Name"]/../../..//input'));
+        this.eleRecCicsRRESysNameValidateMsg = element(by.xpath('//div[text()="System Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleRecCicsCtnChannelNameInput = element(by.xpath('//div[text()="Channel Name"]/../../..//input'));
+        this.eleRecCicsCtnChannelNameValidateMsg = element(by.xpath('//div[text()="Channel Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleRecCicsCtnContainerNameInput = element(by.xpath('//div[text()="Container Name"]/../../..//input'));
+        this.eleRecCicsCtnContainerNameValidateMsg = element(by.xpath('//div[text()="Container Name"]/../../../..//div[@class="validate_msg_show"]'));
         this.eleRecCicsCtnContainerInvocationDropdown = element(by.xpath('//div[text()="Container Invocation"]/../../..//div[@class="GCOBQG-CPQ"]'));
         this.eleRecCicsCtnContainerInvocationSelected = function (ctnInvocation) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + ctnInvocation + '"]'));
@@ -450,9 +464,15 @@ var configurePage = (function () {
         this.eleRecCicsMultiExecResource3RemoveButton = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//img'));
         this.eleRecCicsMultiExecResource4RemoveButton = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//img'));
         this.eleRecCicsMultiExecResource5RemoveButton = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//img'));
+        this.eleRecCicsMultiExecResourceValidateMsg = element(by.xpath('//div[text()="Resource"]/../../..//div[@class="validate_msg_show"]'));
+        this.eleRecCicsMultiExecResource1ValidateMsg = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[2]/td[1]//div'));
+        this.eleRecCicsMultiExecResource2ValidateMsg = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[2]/td[1]//div'));
+        this.eleRecCicsMultiExecResource3ValidateMsg = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[2]/td[1]//div'));
+        this.eleRecCicsMultiExecResource4ValidateMsg = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[2]/td[1]//div'));
+        this.eleRecCicsMultiExecResource5ValidateMsg = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[2]/td[1]//div'));
 
         this.eleRecRedDetailsExtension = element(by.xpath('//td[text()="Red Details"]'));
-        this.eleRecRedMethodInvocationDropdown = element(by.xpath('//td[text()="Red Details"]/../../../../../../..//div[text()="Method of Invocation"]'));
+        this.eleRecRedMethodInvocationDropdown = element(by.xpath('//td[text()="RED Details"]/../../../../../../..//div[text()="Method of Invocation"]/../../..//div[@class="GCOBQG-CPQ"]'));
         this.eleRecRedMethodInvocationSelected = function (methodInvocation) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + methodInvocation + '"]'));
         };
@@ -485,6 +505,7 @@ var configurePage = (function () {
         this.eleRecRedCtnContainerCreation02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
         this.eleRecRedCtnForwardDestAsCtnCheck = element(by.xpath('//label[text()="Forward Destination as Container"]/..//input'));
         this.eleRecRedMultiExecResourceInput = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[1]/td[1]//input'));
+        this.eleRecRedMultiExecResourceValidateMsg = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[1]//tr[2]/td[1]//div'));
         this.eleRecRedMultiExecResource2Input = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[2]//tr[1]/td[1]//input'));
         this.eleRecRedMultiExecResource3Input = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[3]//tr[1]/td[1]//input'));
         this.eleRecRedMultiExecResource4Input = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[4]//tr[1]/td[1]//input'));
@@ -496,7 +517,7 @@ var configurePage = (function () {
         this.eleRecRedMultiExecResource5RemoveButton = element(by.xpath('//div[text()="Resource"]/../../..//tr[2]/td[1]//div[1]//div[5]//tr[1]/td[1]//img'));
 
         this.eleRecImsDetailsExtension = element(by.xpath('//td[text()="IMS Details"]'));
-        this.eleRecImsMethodInvocationDropdown = element(by.xpath('//td[text()="IMS Details"]/../../../../../../..//div[text()="Method of Invocation"]'));
+        this.eleRecImsMethodInvocationDropdown = element(by.xpath('//td[text()="IMS Details"]/../../../../../../..//div[text()="Method of Invocation"]/../../..//div[@class="GCOBQG-CPQ"]'));
         this.eleRecImsMethodInvocationSelected = function (methodInvocation) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + methodInvocation + '"]'));
         };
@@ -512,8 +533,10 @@ var configurePage = (function () {
         this.eleRecImsSecurityCheck01 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[1]/td[1]'));
         this.eleRecImsSecurityCheck02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
         this.eleRecImsSegmentBreakInput = element(by.xpath('//div[text()="Segment Break (8 hex) (No 0x00 or 0x40)"]/../../..//input'));
+        this.eleRecImsSegmentBreakValidateMsg = element(by.xpath('//div[text()="Segment Break (8 hex) (No 0x00 or 0x40)"]/../../..//div[@class="validate_msg_show"]'));
         this.eleRecImsSegmentLengthInput = element(by.xpath('//div[text()="Segment Length"]/../../..//input'));
         this.eleRecImsMfsMapNameInput = element(by.xpath('//div[text()="MFS Map Name"]/../../..//input'));
+        this.eleRecImsMfsMapNameValidateMsg = element(by.xpath('//div[text()="MFS Map Name"]/../../..//div[@class="validate_msg_show"]'));
         this.eleRecImsNaturalStackCmdInput = element(by.xpath('//div[text()="Natural Stack Command"]/../../..//input'));
 
         this.eleRecConnectionExtension = element(by.xpath('//td[text()="Connection Extension"]'));
@@ -554,7 +577,8 @@ var configurePage = (function () {
         this.eleRecEmsDeliveryMode02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
         this.eleRecEmsDeliveryMode03 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[3]/td[1]'));
         this.eleRecEmsDurableSubscriberCheck = element(by.xpath('//label[text()="Durable Subscriber"]/..//input'));
-        this.eleRecEmsDurableClientIdInput = element(by.xpath('//div[text()="Durable Client ID"]/../../..//input'));
+        this.eleRecEmsSharedSubscriberCheck = element(by.xpath('//label[text()="Shared Subscriber"]/..//input'));
+        this.eleRecEmsSubscriberClientIdInput = element(by.xpath('//div[text()="Subscriber Client ID"]/../../..//input'));
         this.eleRecEmsOutputMsgPriorityCheck = element(by.xpath('//label[text()="Priority"]/..//input'));
         this.eleRecEmsOutputMsgPriorityValueSpinner = element(by.xpath('//label[text()="Priority"]/../../../../../../../../..//input[@class="spinner-textbox"]'));
         this.eleRecEmsOutputMsgExpirationCheck = element(by.xpath('//label[text()="Expiration"]/..//input'));
@@ -603,7 +627,7 @@ var configurePage = (function () {
         this.eleRecEmsPropValue = function (lineNum) {
             return element(by.xpath('//div[@class="GCOBQG-CFO"]//tr[' + lineNum + ']/td[4]/div'));
         };
-        this.eleRecEmsPropTypeDropdown = element(by.css('.GCOBQG-CO- .GCOBQG-CPQ'));
+        this.eleRecEmsPropTypeDropdown = element(by.css('.GCOBQG-CE- .GCOBQG-CPQ'));
         this.eleRecEmsPropTypeSelected = function (propType) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + propType + '"]'));
         };
@@ -618,7 +642,7 @@ var configurePage = (function () {
         this.eleRecEmsPropPurpose01 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[1]/td[1]'));
         this.eleRecEmsPropPurpose02 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[2]/td[1]'));
         this.eleRecEmsPropPurpose03 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[3]/td[1]'));
-        this.eleRecEmsPropNameDropdown = element(by.xpath('//div[@class="popupContent"]/div/div[3]/div[2]/div/div/div[3]/div'));
+        this.eleRecEmsPropNameDropdown = element(by.xpath('//div[@class="popupContent"]/div/div[3]'));
         this.eleRecEmsPropSysNameSelected = function (propName) {
             return element(by.xpath('//td[@class="gwt-MenuItem" and text()="' + propName + '"]'));
         };
@@ -632,13 +656,15 @@ var configurePage = (function () {
         this.eleRecEmsPropSysName08 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[8]/td[1]'));
         this.eleRecEmsPropSysName09 = element(by.xpath('//div[@class="gwt-MenuBar gwt-MenuBar-vertical"]//tr[9]/td[1]'));
         this.eleRecEmsPropNameSelected = function (propName) {
-            return element(by.xpath('//div[@class="GCOBQG-CFO"]//td[2]/div[text()="' + propName + '"]'))
+            return element(by.xpath('//div[@class="GCOBQG-CFO"]//td[3]/div[text()="' + propName + '"]'))
         };
         this.eleRecEmsPropNameInput = element(by.xpath('//div[@class="popupContent"]/div/div[3]/div[4]/input'));
         this.eleRecEmsPropValueInput = element(by.xpath('//div[@class="popupContent"]/div/div[4]/div/input'));
+        this.eleRecEmsPropBufValueInput = element(by.xpath('//div[@class="popupContent"]/div/div[4]/div[2]//input'));
+        this.eleRecEmsPropMsgValueInput = element(by.xpath('//div[@class="popupContent"]/div/div[4]/div[2]//input'));
         // this.eleRecEmsPropBufValueInput = element(by.xpath('//input[@style="width: 170px;"]'));
         // this.eleRecEmsPropSysValueInput = element(by.xpath('//input[@style="width: 100%; height: 100%;"]'));
-        this.eleRecEmsPropValuePicklistButton = element(by.css('.GCOBQG-CP- .pick-list-text-box-button'));
+        this.eleRecEmsPropValuePicklistButton = element(by.css('.GCOBQG-CF- .pick-list-text-box-button'));
         this.eleRecEmsPropValueFromBufFieldDailogTitle = element(by.css('.Caption'));
         this.eleRecEmsPropValueFromBufFieldSearchInput = element(by.css('.gwt-DialogBox .GCOBQG-CLM'));
         this.eleRecEmsPropValueFromBufFieldSearchIcon = element(by.css('.gwt-DialogBox .GCOBQG-CKM'));
@@ -661,13 +687,14 @@ var configurePage = (function () {
             return element(by.xpath('//div[@class="GCOBQG-CFO"]//tr[' + propNum + ']/td[4]/div'));
         };
         this.eleRecEmsSelectorInput = element(by.xpath('//div[text()="EMS Selector"]/../../..//textarea'));
+        this.eleRecEmsSelectorValidateMsg = element(by.xpath('//div[text()="EMS Selector"]/../../../..//div[@class="validate_msg_show"]'));
 
         this.eleRecRvDetailsExtension = element(by.xpath('//td[text()="RV Details"]'));
-        this.eleRecRvListentoSubjInput = element(by.xpath('//div[text()="Listen-to Subject"]/../../..//input'));
-        this.eleRecRvListentoSubjValidateMsg = element(by.xpath('//div[text()="Listen-to Subject"]/../../../..//div[@class="validate_msg_show"]'));
+        this.eleRecRvListentoSubjInput = element(by.xpath('//div[text()="Listen-to Subject "]/../../..//input'));
+        this.eleRecRvListentoSubjValidateMsg = element(by.xpath('//div[text()="Listen-to Subject "]/../../../..//div[@class="validate_msg_show"]'));
         this.eleRecRvReplytoSubjInput = element(by.xpath('//div[text()="Reply-to Subject"]/../../..//input'));
         this.eleRecRvReplytoAlwaysCheck = element(by.xpath('//label[text()="Reply-to Always"]/..//input'));
-        this.eleRecRvDynamicSubjLengthSpinner = element(by.xpath('//div[text()="//div[text()="Dynamic Subject Length"]/../../..//input'));
+        this.eleRecRvDynamicSubjLengthSpinner = element(by.xpath('//div[text()="Dynamic Subject Length"]/../../..//input'));
         this.eleRecRvDynamicSubjStartSpinner = element(by.xpath('//td[text()="RV Details"]/../../../../../../..//div[text()="Start"]/../../..//input'));
         this.eleRecRvUsageLimitSpinner = element(by.xpath('//td[text()="RV Details"]/../../../../../../..//div[text()="Usage Limit"]/../../..//input'));
         this.eleRecRvErrorMsgSubjInput = element(by.xpath('//div[text()="Error Message Subject"]/../../..//input'));
@@ -1550,6 +1577,8 @@ var configurePage = (function () {
         }).then(function () {
             if (type !== "BIN") {
                 that.eleBufFieldTypeDropdown.click().then(function () {
+                    browser.sleep(500);
+                }).then(function () {
                     globalCommons.waitForClickable(that.eleBufFieldTypeSelected(type));
                 }).then(function () {
                     that.eleBufFieldTypeSelected(type).click();
@@ -1892,7 +1921,6 @@ var configurePage = (function () {
 //
     configurePage.prototype.delBufYes = function (name) {
         var deferred = protractor.promise.defer(), that = this;
-
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForDisplayed(that.eleBufLeftmenu);
         }).then(function () {
@@ -2779,12 +2807,38 @@ var configurePage = (function () {
         });
         return deferred.promise;
     };
+    // Function to set 'Message' for Conversion Rule
+    //
+    configurePage.prototype._msgCvr = function (msg) {
+        var deferred = protractor.promise.defer(), that = this;
+        globalCommons.waitForClickable(that.eleCvrMsgPickButton).then(function () {
+            that.eleCvrMsgPickButton.click();
+        }).then(function () {
+            globalPage.entitySelect(msg);
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+    // Function to set 'Buffer' for Conversion Rule
+    //
+    configurePage.prototype._bufCvr = function (buf) {
+        var deferred = protractor.promise.defer(), that = this;
+        globalCommons.waitForClickable(that.eleCvrBufPickButton).then(function () {
+            that.eleCvrBufPickButton.click();
+        }).then(function () {
+            globalPage.entitySelect(buf);
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
 //
 // Function to add a Conversion Rule.
 //
     configurePage.prototype.addCvr = function (name, msg, buf, maxBufSize, inputMsgType, useSizeFrom, mapping, msgField, bufField, msgField2, bufField2, msgField3, bufField3, lineNum, req, system, trunc, lineNum2, req2, system2, trunc2, lineNum3, req3, system3, trunc3) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(9).join(protractor.Key.BACK_SPACE);
         maxBufSize = maxBufSize === undefined ? "0" : maxBufSize;
         inputMsgType = inputMsgType === undefined ? "Bytes" : inputMsgType;
         useSizeFrom = useSizeFrom === undefined ? "Message" : useSizeFrom;
@@ -2804,11 +2858,25 @@ var configurePage = (function () {
         }).then(function () {
             globalCommons.waitForDisplayed(that.eleCvrNameInput);
         }).then(function () {
+            that.eleCvrNameInput.click();
+        }).then(function () {
             that.eleCvrNameInput.clear().sendKeys(name);
+        // }).then(function () {
+        //     that.eleCvrMsgInput.click();
+        // }).then(function () {
+        //     that.eleCvrMsgInput.clear().sendKeys(msg);
+        // }).then(function () {
+        //     that.eleCvrBufInput.click();
+        // }).then(function () {
+        //     that.eleCvrBufInput.clear().sendKeys(buf);
         }).then(function () {
-            that.eleCvrMsgInput.clear().sendKeys(msg);
+            that._msgCvr(msg);
         }).then(function () {
-            that.eleCvrBufInput.clear().sendKeys(buf);
+            that._bufCvr(buf);
+        }).then(function () {
+            that.eleCvrMaxBufSizeSpinner.click();
+        }).then(function () {
+            that.eleCvrMaxBufSizeSpinner.click();
         }).then(function () {
             that.eleCvrMaxBufSizeSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -2978,7 +3046,7 @@ var configurePage = (function () {
 //
     configurePage.prototype.updateCvr = function (name, msg, buf, maxBufSize, inputMsgType, useSizeFrom) {
         var deferred = protractor.promise.defer(), that = this;
-        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(9).join(protractor.Key.BACK_SPACE);
         maxBufSize = maxBufSize || "0";
         inputMsgType = inputMsgType || "Bytes";
         useSizeFrom = useSizeFrom || "Message";
@@ -3021,6 +3089,8 @@ var configurePage = (function () {
                     deferred.fulfill();
                 });
             }
+        }).then(function () {
+            that.eleCvrMaxBufSizeSpinner.click();
         }).then(function () {
             that.eleCvrMaxBufSizeSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -3086,6 +3156,8 @@ var configurePage = (function () {
                     deferred.fulfill();
                 });
             }
+        }).then(function () {
+            that.eleCvrMaxBufSizeSpinner.click();
         }).then(function () {
             that.eleCvrMaxBufSizeSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -3153,6 +3225,8 @@ var configurePage = (function () {
                     deferred.fulfill();
                 });
             }
+        }).then(function () {
+            that.eleCvrMaxBufSizeSpinner.click();
         }).then(function () {
             that.eleCvrMaxBufSizeSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -3224,6 +3298,8 @@ var configurePage = (function () {
                     deferred.fulfill();
                 });
             }
+        }).then(function () {
+            that.eleCvrMaxBufSizeSpinner.click();
         }).then(function () {
             that.eleCvrMaxBufSizeSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -3795,11 +3871,12 @@ var configurePage = (function () {
 //
 // Function to add a Trigger Service with EMS Connection.
 //
-    configurePage.prototype.addTrgWithEms = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
+    configurePage.prototype.addTrgWithEms = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -3837,10 +3914,16 @@ var configurePage = (function () {
             that.eleTrgNameInput.clear().sendKeys(name);
         }).then(function () {
             that.eleTrgDescInput.clear().sendKeys(desc);
+        // }).then(function () {
+        //     that._connTrg(conn);
+        // }).then(function () {
+        //     that._outputConversionTrg(outputCvr);
         }).then(function () {
             that.eleTrgConnInput.clear().sendKeys(conn);
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
+        }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
@@ -3860,7 +3943,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -4058,11 +4143,12 @@ var configurePage = (function () {
 //
 // Function to update a Trigger with EMS Connection.
 //
-    configurePage.prototype.updateTrgWithEms = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
+    configurePage.prototype.updateTrgWithEms = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -4115,6 +4201,8 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
         }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
+        }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
@@ -4133,7 +4221,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -4218,11 +4308,12 @@ var configurePage = (function () {
 //
 // Function to cancel the changes of a Trigger with EMS Connection, then confirm the cancel operation.
 //
-    configurePage.prototype.cancelTrgWithEmsYes = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
+    configurePage.prototype.cancelTrgWithEmsYes = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -4275,6 +4366,8 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
         }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
+        }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
@@ -4293,7 +4386,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -4380,11 +4475,12 @@ var configurePage = (function () {
 //
 // Function to cancel the changes of a Trigger with EMS Connection, then discard the cancel operation.
 //
-    configurePage.prototype.cancelTrgWithEmsNo = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
+    configurePage.prototype.cancelTrgWithEmsNo = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -4437,6 +4533,8 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
         }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
+        }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
@@ -4455,7 +4553,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -4546,11 +4646,12 @@ var configurePage = (function () {
 //
 // Function to make changes to a Trigger with EMS Connection, then reset the Trigger.
 //
-    configurePage.prototype.resetTrgWithEms = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
+    configurePage.prototype.resetTrgWithEms = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishDest, publishDestType, dynamicDestLength, dynamicDestStart, publishDest2, replyDest, replyDestType, errorDest, errorDestType, smsl, delivery, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -4603,6 +4704,8 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
         }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
+        }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
@@ -4621,7 +4724,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -4706,11 +4811,12 @@ var configurePage = (function () {
 //
 // Function to add a Trigger Service with RV Connection.
 //
-    configurePage.prototype.addTrgWithRv = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
+    configurePage.prototype.addTrgWithRv = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -4744,6 +4850,8 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
         }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
+        }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
@@ -4762,7 +4870,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -4815,11 +4925,12 @@ var configurePage = (function () {
 //
 // Function to update a Trigger with RV Connection.
 //
-    configurePage.prototype.updateTrgWithRv = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
+    configurePage.prototype.updateTrgWithRv = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -4863,6 +4974,8 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
         }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
+        }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
@@ -4881,7 +4994,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -4934,11 +5049,12 @@ var configurePage = (function () {
 //
 // Function to cancel the changes of a Trigger with RV Connection, then confirm the cancel operation.
 //
-    configurePage.prototype.cancelTrgWithRvYes = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
+    configurePage.prototype.cancelTrgWithRvYes = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -4982,6 +5098,8 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
         }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
+        }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
@@ -5000,7 +5118,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -5055,11 +5175,12 @@ var configurePage = (function () {
 //
 // Function to cancel the changes of a Trigger with RV Connection, then discard the cancel operation.
 //
-    configurePage.prototype.cancelTrgWithRvNo = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
+    configurePage.prototype.cancelTrgWithRvNo = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -5103,6 +5224,8 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
         }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
+        }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
@@ -5121,7 +5244,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -5180,11 +5305,12 @@ var configurePage = (function () {
 //
 // Function to make changes to a Trigger with RV Connection, then reset the Trigger.
 //
-    configurePage.prototype.resetTrgWithRv = function (name, desc, conn, outputCvr, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
+    configurePage.prototype.resetTrgWithRv = function (name, desc, conn, outputCvr, fldName, disableOnErrorNum, disableOnErrorPercent, trclvl, outputMethod, serviceKeyLocatorStart, serviceKeyLocatorLength, ServiceKeyLocatorValue, requeueOnError, publishSubj, dynamicSubjLength, dynamicSubjStart, publishSubj2, replySubj, errorSubj) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         desc = desc === undefined ? "" : desc;
         outputCvr = outputCvr === undefined ? "" : outputCvr;
+        fldName = fldName === undefined ? "DATA" : fldName;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -5228,6 +5354,8 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgOutputConversionInput.clear().sendKeys(outputCvr);
         }).then(function () {
+            that.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys(fldName);
+        }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
         }).then(function () {
             that.eleTrgDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
@@ -5246,7 +5374,9 @@ var configurePage = (function () {
         }).then(function () {
             that.eleTrgServiceKeyLocatorStartSpinner.clear().sendKeys(serviceKeyLocatorStart);
         }).then(function () {
-            that.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys(serviceKeyLocatorLength);
+            that.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys(serviceKeyLocatorLength);
         }).then(function () {
             that.eleTrgServiceKeyLocatorValueInput.clear().sendKeys(ServiceKeyLocatorValue);
         }).then(function () {
@@ -5303,7 +5433,7 @@ var configurePage = (function () {
     configurePage.prototype._intfRec = function (intf, intfFromPickList) {
         var deferred = protractor.promise.defer(), that = this;
         globalCommons.waitForElementPresent(that.eleRecIntfInput).then(function () {
-            if (intf !== "" && intfFromPickList == true) {
+            if (intfFromPickList == true && intf !== "") {
                 globalCommons.waitForClickable(that.eleRecIntfPickButton).then(function () {
                     that.eleRecIntfPickButton.click();
                 }).then(function () {
@@ -5324,7 +5454,7 @@ var configurePage = (function () {
     configurePage.prototype._intf2Rec = function (intf2, intf2FromPickList) {
         var deferred = protractor.promise.defer(), that = this;
         globalCommons.waitForElementPresent(that.eleRecIntf2Input).then(function () {
-            if (intf2 !== "" && intf2FromPickList == true) {
+            if (intf2FromPickList == true && intf2 !== "") {
                 globalCommons.waitForClickable(that.eleRecIntf2PickButton).then(function () {
                     that.eleRecIntf2PickButton.click();
                 }).then(function () {
@@ -5340,12 +5470,54 @@ var configurePage = (function () {
         });
         return deferred.promise;
     };
+    // Function to set 'Interface Name3' for Recipe
+    //
+    configurePage.prototype._intf3Rec = function (intf3, intf3FromPickList) {
+        var deferred = protractor.promise.defer(), that = this;
+        globalCommons.waitForElementPresent(that.eleRecIntf3Input).then(function () {
+            if (intf3FromPickList == true && intf3 !== "") {
+                globalCommons.waitForClickable(that.eleRecIntf3PickButton).then(function () {
+                    that.eleRecIntf3PickButton.click();
+                }).then(function () {
+                    globalPage.entitySelect(intf3);
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                that.eleRecIntf3Input.clear().sendKeys(intf3).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        });
+        return deferred.promise;
+    };
+    // Function to set 'Interface Name4' for Recipe
+    //
+    configurePage.prototype._intf4Rec = function (intf4, intf4FromPickList) {
+        var deferred = protractor.promise.defer(), that = this;
+        globalCommons.waitForElementPresent(that.eleRecIntf4Input).then(function () {
+            if (intf4FromPickList == true && intf4 !== "") {
+                globalCommons.waitForClickable(that.eleRecIntf4PickButton).then(function () {
+                    that.eleRecIntf4PickButton.click();
+                }).then(function () {
+                    globalPage.entitySelect(intf4);
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                that.eleRecIntf4Input.clear().sendKeys(intf4).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        });
+        return deferred.promise;
+    };
     // Function to set 'Connection' for Recipe
     //
     configurePage.prototype._connRec = function (conn, connFromPickList) {
         var deferred = protractor.promise.defer(), that = this;
         globalCommons.waitForElementPresent(that.eleRecConnInput).then(function () {
-            if (conn !== "" && connFromPickList == true) {
+            if (connFromPickList == true && conn !== "") {
                 globalCommons.waitForClickable(that.eleRecConnPickButton).then(function () {
                     that.eleRecConnPickButton.click();
                 }).then(function () {
@@ -5366,7 +5538,7 @@ var configurePage = (function () {
     configurePage.prototype._inputConversionRec = function (inputCvr, inputCvrFromPickList) {
         var deferred = protractor.promise.defer(), that = this;
         globalCommons.waitForElementPresent(that.eleRecInputConversionInput).then(function () {
-            if (inputCvr !== "" && inputCvrFromPickList == true) {
+            if (inputCvrFromPickList == true && inputCvr !== "") {
                 globalCommons.waitForClickable(that.eleRecInputConversionPickButton).then(function () {
                     that.eleRecInputConversionPickButton.click();
                 }).then(function () {
@@ -5387,7 +5559,7 @@ var configurePage = (function () {
     configurePage.prototype._outputConversionRec = function (outputCvr, outputCvrFromPickList) {
         var deferred = protractor.promise.defer(), that = this;
         globalCommons.waitForElementPresent(that.eleRecOutputConversionInput).then(function () {
-            if (outputCvr !== "" && outputCvrFromPickList == true) {
+            if (outputCvrFromPickList == true && outputCvr !== "") {
                 globalCommons.waitForClickable(that.eleRecOutputConversionPickButton).then(function () {
                     that.eleRecOutputConversionPickButton.click();
                 }).then(function () {
@@ -5763,6 +5935,36 @@ var configurePage = (function () {
         });
         return deferred.promise;
     };
+    // Function to set 'Shared Subscriber' of a Recipe EMS connection
+    // false: not selected
+    // true: selected
+    //
+    configurePage.prototype._sharedSubcriberEmsRec = function (sharedSubscriber) {
+        var deferred = protractor.promise.defer(), that = this;
+
+        globalCommons.waitForElementPresent(that.eleRecEmsSharedSubscriberCheck).then(function () {
+            return that.eleRecEmsSharedSubscriberCheck.getAttribute("checked");
+        }).then(function (message) {
+            if (message === null) {
+                if (sharedSubscriber) {
+                    that.eleRecEmsSharedSubscriberCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                } else {
+                    deferred.fulfill();
+                }
+            } else {
+                if (sharedSubscriber) {
+                    deferred.fulfill();
+                } else {
+                    that.eleRecEmsSharedSubscriberCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                }
+            }
+        });
+        return deferred.promise;
+    };
     // Function to set 'Priority' of a Recipe EMS output message
     // false: not selected
     // true: selected
@@ -6036,7 +6238,7 @@ var configurePage = (function () {
                         });
                     }
                 }).then(function () {
-                    globalCommons.waitForElementPresent(that.eleRecEmsPropNameDropdown);
+                    globalCommons.waitForElementPresent(that.eleRecEmsPropNameDropdown)
                 }).then(function () {
                     return that.eleRecEmsPropNameDropdown.getText();
                 }).then(function (message) {
@@ -6318,7 +6520,7 @@ var configurePage = (function () {
     //
     // Function to add a Recipe with CICS Interface & EMS Connection
     //
-    configurePage.prototype.addRecWithCicsEms = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, durableClientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+    configurePage.prototype.addRecWithCicsEms = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
@@ -6328,6 +6530,8 @@ var configurePage = (function () {
         outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
         desc = desc === undefined ? "" : desc;
         intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -6355,7 +6559,7 @@ var configurePage = (function () {
         errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
         smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
         delivery = delivery === undefined ? "Persistent" : delivery;
-        durableClientId = durableClientId === undefined ? "" : durableClientId;
+        clientId = clientId === undefined ? "" : clientId;
         priorityValue = priorityValue === undefined ? "4" : priorityValue;
         expirationValue = expirationValue === undefined ? "0" : expirationValue;
         expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
@@ -6381,6 +6585,2035 @@ var configurePage = (function () {
             that._intfRec(intf, intfFromPickList);
         }).then(function () {
             that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            return that.eleRecEmsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsDetailsExtension);
+        }).then(function () {
+            return that.eleRecEmsListentoDestInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecEmsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsListentoDestInput);
+        }).then(function () {
+            that.eleRecEmsListentoDestInput.clear().sendKeys(lsntoDest);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecCicsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecCicsDetailsExtension);
+        }).then(function () {
+            return that.eleRecCicsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecCicsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationCicsRec(methodInvocation);
+        }).then(function () {
+            that.eleRecCicsMirrorTranIdInput.clear().sendKeys(mirrorTranId);
+        }).then(function () {
+            that._csmiUserTranCicsRec(csmiUserTran);
+        }).then(function () {
+            that.eleRecCicsRRETranIdInput.clear().sendKeys(rreTranId);
+        }).then(function () {
+            that.eleRecCicsRRESysNameInput.clear().sendKeys(rreSysName);
+        }).then(function () {
+            that.eleRecCicsCtnChannelNameInput.clear().sendKeys(channelName);
+        }).then(function () {
+            that.eleRecCicsCtnContainerNameInput.clear().sendKeys(ctnName);
+        }).then(function () {
+            that._ctnInvocationCicsRec(ctnInvocation);
+        }).then(function () {
+            that._ctnCreationCicsRec(ctnCreation);
+        }).then(function () {
+            that._forwardDestAsCtnCicsRec(forwardDestAsCtn);
+        }).then(function () {
+            if (resource2 !== undefined) {
+                globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                    that.eleRecCicsMultiExecResourceAddButton.click();
+                }).then(function () {
+                    globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource2Input);
+                }).then(function () {
+                    that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2);
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource3 !== undefined) {
+                globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                    that.eleRecCicsMultiExecResourceAddButton.click();
+                }).then(function () {
+                    globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource3Input);
+                }).then(function () {
+                    that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3);
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource4 !== undefined) {
+                globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                    that.eleRecCicsMultiExecResourceAddButton.click();
+                }).then(function () {
+                    globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource4Input);
+                }).then(function () {
+                    that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4);
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource5 !== undefined) {
+                globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                    that.eleRecCicsMultiExecResourceAddButton.click();
+                }).then(function () {
+                    globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource5Input);
+                }).then(function () {
+                    that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5);
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._listentoDestTypeEmsRec(lsntoDestType);
+        }).then(function () {
+            that.eleRecEmsResponseDestInput.clear().sendKeys(responseDest);
+        }).then(function () {
+            that._responseDestTypeEmsRec(responseDestType);
+        }).then(function () {
+            that._respondAlwaysEmsRec(respondAlways);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.clear().sendKeys(dynDestLength);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.clear().sendKeys(dynDestStart);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecEmsErrorMsgDestInput.clear().sendKeys(errorDest);
+        }).then(function () {
+            that._errorMsgDestTypeEmsRec(errorDestType);
+        }).then(function () {
+            that._smslModeEmsRec(smsl);
+        }).then(function () {
+            that._deliveryModeEmsRec(delivery);
+        }).then(function () {
+            that._durableSubcriberEmsRec(durableSubscriber);
+        }).then(function () {
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
+        }).then(function () {
+            that._priorityOutputMsgEmsRec(priority);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.clear().sendKeys(priorityValue);
+        }).then(function () {
+            that._expirationOutputMsgEmsRec(expiration);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.clear().sendKeys(expirationValue);
+        }).then(function () {
+            that._unitOutputMsgExpirationEmsRec(expirationUnit);
+        }).then(function () {
+            that._compressionOutputMsgEmsRec(compression);
+        }).then(function () {
+            that._preserveOutputMsgEmsRec(preserve);
+        }).then(function () {
+            that._bodyTraceOutputMsgEmsRec(bodyTrace);
+        }).then(function () {
+            that._msgTypeOutputMsgEmsRec(msgType);
+        }).then(function () {
+            that._copyCorrelationOutputMsgEmsRec(copyCorrelation);
+        }).then(function () {
+            that.eleRecEmsSelectorInput.clear().sendKeys(selector);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSaveButton);
+        }).then(function () {
+            that.eleSaveButton.click();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to update a Recipe with CICS Interface & EMS Connection
+    //
+    configurePage.prototype.updateRecWithCicsEms = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "DPL" : methodInvocation;
+        mirrorTranId = mirrorTranId === undefined ? "" : mirrorTranId;
+        rreTranId = rreTranId === undefined ? "" : rreTranId;
+        rreSysName = rreSysName === undefined ? "" : rreSysName;
+        channelName = channelName === undefined ? "" : channelName;
+        ctnName = ctnName === undefined ? "" : ctnName;
+        ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
+        ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
+        lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
+        lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
+        responseDest = responseDest === undefined ? "" : responseDest;
+        responseDestType = responseDestType === undefined ? "QUEUE" : responseDestType;
+        respondAlways = respondAlways === undefined ? "true" : respondAlways;
+        dynDestLength = dynDestLength === undefined ? "0" : dynDestLength;
+        dynDestStart = dynDestStart === undefined ? "0" : dynDestStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorDest = errorDest === undefined ? "" : errorDest;
+        errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
+        smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
+        delivery = delivery === undefined ? "Persistent" : delivery;
+        clientId = clientId === undefined ? "" : clientId;
+        priorityValue = priorityValue === undefined ? "4" : priorityValue;
+        expirationValue = expirationValue === undefined ? "0" : expirationValue;
+        expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
+        msgType = msgType === undefined ? "Bytes" : msgType;
+        copyCorrelation = copyCorrelation === undefined ? "No" : copyCorrelation;
+        selector = selector === undefined ? "" : selector;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleSearchInput);
+        }).then(function () {
+            that.eleSearchInput.clear().sendKeys(name);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSearchIcon);
+        }).then(function () {
+            that.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleEntityNameSearched);
+        }).then(function () {
+            that.eleEntityNameSearched.click();
+        }).then(function () {
+            that.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecCicsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecCicsDetailsExtension);
+        }).then(function () {
+            return that.eleRecCicsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecCicsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationCicsRec(methodInvocation);
+        }).then(function () {
+            that.eleRecCicsMirrorTranIdInput.clear().sendKeys(mirrorTranId);
+        }).then(function () {
+            that._csmiUserTranCicsRec(csmiUserTran);
+        }).then(function () {
+            that.eleRecCicsRRETranIdInput.clear().sendKeys(rreTranId);
+        }).then(function () {
+            that.eleRecCicsRRESysNameInput.clear().sendKeys(rreSysName);
+        }).then(function () {
+            that.eleRecCicsCtnChannelNameInput.clear().sendKeys(channelName);
+        }).then(function () {
+            that.eleRecCicsCtnContainerNameInput.clear().sendKeys(ctnName);
+        }).then(function () {
+            that._ctnInvocationCicsRec(ctnInvocation);
+        }).then(function () {
+            that._ctnCreationCicsRec(ctnCreation);
+        }).then(function () {
+            that._forwardDestAsCtnCicsRec(forwardDestAsCtn);
+        }).then(function () {
+            if (resource2 !== undefined) {
+                return that.eleRecCicsMultiExecResource2Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource2Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource2Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource2RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource2RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource3 !== undefined) {
+                return that.eleRecCicsMultiExecResource3Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource3Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource4 !== undefined) {
+                return that.eleRecCicsMultiExecResource4Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource4Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource5 !== undefined) {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource5Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            return that.eleRecEmsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsDetailsExtension);
+        }).then(function () {
+            return that.eleRecEmsListentoDestInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecEmsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsListentoDestInput);
+        }).then(function () {
+            that.eleRecEmsListentoDestInput.clear().sendKeys(lsntoDest);
+        }).then(function () {
+            that._listentoDestTypeEmsRec(lsntoDestType);
+        }).then(function () {
+            that.eleRecEmsResponseDestInput.clear().sendKeys(responseDest);
+        }).then(function () {
+            that._responseDestTypeEmsRec(responseDestType);
+        }).then(function () {
+            that._respondAlwaysEmsRec(respondAlways);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.clear().sendKeys(dynDestLength);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.clear().sendKeys(dynDestStart);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecEmsErrorMsgDestInput.clear().sendKeys(errorDest);
+        }).then(function () {
+            that._errorMsgDestTypeEmsRec(errorDestType);
+        }).then(function () {
+            that._smslModeEmsRec(smsl);
+        }).then(function () {
+            that._deliveryModeEmsRec(delivery);
+        }).then(function () {
+            that._durableSubcriberEmsRec(durableSubscriber);
+        }).then(function () {
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
+        }).then(function () {
+            that._priorityOutputMsgEmsRec(priority);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.clear().sendKeys(priorityValue);
+        }).then(function () {
+            that._expirationOutputMsgEmsRec(expiration);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.clear().sendKeys(expirationValue);
+        }).then(function () {
+            that._unitOutputMsgExpirationEmsRec(expirationUnit);
+        }).then(function () {
+            that._compressionOutputMsgEmsRec(compression);
+        }).then(function () {
+            that._preserveOutputMsgEmsRec(preserve);
+        }).then(function () {
+            that._bodyTraceOutputMsgEmsRec(bodyTrace);
+        }).then(function () {
+            that._msgTypeOutputMsgEmsRec(msgType);
+        }).then(function () {
+            that._copyCorrelationOutputMsgEmsRec(copyCorrelation);
+        }).then(function () {
+            that.eleRecEmsSelectorInput.clear().sendKeys(selector);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSaveButton);
+        }).then(function () {
+            that.eleSaveButton.click();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to cancel the changes of a Recipe with CICS Interface & EMS Connection, then confirm the cancel operation.
+    //
+    configurePage.prototype.cancelRecWithCicsEmsYes = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "DPL" : methodInvocation;
+        mirrorTranId = mirrorTranId === undefined ? "" : mirrorTranId;
+        rreTranId = rreTranId === undefined ? "" : rreTranId;
+        rreSysName = rreSysName === undefined ? "" : rreSysName;
+        channelName = channelName === undefined ? "" : channelName;
+        ctnName = ctnName === undefined ? "" : ctnName;
+        ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
+        ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
+        lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
+        lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
+        responseDest = responseDest === undefined ? "" : responseDest;
+        responseDestType = responseDestType === undefined ? "QUEUE" : responseDestType;
+        respondAlways = respondAlways === undefined ? "true" : respondAlways;
+        dynDestLength = dynDestLength === undefined ? "0" : dynDestLength;
+        dynDestStart = dynDestStart === undefined ? "0" : dynDestStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorDest = errorDest === undefined ? "" : errorDest;
+        errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
+        smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
+        delivery = delivery === undefined ? "Persistent" : delivery;
+        clientId = clientId === undefined ? "" : clientId;
+        priorityValue = priorityValue === undefined ? "4" : priorityValue;
+        expirationValue = expirationValue === undefined ? "0" : expirationValue;
+        expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
+        msgType = msgType === undefined ? "Bytes" : msgType;
+        copyCorrelation = copyCorrelation === undefined ? "No" : copyCorrelation;
+        selector = selector === undefined ? "" : selector;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleSearchInput);
+        }).then(function () {
+            that.eleSearchInput.clear().sendKeys(name);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSearchIcon);
+        }).then(function () {
+            that.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleEntityNameSearched);
+        }).then(function () {
+            that.eleEntityNameSearched.click();
+        }).then(function () {
+            that.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecCicsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecCicsDetailsExtension);
+        }).then(function () {
+            return that.eleRecCicsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecCicsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationCicsRec(methodInvocation);
+        }).then(function () {
+            that.eleRecCicsMirrorTranIdInput.clear().sendKeys(mirrorTranId);
+        }).then(function () {
+            that._csmiUserTranCicsRec(csmiUserTran);
+        }).then(function () {
+            that.eleRecCicsRRETranIdInput.clear().sendKeys(rreTranId);
+        }).then(function () {
+            that.eleRecCicsRRESysNameInput.clear().sendKeys(rreSysName);
+        }).then(function () {
+            that.eleRecCicsCtnChannelNameInput.clear().sendKeys(channelName);
+        }).then(function () {
+            that.eleRecCicsCtnContainerNameInput.clear().sendKeys(ctnName);
+        }).then(function () {
+            that._ctnInvocationCicsRec(ctnInvocation);
+        }).then(function () {
+            that._ctnCreationCicsRec(ctnCreation);
+        }).then(function () {
+            that._forwardDestAsCtnCicsRec(forwardDestAsCtn);
+        }).then(function () {
+            if (resource2 !== undefined) {
+                return that.eleRecCicsMultiExecResource2Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource2Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource2Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource2RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource2RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource3 !== undefined) {
+                return that.eleRecCicsMultiExecResource3Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource3Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource4 !== undefined) {
+                return that.eleRecCicsMultiExecResource4Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource4Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource5 !== undefined) {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource5Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            return that.eleRecEmsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsDetailsExtension);
+        }).then(function () {
+            return that.eleRecEmsListentoDestInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecEmsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsListentoDestInput);
+        }).then(function () {
+            that.eleRecEmsListentoDestInput.clear().sendKeys(lsntoDest);
+        }).then(function () {
+            that._listentoDestTypeEmsRec(lsntoDestType);
+        }).then(function () {
+            that.eleRecEmsResponseDestInput.clear().sendKeys(responseDest);
+        }).then(function () {
+            that._responseDestTypeEmsRec(responseDestType);
+        }).then(function () {
+            that._respondAlwaysEmsRec(respondAlways);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.clear().sendKeys(dynDestLength);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.clear().sendKeys(dynDestStart);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecEmsErrorMsgDestInput.clear().sendKeys(errorDest);
+        }).then(function () {
+            that._errorMsgDestTypeEmsRec(errorDestType);
+        }).then(function () {
+            that._smslModeEmsRec(smsl);
+        }).then(function () {
+            that._deliveryModeEmsRec(delivery);
+        }).then(function () {
+            that._durableSubcriberEmsRec(durableSubscriber);
+        }).then(function () {
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
+        }).then(function () {
+            that._priorityOutputMsgEmsRec(priority);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.clear().sendKeys(priorityValue);
+        }).then(function () {
+            that._expirationOutputMsgEmsRec(expiration);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.clear().sendKeys(expirationValue);
+        }).then(function () {
+            that._unitOutputMsgExpirationEmsRec(expirationUnit);
+        }).then(function () {
+            that._compressionOutputMsgEmsRec(compression);
+        }).then(function () {
+            that._preserveOutputMsgEmsRec(preserve);
+        }).then(function () {
+            that._bodyTraceOutputMsgEmsRec(bodyTrace);
+        }).then(function () {
+            that._msgTypeOutputMsgEmsRec(msgType);
+        }).then(function () {
+            that._copyCorrelationOutputMsgEmsRec(copyCorrelation);
+        }).then(function () {
+            that.eleRecEmsSelectorInput.clear().sendKeys(selector);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleCancelButton);
+        }).then(function () {
+            that.eleCancelButton.click();
+        }).then(function () {
+            globalPage.isWarningYes();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to cancel the changes of a Recipe with CICS Interface & EMS Connection, then discard the cancel operation.
+    //
+    configurePage.prototype.cancelRecWithCicsEmsNo = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "DPL" : methodInvocation;
+        mirrorTranId = mirrorTranId === undefined ? "" : mirrorTranId;
+        rreTranId = rreTranId === undefined ? "" : rreTranId;
+        rreSysName = rreSysName === undefined ? "" : rreSysName;
+        channelName = channelName === undefined ? "" : channelName;
+        ctnName = ctnName === undefined ? "" : ctnName;
+        ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
+        ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
+        lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
+        lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
+        responseDest = responseDest === undefined ? "" : responseDest;
+        responseDestType = responseDestType === undefined ? "QUEUE" : responseDestType;
+        respondAlways = respondAlways === undefined ? "true" : respondAlways;
+        dynDestLength = dynDestLength === undefined ? "0" : dynDestLength;
+        dynDestStart = dynDestStart === undefined ? "0" : dynDestStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorDest = errorDest === undefined ? "" : errorDest;
+        errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
+        smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
+        delivery = delivery === undefined ? "Persistent" : delivery;
+        clientId = clientId === undefined ? "" : clientId;
+        priorityValue = priorityValue === undefined ? "4" : priorityValue;
+        expirationValue = expirationValue === undefined ? "0" : expirationValue;
+        expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
+        msgType = msgType === undefined ? "Bytes" : msgType;
+        copyCorrelation = copyCorrelation === undefined ? "No" : copyCorrelation;
+        selector = selector === undefined ? "" : selector;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleSearchInput);
+        }).then(function () {
+            that.eleSearchInput.clear().sendKeys(name);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSearchIcon);
+        }).then(function () {
+            that.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleEntityNameSearched);
+        }).then(function () {
+            that.eleEntityNameSearched.click();
+        }).then(function () {
+            that.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecCicsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecCicsDetailsExtension);
+        }).then(function () {
+            return that.eleRecCicsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecCicsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationCicsRec(methodInvocation);
+        }).then(function () {
+            that.eleRecCicsMirrorTranIdInput.clear().sendKeys(mirrorTranId);
+        }).then(function () {
+            that._csmiUserTranCicsRec(csmiUserTran);
+        }).then(function () {
+            that.eleRecCicsRRETranIdInput.clear().sendKeys(rreTranId);
+        }).then(function () {
+            that.eleRecCicsRRESysNameInput.clear().sendKeys(rreSysName);
+        }).then(function () {
+            that.eleRecCicsCtnChannelNameInput.clear().sendKeys(channelName);
+        }).then(function () {
+            that.eleRecCicsCtnContainerNameInput.clear().sendKeys(ctnName);
+        }).then(function () {
+            that._ctnInvocationCicsRec(ctnInvocation);
+        }).then(function () {
+            that._ctnCreationCicsRec(ctnCreation);
+        }).then(function () {
+            that._forwardDestAsCtnCicsRec(forwardDestAsCtn);
+        }).then(function () {
+            if (resource2 !== undefined) {
+                return that.eleRecCicsMultiExecResource2Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource2Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource2Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource2RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource2RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource3 !== undefined) {
+                return that.eleRecCicsMultiExecResource3Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource3Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource4 !== undefined) {
+                return that.eleRecCicsMultiExecResource4Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource4Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource5 !== undefined) {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource5Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            return that.eleRecEmsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsDetailsExtension);
+        }).then(function () {
+            return that.eleRecEmsListentoDestInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecEmsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsListentoDestInput);
+        }).then(function () {
+            that.eleRecEmsListentoDestInput.clear().sendKeys(lsntoDest);
+        }).then(function () {
+            that._listentoDestTypeEmsRec(lsntoDestType);
+        }).then(function () {
+            that.eleRecEmsResponseDestInput.clear().sendKeys(responseDest);
+        }).then(function () {
+            that._responseDestTypeEmsRec(responseDestType);
+        }).then(function () {
+            that._respondAlwaysEmsRec(respondAlways);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.clear().sendKeys(dynDestLength);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.clear().sendKeys(dynDestStart);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecEmsErrorMsgDestInput.clear().sendKeys(errorDest);
+        }).then(function () {
+            that._errorMsgDestTypeEmsRec(errorDestType);
+        }).then(function () {
+            that._smslModeEmsRec(smsl);
+        }).then(function () {
+            that._deliveryModeEmsRec(delivery);
+        }).then(function () {
+            that._durableSubcriberEmsRec(durableSubscriber);
+        }).then(function () {
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
+        }).then(function () {
+            that._priorityOutputMsgEmsRec(priority);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.clear().sendKeys(priorityValue);
+        }).then(function () {
+            that._expirationOutputMsgEmsRec(expiration);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.clear().sendKeys(expirationValue);
+        }).then(function () {
+            that._unitOutputMsgExpirationEmsRec(expirationUnit);
+        }).then(function () {
+            that._compressionOutputMsgEmsRec(compression);
+        }).then(function () {
+            that._preserveOutputMsgEmsRec(preserve);
+        }).then(function () {
+            that._bodyTraceOutputMsgEmsRec(bodyTrace);
+        }).then(function () {
+            that._msgTypeOutputMsgEmsRec(msgType);
+        }).then(function () {
+            that._copyCorrelationOutputMsgEmsRec(copyCorrelation);
+        }).then(function () {
+            that.eleRecEmsSelectorInput.clear().sendKeys(selector);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleCancelButton);
+        }).then(function () {
+            that.eleCancelButton.click();
+        }).then(function () {
+            globalPage.isWarningNo();
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSaveButton);
+        }).then(function () {
+            that.eleSaveButton.click();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to make changes to a Recipe with CICS Interface & EMS Connection, then reset the Recipe.
+    //
+    configurePage.prototype.resetRecWithCicsEms = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "DPL" : methodInvocation;
+        mirrorTranId = mirrorTranId === undefined ? "" : mirrorTranId;
+        rreTranId = rreTranId === undefined ? "" : rreTranId;
+        rreSysName = rreSysName === undefined ? "" : rreSysName;
+        channelName = channelName === undefined ? "" : channelName;
+        ctnName = ctnName === undefined ? "" : ctnName;
+        ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
+        ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
+        lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
+        lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
+        responseDest = responseDest === undefined ? "" : responseDest;
+        responseDestType = responseDestType === undefined ? "QUEUE" : responseDestType;
+        respondAlways = respondAlways === undefined ? "true" : respondAlways;
+        dynDestLength = dynDestLength === undefined ? "0" : dynDestLength;
+        dynDestStart = dynDestStart === undefined ? "0" : dynDestStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorDest = errorDest === undefined ? "" : errorDest;
+        errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
+        smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
+        delivery = delivery === undefined ? "Persistent" : delivery;
+        clientId = clientId === undefined ? "" : clientId;
+        priorityValue = priorityValue === undefined ? "4" : priorityValue;
+        expirationValue = expirationValue === undefined ? "0" : expirationValue;
+        expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
+        msgType = msgType === undefined ? "Bytes" : msgType;
+        copyCorrelation = copyCorrelation === undefined ? "No" : copyCorrelation;
+        selector = selector === undefined ? "" : selector;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleSearchInput);
+        }).then(function () {
+            that.eleSearchInput.clear().sendKeys(name);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSearchIcon);
+        }).then(function () {
+            that.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleEntityNameSearched);
+        }).then(function () {
+            that.eleEntityNameSearched.click();
+        }).then(function () {
+            that.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecCicsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecCicsDetailsExtension);
+        }).then(function () {
+            return that.eleRecCicsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecCicsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationCicsRec(methodInvocation);
+        }).then(function () {
+            that.eleRecCicsMirrorTranIdInput.clear().sendKeys(mirrorTranId);
+        }).then(function () {
+            that._csmiUserTranCicsRec(csmiUserTran);
+        }).then(function () {
+            that.eleRecCicsRRETranIdInput.clear().sendKeys(rreTranId);
+        }).then(function () {
+            that.eleRecCicsRRESysNameInput.clear().sendKeys(rreSysName);
+        }).then(function () {
+            that.eleRecCicsCtnChannelNameInput.clear().sendKeys(channelName);
+        }).then(function () {
+            that.eleRecCicsCtnContainerNameInput.clear().sendKeys(ctnName);
+        }).then(function () {
+            that._ctnInvocationCicsRec(ctnInvocation);
+        }).then(function () {
+            that._ctnCreationCicsRec(ctnCreation);
+        }).then(function () {
+            that._forwardDestAsCtnCicsRec(forwardDestAsCtn);
+        }).then(function () {
+            if (resource2 !== undefined) {
+                return that.eleRecCicsMultiExecResource2Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource2Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource2Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource2RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource2RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource3 !== undefined) {
+                return that.eleRecCicsMultiExecResource3Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource3Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource4 !== undefined) {
+                return that.eleRecCicsMultiExecResource4Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource4Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource5 !== undefined) {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource5Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            return that.eleRecEmsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsDetailsExtension);
+        }).then(function () {
+            return that.eleRecEmsListentoDestInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecEmsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsListentoDestInput);
+        }).then(function () {
+            that.eleRecEmsListentoDestInput.clear().sendKeys(lsntoDest);
+        }).then(function () {
+            that._listentoDestTypeEmsRec(lsntoDestType);
+        }).then(function () {
+            that.eleRecEmsResponseDestInput.clear().sendKeys(responseDest);
+        }).then(function () {
+            that._responseDestTypeEmsRec(responseDestType);
+        }).then(function () {
+            that._respondAlwaysEmsRec(respondAlways);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.clear().sendKeys(dynDestLength);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.clear().sendKeys(dynDestStart);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecEmsErrorMsgDestInput.clear().sendKeys(errorDest);
+        }).then(function () {
+            that._errorMsgDestTypeEmsRec(errorDestType);
+        }).then(function () {
+            that._smslModeEmsRec(smsl);
+        }).then(function () {
+            that._deliveryModeEmsRec(delivery);
+        }).then(function () {
+            that._durableSubcriberEmsRec(durableSubscriber);
+        }).then(function () {
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
+        }).then(function () {
+            that._priorityOutputMsgEmsRec(priority);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.clear().sendKeys(priorityValue);
+        }).then(function () {
+            that._expirationOutputMsgEmsRec(expiration);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.clear().sendKeys(expirationValue);
+        }).then(function () {
+            that._unitOutputMsgExpirationEmsRec(expirationUnit);
+        }).then(function () {
+            that._compressionOutputMsgEmsRec(compression);
+        }).then(function () {
+            that._preserveOutputMsgEmsRec(preserve);
+        }).then(function () {
+            that._bodyTraceOutputMsgEmsRec(bodyTrace);
+        }).then(function () {
+            that._msgTypeOutputMsgEmsRec(msgType);
+        }).then(function () {
+            that._copyCorrelationOutputMsgEmsRec(copyCorrelation);
+        }).then(function () {
+            that.eleRecEmsSelectorInput.clear().sendKeys(selector);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleResetButton);
+        }).then(function () {
+            that.eleResetButton.click();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+
+
+    // Function to set 'Reply-to Always' of a Recipe RV connection
+    // false: not selected
+    // true: selected
+    //
+    configurePage.prototype._replytoAlwaysRvRec = function (replytoAlways) {
+        var deferred = protractor.promise.defer(), that = this;
+
+        globalCommons.waitForClickable(that.eleRecRvReplytoAlwaysCheck).then(function () {
+            return that.eleRecRvReplytoAlwaysCheck.getAttribute("checked");
+        }).then(function (message) {
+            if (message === null) {
+                if (replytoAlways) {
+                    that.eleRecRvReplytoAlwaysCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                } else {
+                    deferred.fulfill();
+                }
+            } else {
+                if (replytoAlways) {
+                    deferred.fulfill();
+                } else {
+                    that.eleRecRvReplytoAlwaysCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                }
+            }
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to add a Recipe with CICS Interface & RV Connection
+    //
+    configurePage.prototype.addRecWithCicsRv = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoSubj, replytoSubj, replytoAlways, dynSubjLength, dynSubjStart, usageLimit, errorSubj) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "DPL" : methodInvocation;
+        mirrorTranId = mirrorTranId === undefined ? "" : mirrorTranId;
+        rreTranId = rreTranId === undefined ? "" : rreTranId;
+        rreSysName = rreSysName === undefined ? "" : rreSysName;
+        channelName = channelName === undefined ? "" : channelName;
+        ctnName = ctnName === undefined ? "" : ctnName;
+        ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
+        ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
+        lsntoSubj = lsntoSubj === undefined ? "tibss.recipe.listenToSubj" : lsntoSubj;
+        replytoSubj = replytoSubj === undefined ? "" : replytoSubj;
+        replytoAlways = replytoAlways === undefined ? "true" : replytoAlways;
+        dynSubjLength = dynSubjLength === undefined ? "0" : dynSubjLength;
+        dynSubjStart = dynSubjStart === undefined ? "0" : dynSubjStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorSubj = errorSubj === undefined ? "" : errorSubj;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleAddButton);
+        }).then(function () {
+            that.eleAddButton.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
         }).then(function () {
             that._connRec(conn, connFromPickList);
         }).then(function () {
@@ -6492,7 +8725,7 @@ var configurePage = (function () {
                 });
             }
         }).then(function () {
-            return that.eleRecEmsDetailsExtension.isPresent();
+            return that.eleRecRvDetailsExtension.isPresent();
         }).then(function (result) {
             if (result = false) {
                 that.eleRecConnectionExtension.click().then(function () {
@@ -6500,77 +8733,37 @@ var configurePage = (function () {
                 });
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(that.eleRecEmsDetailsExtension);
+            globalCommons.waitForElementPresent(that.eleRecRvDetailsExtension);
         }).then(function () {
-            return that.eleRecEmsListentoDestInput.isPresent();
+            return that.eleRecRvListentoSubjInput.isPresent();
         }).then(function (result) {
             if (result = false) {
-                that.eleRecEmsDetailsExtension.click().then(function () {
+                that.eleRecRvDetailsExtension.click().then(function () {
                     deferred.fulfill();
                 });
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(that.eleRecEmsListentoDestInput);
+            globalCommons.waitForElementPresent(that.eleRecRvListentoSubjInput);
         }).then(function () {
-            that.eleRecEmsListentoDestInput.clear().sendKeys(lsntoDest);
+            that.eleRecRvListentoSubjInput.clear().sendKeys(lsntoSubj);
         }).then(function () {
-            that._listentoDestTypeEmsRec(lsntoDestType);
+            that.eleRecRvReplytoSubjInput.clear().sendKeys(replytoSubj);
         }).then(function () {
-            that.eleRecEmsResponseDestInput.clear().sendKeys(responseDest);
+            that._replytoAlwaysRvRec(replytoAlways);
         }).then(function () {
-            that._responseDestTypeEmsRec(responseDestType);
+            that.eleRecRvDynamicSubjLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            that._respondAlwaysEmsRec(respondAlways);
+            that.eleRecRvDynamicSubjLengthSpinner.clear().sendKeys(dynSubjLength);
         }).then(function () {
-            that.eleRecEmsDynamicDestLengthSpinner.sendKeys(backspaceSeries);
+            that.eleRecRvDynamicSubjStartSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            that.eleRecEmsDynamicDestLengthSpinner.clear().sendKeys(dynDestLength);
+            that.eleRecRvDynamicSubjStartSpinner.clear().sendKeys(dynSubjStart);
         }).then(function () {
-            that.eleRecEmsDynamicDestStartSpinner.sendKeys(backspaceSeries);
+            that.eleRecRvUsageLimitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            that.eleRecEmsDynamicDestStartSpinner.clear().sendKeys(dynDestStart);
+            that.eleRecRvUsageLimitSpinner.clear().sendKeys(usageLimit);
         }).then(function () {
-            that.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleRecEmsUsageLimitSpinner.clear().sendKeys(usageLimit);
-        }).then(function () {
-            that.eleRecEmsErrorMsgDestInput.clear().sendKeys(errorDest);
-        }).then(function () {
-            that._errorMsgDestTypeEmsRec(errorDestType);
-        }).then(function () {
-            that._smslModeEmsRec(smsl);
-        }).then(function () {
-            that._deliveryModeEmsRec(delivery);
-        }).then(function () {
-            that._durableSubcriberEmsRec(durableSubscriber);
-        }).then(function () {
-            that.eleRecEmsDurableClientIdInput.clear().sendKeys(durableClientId);
-        }).then(function () {
-            that._priorityOutputMsgEmsRec(priority);
-        }).then(function () {
-            that.eleRecEmsOutputMsgPriorityValueSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleRecEmsOutputMsgPriorityValueSpinner.clear().sendKeys(priorityValue);
-        }).then(function () {
-            that._expirationOutputMsgEmsRec(expiration);
-        }).then(function () {
-            that.eleRecEmsOutputMsgExpirationValueSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleRecEmsOutputMsgExpirationValueSpinner.clear().sendKeys(expirationValue);
-        }).then(function () {
-            that._unitOutputMsgExpirationEmsRec(expirationUnit);
-        }).then(function () {
-            that._compressionOutputMsgEmsRec(compression);
-        }).then(function () {
-            that._preserveOutputMsgEmsRec(preserve);
-        }).then(function () {
-            that._bodyTraceOutputMsgEmsRec(bodyTrace);
-        }).then(function () {
-            that._msgTypeOutputMsgEmsRec(msgType);
-        }).then(function () {
-            that._copyCorrelationOutputMsgEmsRec(copyCorrelation);
-        }).then(function () {
-            that.eleRecEmsSelectorInput.clear().sendKeys(selector);
+            that.eleRecRvErrorMsgSubjInput.clear().sendKeys(errorSubj);
         }).then(function () {
             globalCommons.waitForClickable(that.eleSaveButton);
         }).then(function () {
@@ -6581,9 +8774,9 @@ var configurePage = (function () {
         return deferred.promise;
     };
     //
-    // Function to update a Recipe with CICS Interface & EMS Connection
+    // Function to update a Recipe with CICS Interface & RV Connection
     //
-    configurePage.prototype.updateRecWithCicsEms = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, durableClientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+    configurePage.prototype.updateRecWithCicsRv = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoSubj, replytoSubj, replytoAlways, dynSubjLength, dynSubjStart, usageLimit, errorSubj) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
@@ -6593,6 +8786,8 @@ var configurePage = (function () {
         outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
         desc = desc === undefined ? "" : desc;
         intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -6608,25 +8803,13 @@ var configurePage = (function () {
         ctnName = ctnName === undefined ? "" : ctnName;
         ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
         ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
-        lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
-        lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
-        responseDest = responseDest === undefined ? "" : responseDest;
-        responseDestType = responseDestType === undefined ? "QUEUE" : responseDestType;
-        respondAlways = respondAlways === undefined ? "true" : respondAlways;
-        dynDestLength = dynDestLength === undefined ? "0" : dynDestLength;
-        dynDestStart = dynDestStart === undefined ? "0" : dynDestStart;
+        lsntoSubj = lsntoSubj === undefined ? "tibss.recipe.listenToSubj" : lsntoSubj;
+        replytoSubj = replytoSubj === undefined ? "" : replytoSubj;
+        replytoAlways = replytoAlways === undefined ? "true" : replytoAlways;
+        dynSubjLength = dynSubjLength === undefined ? "0" : dynSubjLength;
+        dynSubjStart = dynSubjStart === undefined ? "0" : dynSubjStart;
         usageLimit = usageLimit === undefined ? "0" : usageLimit;
-        errorDest = errorDest === undefined ? "" : errorDest;
-        errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
-        smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
-        delivery = delivery === undefined ? "Persistent" : delivery;
-        durableClientId = durableClientId === undefined ? "" : durableClientId;
-        priorityValue = priorityValue === undefined ? "4" : priorityValue;
-        expirationValue = expirationValue === undefined ? "0" : expirationValue;
-        expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
-        msgType = msgType === undefined ? "Bytes" : msgType;
-        copyCorrelation = copyCorrelation === undefined ? "No" : copyCorrelation;
-        selector = selector === undefined ? "" : selector;
+        errorSubj = errorSubj === undefined ? "" : errorSubj;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleRecLeftmenu);
@@ -6656,6 +8839,10 @@ var configurePage = (function () {
             that._intfRec(intf, intfFromPickList);
         }).then(function () {
             that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
         }).then(function () {
             that._connRec(conn, connFromPickList);
         }).then(function () {
@@ -6915,7 +9102,7 @@ var configurePage = (function () {
                 });
             }
         }).then(function () {
-            return that.eleRecEmsDetailsExtension.isPresent();
+            return that.eleRecRvDetailsExtension.isPresent();
         }).then(function (result) {
             if (result = false) {
                 that.eleRecConnectionExtension.click().then(function () {
@@ -6923,77 +9110,37 @@ var configurePage = (function () {
                 });
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(that.eleRecEmsDetailsExtension);
+            globalCommons.waitForElementPresent(that.eleRecRvDetailsExtension);
         }).then(function () {
-            return that.eleRecEmsListentoDestInput.isPresent();
+            return that.eleRecRvListentoSubjInput.isPresent();
         }).then(function (result) {
             if (result = false) {
-                that.eleRecEmsDetailsExtension.click().then(function () {
+                that.eleRecRvDetailsExtension.click().then(function () {
                     deferred.fulfill();
                 });
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(that.eleRecEmsListentoDestInput);
+            globalCommons.waitForElementPresent(that.eleRecRvListentoSubjInput);
         }).then(function () {
-            that.eleRecEmsListentoDestInput.clear().sendKeys(lsntoDest);
+            that.eleRecRvListentoSubjInput.clear().sendKeys(lsntoSubj);
         }).then(function () {
-            that._listentoDestTypeEmsRec(lsntoDestType);
+            that.eleRecRvReplytoSubjInput.clear().sendKeys(replytoSubj);
         }).then(function () {
-            that.eleRecEmsResponseDestInput.clear().sendKeys(responseDest);
+            that._replytoAlwaysRvRec(replytoAlways);
         }).then(function () {
-            that._responseDestTypeEmsRec(responseDestType);
+            that.eleRecRvDynamicSubjLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            that._respondAlwaysEmsRec(respondAlways);
+            that.eleRecRvDynamicSubjLengthSpinner.clear().sendKeys(dynSubjLength);
         }).then(function () {
-            that.eleRecEmsDynamicDestLengthSpinner.sendKeys(backspaceSeries);
+            that.eleRecRvDynamicSubjStartSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            that.eleRecEmsDynamicDestLengthSpinner.clear().sendKeys(dynDestLength);
+            that.eleRecRvDynamicSubjStartSpinner.clear().sendKeys(dynSubjStart);
         }).then(function () {
-            that.eleRecEmsDynamicDestStartSpinner.sendKeys(backspaceSeries);
+            that.eleRecRvUsageLimitSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            that.eleRecEmsDynamicDestStartSpinner.clear().sendKeys(dynDestStart);
+            that.eleRecRvUsageLimitSpinner.clear().sendKeys(usageLimit);
         }).then(function () {
-            that.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleRecEmsUsageLimitSpinner.clear().sendKeys(usageLimit);
-        }).then(function () {
-            that.eleRecEmsErrorMsgDestInput.clear().sendKeys(errorDest);
-        }).then(function () {
-            that._errorMsgDestTypeEmsRec(errorDestType);
-        }).then(function () {
-            that._smslModeEmsRec(smsl);
-        }).then(function () {
-            that._deliveryModeEmsRec(delivery);
-        }).then(function () {
-            that._durableSubcriberEmsRec(durableSubscriber);
-        }).then(function () {
-            that.eleRecEmsDurableClientIdInput.clear().sendKeys(durableClientId);
-        }).then(function () {
-            that._priorityOutputMsgEmsRec(priority);
-        }).then(function () {
-            that.eleRecEmsOutputMsgPriorityValueSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleRecEmsOutputMsgPriorityValueSpinner.clear().sendKeys(priorityValue);
-        }).then(function () {
-            that._expirationOutputMsgEmsRec(expiration);
-        }).then(function () {
-            that.eleRecEmsOutputMsgExpirationValueSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            that.eleRecEmsOutputMsgExpirationValueSpinner.clear().sendKeys(expirationValue);
-        }).then(function () {
-            that._unitOutputMsgExpirationEmsRec(expirationUnit);
-        }).then(function () {
-            that._compressionOutputMsgEmsRec(compression);
-        }).then(function () {
-            that._preserveOutputMsgEmsRec(preserve);
-        }).then(function () {
-            that._bodyTraceOutputMsgEmsRec(bodyTrace);
-        }).then(function () {
-            that._msgTypeOutputMsgEmsRec(msgType);
-        }).then(function () {
-            that._copyCorrelationOutputMsgEmsRec(copyCorrelation);
-        }).then(function () {
-            that.eleRecEmsSelectorInput.clear().sendKeys(selector);
+            that.eleRecRvErrorMsgSubjInput.clear().sendKeys(errorSubj);
         }).then(function () {
             globalCommons.waitForClickable(that.eleSaveButton);
         }).then(function () {
@@ -7004,9 +9151,9 @@ var configurePage = (function () {
         return deferred.promise;
     };
     //
-    // Function to cancel the changes of a Recipe with CICS Interface & EMS Connection, then confirm the cancel operation.
+    // Function to cancel the changes of a Recipe with CICS Interface & RV Connection, then confirm the cancel operation.
     //
-    configurePage.prototype.cancelRecWithCicsEmsYes = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, durableClientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+    configurePage.prototype.cancelRecWithCicsRvYes = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoSubj, replytoSubj, replytoAlways, dynSubjLength, dynSubjStart, usageLimit, errorSubj) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
@@ -7016,6 +9163,8 @@ var configurePage = (function () {
         outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
         desc = desc === undefined ? "" : desc;
         intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -7031,25 +9180,13 @@ var configurePage = (function () {
         ctnName = ctnName === undefined ? "" : ctnName;
         ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
         ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
-        lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
-        lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
-        responseDest = responseDest === undefined ? "" : responseDest;
-        responseDestType = responseDestType === undefined ? "QUEUE" : responseDestType;
-        respondAlways = respondAlways === undefined ? "true" : respondAlways;
-        dynDestLength = dynDestLength === undefined ? "0" : dynDestLength;
-        dynDestStart = dynDestStart === undefined ? "0" : dynDestStart;
+        lsntoSubj = lsntoSubj === undefined ? "tibss.recipe.listenToSubj" : lsntoSubj;
+        replytoSubj = replytoSubj === undefined ? "" : replytoSubj;
+        replytoAlways = replytoAlways === undefined ? "true" : replytoAlways;
+        dynSubjLength = dynSubjLength === undefined ? "0" : dynSubjLength;
+        dynSubjStart = dynSubjStart === undefined ? "0" : dynSubjStart;
         usageLimit = usageLimit === undefined ? "0" : usageLimit;
-        errorDest = errorDest === undefined ? "" : errorDest;
-        errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
-        smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
-        delivery = delivery === undefined ? "Persistent" : delivery;
-        durableClientId = durableClientId === undefined ? "" : durableClientId;
-        priorityValue = priorityValue === undefined ? "4" : priorityValue;
-        expirationValue = expirationValue === undefined ? "0" : expirationValue;
-        expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
-        msgType = msgType === undefined ? "Bytes" : msgType;
-        copyCorrelation = copyCorrelation === undefined ? "No" : copyCorrelation;
-        selector = selector === undefined ? "" : selector;
+        errorSubj = errorSubj === undefined ? "" : errorSubj;
 
         globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
             globalCommons.waitForClickable(that.eleRecLeftmenu);
@@ -7079,6 +9216,10 @@ var configurePage = (function () {
             that._intfRec(intf, intfFromPickList);
         }).then(function () {
             that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
         }).then(function () {
             that._connRec(conn, connFromPickList);
         }).then(function () {
@@ -7338,6 +9479,1254 @@ var configurePage = (function () {
                 });
             }
         }).then(function () {
+            return that.eleRecRvDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecRvDetailsExtension);
+        }).then(function () {
+            return that.eleRecRvListentoSubjInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecRvDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecRvListentoSubjInput);
+        }).then(function () {
+            that.eleRecRvListentoSubjInput.clear().sendKeys(lsntoSubj);
+        }).then(function () {
+            that.eleRecRvReplytoSubjInput.clear().sendKeys(replytoSubj);
+        }).then(function () {
+            that._replytoAlwaysRvRec(replytoAlways);
+        }).then(function () {
+            that.eleRecRvDynamicSubjLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecRvDynamicSubjLengthSpinner.clear().sendKeys(dynSubjLength);
+        }).then(function () {
+            that.eleRecRvDynamicSubjStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecRvDynamicSubjStartSpinner.clear().sendKeys(dynSubjStart);
+        }).then(function () {
+            that.eleRecRvUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecRvUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecRvErrorMsgSubjInput.clear().sendKeys(errorSubj);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleCancelButton);
+        }).then(function () {
+            that.eleCancelButton.click();
+        }).then(function () {
+            globalPage.isWarningYes();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to cancel the changes of a Recipe with CICS Interface & RV Connection, then discard the cancel operation.
+    //
+    configurePage.prototype.cancelRecWithCicsRvNo = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoSubj, replytoSubj, replytoAlways, dynSubjLength, dynSubjStart, usageLimit, errorSubj) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "DPL" : methodInvocation;
+        mirrorTranId = mirrorTranId === undefined ? "" : mirrorTranId;
+        rreTranId = rreTranId === undefined ? "" : rreTranId;
+        rreSysName = rreSysName === undefined ? "" : rreSysName;
+        channelName = channelName === undefined ? "" : channelName;
+        ctnName = ctnName === undefined ? "" : ctnName;
+        ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
+        ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
+        lsntoSubj = lsntoSubj === undefined ? "tibss.recipe.listenToSubj" : lsntoSubj;
+        replytoSubj = replytoSubj === undefined ? "" : replytoSubj;
+        replytoAlways = replytoAlways === undefined ? "true" : replytoAlways;
+        dynSubjLength = dynSubjLength === undefined ? "0" : dynSubjLength;
+        dynSubjStart = dynSubjStart === undefined ? "0" : dynSubjStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorSubj = errorSubj === undefined ? "" : errorSubj;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleSearchInput);
+        }).then(function () {
+            that.eleSearchInput.clear().sendKeys(name);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSearchIcon);
+        }).then(function () {
+            that.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleEntityNameSearched);
+        }).then(function () {
+            that.eleEntityNameSearched.click();
+        }).then(function () {
+            that.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecCicsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecCicsDetailsExtension);
+        }).then(function () {
+            return that.eleRecCicsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecCicsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationCicsRec(methodInvocation);
+        }).then(function () {
+            that.eleRecCicsMirrorTranIdInput.clear().sendKeys(mirrorTranId);
+        }).then(function () {
+            that._csmiUserTranCicsRec(csmiUserTran);
+        }).then(function () {
+            that.eleRecCicsRRETranIdInput.clear().sendKeys(rreTranId);
+        }).then(function () {
+            that.eleRecCicsRRESysNameInput.clear().sendKeys(rreSysName);
+        }).then(function () {
+            that.eleRecCicsCtnChannelNameInput.clear().sendKeys(channelName);
+        }).then(function () {
+            that.eleRecCicsCtnContainerNameInput.clear().sendKeys(ctnName);
+        }).then(function () {
+            that._ctnInvocationCicsRec(ctnInvocation);
+        }).then(function () {
+            that._ctnCreationCicsRec(ctnCreation);
+        }).then(function () {
+            that._forwardDestAsCtnCicsRec(forwardDestAsCtn);
+        }).then(function () {
+            if (resource2 !== undefined) {
+                return that.eleRecCicsMultiExecResource2Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource2Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource2Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource2RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource2RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource3 !== undefined) {
+                return that.eleRecCicsMultiExecResource3Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource3Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource4 !== undefined) {
+                return that.eleRecCicsMultiExecResource4Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource4Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource5 !== undefined) {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource5Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            return that.eleRecRvDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecRvDetailsExtension);
+        }).then(function () {
+            return that.eleRecRvListentoSubjInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecRvDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecRvListentoSubjInput);
+        }).then(function () {
+            that.eleRecRvListentoSubjInput.clear().sendKeys(lsntoSubj);
+        }).then(function () {
+            that.eleRecRvReplytoSubjInput.clear().sendKeys(replytoSubj);
+        }).then(function () {
+            that._replytoAlwaysRvRec(replytoAlways);
+        }).then(function () {
+            that.eleRecRvDynamicSubjLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecRvDynamicSubjLengthSpinner.clear().sendKeys(dynSubjLength);
+        }).then(function () {
+            that.eleRecRvDynamicSubjStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecRvDynamicSubjStartSpinner.clear().sendKeys(dynSubjStart);
+        }).then(function () {
+            that.eleRecRvUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecRvUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecRvErrorMsgSubjInput.clear().sendKeys(errorSubj);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleCancelButton);
+        }).then(function () {
+            that.eleCancelButton.click();
+        }).then(function () {
+            globalPage.isWarningNo();
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSaveButton);
+        }).then(function () {
+            that.eleSaveButton.click();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to make changes to a Recipe with CICS Interface & RV Connection, then reset the Recipe.
+    //
+    configurePage.prototype.resetRecWithCicsRv = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoSubj, replytoSubj, replytoAlways, dynSubjLength, dynSubjStart, usageLimit, errorSubj) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "DPL" : methodInvocation;
+        mirrorTranId = mirrorTranId === undefined ? "" : mirrorTranId;
+        rreTranId = rreTranId === undefined ? "" : rreTranId;
+        rreSysName = rreSysName === undefined ? "" : rreSysName;
+        channelName = channelName === undefined ? "" : channelName;
+        ctnName = ctnName === undefined ? "" : ctnName;
+        ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
+        ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
+        lsntoSubj = lsntoSubj === undefined ? "tibss.recipe.listenToSubj" : lsntoSubj;
+        replytoSubj = replytoSubj === undefined ? "" : replytoSubj;
+        replytoAlways = replytoAlways === undefined ? "true" : replytoAlways;
+        dynSubjLength = dynSubjLength === undefined ? "0" : dynSubjLength;
+        dynSubjStart = dynSubjStart === undefined ? "0" : dynSubjStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorSubj = errorSubj === undefined ? "" : errorSubj;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleSearchInput);
+        }).then(function () {
+            that.eleSearchInput.clear().sendKeys(name);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSearchIcon);
+        }).then(function () {
+            that.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleEntityNameSearched);
+        }).then(function () {
+            that.eleEntityNameSearched.click();
+        }).then(function () {
+            that.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecCicsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecCicsDetailsExtension);
+        }).then(function () {
+            return that.eleRecCicsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecCicsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationCicsRec(methodInvocation);
+        }).then(function () {
+            that.eleRecCicsMirrorTranIdInput.clear().sendKeys(mirrorTranId);
+        }).then(function () {
+            that._csmiUserTranCicsRec(csmiUserTran);
+        }).then(function () {
+            that.eleRecCicsRRETranIdInput.clear().sendKeys(rreTranId);
+        }).then(function () {
+            that.eleRecCicsRRESysNameInput.clear().sendKeys(rreSysName);
+        }).then(function () {
+            that.eleRecCicsCtnChannelNameInput.clear().sendKeys(channelName);
+        }).then(function () {
+            that.eleRecCicsCtnContainerNameInput.clear().sendKeys(ctnName);
+        }).then(function () {
+            that._ctnInvocationCicsRec(ctnInvocation);
+        }).then(function () {
+            that._ctnCreationCicsRec(ctnCreation);
+        }).then(function () {
+            that._forwardDestAsCtnCicsRec(forwardDestAsCtn);
+        }).then(function () {
+            if (resource2 !== undefined) {
+                return that.eleRecCicsMultiExecResource2Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource2Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource2Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource2RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource2RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource3 !== undefined) {
+                return that.eleRecCicsMultiExecResource3Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource3Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource3Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource3RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource4 !== undefined) {
+                return that.eleRecCicsMultiExecResource4Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource4Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    return that.eleRecCicsMultiExecResource4Input.isPresent();
+                }).then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource4RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            if (resource5 !== undefined) {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5).then(function () {
+                            deferred.fulfill();
+                        });
+                    } else {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
+                            that.eleRecCicsMultiExecResourceAddButton.click();
+                        }).then(function () {
+                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource5Input);
+                        }).then(function () {
+                            that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5);
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            } else {
+                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
+                    if (result === true) {
+                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
+                            that.eleRecCicsMultiExecResource5RemoveButton.click();
+                        }).then(function () {
+                            deferred.fulfill();
+                        });
+                    }
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            return that.eleRecRvDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecRvDetailsExtension);
+        }).then(function () {
+            return that.eleRecRvListentoSubjInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecRvDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecRvListentoSubjInput);
+        }).then(function () {
+            that.eleRecRvListentoSubjInput.clear().sendKeys(lsntoSubj);
+        }).then(function () {
+            that.eleRecRvReplytoSubjInput.clear().sendKeys(replytoSubj);
+        }).then(function () {
+            that._replytoAlwaysRvRec(replytoAlways);
+        }).then(function () {
+            that.eleRecRvDynamicSubjLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecRvDynamicSubjLengthSpinner.clear().sendKeys(dynSubjLength);
+        }).then(function () {
+            that.eleRecRvDynamicSubjStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecRvDynamicSubjStartSpinner.clear().sendKeys(dynSubjStart);
+        }).then(function () {
+            that.eleRecRvUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecRvUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecRvErrorMsgSubjInput.clear().sendKeys(errorSubj);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleResetButton);
+        }).then(function () {
+            that.eleResetButton.click();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+
+
+    // Function to set 'Method of Invocation' of a Recipe IMS interface
+    //
+    configurePage.prototype._methodOfInvocationImsRec = function (methodInvocation) {
+        var deferred = protractor.promise.defer(), that = this;
+        globalCommons.waitForElementPresent(that.eleRecImsMethodInvocationDropdown).then(function () {
+            return that.eleRecImsMethodInvocationDropdown.getText();
+        }).then(function (message) {
+            if (message === methodInvocation) {
+                deferred.fulfill();
+            } else {
+                that.eleRecImsMethodInvocationDropdown.click().then(function () {
+                    globalCommons.waitForElementPresent(that.eleRecImsMethodInvocationSelected(methodInvocation));
+                }).then(function () {
+                    that.eleRecImsMethodInvocationSelected(methodInvocation).click();
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        });
+        return deferred.promise;
+    };
+    // Function to set 'Variable Length Transaction' of a Recipe IMS interface
+    // false: not selected
+    // true: selected
+    //
+    configurePage.prototype._varLengthTranImsRec = function (varLengthTran) {
+        var deferred = protractor.promise.defer(), that = this;
+
+        globalCommons.waitForElementPresent(that.eleRecImsVariableLengthTransCheck).then(function () {
+            return that.eleRecImsVariableLengthTransCheck.getAttribute("checked");
+        }).then(function (message) {
+            if (message === null) {
+                if (varLengthTran) {
+                    that.eleRecImsVariableLengthTransCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                } else {
+                    deferred.fulfill();
+                }
+            } else {
+                if (varLengthTran) {
+                    deferred.fulfill();
+                } else {
+                    that.eleRecImsVariableLengthTransCheck.click().then(function () {
+                        deferred.fulfill();
+                    });
+                }
+            }
+        });
+        return deferred.promise;
+    };
+    // Function to set 'Security Check' of a Recipe IMS interface
+    //
+    configurePage.prototype._securityCheckImsRec = function (secuCheck) {
+        var deferred = protractor.promise.defer(), that = this;
+        globalCommons.waitForElementPresent(that.eleRecImsSecurityCheckDropdown).then(function () {
+            return that.eleRecImsSecurityCheckDropdown.getText();
+        }).then(function (message) {
+            if (message === secuCheck) {
+                deferred.fulfill();
+            } else {
+                that.eleRecImsSecurityCheckDropdown.click().then(function () {
+                    globalCommons.waitForElementPresent(that.eleRecImsSecurityCheckSelected(secuCheck));
+                }).then(function () {
+                    that.eleRecImsSecurityCheckSelected(secuCheck).click();
+                }).then(function () {
+                    deferred.fulfill();
+                });
+            }
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to add a Recipe with IMS Interface & EMS Connection
+    //
+    configurePage.prototype.addRecWithImsEms = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, varLengthTran, tranLength, secuCheck, segBreak, segLength, mfsMapName, naturalStackCmd, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "Transaction" : methodInvocation;
+        tranLength = tranLength === undefined ? "0" : tranLength;
+        secuCheck = secuCheck === undefined ? "None" : secuCheck;
+        segBreak = segBreak === undefined ? "" : segBreak;
+        segLength = segLength === undefined ? "0" : segLength;
+        mfsMapName = mfsMapName === undefined ? "" : mfsMapName;
+        naturalStackCmd = naturalStackCmd === undefined ? "" : naturalStackCmd;
+        lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
+        lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
+        responseDest = responseDest === undefined ? "" : responseDest;
+        responseDestType = responseDestType === undefined ? "QUEUE" : responseDestType;
+        respondAlways = respondAlways === undefined ? "true" : respondAlways;
+        dynDestLength = dynDestLength === undefined ? "0" : dynDestLength;
+        dynDestStart = dynDestStart === undefined ? "0" : dynDestStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorDest = errorDest === undefined ? "" : errorDest;
+        errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
+        smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
+        delivery = delivery === undefined ? "Persistent" : delivery;
+        clientId = clientId === undefined ? "" : clientId;
+        priorityValue = priorityValue === undefined ? "4" : priorityValue;
+        expirationValue = expirationValue === undefined ? "0" : expirationValue;
+        expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
+        msgType = msgType === undefined ? "Bytes" : msgType;
+        copyCorrelation = copyCorrelation === undefined ? "No" : copyCorrelation;
+        selector = selector === undefined ? "" : selector;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleAddButton);
+        }).then(function () {
+            that.eleAddButton.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            return that.eleRecEmsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsDetailsExtension);
+        }).then(function () {
+            return that.eleRecEmsListentoDestInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecEmsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsListentoDestInput);
+        }).then(function () {
+            that.eleRecEmsListentoDestInput.clear().sendKeys(lsntoDest);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecImsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecImsDetailsExtension);
+        }).then(function () {
+            return that.eleRecImsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecImsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationImsRec(methodInvocation);
+        }).then(function () {
+            that._varLengthTranImsRec(varLengthTran);
+        }).then(function () {
+            that.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecImsTranLengthSpinner.clear().sendKeys(tranLength);
+        }).then(function () {
+            that._securityCheckImsRec(secuCheck);
+        }).then(function () {
+            that.eleRecImsSegmentBreakInput.clear().sendKeys(segBreak);
+        }).then(function () {
+            that.eleRecImsSegmentLengthInput.clear().sendKeys(segLength);
+        }).then(function () {
+            that.eleRecImsMfsMapNameInput.clear().sendKeys(mfsMapName);
+        }).then(function () {
+            that.eleRecImsNaturalStackCmdInput.clear().sendKeys(naturalStackCmd);
+        }).then(function () {
+            that._listentoDestTypeEmsRec(lsntoDestType);
+        }).then(function () {
+            that.eleRecEmsResponseDestInput.clear().sendKeys(responseDest);
+        }).then(function () {
+            that._responseDestTypeEmsRec(responseDestType);
+        }).then(function () {
+            that._respondAlwaysEmsRec(respondAlways);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.clear().sendKeys(dynDestLength);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.clear().sendKeys(dynDestStart);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecEmsErrorMsgDestInput.clear().sendKeys(errorDest);
+        }).then(function () {
+            that._errorMsgDestTypeEmsRec(errorDestType);
+        }).then(function () {
+            that._smslModeEmsRec(smsl);
+        }).then(function () {
+            that._deliveryModeEmsRec(delivery);
+        }).then(function () {
+            that._durableSubcriberEmsRec(durableSubscriber);
+        }).then(function () {
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
+        }).then(function () {
+            that._priorityOutputMsgEmsRec(priority);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.clear().sendKeys(priorityValue);
+        }).then(function () {
+            that._expirationOutputMsgEmsRec(expiration);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.clear().sendKeys(expirationValue);
+        }).then(function () {
+            that._unitOutputMsgExpirationEmsRec(expirationUnit);
+        }).then(function () {
+            that._compressionOutputMsgEmsRec(compression);
+        }).then(function () {
+            that._preserveOutputMsgEmsRec(preserve);
+        }).then(function () {
+            that._bodyTraceOutputMsgEmsRec(bodyTrace);
+        }).then(function () {
+            that._msgTypeOutputMsgEmsRec(msgType);
+        }).then(function () {
+            that._copyCorrelationOutputMsgEmsRec(copyCorrelation);
+        }).then(function () {
+            that.eleRecEmsSelectorInput.clear().sendKeys(selector);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSaveButton);
+        }).then(function () {
+            that.eleSaveButton.click();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to update a Recipe with IMS Interface & EMS Connection
+    //
+    configurePage.prototype.updateRecWithImsEms = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, varLengthTran, tranLength, secuCheck, segBreak, segLength, mfsMapName, naturalStackCmd, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "Transaction" : methodInvocation;
+        tranLength = tranLength === undefined ? "0" : tranLength;
+        secuCheck = secuCheck === undefined ? "None" : secuCheck;
+        segBreak = segBreak === undefined ? "" : segBreak;
+        segLength = segLength === undefined ? "0" : segLength;
+        mfsMapName = mfsMapName === undefined ? "" : mfsMapName;
+        naturalStackCmd = naturalStackCmd === undefined ? "" : naturalStackCmd;
+        lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
+        lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
+        responseDest = responseDest === undefined ? "" : responseDest;
+        responseDestType = responseDestType === undefined ? "QUEUE" : responseDestType;
+        respondAlways = respondAlways === undefined ? "true" : respondAlways;
+        dynDestLength = dynDestLength === undefined ? "0" : dynDestLength;
+        dynDestStart = dynDestStart === undefined ? "0" : dynDestStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorDest = errorDest === undefined ? "" : errorDest;
+        errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
+        smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
+        delivery = delivery === undefined ? "Persistent" : delivery;
+        clientId = clientId === undefined ? "" : clientId;
+        priorityValue = priorityValue === undefined ? "4" : priorityValue;
+        expirationValue = expirationValue === undefined ? "0" : expirationValue;
+        expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
+        msgType = msgType === undefined ? "Bytes" : msgType;
+        copyCorrelation = copyCorrelation === undefined ? "No" : copyCorrelation;
+        selector = selector === undefined ? "" : selector;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleSearchInput);
+        }).then(function () {
+            that.eleSearchInput.clear().sendKeys(name);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSearchIcon);
+        }).then(function () {
+            that.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleEntityNameSearched);
+        }).then(function () {
+            that.eleEntityNameSearched.click();
+        }).then(function () {
+            that.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecImsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecImsDetailsExtension);
+        }).then(function () {
+            return that.eleRecImsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecImsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationImsRec(methodInvocation);
+        }).then(function () {
+            that._varLengthTranImsRec(varLengthTran);
+        }).then(function () {
+            that.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecImsTranLengthSpinner.clear().sendKeys(tranLength);
+        }).then(function () {
+            that._securityCheckImsRec(secuCheck);
+        }).then(function () {
+            that.eleRecImsSegmentBreakInput.clear().sendKeys(segBreak);
+        }).then(function () {
+            that.eleRecImsSegmentLengthInput.clear().sendKeys(segLength);
+        }).then(function () {
+            that.eleRecImsMfsMapNameInput.clear().sendKeys(mfsMapName);
+        }).then(function () {
+            that.eleRecImsNaturalStackCmdInput.clear().sendKeys(naturalStackCmd);
+        }).then(function () {
             return that.eleRecEmsDetailsExtension.isPresent();
         }).then(function (result) {
             if (result = false) {
@@ -7390,7 +10779,241 @@ var configurePage = (function () {
         }).then(function () {
             that._durableSubcriberEmsRec(durableSubscriber);
         }).then(function () {
-            that.eleRecEmsDurableClientIdInput.clear().sendKeys(durableClientId);
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
+        }).then(function () {
+            that._priorityOutputMsgEmsRec(priority);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgPriorityValueSpinner.clear().sendKeys(priorityValue);
+        }).then(function () {
+            that._expirationOutputMsgEmsRec(expiration);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsOutputMsgExpirationValueSpinner.clear().sendKeys(expirationValue);
+        }).then(function () {
+            that._unitOutputMsgExpirationEmsRec(expirationUnit);
+        }).then(function () {
+            that._compressionOutputMsgEmsRec(compression);
+        }).then(function () {
+            that._preserveOutputMsgEmsRec(preserve);
+        }).then(function () {
+            that._bodyTraceOutputMsgEmsRec(bodyTrace);
+        }).then(function () {
+            that._msgTypeOutputMsgEmsRec(msgType);
+        }).then(function () {
+            that._copyCorrelationOutputMsgEmsRec(copyCorrelation);
+        }).then(function () {
+            that.eleRecEmsSelectorInput.clear().sendKeys(selector);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSaveButton);
+        }).then(function () {
+            that.eleSaveButton.click();
+        }).then(function () {
+            deferred.fulfill();
+        });
+        return deferred.promise;
+    };
+    //
+    // Function to cancel the changes of a Recipe with IMS Interface & EMS Connection, then confirm the cancel operation.
+    //
+    configurePage.prototype.cancelRecWithImsEmsYes = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, varLengthTran, tranLength, secuCheck, segBreak, segLength, mfsMapName, naturalStackCmd, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+        var deferred = protractor.promise.defer(), that = this;
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
+        intf2FromPickList = intf2FromPickList === undefined ? "true" : intf2FromPickList;
+        connFromPickList = connFromPickList === undefined ? "true" : connFromPickList;
+        inputCvrFromPickList = inputCvrFromPickList === undefined ? "true" : inputCvrFromPickList;
+        outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
+        desc = desc === undefined ? "" : desc;
+        intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
+        disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
+        disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
+        trclvl = trclvl === undefined ? "0" : trclvl;
+        inputCvr = inputCvr === undefined ? "" : inputCvr;
+        outputCvr = outputCvr === undefined ? "" : outputCvr;
+        resource = resource === undefined ? "" : resource;
+        methodReply = methodReply === undefined ? "Message" : methodReply;
+        methodInvocation = methodInvocation === undefined ? "Transaction" : methodInvocation;
+        tranLength = tranLength === undefined ? "0" : tranLength;
+        secuCheck = secuCheck === undefined ? "None" : secuCheck;
+        segBreak = segBreak === undefined ? "" : segBreak;
+        segLength = segLength === undefined ? "0" : segLength;
+        mfsMapName = mfsMapName === undefined ? "" : mfsMapName;
+        naturalStackCmd = naturalStackCmd === undefined ? "" : naturalStackCmd;
+        lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
+        lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
+        responseDest = responseDest === undefined ? "" : responseDest;
+        responseDestType = responseDestType === undefined ? "QUEUE" : responseDestType;
+        respondAlways = respondAlways === undefined ? "true" : respondAlways;
+        dynDestLength = dynDestLength === undefined ? "0" : dynDestLength;
+        dynDestStart = dynDestStart === undefined ? "0" : dynDestStart;
+        usageLimit = usageLimit === undefined ? "0" : usageLimit;
+        errorDest = errorDest === undefined ? "" : errorDest;
+        errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
+        smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
+        delivery = delivery === undefined ? "Persistent" : delivery;
+        clientId = clientId === undefined ? "" : clientId;
+        priorityValue = priorityValue === undefined ? "4" : priorityValue;
+        expirationValue = expirationValue === undefined ? "0" : expirationValue;
+        expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
+        msgType = msgType === undefined ? "Bytes" : msgType;
+        copyCorrelation = copyCorrelation === undefined ? "No" : copyCorrelation;
+        selector = selector === undefined ? "" : selector;
+
+        globalCommons.waitForElementPresent(that.eleScreenElement).then(function () {
+            globalCommons.waitForClickable(that.eleRecLeftmenu);
+        }).then(function () {
+            that.eleRecLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleSearchInput);
+        }).then(function () {
+            that.eleSearchInput.clear().sendKeys(name);
+        }).then(function () {
+            globalCommons.waitForClickable(that.eleSearchIcon);
+        }).then(function () {
+            that.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleEntityNameSearched);
+        }).then(function () {
+            that.eleEntityNameSearched.click();
+        }).then(function () {
+            that.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(that.eleRecNameInput);
+        }).then(function () {
+            that.eleRecNameInput.clear().sendKeys(name);
+        }).then(function () {
+            that.eleRecDescInput.clear().sendKeys(desc);
+        }).then(function () {
+            that._intfRec(intf, intfFromPickList);
+        }).then(function () {
+            that._intf2Rec(intf2, intf2FromPickList);
+        }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
+            that._connRec(conn, connFromPickList);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorNumSpinner.clear().sendKeys(disableOnErrorNum);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecDisableOnErrorPercentSpinner.clear().sendKeys(disableOnErrorPercent);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecTrclvlSpinner.clear().sendKeys(trclvl);
+        }).then(function () {
+            that._inputConversionRec(inputCvr, inputCvrFromPickList);
+        }).then(function () {
+            that._outputConversionRec(outputCvr, outputCvrFromPickList);
+        }).then(function () {
+            that.eleRecResourceNameInput.clear().sendKeys(resource);
+        }).then(function () {
+            that._ssidFilterRec(ssidFilter);
+        }).then(function () {
+            that._methodOfReplyRec(methodReply);
+        }).then(function () {
+            return that.eleRecImsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecIntfExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecImsDetailsExtension);
+        }).then(function () {
+            return that.eleRecImsMethodInvocationDropdown.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecImsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            that._methodOfInvocationImsRec(methodInvocation);
+        }).then(function () {
+            that._varLengthTranImsRec(varLengthTran);
+        }).then(function () {
+            that.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecImsTranLengthSpinner.clear().sendKeys(tranLength);
+        }).then(function () {
+            that._securityCheckImsRec(secuCheck);
+        }).then(function () {
+            that.eleRecImsSegmentBreakInput.clear().sendKeys(segBreak);
+        }).then(function () {
+            that.eleRecImsSegmentLengthInput.clear().sendKeys(segLength);
+        }).then(function () {
+            that.eleRecImsMfsMapNameInput.clear().sendKeys(mfsMapName);
+        }).then(function () {
+            that.eleRecImsNaturalStackCmdInput.clear().sendKeys(naturalStackCmd);
+        }).then(function () {
+            return that.eleRecEmsDetailsExtension.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecConnectionExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsDetailsExtension);
+        }).then(function () {
+            return that.eleRecEmsListentoDestInput.isPresent();
+        }).then(function (result) {
+            if (result = false) {
+                that.eleRecEmsDetailsExtension.click().then(function () {
+                    deferred.fulfill();
+                });
+            }
+        }).then(function () {
+            globalCommons.waitForElementPresent(that.eleRecEmsListentoDestInput);
+        }).then(function () {
+            that.eleRecEmsListentoDestInput.clear().sendKeys(lsntoDest);
+        }).then(function () {
+            that._listentoDestTypeEmsRec(lsntoDestType);
+        }).then(function () {
+            that.eleRecEmsResponseDestInput.clear().sendKeys(responseDest);
+        }).then(function () {
+            that._responseDestTypeEmsRec(responseDestType);
+        }).then(function () {
+            that._respondAlwaysEmsRec(respondAlways);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestLengthSpinner.clear().sendKeys(dynDestLength);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsDynamicDestStartSpinner.clear().sendKeys(dynDestStart);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            that.eleRecEmsUsageLimitSpinner.clear().sendKeys(usageLimit);
+        }).then(function () {
+            that.eleRecEmsErrorMsgDestInput.clear().sendKeys(errorDest);
+        }).then(function () {
+            that._errorMsgDestTypeEmsRec(errorDestType);
+        }).then(function () {
+            that._smslModeEmsRec(smsl);
+        }).then(function () {
+            that._deliveryModeEmsRec(delivery);
+        }).then(function () {
+            that._durableSubcriberEmsRec(durableSubscriber);
+        }).then(function () {
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
         }).then(function () {
             that._priorityOutputMsgEmsRec(priority);
         }).then(function () {
@@ -7429,9 +11052,9 @@ var configurePage = (function () {
         return deferred.promise;
     };
     //
-    // Function to cancel the changes of a Recipe with CICS Interface & EMS Connection, then discard the cancel operation.
+    // Function to cancel the changes of a Recipe with IMS Interface & EMS Connection, then discard the cancel operation.
     //
-    configurePage.prototype.cancelRecWithCicsEmsNo = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, durableClientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+    configurePage.prototype.cancelRecWithImsEmsNo = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, varLengthTran, tranLength, secuCheck, segBreak, segLength, mfsMapName, naturalStackCmd, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
@@ -7441,6 +11064,8 @@ var configurePage = (function () {
         outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
         desc = desc === undefined ? "" : desc;
         intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -7448,14 +11073,13 @@ var configurePage = (function () {
         outputCvr = outputCvr === undefined ? "" : outputCvr;
         resource = resource === undefined ? "" : resource;
         methodReply = methodReply === undefined ? "Message" : methodReply;
-        methodInvocation = methodInvocation === undefined ? "DPL" : methodInvocation;
-        mirrorTranId = mirrorTranId === undefined ? "" : mirrorTranId;
-        rreTranId = rreTranId === undefined ? "" : rreTranId;
-        rreSysName = rreSysName === undefined ? "" : rreSysName;
-        channelName = channelName === undefined ? "" : channelName;
-        ctnName = ctnName === undefined ? "" : ctnName;
-        ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
-        ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
+        methodInvocation = methodInvocation === undefined ? "Transaction" : methodInvocation;
+        tranLength = tranLength === undefined ? "0" : tranLength;
+        secuCheck = secuCheck === undefined ? "None" : secuCheck;
+        segBreak = segBreak === undefined ? "" : segBreak;
+        segLength = segLength === undefined ? "0" : segLength;
+        mfsMapName = mfsMapName === undefined ? "" : mfsMapName;
+        naturalStackCmd = naturalStackCmd === undefined ? "" : naturalStackCmd;
         lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
         lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
         responseDest = responseDest === undefined ? "" : responseDest;
@@ -7468,7 +11092,7 @@ var configurePage = (function () {
         errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
         smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
         delivery = delivery === undefined ? "Persistent" : delivery;
-        durableClientId = durableClientId === undefined ? "" : durableClientId;
+        clientId = clientId === undefined ? "" : clientId;
         priorityValue = priorityValue === undefined ? "4" : priorityValue;
         expirationValue = expirationValue === undefined ? "0" : expirationValue;
         expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
@@ -7505,6 +11129,10 @@ var configurePage = (function () {
         }).then(function () {
             that._intf2Rec(intf2, intf2FromPickList);
         }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
             that._connRec(conn, connFromPickList);
         }).then(function () {
             that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
@@ -7529,7 +11157,7 @@ var configurePage = (function () {
         }).then(function () {
             that._methodOfReplyRec(methodReply);
         }).then(function () {
-            return that.eleRecCicsDetailsExtension.isPresent();
+            return that.eleRecImsDetailsExtension.isPresent();
         }).then(function (result) {
             if (result = false) {
                 that.eleRecIntfExtension.click().then(function () {
@@ -7537,231 +11165,33 @@ var configurePage = (function () {
                 });
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(that.eleRecCicsDetailsExtension);
+            globalCommons.waitForElementPresent(that.eleRecImsDetailsExtension);
         }).then(function () {
-            return that.eleRecCicsMethodInvocationDropdown.isPresent();
+            return that.eleRecImsMethodInvocationDropdown.isPresent();
         }).then(function (result) {
             if (result = false) {
-                that.eleRecCicsDetailsExtension.click().then(function () {
+                that.eleRecImsDetailsExtension.click().then(function () {
                     deferred.fulfill();
                 });
             }
         }).then(function () {
-            that._methodOfInvocationCicsRec(methodInvocation);
+            that._methodOfInvocationImsRec(methodInvocation);
         }).then(function () {
-            that.eleRecCicsMirrorTranIdInput.clear().sendKeys(mirrorTranId);
+            that._varLengthTranImsRec(varLengthTran);
         }).then(function () {
-            that._csmiUserTranCicsRec(csmiUserTran);
+            that.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            that.eleRecCicsRRETranIdInput.clear().sendKeys(rreTranId);
+            that.eleRecImsTranLengthSpinner.clear().sendKeys(tranLength);
         }).then(function () {
-            that.eleRecCicsRRESysNameInput.clear().sendKeys(rreSysName);
+            that._securityCheckImsRec(secuCheck);
         }).then(function () {
-            that.eleRecCicsCtnChannelNameInput.clear().sendKeys(channelName);
+            that.eleRecImsSegmentBreakInput.clear().sendKeys(segBreak);
         }).then(function () {
-            that.eleRecCicsCtnContainerNameInput.clear().sendKeys(ctnName);
+            that.eleRecImsSegmentLengthInput.clear().sendKeys(segLength);
         }).then(function () {
-            that._ctnInvocationCicsRec(ctnInvocation);
+            that.eleRecImsMfsMapNameInput.clear().sendKeys(mfsMapName);
         }).then(function () {
-            that._ctnCreationCicsRec(ctnCreation);
-        }).then(function () {
-            that._forwardDestAsCtnCicsRec(forwardDestAsCtn);
-        }).then(function () {
-            if (resource2 !== undefined) {
-                return that.eleRecCicsMultiExecResource2Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2).then(function () {
-                            deferred.fulfill();
-                        });
-                    } else {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
-                            that.eleRecCicsMultiExecResourceAddButton.click();
-                        }).then(function () {
-                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource2Input);
-                        }).then(function () {
-                            that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2);
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            } else {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource5RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource4Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource4RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource3Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource3RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource2Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource2RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource2RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (resource3 !== undefined) {
-                return that.eleRecCicsMultiExecResource3Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3).then(function () {
-                            deferred.fulfill();
-                        });
-                    } else {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
-                            that.eleRecCicsMultiExecResourceAddButton.click();
-                        }).then(function () {
-                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource3Input);
-                        }).then(function () {
-                            that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3);
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            } else {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource5RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource4Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource4RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource3Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource3RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (resource4 !== undefined) {
-                return that.eleRecCicsMultiExecResource4Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4).then(function () {
-                            deferred.fulfill();
-                        });
-                    } else {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
-                            that.eleRecCicsMultiExecResourceAddButton.click();
-                        }).then(function () {
-                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource4Input);
-                        }).then(function () {
-                            that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4);
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            } else {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource5RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource4Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource4RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (resource5 !== undefined) {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5).then(function () {
-                            deferred.fulfill();
-                        });
-                    } else {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
-                            that.eleRecCicsMultiExecResourceAddButton.click();
-                        }).then(function () {
-                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource5Input);
-                        }).then(function () {
-                            that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5);
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            } else {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource5RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
+            that.eleRecImsNaturalStackCmdInput.clear().sendKeys(naturalStackCmd);
         }).then(function () {
             return that.eleRecEmsDetailsExtension.isPresent();
         }).then(function (result) {
@@ -7815,7 +11245,9 @@ var configurePage = (function () {
         }).then(function () {
             that._durableSubcriberEmsRec(durableSubscriber);
         }).then(function () {
-            that.eleRecEmsDurableClientIdInput.clear().sendKeys(durableClientId);
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
         }).then(function () {
             that._priorityOutputMsgEmsRec(priority);
         }).then(function () {
@@ -7858,9 +11290,9 @@ var configurePage = (function () {
         return deferred.promise;
     };
     //
-    // Function to make changes to a Recipe with CICS Interface & EMS Connection, then reset the Recipe.
+    // Function to make changes to a Recipe with IMS Interface & EMS Connection, then reset the Recipe.
     //
-    configurePage.prototype.resetRecWithCicsEms = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, mirrorTranId, csmiUserTran, rreTranId, rreSysName, channelName, ctnName, ctnInvocation, ctnCreation, forwardDestAsCtn, resource2, resource3, resource4, resource5, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, durableClientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
+    configurePage.prototype.resetRecWithImsEms = function (name, desc, intf, intfFromPickList, intf2, intf2FromPickList, intf3, intf3FromPickList, intf4, intf4FromPickList, conn, connFromPickList, disableOnErrorNum, disableOnErrorPercent, trclvl, inputCvr, inputCvrFromPickList, outputCvr, outputCvrFromPickList, resource, ssidFilter, methodReply, methodInvocation, varLengthTran, tranLength, secuCheck, segBreak, segLength, mfsMapName, naturalStackCmd, lsntoDest, lsntoDestType, responseDest, responseDestType, respondAlways, dynDestLength, dynDestStart, usageLimit, errorDest, errorDestType, smsl, delivery, durableSubscriber, sharedSubscriber, clientId, priority, priorityValue, expiration, expirationValue, expirationUnit, compression, preserve, bodyTrace, msgType, copyCorrelation, selector) {
         var deferred = protractor.promise.defer(), that = this;
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         intfFromPickList = intfFromPickList === undefined ? "true" : intfFromPickList;
@@ -7870,6 +11302,8 @@ var configurePage = (function () {
         outputCvrFromPickList = outputCvrFromPickList === undefined ? "true" : outputCvrFromPickList;
         desc = desc === undefined ? "" : desc;
         intf2 = intf2 === undefined ? "" : intf2;
+        intf3 = intf3 === undefined ? "" : intf3;
+        intf4 = intf4 === undefined ? "" : intf4;
         disableOnErrorNum = disableOnErrorNum === undefined ? "0" : disableOnErrorNum;
         disableOnErrorPercent = disableOnErrorPercent === undefined ? "0" : disableOnErrorPercent;
         trclvl = trclvl === undefined ? "0" : trclvl;
@@ -7878,13 +11312,13 @@ var configurePage = (function () {
         resource = resource === undefined ? "" : resource;
         methodReply = methodReply === undefined ? "Message" : methodReply;
         methodInvocation = methodInvocation === undefined ? "DPL" : methodInvocation;
-        mirrorTranId = mirrorTranId === undefined ? "" : mirrorTranId;
-        rreTranId = rreTranId === undefined ? "" : rreTranId;
-        rreSysName = rreSysName === undefined ? "" : rreSysName;
-        channelName = channelName === undefined ? "" : channelName;
-        ctnName = ctnName === undefined ? "" : ctnName;
-        ctnInvocation = ctnInvocation === undefined ? "Program" : ctnInvocation;
-        ctnCreation = ctnCreation === undefined ? "Single" : ctnCreation;
+        methodInvocation = methodInvocation === undefined ? "Transaction" : methodInvocation;
+        tranLength = tranLength === undefined ? "0" : tranLength;
+        secuCheck = secuCheck === undefined ? "None" : secuCheck;
+        segBreak = segBreak === undefined ? "" : segBreak;
+        segLength = segLength === undefined ? "0" : segLength;
+        mfsMapName = mfsMapName === undefined ? "" : mfsMapName;
+        naturalStackCmd = naturalStackCmd === undefined ? "" : naturalStackCmd;
         lsntoDest = lsntoDest === undefined ? "tibss.recipe.listenToDest" : lsntoDest;
         lsntoDestType = lsntoDestType === undefined ? "QUEUE" : lsntoDestType;
         responseDest = responseDest === undefined ? "" : responseDest;
@@ -7897,7 +11331,7 @@ var configurePage = (function () {
         errorDestType = errorDestType === undefined ? "QUEUE" : errorDestType;
         smsl = smsl === undefined ? "Reliable Auto-Ack" : smsl;
         delivery = delivery === undefined ? "Persistent" : delivery;
-        durableClientId = durableClientId === undefined ? "" : durableClientId;
+        clientId = clientId === undefined ? "" : clientId;
         priorityValue = priorityValue === undefined ? "4" : priorityValue;
         expirationValue = expirationValue === undefined ? "0" : expirationValue;
         expirationUnit = expirationUnit === undefined ? "Seconds" : expirationUnit;
@@ -7934,6 +11368,10 @@ var configurePage = (function () {
         }).then(function () {
             that._intf2Rec(intf2, intf2FromPickList);
         }).then(function () {
+            that._intf3Rec(intf3, intf3FromPickList);
+        }).then(function () {
+            that._intf4Rec(intf4, intf4FromPickList);
+        }).then(function () {
             that._connRec(conn, connFromPickList);
         }).then(function () {
             that.eleRecDisableOnErrorNumSpinner.sendKeys(backspaceSeries);
@@ -7958,7 +11396,7 @@ var configurePage = (function () {
         }).then(function () {
             that._methodOfReplyRec(methodReply);
         }).then(function () {
-            return that.eleRecCicsDetailsExtension.isPresent();
+            return that.eleRecImsDetailsExtension.isPresent();
         }).then(function (result) {
             if (result = false) {
                 that.eleRecIntfExtension.click().then(function () {
@@ -7966,231 +11404,33 @@ var configurePage = (function () {
                 });
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(that.eleRecCicsDetailsExtension);
+            globalCommons.waitForElementPresent(that.eleRecImsDetailsExtension);
         }).then(function () {
-            return that.eleRecCicsMethodInvocationDropdown.isPresent();
+            return that.eleRecImsMethodInvocationDropdown.isPresent();
         }).then(function (result) {
             if (result = false) {
-                that.eleRecCicsDetailsExtension.click().then(function () {
+                that.eleRecImsDetailsExtension.click().then(function () {
                     deferred.fulfill();
                 });
             }
         }).then(function () {
-            that._methodOfInvocationCicsRec(methodInvocation);
+            that._methodOfInvocationImsRec(methodInvocation);
         }).then(function () {
-            that.eleRecCicsMirrorTranIdInput.clear().sendKeys(mirrorTranId);
+            that._varLengthTranImsRec(varLengthTran);
         }).then(function () {
-            that._csmiUserTranCicsRec(csmiUserTran);
+            that.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            that.eleRecCicsRRETranIdInput.clear().sendKeys(rreTranId);
+            that.eleRecImsTranLengthSpinner.clear().sendKeys(tranLength);
         }).then(function () {
-            that.eleRecCicsRRESysNameInput.clear().sendKeys(rreSysName);
+            that._securityCheckImsRec(secuCheck);
         }).then(function () {
-            that.eleRecCicsCtnChannelNameInput.clear().sendKeys(channelName);
+            that.eleRecImsSegmentBreakInput.clear().sendKeys(segBreak);
         }).then(function () {
-            that.eleRecCicsCtnContainerNameInput.clear().sendKeys(ctnName);
+            that.eleRecImsSegmentLengthInput.clear().sendKeys(segLength);
         }).then(function () {
-            that._ctnInvocationCicsRec(ctnInvocation);
+            that.eleRecImsMfsMapNameInput.clear().sendKeys(mfsMapName);
         }).then(function () {
-            that._ctnCreationCicsRec(ctnCreation);
-        }).then(function () {
-            that._forwardDestAsCtnCicsRec(forwardDestAsCtn);
-        }).then(function () {
-            if (resource2 !== undefined) {
-                return that.eleRecCicsMultiExecResource2Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2).then(function () {
-                            deferred.fulfill();
-                        });
-                    } else {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
-                            that.eleRecCicsMultiExecResourceAddButton.click();
-                        }).then(function () {
-                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource2Input);
-                        }).then(function () {
-                            that.eleRecCicsMultiExecResource2Input.clear().sendKeys(resource2);
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            } else {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource5RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource4Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource4RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource3Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource3RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource2Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource2RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource2RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (resource3 !== undefined) {
-                return that.eleRecCicsMultiExecResource3Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3).then(function () {
-                            deferred.fulfill();
-                        });
-                    } else {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
-                            that.eleRecCicsMultiExecResourceAddButton.click();
-                        }).then(function () {
-                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource3Input);
-                        }).then(function () {
-                            that.eleRecCicsMultiExecResource3Input.clear().sendKeys(resource3);
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            } else {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource5RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource4Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource4RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource3Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource3RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource3RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (resource4 !== undefined) {
-                return that.eleRecCicsMultiExecResource4Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4).then(function () {
-                            deferred.fulfill();
-                        });
-                    } else {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
-                            that.eleRecCicsMultiExecResourceAddButton.click();
-                        }).then(function () {
-                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource4Input);
-                        }).then(function () {
-                            that.eleRecCicsMultiExecResource4Input.clear().sendKeys(resource4);
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            } else {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource5RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    return that.eleRecCicsMultiExecResource4Input.isPresent();
-                }).then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource4RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource4RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
-        }).then(function () {
-            if (resource5 !== undefined) {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5).then(function () {
-                            deferred.fulfill();
-                        });
-                    } else {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResourceAddButton).then(function () {
-                            that.eleRecCicsMultiExecResourceAddButton.click();
-                        }).then(function () {
-                            globalCommons.waitForDisplayed(that.eleRecCicsMultiExecResource5Input);
-                        }).then(function () {
-                            that.eleRecCicsMultiExecResource5Input.clear().sendKeys(resource5);
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            } else {
-                return that.eleRecCicsMultiExecResource5Input.isPresent().then(function (result) {
-                    if (result === true) {
-                        globalCommons.waitForClickable(that.eleRecCicsMultiExecResource5RemoveButton).then(function () {
-                            that.eleRecCicsMultiExecResource5RemoveButton.click();
-                        }).then(function () {
-                            deferred.fulfill();
-                        });
-                    }
-                }).then(function () {
-                    deferred.fulfill();
-                });
-            }
+            that.eleRecImsNaturalStackCmdInput.clear().sendKeys(naturalStackCmd);
         }).then(function () {
             return that.eleRecEmsDetailsExtension.isPresent();
         }).then(function (result) {
@@ -8244,7 +11484,9 @@ var configurePage = (function () {
         }).then(function () {
             that._durableSubcriberEmsRec(durableSubscriber);
         }).then(function () {
-            that.eleRecEmsDurableClientIdInput.clear().sendKeys(durableClientId);
+            that._sharedSubcriberEmsRec(sharedSubscriber);
+        }).then(function () {
+            that.eleRecEmsSubscriberClientIdInput.clear().sendKeys(clientId);
         }).then(function () {
             that._priorityOutputMsgEmsRec(priority);
         }).then(function () {

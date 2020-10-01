@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var configurePage = require('../pageObject/configurePage.js');
@@ -20,14 +20,18 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     it('Add a Conversion Rule successfully', function () {
         browser.sleep(1000).then(function () {
             Page.delCvrYes("Conversion0001");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0001");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0001");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0001", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0001", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            Page.delMsgYes("MessageA0001");
+        }).then(function () {
+            Page.delBufYes("BufferA0001");
+        }).then(function () {
+            Page.addMsg("MessageA0001", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0001", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0001", "MessageA0001", "BufferA0001", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
@@ -44,16 +48,20 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     it('Add a Conversion Rule, then replicate it successfully', function () {
         Page.delCvrYes("Conversion0002-copy").then(function () {
             Page.delCvrYes("Conversion0002");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0002");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0002");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0002", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0002", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
-            Page.addCvr("Conversion0002", "MessageA0001", "BufferA0001", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
+            Page.delMsgYes("MessageA0002");
+        }).then(function () {
+            Page.delBufYes("BufferA0002");
+        }).then(function () {
+            Page.addMsg("MessageA0002", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0002", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("Conversion0002", "MessageA0002", "BufferA0002", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -79,21 +87,29 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Add a Conversion Rule, then update it successfully', function () {
         Page.delCvrYes("Conversion0003").then(function () {
-            //     Page.delMsgYes("MessageA0003");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0004");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0003");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0004");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0003", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0004", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0003", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0004", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0003");
+        }).then(function () {
+            Page.delMsgYes("MessageA0004");
+        }).then(function () {
+            Page.delBufYes("BufferA0003");
+        }).then(function () {
+            Page.delBufYes("BufferA0004");
+        }).then(function () {
+            Page.addMsg("MessageA0003", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addMsg("MessageA0004", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0003", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0004", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0003", "MessageA0003", "BufferA0003", "1111111", "Map", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -149,21 +165,29 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Add a Conversion Rule, cancel the changes, then confirm the cancel operation', function () {
         Page.delCvrYes("Conversion0004").then(function () {
-            //     Page.delMsgYes("MessageA0005");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0006");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0005");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0006");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0005", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0006", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0005", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0006", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0005");
+        }).then(function () {
+            Page.delMsgYes("MessageA0006");
+        }).then(function () {
+            Page.delBufYes("BufferA0005");
+        }).then(function () {
+            Page.delBufYes("BufferA0006");
+        }).then(function () {
+            Page.addMsg("MessageA0005", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addMsg("MessageA0006", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0005", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0006", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0004", "MessageA0005", "BufferA0005", "1111111", "Map", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -229,21 +253,29 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Add a Conversion Rule, cancel the changes, then discard the cancel operation', function () {
         Page.delCvrYes("Conversion0005").then(function () {
-            //     Page.delMsgYes("MessageA0007");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0008");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0007");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0008");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0007", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0008", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0007", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0008", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0007");
+        }).then(function () {
+            Page.delMsgYes("MessageA0008");
+        }).then(function () {
+            Page.delBufYes("BufferA0007");
+        }).then(function () {
+            Page.delBufYes("BufferA0008");
+        }).then(function () {
+            Page.addMsg("MessageA0007", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addMsg("MessageA0008", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0007", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0008", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0005", "MessageA0007", "BufferA0007", "1111111", "Map", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -293,21 +325,29 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Add a Conversion Rule, make some changes, then reset it', function () {
         Page.delCvrYes("Conversion0006").then(function () {
-            //     Page.delMsgYes("MessageA0009");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0010");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0009");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0010");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0009", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0010", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0009", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0010", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0009");
+        }).then(function () {
+            Page.delMsgYes("MessageA0010");
+        }).then(function () {
+            Page.delBufYes("BufferA0009");
+        }).then(function () {
+            Page.delBufYes("BufferA0010");
+        }).then(function () {
+            Page.addMsg("MessageA0009", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addMsg("MessageA0010", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0009", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0010", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0006", "MessageA0009", "BufferA0009", "1111111", "Map", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -373,21 +413,29 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Add a Conversion Rule to overwrite an existing Conversion Rule, then confirm the overwrite operation', function () {
         Page.delCvrYes("Conversion0007").then(function () {
-            //     Page.delMsgYes("MessageA0011");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0012");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0011");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0012");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0011", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0012", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0011", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0012", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0011");
+        }).then(function () {
+            Page.delMsgYes("MessageA0012");
+        }).then(function () {
+            Page.delBufYes("BufferA0011");
+        }).then(function () {
+            Page.delBufYes("BufferA0012");
+        }).then(function () {
+            Page.addMsg("MessageA0011", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addMsg("MessageA0012", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0011", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0012", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0007", "MessageA0011", "BufferA0011", "1111111", "Map", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -447,21 +495,29 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Add a Conversion Rule to overwrite an existing Conversion Rule, then discard the overwrite operation', function () {
         Page.delCvrYes("Conversion0008").then(function () {
-            //     Page.delMsgYes("MessageA0013");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0014");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0013");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0014");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0013", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0014", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0013", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0014", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0013");
+        }).then(function () {
+            Page.delMsgYes("MessageA0014");
+        }).then(function () {
+            Page.delBufYes("BufferA0013");
+        }).then(function () {
+            Page.delBufYes("BufferA0014");
+        }).then(function () {
+            Page.addMsg("MessageA0013", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addMsg("MessageA0014", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0013", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0014", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0008", "MessageA0013", "BufferA0013", "1111111", "Map", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -537,13 +593,17 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Add a Conversion Rule, delete it, then confirm the delete operation', function () {
         Page.delCvrYes("Conversion0009").then(function () {
-            //     Page.delMsgYes("MessageA0015");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0015");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0015", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0015", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0015");
+        }).then(function () {
+            Page.delBufYes("BufferA0015");
+        }).then(function () {
+            Page.addMsg("MessageA0015", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0015", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0009", "MessageA0015", "BufferA0015", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -571,13 +631,17 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Should add a Conversion Rule, delete it, then discard the delete operation', function () {
         Page.delCvrYes("Conversion0010").then(function () {
-            //     Page.delMsgYes("MessageA0016");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0016")
-            // }).then(function () {
-            //     Page.addMsg("MessageA0016", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0016", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0016");
+        }).then(function () {
+            Page.delBufYes("BufferA0016")
+        }).then(function () {
+            Page.addMsg("MessageA0016", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0016", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0010", "MessageA0016", "BufferA0016", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -605,13 +669,17 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Test Audit & Refresh button', function () {
         Page.delCvrYes("Conversion0011").then(function () {
-            //     Page.delMsgYes("MessageA0017");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0017");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0017", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0017", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0017");
+        }).then(function () {
+            Page.delBufYes("BufferA0017");
+        }).then(function () {
+            Page.addMsg("MessageA0017", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0017", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0011", "MessageA0017", "BufferA0017", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -752,14 +820,18 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     it('Test field Conversion Rule -> Name', function () {
         Page.delCvrYes("Conversion0012_@#$_23333333333444444444").then(function () {
             Page.delCvrYes("Conversion0013_@#$_23333333333444444444");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0018");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0018");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0018", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0018", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            Page.delMsgYes("MessageA0018");
+        }).then(function () {
+            Page.delBufYes("BufferA0018");
+        }).then(function () {
+            Page.addMsg("MessageA0018", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0018", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0012_@#$_23333333333444444444", "MessageA0018", "BufferA0018", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -792,14 +864,18 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     it('Test field Conversion Rule -> Message', function () {
         Page.delCvrYes("Conversion0014").then(function () {
             Page.delCvrYes("Conversion0015");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0019_@#$_2223333333333444444444");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0019");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0019_@#$_2223333333333444444444", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0019", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            Page.delMsgYes("MessageA0019_@#$_2223333333333444444444");
+        }).then(function () {
+            Page.delBufYes("BufferA0019");
+        }).then(function () {
+            Page.addMsg("MessageA0019_@#$_2223333333333444444444", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0019", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0014", "MessageA0019_@#$_2223333333333444444444", "BufferA0019", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -832,14 +908,18 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     it('Test field Conversion Rule -> Buffer', function () {
         Page.delCvrYes("Conversion0016").then(function () {
             Page.delCvrYes("Conversion0017");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0020");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0020_@#$_22223333333333444444444");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0020", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0020_@#$_22223333333333444444444", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            Page.delMsgYes("MessageA0020");
+        }).then(function () {
+            Page.delBufYes("BufferA0020_@#$_22223333333333444444444");
+        }).then(function () {
+            Page.addMsg("MessageA0020", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0020_@#$_22223333333333444444444", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0016", "MessageA0020", "BufferA0020_@#$_22223333333333444444444", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -872,13 +952,17 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     it('Test field Conversion Rule -> Max Buffer Size (bytes)', function () {
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
         Page.delCvrYes("Conversion0018").then(function () {
-            //     Page.delMsgYes("MessageA0021");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0021");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0021", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0021", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0021");
+        }).then(function () {
+            Page.delBufYes("BufferA0021");
+        }).then(function () {
+            Page.addMsg("MessageA0021", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0021", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0018", "MessageA0021", "BufferA0021", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -1065,14 +1149,18 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
             Page.delCvrYes("Conversion0021");
         }).then(function () {
             Page.delCvrYes("Conversion0022");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0022");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0022");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0022", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0022", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            Page.delMsgYes("MessageA0022");
+        }).then(function () {
+            Page.delBufYes("BufferA0022");
+        }).then(function () {
+            Page.addMsg("MessageA0022", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0022", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0019", "MessageA0022", "BufferA0022", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -1151,14 +1239,18 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     it('Test field Conversion Rule -> Use Size From', function () {
         Page.delCvrYes("Conversion0023").then(function () {
             Page.delCvrYes("Conversion0024");
-            // }).then(function () {
-            //     Page.delMsgYes("MessageA0023");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0023");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0023", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0023", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            Page.delMsgYes("MessageA0023");
+        }).then(function () {
+            Page.delBufYes("BufferA0023");
+        }).then(function () {
+            Page.addMsg("MessageA0023", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0023", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0023", "MessageA0023", "BufferA0023", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, false, false, "2", false, true, false, "3", false, false, true);
         }).then(function () {
@@ -1204,13 +1296,17 @@ describe('6.6.3 Configure Conversion Rule Page', function () {
     //
     it('Add a Conversion Rule without creating Mapping', function () {
         Page.delCvrYes("Conversion0025").then(function () {
-            //     Page.delMsgYes("MessageA0024");
-            // }).then(function () {
-            //     Page.delBufYes("BufferA0024");
-            // }).then(function () {
-            //     Page.addMsg("MessageA0024", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-            // }).then(function () {
-            //     Page.addBuf("BufferA0024", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.delMsgYes("MessageA0024");
+        }).then(function () {
+            Page.delBufYes("BufferA0024");
+        }).then(function () {
+            Page.addMsg("MessageA0024", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferA0024", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             Page.addCvr("Conversion0025", "MessageA0024", "BufferA0024", "0", "Bytes", "Message", "N");
         }).then(function () {

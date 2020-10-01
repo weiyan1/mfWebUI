@@ -186,11 +186,11 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0003", "AbCdEfG", "ConnRVA0003", "ConversionB0003", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
+            Page.addTrgWithRv("TriggerRV0003", "AbCdEfG", "ConnRVA0003", "ConversionB0003", "OpQrSt", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.updateTrgWithRv("TriggerRV0003", "HiJkLmN", "ConnRVA0004", "ConversionB0004", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
+            Page.updateTrgWithRv("TriggerRV0003", "HiJkLmN", "ConnRVA0004", "ConversionB0004", "UvWxYz", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -214,6 +214,10 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'ConversionB0004').to.be.true;
         }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'UvWxYz').to.be.true;
+        }).then(function () {
             return Page.eleTrgDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '222').to.be.true;
@@ -234,7 +238,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === '66').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
@@ -326,11 +330,11 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0004", "AbCdEfG", "ConnRVA0005", "ConversionB0005", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
+            Page.addTrgWithRv("TriggerRV0004", "AbCdEfG", "ConnRVA0005", "ConversionB0005", "OpQrSt", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.cancelTrgWithRvYes("TriggerRV0004", "HiJkLmN", "ConnRVA0006", "ConversionB0006", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
+            Page.cancelTrgWithRvYes("TriggerRV0004", "HiJkLmN", "ConnRVA0006", "ConversionB0006", "UvWxYz", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
         }).then(function () {
             Page.eleTrgLeftmenu.click();
         }).then(function () {
@@ -364,6 +368,10 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'ConversionB0005').to.be.true;
         }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'OpQrSt').to.be.true;
+        }).then(function () {
             return Page.eleTrgDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '111').to.be.true;
@@ -384,7 +392,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === '55').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '11').to.be.true;
         }).then(function () {
@@ -476,11 +484,11 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0005", "AbCdEfG", "ConnRVA0007", "ConversionB0007", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
+            Page.addTrgWithRv("TriggerRV0005", "AbCdEfG", "ConnRVA0007", "ConversionB0007", "OpQrSt", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.cancelTrgWithRvNo("TriggerRV0005", "HiJkLmN", "ConnRVA0008", "ConversionB0008", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
+            Page.cancelTrgWithRvNo("TriggerRV0005", "HiJkLmN", "ConnRVA0008", "ConversionB0008", "UvWxYz", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
         }).then(function () {
             return Page.eleTrgNameInput.getAttribute('value');
         }).then(function (message) {
@@ -497,6 +505,10 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
             return Page.eleTrgOutputConversionInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'ConversionB0008').to.be.true;
+        }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'UvWxYz').to.be.true;
         }).then(function () {
             return Page.eleTrgDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
@@ -518,7 +530,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === '66').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
@@ -610,11 +622,11 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0006", "AbCdEfG", "ConnRVA0009", "ConversionB0009", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
+            Page.addTrgWithRv("TriggerRV0006", "AbCdEfG", "ConnRVA0009", "ConversionB0009", "OpQrSt", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.resetTrgWithRv("TriggerRV0006", "HiJkLmN", "ConnRVA0010", "ConversionB0010", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
+            Page.resetTrgWithRv("TriggerRV0006", "HiJkLmN", "ConnRVA0010", "ConversionB0010", "UvWxYz", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
         }).then(function () {
             return Page.eleTrgNameInput.getAttribute('value');
         }).then(function (message) {
@@ -631,6 +643,10 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
             return Page.eleTrgOutputConversionInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'ConversionB0009').to.be.true;
+        }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'OpQrSt').to.be.true;
         }).then(function () {
             return Page.eleTrgDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
@@ -652,7 +668,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === '55').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '11').to.be.true;
         }).then(function () {
@@ -744,11 +760,11 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0007", "AbCdEfG", "ConnRVA0011", "ConversionB0011", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
+            Page.addTrgWithRv("TriggerRV0007", "AbCdEfG", "ConnRVA0011", "ConversionB0011", "OpQrSt", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0007", "HiJkLmN", "ConnRVA0012", "ConversionB0012", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
+            Page.addTrgWithRv("TriggerRV0007", "HiJkLmN", "ConnRVA0012", "ConversionB0012", "UvWxYz", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleOKButton);
         }).then(function () {
@@ -776,6 +792,10 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'ConversionB0012').to.be.true;
         }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'UvWxYz').to.be.true;
+        }).then(function () {
             return Page.eleTrgDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '222').to.be.true;
@@ -796,7 +816,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === '66').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
@@ -888,11 +908,11 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0008", "AbCdEfG", "ConnRVA0013", "ConversionB0013", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
+            Page.addTrgWithRv("TriggerRV0008", "AbCdEfG", "ConnRVA0013", "ConversionB0013", "OpQrSt", "111", "33", "1", "Message", "55", "11", "oPqRsT", false, "tibss.trg.publish1", "77", "99", "tibss.trg.publishSec1", "tibss.trg.reply1", "tibss.trg.error1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0008", "HiJkLmN", "ConnRVA0014", "ConversionB0014", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
+            Page.addTrgWithRv("TriggerRV0008", "HiJkLmN", "ConnRVA0014", "ConversionB0014", "UvWxYz", "222", "44", "2", "Status", "66", "22", "uVwXyZ", true, "tibss.trg.publish2", "88", "100", "tibss.trg.publishSec2", "tibss.trg.reply2", "tibss.trg.error2");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleNoButton);
         }).then(function () {
@@ -936,6 +956,10 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'ConversionB0013').to.be.true;
         }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'OpQrSt').to.be.true;
+        }).then(function () {
             return Page.eleTrgDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '111').to.be.true;
@@ -956,7 +980,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === '55').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '11').to.be.true;
         }).then(function () {
@@ -1166,7 +1190,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             Page.addTrgWithRv("TriggerRV0011", "", "ConnRVA0017", "ConversionB0017");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1250,6 +1274,10 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'DATA').to.be.true;
+        }).then(function () {
             return Page.eleTrgDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '0').to.be.true;
@@ -1270,7 +1298,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === '0').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '0').to.be.true;
         }).then(function () {
@@ -1534,7 +1562,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1734,7 +1762,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0018", "", "ConnRVA0022", "ConversionB0022", "0");
+            Page.addTrgWithRv("TriggerRV0018", "", "ConnRVA0022", "ConversionB0022", undefined, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1899,7 +1927,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0019", "", "ConnRVA0023", "ConversionB0023", "0", "0");
+            Page.addTrgWithRv("TriggerRV0019", "", "ConnRVA0023", "ConversionB0023", undefined, "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2064,7 +2092,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0020", "", "ConnRVA0024", "ConversionB0024", "0", "0", "0");
+            Page.addTrgWithRv("TriggerRV0020", "", "ConnRVA0024", "ConversionB0024", undefined, "0", "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2268,7 +2296,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0021", "", "ConnRVA0025", "ConversionB0025", "0", "0", "0", "Message");
+            Page.addTrgWithRv("TriggerRV0021", "", "ConnRVA0025", "ConversionB0025", undefined, "0", "0", "0", "Message");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2298,7 +2326,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'Status and Message').to.be.true;
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0022", "", "ConnRVA0025", "ConversionB0025", "0", "0", "0", "Status");
+            Page.addTrgWithRv("TriggerRV0022", "", "ConnRVA0025", "ConversionB0025", undefined, "0", "0", "0", "Status");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2310,7 +2338,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'Status').to.be.true;
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0023", "", "ConnRVA0025", "ConversionB0025", "0", "0", "0", "Status and Message");
+            Page.addTrgWithRv("TriggerRV0023", "", "ConnRVA0025", "ConversionB0025", undefined, "0", "0", "0", "Status and Message");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2367,7 +2395,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0024", "", "ConnRVA0026", "ConversionB0026", "0", "0", "0", "Message", "0");
+            Page.addTrgWithRv("TriggerRV0024", "", "ConnRVA0026", "ConversionB0026", undefined, "0", "0", "0", "Message", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2511,6 +2539,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
     // Related jiras: ZWUI-1094
     //
     it('Test field Trigger -> Service Key Locator Length', function () {
+        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         Page.delTrgYes("TriggerRV0025").then(function () {
             Page.delCvrYes("ConversionB0027");
         }).then(function () {
@@ -2550,7 +2579,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0025", "", "ConnRVA0027", "ConversionB0027", "0", "0", "0", "Message", "0", "0");
+            Page.addTrgWithRv("TriggerRV0025", "", "ConnRVA0027", "ConversionB0027", undefined, "0", "0", "0", "Message", "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2558,93 +2587,15 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '0').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys("abc");
+            Page.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Not a valid number').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys("ABC");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Not a valid number').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys("64");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === '64 is invalid, must be equal to or less than 63').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys("77777");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === '77777 is invalid, must be equal to or less than 63').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys("999999999999");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthValidateMsg.getText();
-            // }).then(function (message) {
-            //     expect(message === '999999999999 is invalid, must be equal to or less than 63').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys("1");
+            Page.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys("1");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2654,13 +2605,15 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '1').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys("22");
+            Page.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys("22");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2670,13 +2623,15 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys("55");
+            Page.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys("55");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2686,13 +2641,15 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '55').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleTrgServiceKeyLocatorLengthInput.clear().sendKeys("63");
+            Page.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys("63");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2702,7 +2659,25 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleTrgServiceKeyLocatorLengthInput.getAttribute("value");
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '63').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleTrgServiceKeyLocatorLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleTrgServiceKeyLocatorLengthSpinner.clear().sendKeys("64");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleTrgServiceKeyLocatorLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '63').to.be.true;
         });
@@ -2750,7 +2725,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0026", "", "ConnRVA0028", "ConversionB0028", "0", "0", "0", "Message", "0", "0");
+            Page.addTrgWithRv("TriggerRV0026", "", "ConnRVA0028", "ConversionB0028", undefined, "0", "0", "0", "Message", "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2904,7 +2879,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0027", "", "ConnRVA0029", "ConversionB0029", "0", "0", "0", "Message", "0", "0", "");
+            Page.addTrgWithRv("TriggerRV0027", "", "ConnRVA0029", "ConversionB0029", undefined, "0", "0", "0", "Message", "0", "0", "");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2916,7 +2891,7 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            Page.addTrgWithRv("TriggerRV0028", "", "ConnRVA0029", "ConversionB0029", "0", "0", "0", "Message", "0", "0", "", true);
+            Page.addTrgWithRv("TriggerRV0028", "", "ConnRVA0029", "ConversionB0029", undefined, "0", "0", "0", "Message", "0", "0", "", true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3433,6 +3408,182 @@ describe('6.6.4 Configure Trigger With RV ESB Page', function () {
             return Page.eleTrgRvDynamicSubjectSuffixStartSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '4095873').to.be.true;
+        });
+    });
+
+    // Test field 'Trigger Details panel' -> 'Field Name for Conversionless Message'
+    //
+    it('Test field Trigger -> Field Name for Conversionless Message', function () {
+        Page.delTrgYes("TriggerRV0032").then(function () {
+            Page.delCvrYes("ConversionB0033");
+        }).then(function () {
+            Page.delMsgYes("MessageC0027");
+        }).then(function () {
+            Page.delBufYes("BufferC0027");
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
+        }).then(function () {
+            globalNaviPage.eleDefineMenu.click();
+        }).then(function () {
+            definePage.delConnRvYes("ConnRVA0033");
+        }).then(function () {
+            definePage.delEndpointRvYes("EndpointRVC0027");
+        }).then(function () {
+            definePage.addEndpointRv("EndpointRVC0027");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addConnRv("ConnRVA0033", "", false, "EndpointRVC0027");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
+        }).then(function () {
+            globalNaviPage.eleConfigureMenu.click();
+        }).then(function () {
+            Page.addMsg("MessageC0027", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferC0027", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionB0033", "MessageC0027", "BufferC0027", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addTrgWithRv("TriggerRV0032", "", "ConnRVA0033", "ConversionB0033", "");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'DATA').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveInfoClose);
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys("A");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'A').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveInfoClose);
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys("b");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'b').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveInfoClose);
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys("0");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveInfoClose);
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys("@");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '@').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveInfoClose);
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys("!@#$%^&*?1CCCCCCCCCCdddddddddd4444444444555555555566666666667777777777888888888");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '!@#$%^&*?1CCCCCCCCCCdddddddddd4444444444555555555566666666667777777777888888888').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveInfoClose);
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleTrgFldNameForCvrlessMsgInput.clear().sendKeys("!@#$%^&*?1CCCCCCCCCCdddddddddd4444444444555555555566666666667777777777888888888x");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleTrgFldNameForCvrlessMsgInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '!@#$%^&*?1CCCCCCCCCCdddddddddd4444444444555555555566666666667777777777888888888').to.be.true;
         });
     });
 

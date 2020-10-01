@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var Page = require('../utility/page.js');
@@ -19,7 +19,7 @@ var globalPage = (function () {
         this.eleEntitySearched = element(by.css('.GCOBQG-CGR .GCOBQG-CAN'));
         this.eleSelectButton = element(by.css('.mfwebui-form-buttons button[title="OK"]'));
         this.eleCancelButton = element(by.css('.mfwebui-form-buttons button[title="No"]'));
-    };
+    }
 
     globalPage.prototype = new Page();
     globalPage.prototype.constructor = globalPage;

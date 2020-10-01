@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var configurePage = require('../pageObject/configurePage.js');
@@ -15,1382 +15,1388 @@ describe('6.6.2 Configure Buffer Page', function () {
         globalNaviPage.eleConfigureMenu.click();
     });
 
-    // // Add a Buffer successfully.
-    // //
-    // it('Add a Buffer successfully', function () {
-    //     browser.sleep(1000).then(function () {
-    //         Page.delBufYes("Buffer0001");
-    //     }).then(function () {
-    //         Page.addBuf("Buffer0001", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     });
-    // });
+    // Add a Buffer successfully.
     //
-    // // Add a Buffer successfully, then replicate it.
-    // //
-    // it('Add a Buffer, then replicate it successfully', function () {
-    //     Page.delBufYes("Buffer0002-copy").then(function () {
-    //         Page.delBufYes("Buffer0002");
-    //     }).then(function () {
-    //         Page.addBuf("Buffer0002", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page.replicateBuf("Buffer0002");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'Buffer0002-copy').to.be.true;
-    //     });
-    // });
+    it('Add a Buffer successfully', function () {
+        browser.sleep(1000).then(function () {
+            Page.delBufYes("Buffer0001");
+        }).then(function () {
+            Page.addBuf("Buffer0001", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        });
+    });
+
+    // Add a Buffer successfully, then replicate it.
     //
-    // // Add a Buffer successfully, then update it.
-    // //
-    // it('Add a Buffer, then update it successfully', function () {
-    //     Page.delBufYes("Buffer0003").then(function () {
-    //         Page.addBuf("Buffer0003", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page.updateBuf("Buffer0003", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'Buffer0003').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufDescInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'HiJkLmN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute("value");
-    //     }).then(function (message) {
-    //         expect(message === '22222').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0001B').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'PDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '22').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '44').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '2').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0002B').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'FLOAT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '444').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '666').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '4').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0003B').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'UZDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '6666').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '8888').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '6').to.be.true;
-    //     });
-    // });
+    it('Add a Buffer, then replicate it successfully', function () {
+        Page.delBufYes("Buffer0002-copy").then(function () {
+            Page.delBufYes("Buffer0002");
+        }).then(function () {
+            Page.addBuf("Buffer0002", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.replicateBuf("Buffer0002");
+        }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'Buffer0002-copy').to.be.true;
+        });
+    });
+
+    // Add a Buffer successfully, then update it.
     //
-    // // Add a Buffer, make some changes, cancel the changes, then confirm the cancel operation.
-    // //
-    // it('Add a Buffer, cancel the changes, then confirm the cancel operation', function () {
-    //     Page.delBufYes("Buffer0004").then(function () {
-    //         Page.addBuf("Buffer0004", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page.cancelBufYes("Buffer0004", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
-    //     }).then(function () {
-    //         Page.eleBufLeftmenu.click();
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleSearchInput);
-    //     }).then(function () {
-    //         Page.eleSearchInput.clear().sendKeys("Buffer0004");
-    //     }).then(function () {
-    //         Page.eleSearchIcon.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleEntityNameSearched);
-    //     }).then(function () {
-    //         Page.eleEntityNameSearched.click();
-    //     }).then(function () {
-    //         Page.eleDetailSlideBar.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleDetailHeader);
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'Buffer0004').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufDescInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'aBcDeFg').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute("value");
-    //     }).then(function (message) {
-    //         expect(message === '11111').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0001').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'BIN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '11').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '33').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '1').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0002').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'STR').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '333').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '555').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '3').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0003').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'TEXT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '5555').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '7777').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '5').to.be.true;
-    //     });
-    // });
+    it('Add a Buffer, then update it successfully', function () {
+        Page.delBufYes("Buffer0003").then(function () {
+            Page.addBuf("Buffer0003", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.updateBuf("Buffer0003", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'Buffer0003').to.be.true;
+        }).then(function () {
+            return Page.eleBufDescInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'HiJkLmN').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '22222').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(1).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0001B').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(1).getText();
+        }).then(function (message) {
+            expect(message === 'PDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(1).getText();
+        }).then(function (message) {
+            expect(message === '22').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(1).getText();
+        }).then(function (message) {
+            expect(message === '44').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(1).getText();
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(2).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0002B').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(2).getText();
+        }).then(function (message) {
+            expect(message === 'FLOAT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(2).getText();
+        }).then(function (message) {
+            expect(message === '444').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(2).getText();
+        }).then(function (message) {
+            expect(message === '666').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(2).getText();
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(3).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0003B').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(3).getText();
+        }).then(function (message) {
+            expect(message === 'UZDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(3).getText();
+        }).then(function (message) {
+            expect(message === '6666').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(3).getText();
+        }).then(function (message) {
+            expect(message === '8888').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(3).getText();
+        }).then(function (message) {
+            expect(message === '6').to.be.true;
+        });
+    });
+
+    // Add a Buffer, make some changes, cancel the changes, then confirm the cancel operation.
     //
-    // // Add a Buffer, make some changes, cancel the changes, then discard the cancel operation.
-    // //
-    // it('Add a Buffer, cancel the changes, then discard the cancel operation', function () {
-    //     Page.delBufYes("Buffer0005").then(function () {
-    //         Page.addBuf("Buffer0005", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page.cancelBufNo("Buffer0005", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'Buffer0005').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufDescInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'HiJkLmN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute("value");
-    //     }).then(function (message) {
-    //         expect(message === '22222').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0001B').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'PDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '22').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '44').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '2').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0002B').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'FLOAT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '444').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '666').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '4').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0003B').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'UZDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '6666').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '8888').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '6').to.be.true;
-    //     });
-    // });
+    it('Add a Buffer, cancel the changes, then confirm the cancel operation', function () {
+        Page.delBufYes("Buffer0004").then(function () {
+            Page.addBuf("Buffer0004", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.cancelBufYes("Buffer0004", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
+        }).then(function () {
+            Page.eleBufLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleSearchInput);
+        }).then(function () {
+            Page.eleSearchInput.clear().sendKeys("Buffer0004");
+        }).then(function () {
+            Page.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleEntityNameSearched);
+        }).then(function () {
+            Page.eleEntityNameSearched.click();
+        }).then(function () {
+            Page.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleDetailHeader);
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'Buffer0004').to.be.true;
+        }).then(function () {
+            return Page.eleBufDescInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'aBcDeFg').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '11111').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(1).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0001').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(1).getText();
+        }).then(function (message) {
+            expect(message === 'BIN').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(1).getText();
+        }).then(function (message) {
+            expect(message === '11').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(1).getText();
+        }).then(function (message) {
+            expect(message === '33').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(1).getText();
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(2).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0002').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(2).getText();
+        }).then(function (message) {
+            expect(message === 'STR').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(2).getText();
+        }).then(function (message) {
+            expect(message === '333').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(2).getText();
+        }).then(function (message) {
+            expect(message === '555').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(2).getText();
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(3).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0003').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(3).getText();
+        }).then(function (message) {
+            expect(message === 'TEXT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(3).getText();
+        }).then(function (message) {
+            expect(message === '5555').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(3).getText();
+        }).then(function (message) {
+            expect(message === '7777').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(3).getText();
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
+        });
+    });
+
+    // Add a Buffer, make some changes, cancel the changes, then discard the cancel operation.
     //
-    // // Add a Buffer, make some changes, then reset it.
-    // //
-    // it('Add a Buffer, make some changes, then reset it', function () {
-    //     Page.delBufYes("Buffer0006").then(function () {
-    //         Page.addBuf("Buffer0006", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page.resetBuf("Buffer0006", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'Buffer0006').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufDescInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'aBcDeFg').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute("value");
-    //     }).then(function (message) {
-    //         expect(message === '11111').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0001').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'BIN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '11').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '33').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '1').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0002').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'STR').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '333').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '555').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '3').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0003').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'TEXT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '5555').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '7777').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '5').to.be.true;
-    //     });
-    // });
+    it('Add a Buffer, cancel the changes, then discard the cancel operation', function () {
+        Page.delBufYes("Buffer0005").then(function () {
+            Page.addBuf("Buffer0005", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.cancelBufNo("Buffer0005", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'Buffer0005').to.be.true;
+        }).then(function () {
+            return Page.eleBufDescInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'HiJkLmN').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '22222').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(1).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0001B').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(1).getText();
+        }).then(function (message) {
+            expect(message === 'PDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(1).getText();
+        }).then(function (message) {
+            expect(message === '22').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(1).getText();
+        }).then(function (message) {
+            expect(message === '44').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(1).getText();
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(2).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0002B').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(2).getText();
+        }).then(function (message) {
+            expect(message === 'FLOAT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(2).getText();
+        }).then(function (message) {
+            expect(message === '444').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(2).getText();
+        }).then(function (message) {
+            expect(message === '666').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(2).getText();
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(3).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0003B').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(3).getText();
+        }).then(function (message) {
+            expect(message === 'UZDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(3).getText();
+        }).then(function (message) {
+            expect(message === '6666').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(3).getText();
+        }).then(function (message) {
+            expect(message === '8888').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(3).getText();
+        }).then(function (message) {
+            expect(message === '6').to.be.true;
+        });
+    });
+
+    // Add a Buffer, make some changes, then reset it.
     //
-    // // Add a Buffer, then add a Buffer with the same name, then confirm the overwrite operation.
-    // //
-    // it('Add a Buffer to overwrite an existing Buffer, then confirm the overwrite operation', function () {
-    //     Page.delBufYes("Buffer0007").then(function () {
-    //         Page.addBuf("Buffer0007", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page.addBuf("Buffer0007", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(globalPage.eleOKButton);
-    //     }).then(function () {
-    //         globalPage.eleOKButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'Buffer0007').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufDescInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'HiJkLmN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute("value");
-    //     }).then(function (message) {
-    //         expect(message === '22222').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0001B').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'PDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '22').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '44').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '2').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0002B').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'FLOAT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '444').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '666').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '4').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0003B').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'UZDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '6666').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '8888').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '6').to.be.true;
-    //     });
-    // });
+    it('Add a Buffer, make some changes, then reset it', function () {
+        Page.delBufYes("Buffer0006").then(function () {
+            Page.addBuf("Buffer0006", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.resetBuf("Buffer0006", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'Buffer0006').to.be.true;
+        }).then(function () {
+            return Page.eleBufDescInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'aBcDeFg').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '11111').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(1).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0001').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(1).getText();
+        }).then(function (message) {
+            expect(message === 'BIN').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(1).getText();
+        }).then(function (message) {
+            expect(message === '11').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(1).getText();
+        }).then(function (message) {
+            expect(message === '33').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(1).getText();
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(2).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0002').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(2).getText();
+        }).then(function (message) {
+            expect(message === 'STR').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(2).getText();
+        }).then(function (message) {
+            expect(message === '333').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(2).getText();
+        }).then(function (message) {
+            expect(message === '555').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(2).getText();
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(3).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0003').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(3).getText();
+        }).then(function (message) {
+            expect(message === 'TEXT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(3).getText();
+        }).then(function (message) {
+            expect(message === '5555').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(3).getText();
+        }).then(function (message) {
+            expect(message === '7777').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(3).getText();
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
+        });
+    });
+
+    // Add a Buffer, then add a Buffer with the same name, then confirm the overwrite operation.
     //
-    // // Add a Buffer, then add a Buffer with the same name, then discard the overwrite operation.
-    // //
-    // it('Add a Buffer to overwrite an existing Buffer, then discard the overwrite operation', function () {
-    //     Page.delBufYes("Buffer0008").then(function () {
-    //         Page.addBuf("Buffer0008", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page.addBuf("Buffer0008", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(globalPage.eleNoButton);
-    //     }).then(function () {
-    //         globalPage.eleNoButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleBufLeftmenu);
-    //     }).then(function () {
-    //         Page.eleBufLeftmenu.click();
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(globalPage.eleYesButton);
-    //     }).then(function () {
-    //         globalPage.eleYesButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleSearchInput);
-    //     }).then(function () {
-    //         Page.eleSearchInput.clear().sendKeys("Buffer0008");
-    //     }).then(function () {
-    //         Page.eleSearchIcon.click();
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleEntityNameSearched);
-    //     }).then(function () {
-    //         Page.eleEntityNameSearched.click();
-    //     }).then(function () {
-    //         Page.eleDetailSlideBar.click();
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleBufNameInput);
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'Buffer0008').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufDescInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'aBcDeFg').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute("value");
-    //     }).then(function (message) {
-    //         expect(message === '11111').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0001').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'BIN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '11').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '33').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '1').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0002').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'STR').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '333').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '555').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '3').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'bufField0003').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'TEXT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '5555').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '7777').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDec(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '5').to.be.true;
-    //     });
-    // });
+    it('Add a Buffer to overwrite an existing Buffer, then confirm the overwrite operation', function () {
+        Page.delBufYes("Buffer0007").then(function () {
+            Page.addBuf("Buffer0007", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.addBuf("Buffer0007", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
+        }).then(function () {
+            globalCommons.waitForClickable(globalPage.eleOKButton);
+        }).then(function () {
+            globalPage.eleOKButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'Buffer0007').to.be.true;
+        }).then(function () {
+            return Page.eleBufDescInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'HiJkLmN').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '22222').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(1).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0001B').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(1).getText();
+        }).then(function (message) {
+            expect(message === 'PDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(1).getText();
+        }).then(function (message) {
+            expect(message === '22').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(1).getText();
+        }).then(function (message) {
+            expect(message === '44').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(1).getText();
+        }).then(function (message) {
+            expect(message === '2').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(2).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0002B').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(2).getText();
+        }).then(function (message) {
+            expect(message === 'FLOAT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(2).getText();
+        }).then(function (message) {
+            expect(message === '444').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(2).getText();
+        }).then(function (message) {
+            expect(message === '666').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(2).getText();
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(3).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0003B').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(3).getText();
+        }).then(function (message) {
+            expect(message === 'UZDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(3).getText();
+        }).then(function (message) {
+            expect(message === '6666').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(3).getText();
+        }).then(function (message) {
+            expect(message === '8888').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(3).getText();
+        }).then(function (message) {
+            expect(message === '6').to.be.true;
+        });
+    });
+
+    // Add a Buffer, then add a Buffer with the same name, then discard the overwrite operation.
     //
-    // // Add a Buffer, delete it, then confirm the delete operation.
-    // //
-    // it('Add a Buffer, delete it, then confirm the delete operation', function () {
-    //     Page.delBufYes("Buffer0009").then(function () {
-    //         Page.addBuf("Buffer0009", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page.delBufYes("Buffer0009");
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleSearchInput);
-    //     }).then(function () {
-    //         Page.eleSearchInput.clear().sendKeys("Buffer0009");
-    //     }).then(function () {
-    //         Page.eleSearchIcon.click();
-    //     }).then(function () {
-    //         return Page.eleEntityNameSearched.isPresent();
-    //     }).then(function (result) {
-    //         expect(result).to.be.false;
-    //     });
-    // });
+    it('Add a Buffer to overwrite an existing Buffer, then discard the overwrite operation', function () {
+        Page.delBufYes("Buffer0008").then(function () {
+            Page.addBuf("Buffer0008", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.addBuf("Buffer0008", "HiJkLmN", "22222", "bufField0001B", "PDEC", "22", "44", "2", "bufField0002B", "FLOAT", "444", "666", "4", "bufField0003B", "UZDEC", "6666", "8888", "6");
+        }).then(function () {
+            globalCommons.waitForClickable(globalPage.eleNoButton);
+        }).then(function () {
+            globalPage.eleNoButton.click();
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleBufLeftmenu);
+        }).then(function () {
+            Page.eleBufLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForClickable(globalPage.eleYesButton);
+        }).then(function () {
+            globalPage.eleYesButton.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleSearchInput);
+        }).then(function () {
+            Page.eleSearchInput.clear().sendKeys("Buffer0008");
+        }).then(function () {
+            Page.eleSearchIcon.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleEntityNameSearched);
+        }).then(function () {
+            Page.eleEntityNameSearched.click();
+        }).then(function () {
+            Page.eleDetailSlideBar.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleBufNameInput);
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'Buffer0008').to.be.true;
+        }).then(function () {
+            return Page.eleBufDescInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'aBcDeFg').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '11111').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(1).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0001').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(1).getText();
+        }).then(function (message) {
+            expect(message === 'BIN').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(1).getText();
+        }).then(function (message) {
+            expect(message === '11').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(1).getText();
+        }).then(function (message) {
+            expect(message === '33').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(1).getText();
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(2).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0002').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(2).getText();
+        }).then(function (message) {
+            expect(message === 'STR').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(2).getText();
+        }).then(function (message) {
+            expect(message === '333').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(2).getText();
+        }).then(function (message) {
+            expect(message === '555').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(2).getText();
+        }).then(function (message) {
+            expect(message === '3').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldName(3).getText();
+        }).then(function (message) {
+            expect(message === 'bufField0003').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(3).getText();
+        }).then(function (message) {
+            expect(message === 'TEXT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(3).getText();
+        }).then(function (message) {
+            expect(message === '5555').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(3).getText();
+        }).then(function (message) {
+            expect(message === '7777').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDec(3).getText();
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
+        });
+    });
+
+    // Add a Buffer, delete it, then confirm the delete operation.
     //
-    // // Add a Buffer, delete it, then discard the delete operation.
-    // //
-    // it('Should add a Buffer, delete it, then discard the delete operation', function () {
-    //     Page.delBufYes("Buffer0010").then(function () {
-    //         Page.addBuf("Buffer0010", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page.delBufNo("Buffer0010");
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleSearchInput);
-    //     }).then(function () {
-    //         Page.eleSearchInput.clear().sendKeys("Buffer0010");
-    //     }).then(function () {
-    //         Page.eleSearchIcon.click();
-    //     }).then(function () {
-    //         return Page.eleEntityNameSearched.isPresent();
-    //     }).then(function (result) {
-    //         expect(result).to.be.true;
-    //     });
-    // });
+    it('Add a Buffer, delete it, then confirm the delete operation', function () {
+        Page.delBufYes("Buffer0009").then(function () {
+            Page.addBuf("Buffer0009", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.delBufYes("Buffer0009");
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleSearchInput);
+        }).then(function () {
+            Page.eleSearchInput.clear().sendKeys("Buffer0009");
+        }).then(function () {
+            Page.eleSearchIcon.click();
+        }).then(function () {
+            return Page.eleEntityNameSearched.isPresent();
+        }).then(function (result) {
+            expect(result).to.be.false;
+        });
+    });
+
+    // Add a Buffer, delete it, then discard the delete operation.
     //
-    // // Test 'Audit' & 'Refresh' button.
-    // //
-    // it('Test Audit & Refresh button', function () {
-    //     Page.delBufYes("Buffer0011").then(function () {
-    //         Page.addBuf("Buffer0011", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleDeleteButton.getAttribute('disabled');
-    //     }).then(function (message) {
-    //         expect(message === null).to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleRefreshButton);
-    //     }).then(function () {
-    //         Page.eleRefreshButton.click();
-    //     }).then(function () {
-    //         browser.sleep(500);
-    //     }).then(function () {
-    //         return Page.eleDeleteButton.getAttribute('disabled');
-    //     }).then(function (message) {
-    //         expect(message === "true").to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleAuditButton);
-    //     }).then(function () {
-    //         return Page.eleTableHeader3.isPresent();
-    //     }).then(function (result) {
-    //         expect(result).to.be.false;
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleAuditButton);
-    //     }).then(function () {
-    //         Page.eleAuditButton.click();
-    //     }).then(function () {
-    //         browser.sleep(500);
-    //     }).then(function () {
-    //         return Page.eleTableHeader3.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Modified On').to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleAuditButton);
-    //     }).then(function () {
-    //         Page.eleAuditButton.click();
-    //     }).then(function () {
-    //         browser.sleep(500);
-    //     }).then(function () {
-    //         return Page.eleTableHeader3.isPresent();
-    //     }).then(function (result) {
-    //         expect(result).to.be.false;
-    //     });
-    // });
+    it('Should add a Buffer, delete it, then discard the delete operation', function () {
+        Page.delBufYes("Buffer0010").then(function () {
+            Page.addBuf("Buffer0010", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page.delBufNo("Buffer0010");
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleSearchInput);
+        }).then(function () {
+            Page.eleSearchInput.clear().sendKeys("Buffer0010");
+        }).then(function () {
+            Page.eleSearchIcon.click();
+        }).then(function () {
+            return Page.eleEntityNameSearched.isPresent();
+        }).then(function (result) {
+            expect(result).to.be.true;
+        });
+    });
+
+    // Test 'Audit' & 'Refresh' button.
     //
-    // // Test Buffer Details panel fields default value.
-    // //
-    // it('Test Buffer Details panel fields default value', function () {
-    //     globalCommons.waitForElementPresent(Page.eleScreenElement).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleBufLeftmenu);
-    //     }).then(function () {
-    //         Page.eleBufLeftmenu.click();
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleAddButton);
-    //     }).then(function () {
-    //         Page.eleAddButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleBufNameInput);
-    //     }).then(function () {
-    //         return Page.eleBufFieldName(1).isPresent();
-    //     }).then(function (result) {
-    //         expect(result).to.be.false;
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleBufFieldAddButton);
-    //     }).then(function () {
-    //         Page.eleBufFieldAddButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleBufFieldExtendButton2);
-    //     }).then(function () {
-    //         Page.eleBufFieldExtendButton2.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleBufFieldNameInput);
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufDescInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldTypeInput.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'BIN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPositionSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLengthSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '4').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldDecSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldNameInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === 'New_field').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLeadingSignCheck.getAttribute("checked");
-    //     }).then(function (message) {
-    //         expect(message === null).to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldSeparateSignCheck.getAttribute("checked");
-    //     }).then(function (message) {
-    //         expect(message === null).to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldJustifyRightCheck.getAttribute("checked");
-    //     }).then(function (message) {
-    //         expect(message === null).to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldPadCharacterDropdown.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Space').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldPadValueInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldPadValueInput.getAttribute("readonly");
-    //     }).then(function (message) {
-    //         expect(message === "true").to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldInitializeEntireFieldCheck.getAttribute("checked");
-    //     }).then(function (message) {
-    //         expect(message === null).to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldInitialValueLengthSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldInitialValueInput.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '').to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleCancelButton);
-    //     }).then(function () {
-    //         Page.eleCancelButton.click();
-    //     }).then(function () {
-    //         globalPage.isWarningYes();
-    //     });
-    // });
+    it('Test Audit & Refresh button', function () {
+        Page.delBufYes("Buffer0011").then(function () {
+            Page.addBuf("Buffer0011", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleDeleteButton.getAttribute('disabled');
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleRefreshButton);
+        }).then(function () {
+            Page.eleRefreshButton.click();
+        }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
+            return Page.eleDeleteButton.getAttribute('disabled');
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleAuditButton);
+        }).then(function () {
+            return Page.eleTableHeader3.isPresent();
+        }).then(function (result) {
+            expect(result).to.be.false;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleAuditButton);
+        }).then(function () {
+            Page.eleAuditButton.click();
+        }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
+            return Page.eleTableHeader3.getText();
+        }).then(function (message) {
+            expect(message === 'Modified On').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleAuditButton);
+        }).then(function () {
+            Page.eleAuditButton.click();
+        }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
+            return Page.eleTableHeader3.isPresent();
+        }).then(function (result) {
+            expect(result).to.be.false;
+        });
+    });
+
+    // Test Buffer Details panel fields default value.
     //
-    // // Test Buffer Details panel mandatory fields.
-    // //
-    // it('Test Buffer Details panel mandatory fields', function () {
-    //     globalCommons.waitForElementPresent(Page.eleScreenElement).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleBufLeftmenu);
-    //     }).then(function () {
-    //         Page.eleBufLeftmenu.click();
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleAddButton);
-    //     }).then(function () {
-    //         Page.eleAddButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'There is an error on this form').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufNameValidateMsg.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'A non-empty value is required').to.be.true;
-    //     }).then(function () {
-    //         Page.eleCancelButton.click();
-    //     });
-    // });
+    it('Test Buffer Details panel fields default value', function () {
+        globalCommons.waitForElementPresent(Page.eleScreenElement).then(function () {
+            globalCommons.waitForDisplayed(Page.eleBufLeftmenu);
+        }).then(function () {
+            Page.eleBufLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleAddButton);
+        }).then(function () {
+            Page.eleAddButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleBufNameInput);
+        }).then(function () {
+            return Page.eleBufFieldName(1).isPresent();
+        }).then(function (result) {
+            expect(result).to.be.false;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleBufFieldAddButton);
+        }).then(function () {
+            Page.eleBufFieldAddButton.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleBufFieldExtendButton2);
+        }).then(function () {
+            Page.eleBufFieldExtendButton2.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleBufFieldNameInput);
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '').to.be.true;
+        }).then(function () {
+            return Page.eleBufDescInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldTypeInput.getText();
+        }).then(function (message) {
+            expect(message === 'BIN').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPositionSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLengthSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldDecSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldNameInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === 'New_field').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLeadingSignCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldSeparateSignCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldJustifyRightCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldPadCharacterDropdown.getText();
+        }).then(function (message) {
+            expect(message === 'Space').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldPadValueInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === ' ').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldPadValueInput.getAttribute("readonly");
+        }).then(function (message) {
+            expect(message === "true").to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldInitializeEntireFieldCheck.getAttribute("checked");
+        }).then(function (message) {
+            expect(message === null).to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldInitialValueLengthSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldInitialValueInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleCancelButton);
+        }).then(function () {
+            Page.eleCancelButton.click();
+        }).then(function () {
+            globalPage.isWarningYes();
+        });
+    });
+
+    // Test Buffer Details panel mandatory fields.
     //
-    // // Test field 'Buffer Details panel' -> 'Name'
-    // //
-    // it('Test field Buffer -> Name', function () {
-    //     Page.delBufYes("Buffer0012_@#$_222223333333333444444444").then(function () {
-    //         Page.addBuf("Buffer0012_@#$_222223333333333444444444", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute("value");
-    //     }).then(function (message) {
-    //         expect(message === 'Buffer0012_@#$_222223333333333444444444').to.be.true;
-    //     }).then(function () {
-    //         Page.delBufYes("Buffer0013_@#$_222223333333333444444444");
-    //     }).then(function () {
-    //         Page.addBuf("Buffer0013_@#$_2222233333333334444444444", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufNameInput.getAttribute("value");
-    //     }).then(function (message) {
-    //         expect(message === 'Buffer0013_@#$_222223333333333444444444').to.be.true;
-    //     });
-    // });
+    it('Test Buffer Details panel mandatory fields', function () {
+        globalCommons.waitForElementPresent(Page.eleScreenElement).then(function () {
+            globalCommons.waitForDisplayed(Page.eleBufLeftmenu);
+        }).then(function () {
+            Page.eleBufLeftmenu.click();
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleAddButton);
+        }).then(function () {
+            Page.eleAddButton.click();
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleBufNameValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'A non-empty value is required').to.be.true;
+        }).then(function () {
+            Page.eleCancelButton.click();
+        });
+    });
+
+    // Test field 'Buffer Details panel' -> 'Name'
     //
-    // // Test field 'Buffer Details panel' -> 'Description'
-    // //
-    // it('Test field Buffer -> Description', function () {
-    //     Page.delBufYes("Buffer0014").then(function () {
-    //         Page.addBuf("Buffer0014", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufDescInput.getAttribute("value");
-    //     }).then(function (message) {
-    //         expect(message === 'AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111').to.be.true;
-    //     }).then(function () {
-    //         Page.delBufYes("Buffer0015");
-    //     }).then(function () {
-    //         Page.addBuf("Buffer0015", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????111111111122222222223333333333444444444455555555551111111111222222222233333333334444444444555555555511111","11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'There is an error on this form').to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleBufDescValidateMsg);
-    //     }).then(function () {
-    //         return Page.eleBufDescValidateMsg.getText();
-    //     }).then(function (message) {
-    //         expect(message.includes("the value is too long, must be at most 254 characters")).to.be.true;
-    //     }).then(function () {
-    //         Page.eleSaveInfoClose.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleBufDescInput);
-    //     }).then(function () {
-    //         Page.eleBufDescInput.clear().sendKeys("Corrected");
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForDisplayed(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     });
-    // });
+    it('Test field Buffer -> Name', function () {
+        Page.delBufYes("Buffer0012_@#$_222223333333333444444444").then(function () {
+            Page.addBuf("Buffer0012_@#$_222223333333333444444444", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'Buffer0012_@#$_222223333333333444444444').to.be.true;
+        }).then(function () {
+            Page.delBufYes("Buffer0013_@#$_222223333333333444444444");
+        }).then(function () {
+            Page.addBuf("Buffer0013_@#$_2222233333333334444444444", "aBcDeFg", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufNameInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'Buffer0013_@#$_222223333333333444444444').to.be.true;
+        });
+    });
+
+    // Test field 'Buffer Details panel' -> 'Description'
     //
-    // // Test field 'Buffer Details panel' -> 'Max Size'
-    // //
-    // it('Test field Buffer -> Max Size', function () {
-    //     var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
-    //     Page.delBufYes("Buffer0016").then(function () {
-    //         Page.addBuf("Buffer0016", "", "0", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.clear().sendKeys("1");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '1').to.be.true;
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.clear().sendKeys("99");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '99').to.be.true;
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.clear().sendKeys("2222");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '2222').to.be.true;
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.clear().sendKeys("3333333");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '3333333').to.be.true;
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.clear().sendKeys("4095999");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '4095999').to.be.true;
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.clear().sendKeys("4096000");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '4096000').to.be.true;
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
-    //     }).then(function () {
-    //         Page.eleBufMaxSizeSpinner.clear().sendKeys("4096001");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufMaxSizeSpinner.getAttribute('value');
-    //     }).then(function (message) {
-    //         expect(message === '4096000').to.be.true;
-    //     });
-    // });
+    it('Test field Buffer -> Description', function () {
+        Page.delBufYes("Buffer0014").then(function () {
+            Page.addBuf("Buffer0014", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111", "11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufDescInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111').to.be.true;
+        }).then(function () {
+            Page.delBufYes("Buffer0015");
+        }).then(function () {
+            Page.addBuf("Buffer0015", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????111111111122222222223333333333444444444455555555551111111111222222222233333333334444444444555555555511111","11111", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleBufDescValidateMsg);
+        }).then(function () {
+            return Page.eleBufDescValidateMsg.getText();
+        }).then(function (message) {
+            expect(message.includes("the value is too long, must be at most 254 characters")).to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleBufDescInput);
+        }).then(function () {
+            Page.eleBufDescInput.clear().sendKeys("Corrected");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        });
+    });
+
+    // Test field 'Buffer Details panel' -> 'Max Size'
     //
-    // // Test field 'Buffer Details panel' -> 'Buffer Fields Type'
-    // //
-    // it('Test field Buffer -> Buffer Fields Type', function () {
-    //     Page.delBufYes("Buffer0017").then(function () {
-    //         Page.addBuf("Buffer0017", "", "0", "bufField0001", "PDEC", "0", "0", "0", "bufField0002", "ZDEC", "2", "0", "0", "bufField0003", "STR", "3", "0", "0");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleBufFieldAddButton);
-    //     }).then(function () {
-    //         Page.eleBufFieldAddButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleBufFieldTypeDropdown);
-    //     }).then(function () {
-    //         Page.eleBufFieldTypeDropdown.click();
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleBufFieldType01);
-    //     }).then(function () {
-    //         return Page.eleBufFieldType01.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'PDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType02.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'ZDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType03.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'STR').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType04.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'UBIN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType05.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'FLOAT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType06.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'OPA').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType07.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'TEXT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType08.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'BIN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType09.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'UPDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType10.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'UZDEC').to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleResetButton);
-    //     }).then(function () {
-    //         Page.eleResetButton.click();
-    //     }).then(function () {
-    //         Page._addBufField("bufField0004", "UBIN", "4", "4", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0005", "FLOAT", "5", "8", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0006", "OPA", "6", "0", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0007", "TEXT", "7", "0", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0008", "BIN", "8", "4", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0009", "UPDEC", "9", "0", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0010", "UZDEC", "10", "0", "0");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleBufFieldType(1));
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'PDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'ZDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'STR').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(4).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'UBIN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(5).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'FLOAT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(6).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'OPA').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(7).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'TEXT').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(8).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'BIN').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(9).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'UPDEC').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldType(10).getText();
-    //     }).then(function (message) {
-    //         expect(message === 'UZDEC').to.be.true;
-    //     });
-    // });
+    it('Test field Buffer -> Max Size', function () {
+        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        Page.delBufYes("Buffer0016").then(function () {
+            Page.addBuf("Buffer0016", "", "0", "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.clear().sendKeys("1");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.clear().sendKeys("99");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '99').to.be.true;
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.clear().sendKeys("2222");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '2222').to.be.true;
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.clear().sendKeys("3333333");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '3333333').to.be.true;
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.clear().sendKeys("4095999");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4095999').to.be.true;
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.clear().sendKeys("4096000");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4096000').to.be.true;
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleBufMaxSizeSpinner.clear().sendKeys("4096001");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleBufMaxSizeSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '4096000').to.be.true;
+        });
+    });
+
+    // Test field 'Buffer Details panel' -> 'Buffer Fields Type'
     //
-    // // Test field 'Buffer Details panel' -> 'Buffer Start Position'
-    // //
-    // it('Test field Buffer -> Buffer Start Position', function () {
-    //     Page.delBufYes("Buffer0018").then(function () {
-    //         Page.addBuf("Buffer0018", "", "0", "bufField0001", "STR", "0", "0", "0", "bufField0002", "STR", "1", "0", "0", "bufField0003", "STR", "999", "0", "0");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page._addBufField("bufField0004", "STR", "22222", "0", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0005", "STR", "3333333", "0", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0006", "STR", "4095998", "0", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0007", "STR", "4095999", "0", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0008", "STR", "4096000", "0", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0009", "STR", "4096001", "0", "0");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleBufFieldStartPosition(1));
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(4).getText();
-    //     }).then(function (message) {
-    //         expect(message === '1').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(5).getText();
-    //     }).then(function (message) {
-    //         expect(message === '999').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(6).getText();
-    //     }).then(function (message) {
-    //         expect(message === '22222').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(7).getText();
-    //     }).then(function (message) {
-    //         expect(message === '3333333').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(8).getText();
-    //     }).then(function (message) {
-    //         expect(message === '4095998').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldStartPosition(9).getText();
-    //     }).then(function (message) {
-    //         expect(message === '4095999').to.be.true;
-    //     });
-    // });
+    it('Test field Buffer -> Buffer Fields Type', function () {
+        Page.delBufYes("Buffer0017").then(function () {
+            Page.addBuf("Buffer0017", "", "0", "bufField0001", "PDEC", "0", "0", "0", "bufField0002", "ZDEC", "2", "0", "0", "bufField0003", "STR", "3", "0", "0");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleBufFieldAddButton);
+        }).then(function () {
+            Page.eleBufFieldAddButton.click();
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleBufFieldTypeDropdown);
+        }).then(function () {
+            Page.eleBufFieldTypeDropdown.click();
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleBufFieldType01);
+        }).then(function () {
+            return Page.eleBufFieldType01.getText();
+        }).then(function (message) {
+            expect(message === 'PDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType02.getText();
+        }).then(function (message) {
+            expect(message === 'ZDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType03.getText();
+        }).then(function (message) {
+            expect(message === 'STR').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType04.getText();
+        }).then(function (message) {
+            expect(message === 'UBIN').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType05.getText();
+        }).then(function (message) {
+            expect(message === 'FLOAT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType06.getText();
+        }).then(function (message) {
+            expect(message === 'OPA').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType07.getText();
+        }).then(function (message) {
+            expect(message === 'TEXT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType08.getText();
+        }).then(function (message) {
+            expect(message === 'BIN').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType09.getText();
+        }).then(function (message) {
+            expect(message === 'UPDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType10.getText();
+        }).then(function (message) {
+            expect(message === 'UZDEC').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleResetButton);
+        }).then(function () {
+            Page.eleResetButton.click();
+        }).then(function () {
+            Page._addBufField("bufField0004", "UBIN", "4", "4", "0");
+        }).then(function () {
+            Page._addBufField("bufField0005", "FLOAT", "5", "8", "0");
+        }).then(function () {
+            Page._addBufField("bufField0006", "OPA", "6", "0", "0");
+        }).then(function () {
+            Page._addBufField("bufField0007", "TEXT", "7", "0", "0");
+        }).then(function () {
+            Page._addBufField("bufField0008", "BIN", "8", "4", "0");
+        }).then(function () {
+            Page._addBufField("bufField0009", "UPDEC", "9", "0", "0");
+        }).then(function () {
+            Page._addBufField("bufField0010", "UZDEC", "10", "0", "0");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleBufFieldType(1));
+        }).then(function () {
+            return Page.eleBufFieldType(1).getText();
+        }).then(function (message) {
+            expect(message === 'PDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(2).getText();
+        }).then(function (message) {
+            expect(message === 'ZDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(3).getText();
+        }).then(function (message) {
+            expect(message === 'STR').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(4).getText();
+        }).then(function (message) {
+            expect(message === 'UBIN').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(5).getText();
+        }).then(function (message) {
+            expect(message === 'FLOAT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(6).getText();
+        }).then(function (message) {
+            expect(message === 'OPA').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(7).getText();
+        }).then(function (message) {
+            expect(message === 'TEXT').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(8).getText();
+        }).then(function (message) {
+            expect(message === 'BIN').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(9).getText();
+        }).then(function (message) {
+            expect(message === 'UPDEC').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldType(10).getText();
+        }).then(function (message) {
+            expect(message === 'UZDEC').to.be.true;
+        });
+    });
+
+    // Test field 'Buffer Details panel' -> 'Buffer Start Position'
     //
-    // // Test field 'Buffer Details panel' -> 'Buffer Fields Length'
-    // //
-    // it('Test field Buffer -> Buffer Fields Length', function () {
-    //     Page.delBufYes("Buffer0019").then(function () {
-    //         Page.addBuf("Buffer0019", "", "0", "bufField0001", "STR", "0", "0", "0", "bufField0002", "STR", "2", "1", "0", "bufField0003", "STR", "3", "999", "0");
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         Page._addBufField("bufField0004", "STR", "4", "22222", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0005", "STR", "5", "3333333", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0006", "STR", "6", "4095999", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0007", "STR", "7", "4096000", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0008", "STR", "8", "4096001", "0");
-    //     }).then(function () {
-    //         Page._addBufField("bufField0009", "STR", "9", "4096002", "0");
-    //     }).then(function () {
-    //         globalCommons.waitForClickable(Page.eleSaveButton);
-    //     }).then(function () {
-    //         Page.eleSaveButton.click();
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
-    //     }).then(function () {
-    //         return Page.eleSaveInfo.getText();
-    //     }).then(function (message) {
-    //         expect(message === 'Saved successfully.').to.be.true;
-    //     }).then(function () {
-    //         globalCommons.waitForElementPresent(Page.eleBufFieldLength(1));
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(1).getText();
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(2).getText();
-    //     }).then(function (message) {
-    //         expect(message === '1').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(3).getText();
-    //     }).then(function (message) {
-    //         expect(message === '999').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(4).getText();
-    //     }).then(function (message) {
-    //         expect(message === '22222').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(5).getText();
-    //     }).then(function (message) {
-    //         expect(message === '3333333').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(6).getText();
-    //     }).then(function (message) {
-    //         expect(message === '4095999').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(7).getText();
-    //     }).then(function (message) {
-    //         expect(message === '4096000').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(8).getText();
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     }).then(function () {
-    //         return Page.eleBufFieldLength(9).getText();
-    //     }).then(function (message) {
-    //         expect(message === '0').to.be.true;
-    //     });
-    // });
+    it('Test field Buffer -> Buffer Start Position', function () {
+        Page.delBufYes("Buffer0018").then(function () {
+            Page.addBuf("Buffer0018", "", "0", "bufField0001", "STR", "0", "0", "0", "bufField0002", "STR", "1", "0", "0", "bufField0003", "STR", "999", "0", "0");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page._addBufField("bufField0004", "STR", "22222", "0", "0");
+        }).then(function () {
+            Page._addBufField("bufField0005", "STR", "3333333", "0", "0");
+        }).then(function () {
+            Page._addBufField("bufField0006", "STR", "4095998", "0", "0");
+        }).then(function () {
+            Page._addBufField("bufField0007", "STR", "4095999", "0", "0");
+        }).then(function () {
+            Page._addBufField("bufField0008", "STR", "4096000", "0", "0");
+        }).then(function () {
+            Page._addBufField("bufField0009", "STR", "4096001", "0", "0");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleBufFieldStartPosition(1));
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(1).getText();
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(2).getText();
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(3).getText();
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(4).getText();
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(5).getText();
+        }).then(function (message) {
+            expect(message === '999').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(6).getText();
+        }).then(function (message) {
+            expect(message === '22222').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(7).getText();
+        }).then(function (message) {
+            expect(message === '3333333').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(8).getText();
+        }).then(function (message) {
+            expect(message === '4095998').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldStartPosition(9).getText();
+        }).then(function (message) {
+            expect(message === '4095999').to.be.true;
+        });
+    });
+
+    // Test field 'Buffer Details panel' -> 'Buffer Fields Length'
+    //
+    it('Test field Buffer -> Buffer Fields Length', function () {
+        Page.delBufYes("Buffer0019").then(function () {
+            Page.addBuf("Buffer0019", "", "0", "bufField0001", "STR", "0", "0", "0", "bufField0002", "STR", "2", "1", "0", "bufField0003", "STR", "3", "999", "0");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            Page._addBufField("bufField0004", "STR", "4", "22222", "0");
+        }).then(function () {
+            Page._addBufField("bufField0005", "STR", "5", "3333333", "0");
+        }).then(function () {
+            Page._addBufField("bufField0006", "STR", "6", "4095999", "0");
+        }).then(function () {
+            Page._addBufField("bufField0007", "STR", "7", "4096000", "0");
+        }).then(function () {
+            Page._addBufField("bufField0008", "STR", "8", "4096001", "0");
+        }).then(function () {
+            Page._addBufField("bufField0009", "STR", "9", "4096002", "0");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleBufFieldLength(1));
+        }).then(function () {
+            return Page.eleBufFieldLength(1).getText();
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(2).getText();
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(3).getText();
+        }).then(function (message) {
+            expect(message === '999').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(4).getText();
+        }).then(function (message) {
+            expect(message === '22222').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(5).getText();
+        }).then(function (message) {
+            expect(message === '3333333').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(6).getText();
+        }).then(function (message) {
+            expect(message === '4095999').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(7).getText();
+        }).then(function (message) {
+            expect(message === '4096000').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(8).getText();
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleBufFieldLength(9).getText();
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        });
+    });
 
     // Test field 'Buffer Details panel' -> 'Buffer Fields Decimals'
     //
@@ -2240,7 +2246,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly one character required.").to.be.true;
+            expect(message === "Exactly one character required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2254,7 +2260,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly one character required.").to.be.true;
+            expect(message === "Exactly one character required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2356,7 +2362,6 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueInput.getAttribute("value");
         }).then(function (message) {
-            console.log(message);
             expect(message === "19").to.be.true;
         }).then(function () {
             return Page.eleBufFieldPadValueInput.getAttribute("readonly");
@@ -2615,7 +2620,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly two hexadecimal digits required.").to.be.true;
+            expect(message === "Exactly two hexadecimal digits required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2629,7 +2634,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly two hexadecimal digits required.").to.be.true;
+            expect(message === "Exactly two hexadecimal digits required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2643,7 +2648,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly two hexadecimal digits required.").to.be.true;
+            expect(message === "Exactly two hexadecimal digits required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2657,7 +2662,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly two hexadecimal digits required.").to.be.true;
+            expect(message === "Exactly two hexadecimal digits required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2671,7 +2676,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly two hexadecimal digits required.").to.be.true;
+            expect(message === "Exactly two hexadecimal digits required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2685,7 +2690,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly two hexadecimal digits required.").to.be.true;
+            expect(message === "Exactly two hexadecimal digits required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2699,7 +2704,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly two hexadecimal digits required.").to.be.true;
+            expect(message === "Exactly two hexadecimal digits required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2713,7 +2718,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly two hexadecimal digits required.").to.be.true;
+            expect(message === "Exactly two hexadecimal digits required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -2727,7 +2732,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldPadValueValidateMsg.getText();
         }).then(function (message) {
-            expect(message === "Exactly two hexadecimal digits required.").to.be.true;
+            expect(message === "Exactly two hexadecimal digits required").to.be.true;
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldPadValueInput);
         }).then(function () {
@@ -3814,6 +3819,8 @@ describe('6.6.2 Configure Buffer Page', function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
             Page.eleSaveButton.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleBufFieldInitialValueValidateMsg);
         }).then(function () {
@@ -5355,7 +5362,7 @@ describe('6.6.2 Configure Buffer Page', function () {
     //
     it('Test Buffer -> Delete several fields', function () {
         Page.delBufYes("Buffer0023").then(function () {
-            Page.addBuf("Buffer0023", "", "bufField0001", "STR", "0", "0", "0", "bufField0002", "STR", "0", "0", "0", "bufField0003", "STR", "0", "0", "0");
+            Page.addBuf("Buffer0023", "", "0", "bufField0001", "STR", "0", "0", "0", "bufField0002", "STR", "0", "0", "0", "bufField0003", "STR", "0", "0", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5427,31 +5434,31 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldName(1).getText();
         }).then(function (message) {
-            expect(message === 'bufField0002').to.be.true;
+            expect(message === 'bufField0004').to.be.true;
         }).then(function () {
             return Page.eleBufFieldName(2).getText();
         }).then(function (message) {
-            expect(message === 'bufField0004').to.be.true;
+            expect(message === 'bufField0006').to.be.true;
         }).then(function () {
             return Page.eleBufFieldName(3).getText();
         }).then(function (message) {
-            expect(message === 'bufField0006').to.be.true;
+            expect(message === 'bufField0008').to.be.true;
         }).then(function () {
             return Page.eleBufFieldName(4).getText();
         }).then(function (message) {
-            expect(message === 'bufField0008').to.be.true;
+            expect(message === 'bufField0010').to.be.true;
         }).then(function () {
             return Page.eleBufFieldName(5).getText();
         }).then(function (message) {
-            expect(message === 'bufField0010').to.be.true;
+            expect(message === 'bufField0012').to.be.true;
         }).then(function () {
             return Page.eleBufFieldName(6).getText();
         }).then(function (message) {
-            expect(message === 'bufField0012').to.be.true;
+            expect(message === 'bufField0014').to.be.true;
         }).then(function () {
             return Page.eleBufFieldName(7).getText();
         }).then(function (message) {
-            expect(message === 'bufField0014').to.be.true;
+            expect(message === 'bufField0002').to.be.true;
         });
     });
 
@@ -5459,7 +5466,7 @@ describe('6.6.2 Configure Buffer Page', function () {
     //
     it('Test Buffer -> Replicate several fields', function () {
         Page.delBufYes("Buffer0035").then(function () {
-            Page.addBuf("Buffer0035", "", "bufField0001", "STR", "11", "1", "0", "bufField0002", "BOL", "22", "2", "1", "bufField0003", "I32", "33", "3", "2");
+            Page.addBuf("Buffer0035", "", "0", "bufField0001", "STR", "11", "1", "0", "bufField0002", "TEXT", "22", "2", "1", "bufField0003", "BIN", "33", "3", "2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5467,13 +5474,13 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page._addBufField("bufField0004", "DAT", "44", "4", "3");
+            Page._addBufField("bufField0004", "FLOAT", "44", "4", "3");
         }).then(function () {
             Page._addBufField("bufField0005", "OPA", "55", "5", "4");
         }).then(function () {
-            Page._addBufField("bufField0006", "MSG", "66", "6", "5");
+            Page._addBufField("bufField0006", "PDEC", "66", "6", "5");
         }).then(function () {
-            Page._addBufField("bufField0007", "U64", "77", "7", "6");
+            Page._addBufField("bufField0007", "UZDEC", "77", "7", "6");
         }).then(function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
@@ -5533,7 +5540,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function (message) {
             expect(message === 'm_bufField0002').to.be.true;
         }).then(function () {
-            return Page.eleBufFieldName(6).getText();
+            return Page.eleBufFieldName(7).getText();
         }).then(function (message) {
             expect(message === 'b_bufField0003').to.be.true;
         }).then(function () {
@@ -5549,7 +5556,7 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function (message) {
             expect(message === 'a_bufField0006').to.be.true;
         }).then(function () {
-            return Page.eleBufFieldName(14).getText();
+            return Page.eleBufFieldName(15).getText();
         }).then(function (message) {
             expect(message === 'c_bufField0007').to.be.true;
         }).then(function () {
@@ -5559,13 +5566,13 @@ describe('6.6.2 Configure Buffer Page', function () {
         }).then(function () {
             return Page.eleBufFieldType(5).getText();
         }).then(function (message) {
-            expect(message === 'BOL').to.be.true;
+            expect(message === 'TEXT').to.be.true;
         }).then(function () {
-            return Page.eleBufFieldIdNum(5).getText();
+            return Page.eleBufFieldStartPosition(5).getText();
         }).then(function (message) {
             expect(message === '22').to.be.true;
         }).then(function () {
-            return Page.eleBufFieldSeq(5).getText();
+            return Page.eleBufFieldLength(5).getText();
         }).then(function (message) {
             expect(message === '2').to.be.true;
         }).then(function () {

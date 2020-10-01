@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -59,7 +59,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     //
     it('Should add a TCP Interface, then update it successfully', function () {
         Page.delIntfTcpYes("IntfTCP0003").then(function () {
-            Page.addIntfTcp("IntfTCP0003", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "333", "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
+            Page.addIntfTcp("IntfTCP0003", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -67,7 +67,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.updateIntfTcp("IntfTCP0003", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "444", "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
+            Page.updateIntfTcp("IntfTCP0003", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -123,10 +123,6 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === "true").to.be.true;
         }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '444').to.be.true;
-        }).then(function () {
             return Page.eleIntfTcpTimeoutSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '64').to.be.true;
@@ -173,7 +169,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     //
     it('Should add a TCP Interface, cancel the changes, then confirm the cancel operation', function () {
         Page.delIntfTcpYes("IntfTCP0004").then(function () {
-            Page.addIntfTcp("IntfTCP0004", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "333", "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
+            Page.addIntfTcp("IntfTCP0004", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -181,7 +177,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfTcpYes("IntfTCP0004", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "444", "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
+            Page.cancelIntfTcpYes("IntfTCP0004", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
         }).then(function () {
             globalCommons.waitForClickable(Page.eleIntfsTcpLeftmenu);
         }).then(function () {
@@ -249,10 +245,6 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '333').to.be.true;
-        }).then(function () {
             return Page.eleIntfTcpTimeoutSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '53').to.be.true;
@@ -299,7 +291,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     //
     it('Should add a TCP Interface, cancel the changes, then discard the cancel operation', function () {
         Page.delIntfTcpYes("IntfTCP0005").then(function () {
-            Page.addIntfTcp("IntfTCP0005", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "333", "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
+            Page.addIntfTcp("IntfTCP0005", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -307,7 +299,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.cancelIntfTcpNo("IntfTCP0005", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "444", "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
+            Page.cancelIntfTcpNo("IntfTCP0005", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
         }).then(function () {
             return Page.eleIntfTcpNameInput.getAttribute('value');
         }).then(function (message) {
@@ -357,10 +349,6 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === "true").to.be.true;
         }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '444').to.be.true;
-        }).then(function () {
             return Page.eleIntfTcpTimeoutSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '64').to.be.true;
@@ -407,7 +395,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     //
     it('Should add a TCP Interface, make some changes, then reset it', function () {
         Page.delIntfTcpYes("IntfTCP0006").then(function () {
-            Page.addIntfTcp("IntfTCP0006", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "333", "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
+            Page.addIntfTcp("IntfTCP0006", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -415,7 +403,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.resetIntfTcp("IntfTCP0006", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "444", "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
+            Page.resetIntfTcp("IntfTCP0006", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
         }).then(function () {
             return Page.eleIntfTcpNameInput.getAttribute('value');
         }).then(function (message) {
@@ -465,10 +453,6 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '333').to.be.true;
-        }).then(function () {
             return Page.eleIntfTcpTimeoutSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '53').to.be.true;
@@ -515,7 +499,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     //
     it('Should add a TCP Interface to overwrite a TCP Interface, then confirm the overwrite operation', function () {
         Page.delIntfTcpYes("IntfTCP0007").then(function () {
-            Page.addIntfTcp("IntfTCP0007", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "333", "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
+            Page.addIntfTcp("IntfTCP0007", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -523,7 +507,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0007", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "444", "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
+            Page.addIntfTcp("IntfTCP0007", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleOKButton);
         }).then(function () {
@@ -579,10 +563,6 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === "true").to.be.true;
         }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '444').to.be.true;
-        }).then(function () {
             return Page.eleIntfTcpTimeoutSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '64').to.be.true;
@@ -629,7 +609,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     //
     it('Should add a TCP Interface to overwrite a TCP Interface, then discard the overwrite operation', function () {
         Page.delIntfTcpYes("IntfTCP0008").then(function () {
-            Page.addIntfTcp("IntfTCP0008", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "333", "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
+            Page.addIntfTcp("IntfTCP0008", "abcdefg", "INTFID01", "AbCdEfG:1111", false, "AAAAAAAA", "1", "3", "5", "77777", "11", false, "53", "55", "1111", "BBBBBBBB", "CCC", "DDD", "EEE", false, "FFF", "33");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -637,7 +617,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0008", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "444", "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
+            Page.addIntfTcp("IntfTCP0008", "hijklmn", "INTFID02", "HiJkLmN:2222", true, "HHHHHHHH", "2", "4", "6", "88888", "22", true, "64", "66", "2222", "IIIIIIII", "JJJ", "KKK", "LLL", true, "MMM", "44");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleNoButton);
         }).then(function () {
@@ -710,10 +690,6 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
             return Page.eleIntfTcpKeepAliveCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '333').to.be.true;
         }).then(function () {
             return Page.eleIntfTcpTimeoutSpinner.getAttribute('value');
         }).then(function (message) {
@@ -815,7 +791,9 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         Page.delIntfTcpYes("IntfTCP0011").then(function () {
             Page.addIntfTcp("IntfTCP0011");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1071,17 +1049,13 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '60').to.be.true;
-        }).then(function () {
             return Page.eleIntfTcpTimeoutSpinner.getAttribute('value');
         }).then(function (message) {
             expect(message === '120').to.be.true;
         }).then(function () {
             return Page.eleIntfTcpChunkBufsSpinner.getAttribute('value');
         }).then(function (message) {
-            expect(message === '32').to.be.true;
+            expect(message === '24').to.be.true;
         }).then(function () {
             return Page.eleIntfTcpChunkMaxSizeSpinner.getAttribute('value');
         }).then(function (message) {
@@ -1169,7 +1143,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1263,7 +1237,9 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1483,13 +1459,13 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleIntfTcpHostStackNameInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1500,8 +1476,6 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
             Page.eleIntfTcpHostStackNameInput.clear().sendKeys("A2");
         }).then(function () {
             Page.eleSaveButton.click();
-        }).then(function () {
-            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1895,7 +1869,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     // Test field 'TCP Interface Details panel -> WebUI Buffer Size (bytes)'
     //
     it('Test field TCP Interface -> WebUI Buffer Size (bytes)', function () {
-        var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
+        var backspaceSeries = Array(9).join(protractor.Key.BACK_SPACE);
         Page.delIntfTcpYes("IntfTCP0024").then(function () {
             Page.addIntfTcp("IntfTCP0024", "", undefined, undefined, false, "", "0", "2", "2", "8192");
         }).then(function () {
@@ -1985,7 +1959,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             Page.eleIntfTcpWebUIBufSizeSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys("100000");
+            Page.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys("1500000");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -1997,13 +1971,13 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpWebUIBufSizeSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '100000').to.be.true;
+            expect(message === '1500000').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfTcpWebUIBufSizeSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys("127999");
+            Page.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys("2047999");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2015,13 +1989,13 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpWebUIBufSizeSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '127999').to.be.true;
+            expect(message === '2047999').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfTcpWebUIBufSizeSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys("128000");
+            Page.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys("2048000");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2033,13 +2007,13 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpWebUIBufSizeSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '128000').to.be.true;
+            expect(message === '2048000').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfTcpWebUIBufSizeSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys("128001");
+            Page.eleIntfTcpWebUIBufSizeSpinner.clear().sendKeys("2048001");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2051,7 +2025,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpWebUIBufSizeSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '128000').to.be.true;
+            expect(message === '2048000').to.be.true;
         });
     });
 
@@ -2060,7 +2034,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     it('Test field TCP Interface -> TCP Directives -> Connections', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
         Page.delIntfTcpYes("IntfTCP0025").then(function () {
-            Page.addIntfTcp("IntfTCP0025", "", undefined, undefined, false, "", "0", "2", "2", "8192", "1");
+            Page.addIntfTcp("IntfTCP0025", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2070,7 +2044,25 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpConnsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '1').to.be.true;
+            expect(message === '5').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleIntfTcpConnsSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleIntfTcpConnsSpinner.clear().sendKeys("4");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleIntfTcpConnsSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -2088,13 +2080,13 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpConnsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '1').to.be.true;
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfTcpConnsSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfTcpConnsSpinner.clear().sendKeys("2");
+            Page.eleIntfTcpConnsSpinner.clear().sendKeys("6");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2106,25 +2098,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpConnsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '2').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpConnsSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpConnsSpinner.clear().sendKeys("222");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpConnsSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '222').to.be.true;
+            expect(message === '6').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -2143,24 +2117,6 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
             return Page.eleIntfTcpConnsSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '333').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpConnsSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpConnsSpinner.clear().sendKeys("444");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpConnsSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '444').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -2218,175 +2174,12 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         });
     });
 
-    // Test field 'TCP Interface Details panel -> TCP Directives -> Lazy Retry (sec)'
-    //
-    it('Test field TCP Interface -> TCP Directives -> Lazy Retry (sec)', function () {
-        var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delIntfTcpYes("IntfTCP0026").then(function () {
-            Page.addIntfTcp("IntfTCP0026", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "1");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '1').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.clear().sendKeys("0");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '1').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.clear().sendKeys("2");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '2').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.clear().sendKeys("222");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '222').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.clear().sendKeys("333");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '333').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.clear().sendKeys("444");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '444').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.clear().sendKeys("599");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '599').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.clear().sendKeys("600");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '600').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpLazyRetrySpinner.clear().sendKeys("601");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpLazyRetrySpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '600').to.be.true;
-        });
-    });
-
     // Test field 'TCP Interface Details panel -> TCP Directives -> Timeout (sec)'
     //
     it('Test field TCP Interface -> TCP Directives -> Timeout (sec)', function () {
         var backspaceSeries = Array(5).join(protractor.Key.BACK_SPACE);
-        Page.delIntfTcpYes("IntfTCP0027").then(function () {
-            Page.addIntfTcp("IntfTCP0027", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "30");
+        Page.delIntfTcpYes("IntfTCP0026").then(function () {
+            Page.addIntfTcp("IntfTCP0026", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "30");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2584,8 +2377,8 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     //
     it('Test field TCP Interface -> TCP Directives -> Chunk Buffers', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delIntfTcpYes("IntfTCP0028").then(function () {
-            Page.addIntfTcp("IntfTCP0028", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "1");
+        Page.delIntfTcpYes("IntfTCP0027").then(function () {
+            Page.addIntfTcp("IntfTCP0027", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2595,7 +2388,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpChunkBufsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '1').to.be.true;
+            expect(message === '2').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -2613,13 +2406,13 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpChunkBufsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '1').to.be.true;
+            expect(message === '2').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleIntfTcpChunkBufsSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfTcpChunkBufsSpinner.clear().sendKeys("2");
+            Page.eleIntfTcpChunkBufsSpinner.clear().sendKeys("1");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2637,7 +2430,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             Page.eleIntfTcpChunkBufsSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            Page.eleIntfTcpChunkBufsSpinner.clear().sendKeys("22");
+            Page.eleIntfTcpChunkBufsSpinner.clear().sendKeys("33");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -2649,25 +2442,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             return Page.eleIntfTcpChunkBufsSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '22').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleIntfTcpChunkBufsSpinner.sendKeys(backspaceSeries);
-        }).then(function () {
-            Page.eleIntfTcpChunkBufsSpinner.clear().sendKeys("55");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleIntfTcpChunkBufsSpinner.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '55').to.be.true;
+            expect(message === '33').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
@@ -2747,8 +2522,8 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     //
     it('Test field TCP Interface -> TCP Directives -> Chunk Max Size (bytes)', function () {
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
-        Page.delIntfTcpYes("IntfTCP0029").then(function () {
-            Page.addIntfTcp("IntfTCP0029", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "1024");
+        Page.delIntfTcpYes("IntfTCP0028").then(function () {
+            Page.addIntfTcp("IntfTCP0028", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "1024");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2927,8 +2702,8 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     // Test field 'TCP Interface Details panel -> TCP Directives -> Host Log File DDN'
     //
     it('Test field TCP Interface -> TCP Directives -> Host Log File DDN', function () {
-        Page.delIntfTcpYes("IntfTCP0030").then(function () {
-            Page.addIntfTcp("IntfTCP0030", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "@#$AB123");
+        Page.delIntfTcpYes("IntfTCP0029").then(function () {
+            Page.addIntfTcp("IntfTCP0029", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "32", "64000", "@#$AB123");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3054,13 +2829,13 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            browser.sleep(500);
-        }).then(function () {
             Page.eleIntfTcpHostLogFileDdnInput.clear().sendKeys("A");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -3085,10 +2860,10 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     // Test field 'TCP Interface Details panel -> SSL Directives -> TLS Ring File'
     //
     it('Test field TCP Interface -> SSL Directives -> TLS Ring File', function () {
-        Page.delIntfTcpYes("IntfTCP0031").then(function () {
-            Page.delIntfTcpYes("IntfTCP0032")
+        Page.delIntfTcpYes("IntfTCP0030").then(function () {
+            Page.delIntfTcpYes("IntfTCP0031")
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0031", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./55555555556666666666777777777788888888889999999999123456789");
+            Page.addIntfTcp("IntfTCP0030", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "64000", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./55555555556666666666777777777788888888889999999999123456789");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3100,7 +2875,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === '!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./55555555556666666666777777777788888888889999999999123456789').to.be.true;
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0032", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999991234567890");
+            Page.addIntfTcp("IntfTCP0031", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "64000", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999991234567890");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3117,10 +2892,10 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     // Test field 'TCP Interface Details panel -> SSL Directives -> TLS Ring Label'
     //
     it('Test field TCP Interface -> SSL Directives -> TLS Ring Label', function () {
-        Page.delIntfTcpYes("IntfTCP0033").then(function () {
-            Page.delIntfTcpYes("IntfTCP0034")
+        Page.delIntfTcpYes("IntfTCP0032").then(function () {
+            Page.delIntfTcpYes("IntfTCP0033")
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0033", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999990000000000111111111122222222221234567");
+            Page.addIntfTcp("IntfTCP0032", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "64000", "", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999990000000000111111111122222222221234567");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3132,7 +2907,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === '!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999990000000000111111111122222222221234567').to.be.true;
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0034", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./5555555555666666666677777777778888888888999999999900000000001111111111222222222212345678");
+            Page.addIntfTcp("IntfTCP0033", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "64000", "", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./5555555555666666666677777777778888888888999999999900000000001111111111222222222212345678");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3149,10 +2924,10 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     // Test field 'TCP Interface Details panel -> SSL Directives -> TLS Cipher'
     //
     it('Test field TCP Interface -> SSL Directives -> TLS Cipher', function () {
-        Page.delIntfTcpYes("IntfTCP0035").then(function () {
-            Page.delIntfTcpYes("IntfTCP0036")
+        Page.delIntfTcpYes("IntfTCP0034").then(function () {
+            Page.delIntfTcpYes("IntfTCP0035")
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0035", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "", "", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999990000000000111111111122222222221234567");
+            Page.addIntfTcp("IntfTCP0034", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "64000", "", "", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999990000000000111111111122222222221234567");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3164,7 +2939,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === '!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999990000000000111111111122222222221234567').to.be.true;
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0036", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "", "", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./5555555555666666666677777777778888888888999999999900000000001111111111222222222212345678");
+            Page.addIntfTcp("IntfTCP0035", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "64000", "", "", "", "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./5555555555666666666677777777778888888888999999999900000000001111111111222222222212345678");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3181,10 +2956,10 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     // Test field 'TCP Interface Details panel -> SSL Directives -> GSK File Name'
     //
     it('Test field TCP Interface -> SSL Directives -> GSK File Name', function () {
-        Page.delIntfTcpYes("IntfTCP0037").then(function () {
-            Page.delIntfTcpYes("IntfTCP0038")
+        Page.delIntfTcpYes("IntfTCP0036").then(function () {
+            Page.delIntfTcpYes("IntfTCP0037")
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0037", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "", "", "", "", false, "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999990000000000111111111122222222221234567");
+            Page.addIntfTcp("IntfTCP0036", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "64000", "", "", "", "", false, "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999990000000000111111111122222222221234567");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3196,7 +2971,7 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
         }).then(function (message) {
             expect(message === '!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./555555555566666666667777777777888888888899999999990000000000111111111122222222221234567').to.be.true;
         }).then(function () {
-            Page.addIntfTcp("IntfTCP0038", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "", "", "", "", false, "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./5555555555666666666677777777778888888888999999999900000000001111111111222222222212345678");
+            Page.addIntfTcp("IntfTCP0037", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "64000", "", "", "", "", false, "!@#$%^&*()QWERTYUIOPasdfghjkl;zxcvbnm,./5555555555666666666677777777778888888888999999999900000000001111111111222222222212345678");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3214,8 +2989,8 @@ describe('6.8.16 Define Interfaces TCP Page', function () {
     //
     it('Test field TCP Interface -> SSL Directives -> TLS Trace Level', function () {
         var backspaceSeries = Array(3).join(protractor.Key.BACK_SPACE);
-        Page.delIntfTcpYes("IntfTCP0039").then(function () {
-            Page.addIntfTcp("IntfTCP0039", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "60", "10", "32", "64000", "", "", "", "", false, "", "0");
+        Page.delIntfTcpYes("IntfTCP0038").then(function () {
+            Page.addIntfTcp("IntfTCP0038", "", undefined, undefined, false, "", "0", "2", "2", "8192", "5", true, "10", "32", "64000", "", "", "", "", false, "", "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {

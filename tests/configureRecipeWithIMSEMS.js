@@ -7,7 +7,7 @@ var DefinePage = require('../pageObject/definePage.js');
 var globalCommons = require('../utility/common.js');
 var GlobalPage = require('../pageObject/globalPage.js');
 var GlobalNaviPage = require('../pageObject/globalNaviPage.js');
-describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
+describe('6.6.5 Configure Recipe With IMS & EMS Page', function () {
     var Page = new configurePage();
     var definePage = new DefinePage();
     var globalPage = new GlobalPage();
@@ -17,63 +17,63 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         globalNaviPage.eleConfigureMenu.click();
     });
 
-    // Add a Recipe with CICS interface & EMS Connection successfully.
+    // Add a Recipe with IMS Interface & EMS Connection successfully.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection successfully', function () {
+    it('Add a Recipe with IMS Interface & EMS Connection successfully', function () {
         browser.sleep(1000).then(function () {
-            Page.delRecYes("RecipeCE0001");
+            Page.delRecYes("RecipeIE0001");
         }).then(function () {
-            Page.delCvrYes("ConversionI0001");
+            Page.delCvrYes("ConversionI0201");
         }).then(function () {
-            Page.delCvrYes("ConversionO0001");
+            Page.delCvrYes("ConversionO0201");
         }).then(function () {
-            Page.delMsgYes("MessageD0001");
+            Page.delMsgYes("MessageF0001");
         }).then(function () {
-            Page.delBufYes("BufferD0001");
+            Page.delBufYes("BufferF0001");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0001");
+            definePage.delConnEmsYes("ConnEMSD0001");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0001");
+            definePage.delEndpointEmsYes("EndpointEMSF0001");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0001");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0001", "", false, false, "EndpointEMSE0001");
+            definePage.addEndpointEms("EndpointEMSF0001");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0001");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0001");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0001");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0001");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0001");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0001");
+            definePage.addConnEms("ConnEMSD0001", "", false, false, "EndpointEMSF0001");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0001", "", undefined, "", "EndpointCICSC0001");
+            definePage.delIntfImsYes("IntfIMSA0001");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0001");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0001");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0001");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0001");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0001");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0001", "", undefined, "", "EndpointCICSC0001");
+            definePage.addIntfIms("IntfIMSA0001", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0001");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0001", "", undefined, "", "EndpointCICSC0001");
+            definePage.addIntfIms("IntfIMSB0001", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0001");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0001", "", undefined, "", "EndpointCICSC0001");
+            definePage.addIntfIms("IntfIMSC0001", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0001");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0001", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0001");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -81,23 +81,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0001", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0001", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0001", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0001", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0001", "MessageD0001", "BufferD0001", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0201", "MessageF0001", "BufferF0001", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0001", "MessageD0001", "BufferD0001", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0201", "MessageF0001", "BufferF0001", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0001", "", "IntfCICSA0001", true, "IntfCICSB0001", true, "IntfCICSC0001", true, "IntfCICSD0001", true, "ConnEMSC0001", true, "0", "0", "0", "ConversionI0001", true, "ConversionO0001", true);
+            Page.addRecWithImsEms("RecipeIE0001", "", "IntfIMSA0001", true, "IntfIMSB0001", true, "IntfIMSC0001", true, "IntfIMSD0001", true, "ConnEMSD0001", true, "0", "0", "0", "ConversionI0201", true, "ConversionO0201", true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -107,63 +107,63 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         });
     });
 
-    // Add a Recipe with CICS Interface & EMS Connection successfully, then replicate it.
+    // Add a Recipe with IMS Interface & EMS Connection successfully, then replicate it.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection, then replicate it successfully', function () {
-        Page.delRecYes("RecipeCE0002-copy").then(function () {
-            Page.delRecYes("RecipeCE0002");
+    it('Add a Recipe with IMS Interface & EMS Connection, then replicate it successfully', function () {
+        Page.delRecYes("RecipeIE0002-copy").then(function () {
+            Page.delRecYes("RecipeIE0002");
         }).then(function () {
-            Page.delCvrYes("ConversionI0002");
+            Page.delCvrYes("ConversionI0202");
         }).then(function () {
-            Page.delCvrYes("ConversionO0002");
+            Page.delCvrYes("ConversionO0202");
         }).then(function () {
-            Page.delMsgYes("MessageD0002");
+            Page.delMsgYes("MessageF0002");
         }).then(function () {
-            Page.delBufYes("BufferD0002");
+            Page.delBufYes("BufferF0002");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0002");
+            definePage.delConnEmsYes("ConnEMSD0002");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0002");
+            definePage.delEndpointEmsYes("EndpointEMSF0002");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0002");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0002", "", false, false, "EndpointEMSE0002");
+            definePage.addEndpointEms("EndpointEMSF0002");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0002");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0002");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0002");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0002");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0002");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0002");
+            definePage.addConnEms("ConnEMSD0002", "", false, false, "EndpointEMSF0002");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0002", "", undefined, "", "EndpointCICSC0002");
+            definePage.delIntfImsYes("IntfIMSA0002");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0002");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0002");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0002");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0002");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0002");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0002", "", undefined, "", "EndpointCICSC0002");
+            definePage.addIntfIms("IntfIMSA0002", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0002");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0002", "", undefined, "", "EndpointCICSC0002");
+            definePage.addIntfIms("IntfIMSB0002", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0002");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0002", "", undefined, "", "EndpointCICSC0002");
+            definePage.addIntfIms("IntfIMSC0002", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0002");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0002", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0002");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -171,27 +171,27 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0002", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0002", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0002", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0002", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0002", "MessageD0002", "BufferD0002", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0202", "MessageF0002", "BufferF0002", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0002", "MessageD0002", "BufferD0002", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0202", "MessageF0002", "BufferF0002", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0002", "", "IntfCICSA0002", true, "IntfCICSB0002", true, "IntfCICSC0002", true, "IntfCICSD0002", true, "ConnEMSC0002", true, "0", "0", "0", "ConversionI0002", true, "ConversionO0002", true);
+            Page.addRecWithImsEms("RecipeIE0002", "", "IntfIMSA0002", true, "IntfIMSB0002", true, "IntfIMSC0002", true, "IntfIMSD0002", true, "ConnEMSD0002", true, "0", "0", "0", "ConversionI0202", true, "ConversionO0202", true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.replicateRec("RecipeCE0002");
+            Page.replicateRec("RecipeIE0002");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -201,99 +201,99 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RecipeCE0002-copy').to.be.true;
+            expect(message === 'RecipeIE0002-copy').to.be.true;
         });
     });
 
-    // Add a Recipe with CICS Interface & EMS Connection successfully, then update it.
+    // Add a Recipe with IMS Interface & EMS Connection successfully, then update it.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection, then update it successfully', function () {
-        Page.delRecYes("RecipeCE0003").then(function () {
-            Page.delCvrYes("ConversionI0003");
+    it('Add a Recipe with IMS Interface & EMS Connection, then update it successfully', function () {
+        Page.delRecYes("RecipeIE0003").then(function () {
+            Page.delCvrYes("ConversionI0203");
         }).then(function () {
-            Page.delCvrYes("ConversionI0004");
+            Page.delCvrYes("ConversionI0204");
         }).then(function () {
-            Page.delCvrYes("ConversionO0003");
+            Page.delCvrYes("ConversionO0203");
         }).then(function () {
-            Page.delCvrYes("ConversionO0004");
+            Page.delCvrYes("ConversionO0204");
         }).then(function () {
-            Page.delMsgYes("MessageD0003");
+            Page.delMsgYes("MessageF0003");
         }).then(function () {
-            Page.delBufYes("BufferD0003");
+            Page.delBufYes("BufferF0003");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0003");
+            definePage.delConnEmsYes("ConnEMSD0003");
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0004");
+            definePage.delConnEmsYes("ConnEMSD0004");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0003");
+            definePage.delEndpointEmsYes("EndpointEMSF0003");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0003");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0003", "", false, false, "EndpointEMSE0003");
+            definePage.addEndpointEms("EndpointEMSF0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addConnEms("ConnEMSC0004", "", false, false, "EndpointEMSE0003");
+            definePage.addConnEms("ConnEMSD0003", "", false, false, "EndpointEMSF0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0003");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0004");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0003");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0004");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0003");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0004");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0003");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0004");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0003");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0003");
+            definePage.addConnEms("ConnEMSD0004", "", false, false, "EndpointEMSF0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0003", "", undefined, "", "EndpointCICSC0003");
+            definePage.delIntfImsYes("IntfIMSA0003");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0004");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0003");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0004");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0003");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0004");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0003");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0004");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0003");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0004", "", undefined, "", "EndpointCICSC0003");
+            definePage.addIntfIms("IntfIMSA0003", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0003", "", undefined, "", "EndpointCICSC0003");
+            definePage.addIntfIms("IntfIMSA0004", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0004", "", undefined, "", "EndpointCICSC0003");
+            definePage.addIntfIms("IntfIMSB0003", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0003", "", undefined, "", "EndpointCICSC0003");
+            definePage.addIntfIms("IntfIMSB0004", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0004", "", undefined, "", "EndpointCICSC0003");
+            definePage.addIntfIms("IntfIMSC0003", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0003", "", undefined, "", "EndpointCICSC0003");
+            definePage.addIntfIms("IntfIMSC0004", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0004", "", undefined, "", "EndpointCICSC0003");
+            definePage.addIntfIms("IntfIMSD0003", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0003");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0004", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -301,35 +301,35 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0003", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0003", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0003", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0003", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0003", "MessageD0003", "BufferD0003", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0203", "MessageF0003", "BufferF0003", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0004", "MessageD0003", "BufferD0003", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0204", "MessageF0003", "BufferF0003", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0003", "MessageD0003", "BufferD0003", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0203", "MessageF0003", "BufferF0003", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0004", "MessageD0003", "BufferD0003", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0204", "MessageF0003", "BufferF0003", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0003", "AbCdEfG", "IntfCICSA0003", true, "IntfCICSB0003", true, "IntfCICSC0003", true, "IntfCICSD0003", true, "ConnEMSC0003", true, "111", "33", "1", "ConversionI0003", true, "ConversionO0003", true, "PROGRAM1", false, "None", "Container", "MRT1", false, "RRT1", "RRS1", "CHANNEL1", "CONTAINER1", "Program", "Single", false, "PROGRAM2", "PROGRAM3", "PROGRAM4", "PROGRAM5", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
+            Page.addRecWithImsEms("RecipeIE0003", "AbCdEfG", "IntfIMSA0003", true, "IntfIMSB0003", true, "IntfIMSC0003", true, "IntfIMSD0003", true, "ConnEMSD0003", true, "111", "33", "1", "ConversionI0203", true, "ConversionO0203", true, "PROGRAM1", false, "None", "Transaction", false, "3", "User", "AAAAAAAA", "11111", "MAP1", "CMD1", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.updateRecWithCicsEms("RecipeCE0003", "HiJkLmN", "IntfCICSA0004", true, "IntfCICSB0004", true, "IntfCICSC0004", true, "IntfCICSD0004", true, "ConnEMSC0004", true, "222", "44", "2", "ConversionI0004", true, "ConversionO0004", true, "PROGRAMA", true, "None", "Storage", "MRT2", true, "RRT2", "RRS2", "CHANNEL2", "CONTAINER2", "Transaction", "Message", true, "PROGRAMB", "PROGRAMC", "PROGRAMD", "PROGRAME", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
+            Page.updateRecWithImsEms("RecipeIE0003", "HiJkLmN", "IntfIMSA0004", true, "IntfIMSB0004", true, "IntfIMSC0004", true, "IntfIMSD0004", true, "ConnEMSD0004", true, "222", "44", "2", "ConversionI0204", true, "ConversionO0204", true, "PROGRAMA", true, "None", "Command", true, "4", "Full", "bbbbbbbb", "22222", "MAP2", "CMD2", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -339,7 +339,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RecipeCE0003').to.be.true;
+            expect(message === 'RecipeIE0003').to.be.true;
         }).then(function () {
             return Page.eleRecDescInput.getAttribute('value');
         }).then(function (message) {
@@ -347,23 +347,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecIntfInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSA0004').to.be.true;
+            expect(message === 'IntfIMSA0004').to.be.true;
         }).then(function () {
             return Page.eleRecIntf2Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSB0004').to.be.true;
+            expect(message === 'IntfIMSB0004').to.be.true;
         }).then(function () {
             return Page.eleRecIntf3Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSC0004').to.be.true;
+            expect(message === 'IntfIMSC0004').to.be.true;
         }).then(function () {
             return Page.eleRecIntf4Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSD0004').to.be.true;
+            expect(message === 'IntfIMSD0004').to.be.true;
         }).then(function () {
             return Page.eleRecConnInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConnEMSC0004').to.be.true;
+            expect(message === 'ConnEMSD0004').to.be.true;
         }).then(function () {
             return Page.eleRecDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
@@ -379,11 +379,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecInputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionI0004').to.be.true;
+            expect(message === 'ConversionI0204').to.be.true;
         }).then(function () {
             return Page.eleRecOutputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionO0004').to.be.true;
+            expect(message === 'ConversionO0204').to.be.true;
         }).then(function () {
             return Page.eleRecResourceNameInput.getAttribute('value');
         }).then(function (message) {
@@ -397,61 +397,37 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'None').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'Storage').to.be.true;
+            expect(message === 'Command').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'MRT2').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCsmiUserTranCheck.getAttribute("checked");
+            return Page.eleRecImsVariableLengthTransCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute('value');
+            return Page.eleRecImsTranLengthSpinner.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RRT2').to.be.true;
+            expect(message === '4').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute('value');
+            return Page.eleRecImsSecurityCheckDropdown.getText();
         }).then(function (message) {
-            expect(message === 'RRS2').to.be.true;
+            expect(message === 'Full').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentBreakInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CHANNEL2').to.be.true;
+            expect(message === 'bbbbbbbb').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentLengthInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CONTAINER2').to.be.true;
+            expect(message === '22222').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
+            return Page.eleRecImsMfsMapNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Transaction').to.be.true;
+            expect(message === 'MAP2').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Message').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnForwardDestAsCtnCheck.getAttribute("checked");
-        }).then(function (message) {
-            expect(message === 'true').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAMB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAMC').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAMD').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAME').to.be.true;
+            expect(message === 'CMD2').to.be.true;
         }).then(function () {
             return Page.eleRecEmsListentoDestInput.getAttribute("value");
         }).then(function (message) {
@@ -579,95 +555,95 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         });
     });
 
-    // Add a Recipe with CICS Interface & EMS Connection , make some changes, cancel the changes, then confirm the cancel operation.
+    // Add a Recipe with IMS Interface & EMS Connection , make some changes, cancel the changes, then confirm the cancel operation.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection, cancel the changes, then confirm the cancel operation', function () {
-        Page.delRecYes("RecipeCE0004").then(function () {
-            Page.delCvrYes("ConversionI0005");
+    it('Add a Recipe with IMS Interface & EMS Connection, cancel the changes, then confirm the cancel operation', function () {
+        Page.delRecYes("RecipeIE0004").then(function () {
+            Page.delCvrYes("ConversionI0205");
         }).then(function () {
-            Page.delCvrYes("ConversionI0006");
+            Page.delCvrYes("ConversionI0206");
         }).then(function () {
-            Page.delCvrYes("ConversionO0005");
+            Page.delCvrYes("ConversionO0205");
         }).then(function () {
-            Page.delCvrYes("ConversionO0006");
+            Page.delCvrYes("ConversionO0206");
         }).then(function () {
-            Page.delMsgYes("MessageD0004");
+            Page.delMsgYes("MessageF0004");
         }).then(function () {
-            Page.delBufYes("BufferD0004");
+            Page.delBufYes("BufferF0004");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0005");
+            definePage.delConnEmsYes("ConnEMSD0005");
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0006");
+            definePage.delConnEmsYes("ConnEMSD0006");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0004");
+            definePage.delEndpointEmsYes("EndpointEMSF0004");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0004");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0005", "", false, false, "EndpointEMSE0004");
+            definePage.addEndpointEms("EndpointEMSF0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addConnEms("ConnEMSC0006", "", false, false, "EndpointEMSE0004");
+            definePage.addConnEms("ConnEMSD0005", "", false, false, "EndpointEMSF0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0005");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0006");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0005");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0006");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0005");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0006");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0005");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0006");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0004");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0004");
+            definePage.addConnEms("ConnEMSD0006", "", false, false, "EndpointEMSF0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0005", "", undefined, "", "EndpointCICSC0004");
+            definePage.delIntfImsYes("IntfIMSA0005");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0006");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0005");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0006");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0005");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0006");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0005");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0006");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0004");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0006", "", undefined, "", "EndpointCICSC0004");
+            definePage.addIntfIms("IntfIMSA0005", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0005", "", undefined, "", "EndpointCICSC0004");
+            definePage.addIntfIms("IntfIMSA0006", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0006", "", undefined, "", "EndpointCICSC0004");
+            definePage.addIntfIms("IntfIMSB0005", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0005", "", undefined, "", "EndpointCICSC0004");
+            definePage.addIntfIms("IntfIMSB0006", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0006", "", undefined, "", "EndpointCICSC0004");
+            definePage.addIntfIms("IntfIMSC0005", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0005", "", undefined, "", "EndpointCICSC0004");
+            definePage.addIntfIms("IntfIMSC0006", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0006", "", undefined, "", "EndpointCICSC0004");
+            definePage.addIntfIms("IntfIMSD0005", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0004");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0006", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -675,41 +651,41 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0004", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0004", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0004", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0004", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0005", "MessageD0004", "BufferD0004", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0205", "MessageF0004", "BufferF0004", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0006", "MessageD0004", "BufferD0004", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0206", "MessageF0004", "BufferF0004", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0005", "MessageD0004", "BufferD0004", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0205", "MessageF0004", "BufferF0004", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0006", "MessageD0004", "BufferD0004", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0206", "MessageF0004", "BufferF0004", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0004", "AbCdEfG", "IntfCICSA0005", true, "IntfCICSB0005", true, "IntfCICSC0005", true, "IntfCICSD0005", true, "ConnEMSC0005", true, "111", "33", "1", "ConversionI0005", true, "ConversionO0005", true, "PROGRAM1", false, "None", "Container", "MRT1", false, "RRT1", "RRS1", "CHANNEL1", "CONTAINER1", "Program", "Single", false, "PROGRAM2", "PROGRAM3", "PROGRAM4", "PROGRAM5", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
+            Page.addRecWithImsEms("RecipeIE0004", "AbCdEfG", "IntfIMSA0005", true, "IntfIMSB0005", true, "IntfIMSC0005", true, "IntfIMSD0005", true, "ConnEMSD0005", true, "111", "33", "1", "ConversionI0205", true, "ConversionO0205", true, "PROGRAM1", false, "None", "Transaction", false, "3", "User", "AAAAAAAA", "11111", "MAP1", "CMD1", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.cancelRecWithCicsEmsYes("RecipeCE0004", "HiJkLmN", "IntfCICSA0006", true, "IntfCICSB0006", true, "IntfCICSC0006", true, "IntfCICSD0006", true, "ConnEMSC0006", true, "222", "44", "2", "ConversionI0006", true, "ConversionO0006", true, "PROGRAMA", true, "None", "Storage", "MRT2", true, "RRT2", "RRS2", "CHANNEL2", "CONTAINER2", "Transaction", "Message", true, "PROGRAMB", "PROGRAMC", "PROGRAMD", "PROGRAME", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
+            Page.cancelRecWithImsEmsYes("RecipeIE0004", "HiJkLmN", "IntfIMSA0006", true, "IntfIMSB0006", true, "IntfIMSC0006", true, "IntfIMSD0006", true, "ConnEMSD0006", true, "222", "44", "2", "ConversionI0206", true, "ConversionO0206", true, "PROGRAMA", true, "None", "Command", true, "4", "Full", "bbbbbbbb", "22222", "MAP2", "CMD2", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
         }).then(function () {
             Page.eleRecLeftmenu.click();
         }).then(function () {
             globalCommons.waitForDisplayed(Page.eleSearchInput);
         }).then(function () {
-            Page.eleSearchInput.clear().sendKeys("RecipeCE0004");
+            Page.eleSearchInput.clear().sendKeys("RecipeIE0004");
         }).then(function () {
             Page.eleSearchIcon.click();
         }).then(function () {
@@ -723,7 +699,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RecipeCE0004').to.be.true;
+            expect(message === 'RecipeIE0004').to.be.true;
         }).then(function () {
             return Page.eleRecDescInput.getAttribute('value');
         }).then(function (message) {
@@ -731,23 +707,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecIntfInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSA0005').to.be.true;
+            expect(message === 'IntfIMSA0005').to.be.true;
         }).then(function () {
             return Page.eleRecIntf2Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSB0005').to.be.true;
+            expect(message === 'IntfIMSB0005').to.be.true;
         }).then(function () {
             return Page.eleRecIntf3Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSC0005').to.be.true;
+            expect(message === 'IntfIMSC0005').to.be.true;
         }).then(function () {
             return Page.eleRecIntf4Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSD0005').to.be.true;
+            expect(message === 'IntfIMSD0005').to.be.true;
         }).then(function () {
             return Page.eleRecConnInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConnEMSC0005').to.be.true;
+            expect(message === 'ConnEMSD0005').to.be.true;
         }).then(function () {
             return Page.eleRecDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
@@ -763,11 +739,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecInputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionI0005').to.be.true;
+            expect(message === 'ConversionI0205').to.be.true;
         }).then(function () {
             return Page.eleRecOutputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionO0005').to.be.true;
+            expect(message === 'ConversionO0205').to.be.true;
         }).then(function () {
             return Page.eleRecResourceNameInput.getAttribute('value');
         }).then(function (message) {
@@ -781,61 +757,37 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'None').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'Container').to.be.true;
+            expect(message === 'Transaction').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'MRT1').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCsmiUserTranCheck.getAttribute("checked");
+            return Page.eleRecImsVariableLengthTransCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute('value');
+            return Page.eleRecImsTranLengthSpinner.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RRT1').to.be.true;
+            expect(message === '3').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute('value');
+            return Page.eleRecImsSecurityCheckDropdown.getText();
         }).then(function (message) {
-            expect(message === 'RRS1').to.be.true;
+            expect(message === 'User').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentBreakInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CHANNEL1').to.be.true;
+            expect(message === 'AAAAAAAA').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentLengthInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CONTAINER1').to.be.true;
+            expect(message === '11111').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
+            return Page.eleRecImsMfsMapNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Program').to.be.true;
+            expect(message === 'MAP1').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Single').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnForwardDestAsCtnCheck.getAttribute("checked");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM2').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM3').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM4').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM5').to.be.true;
+            expect(message === 'CMD1').to.be.true;
         }).then(function () {
             return Page.eleRecEmsListentoDestInput.getAttribute("value");
         }).then(function (message) {
@@ -963,95 +915,95 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         });
     });
 
-    // Add a Recipe with CICS Interface & EMS Connection, make some changes, cancel the changes, then discard the cancel operation.
+    // Add a Recipe with IMS Interface & EMS Connection, make some changes, cancel the changes, then discard the cancel operation.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection, cancel the changes, then discard the cancel operation', function () {
-        Page.delRecYes("RecipeCE0005").then(function () {
-            Page.delCvrYes("ConversionI0007");
+    it('Add a Recipe with IMS Interface & EMS Connection, cancel the changes, then discard the cancel operation', function () {
+        Page.delRecYes("RecipeIE0005").then(function () {
+            Page.delCvrYes("ConversionI0207");
         }).then(function () {
-            Page.delCvrYes("ConversionI0008");
+            Page.delCvrYes("ConversionI0208");
         }).then(function () {
-            Page.delCvrYes("ConversionO0007");
+            Page.delCvrYes("ConversionO0207");
         }).then(function () {
-            Page.delCvrYes("ConversionO0008");
+            Page.delCvrYes("ConversionO0208");
         }).then(function () {
-            Page.delMsgYes("MessageD0005");
+            Page.delMsgYes("MessageF0005");
         }).then(function () {
-            Page.delBufYes("BufferD0005");
+            Page.delBufYes("BufferF0005");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0007");
+            definePage.delConnEmsYes("ConnEMSD0007");
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0008");
+            definePage.delConnEmsYes("ConnEMSD0008");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0005");
+            definePage.delEndpointEmsYes("EndpointEMSF0005");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0005");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0007", "", false, false, "EndpointEMSE0005");
+            definePage.addEndpointEms("EndpointEMSF0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addConnEms("ConnEMSC0008", "", false, false, "EndpointEMSE0005");
+            definePage.addConnEms("ConnEMSD0007", "", false, false, "EndpointEMSF0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0007");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0008");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0007");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0008");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0007");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0008");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0007");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0008");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0005");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0005");
+            definePage.addConnEms("ConnEMSD0008", "", false, false, "EndpointEMSF0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0007", "", undefined, "", "EndpointCICSC0005");
+            definePage.delIntfImsYes("IntfIMSA0007");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0008");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0007");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0008");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0007");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0008");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0007");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0008");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0005");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0008", "", undefined, "", "EndpointCICSC0005");
+            definePage.addIntfIms("IntfIMSA0007", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0007", "", undefined, "", "EndpointCICSC0005");
+            definePage.addIntfIms("IntfIMSA0008", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0008", "", undefined, "", "EndpointCICSC0005");
+            definePage.addIntfIms("IntfIMSB0007", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0007", "", undefined, "", "EndpointCICSC0005");
+            definePage.addIntfIms("IntfIMSB0008", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0008", "", undefined, "", "EndpointCICSC0005");
+            definePage.addIntfIms("IntfIMSC0007", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0007", "", undefined, "", "EndpointCICSC0005");
+            definePage.addIntfIms("IntfIMSC0008", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0008", "", undefined, "", "EndpointCICSC0005");
+            definePage.addIntfIms("IntfIMSD0007", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0005");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0008", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -1059,41 +1011,41 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0005", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0005", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0005", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0005", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0007", "MessageD0005", "BufferD0005", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0207", "MessageF0005", "BufferF0005", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0008", "MessageD0005", "BufferD0005", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0208", "MessageF0005", "BufferF0005", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0007", "MessageD0005", "BufferD0005", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0207", "MessageF0005", "BufferF0005", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0008", "MessageD0005", "BufferD0005", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0208", "MessageF0005", "BufferF0005", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0005", "AbCdEfG", "IntfCICSA0007", true, "IntfCICSB0007", true, "IntfCICSC0007", true, "IntfCICSD0007", true, "ConnEMSC0007", true, "111", "33", "1", "ConversionI0007", true, "ConversionO0007", true, "PROGRAM1", false, "None", "Container", "MRT1", false, "RRT1", "RRS1", "CHANNEL1", "CONTAINER1", "Program", "Single", false, "PROGRAM2", "PROGRAM3", "PROGRAM4", "PROGRAM5", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
+            Page.addRecWithImsEms("RecipeIE0005", "AbCdEfG", "IntfIMSA0007", true, "IntfIMSB0007", true, "IntfIMSC0007", true, "IntfIMSD0007", true, "ConnEMSD0007", true, "111", "33", "1", "ConversionI0207", true, "ConversionO0207", true, "PROGRAM1", false, "None", "Transaction", false, "3", "User", "AAAAAAAA", "11111", "MAP1", "CMD1", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.cancelRecWithCicsEmsNo("RecipeCE0005", "HiJkLmN", "IntfCICSA0008", true, "IntfCICSB0008", true, "IntfCICSC0008", true, "IntfCICSD0008", true, "ConnEMSC0008", true, "222", "44", "2", "ConversionI0008", true, "ConversionO0008", true, "PROGRAMA", true, "None", "Storage", "MRT2", true, "RRT2", "RRS2", "CHANNEL2", "CONTAINER2", "Transaction", "Message", true, "PROGRAMB", "PROGRAMC", "PROGRAMD", "PROGRAME", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
+            Page.cancelRecWithImsEmsNo("RecipeIE0005", "HiJkLmN", "IntfIMSA0008", true, "IntfIMSB0008", true, "IntfIMSC0008", true, "IntfIMSD0008", true, "ConnEMSD0008", true, "222", "44", "2", "ConversionI0208", true, "ConversionO0208", true, "PROGRAMA", true, "None", "Command", true, "4", "Full", "bbbbbbbb", "22222", "MAP2", "CMD2", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleRecNameInput);
         }).then(function () {
             return Page.eleRecNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RecipeCE0005').to.be.true;
+            expect(message === 'RecipeIE0005').to.be.true;
         }).then(function () {
             return Page.eleRecDescInput.getAttribute('value');
         }).then(function (message) {
@@ -1101,23 +1053,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecIntfInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSA0008').to.be.true;
+            expect(message === 'IntfIMSA0008').to.be.true;
         }).then(function () {
             return Page.eleRecIntf2Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSB0008').to.be.true;
+            expect(message === 'IntfIMSB0008').to.be.true;
         }).then(function () {
             return Page.eleRecIntf3Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSC0008').to.be.true;
+            expect(message === 'IntfIMSC0008').to.be.true;
         }).then(function () {
             return Page.eleRecIntf4Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSD0008').to.be.true;
+            expect(message === 'IntfIMSD0008').to.be.true;
         }).then(function () {
             return Page.eleRecConnInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConnEMSC0008').to.be.true;
+            expect(message === 'ConnEMSD0008').to.be.true;
         }).then(function () {
             return Page.eleRecDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
@@ -1133,11 +1085,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecInputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionI0008').to.be.true;
+            expect(message === 'ConversionI0208').to.be.true;
         }).then(function () {
             return Page.eleRecOutputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionO0008').to.be.true;
+            expect(message === 'ConversionO0208').to.be.true;
         }).then(function () {
             return Page.eleRecResourceNameInput.getAttribute('value');
         }).then(function (message) {
@@ -1151,61 +1103,37 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'None').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'Storage').to.be.true;
+            expect(message === 'Command').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'MRT2').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCsmiUserTranCheck.getAttribute("checked");
+            return Page.eleRecImsVariableLengthTransCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute('value');
+            return Page.eleRecImsTranLengthSpinner.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RRT2').to.be.true;
+            expect(message === '4').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute('value');
+            return Page.eleRecImsSecurityCheckDropdown.getText();
         }).then(function (message) {
-            expect(message === 'RRS2').to.be.true;
+            expect(message === 'Full').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentBreakInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CHANNEL2').to.be.true;
+            expect(message === 'bbbbbbbb').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentLengthInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CONTAINER2').to.be.true;
+            expect(message === '22222').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
+            return Page.eleRecImsMfsMapNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Transaction').to.be.true;
+            expect(message === 'MAP2').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Message').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnForwardDestAsCtnCheck.getAttribute("checked");
-        }).then(function (message) {
-            expect(message === 'true').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAMB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAMC').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAMD').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAME').to.be.true;
+            expect(message === 'CMD2').to.be.true;
         }).then(function () {
             return Page.eleRecEmsListentoDestInput.getAttribute("value");
         }).then(function (message) {
@@ -1333,95 +1261,95 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         });
     });
 
-    // Add a Recipe with CICS Interface & EMS Connection, make some changes, then reset it.
+    // Add a Recipe with IMS Interface & EMS Connection, make some changes, then reset it.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection, make some changes, then reset it', function () {
-        Page.delRecYes("RecipeCE0006").then(function () {
-            Page.delCvrYes("ConversionI0009");
+    it('Add a Recipe with IMS Interface & EMS Connection, make some changes, then reset it', function () {
+        Page.delRecYes("RecipeIE0006").then(function () {
+            Page.delCvrYes("ConversionI0209");
         }).then(function () {
-            Page.delCvrYes("ConversionI0010");
+            Page.delCvrYes("ConversionI0210");
         }).then(function () {
-            Page.delCvrYes("ConversionO0009");
+            Page.delCvrYes("ConversionO0209");
         }).then(function () {
-            Page.delCvrYes("ConversionO0010");
+            Page.delCvrYes("ConversionO0210");
         }).then(function () {
-            Page.delMsgYes("MessageD0006");
+            Page.delMsgYes("MessageF0006");
         }).then(function () {
-            Page.delBufYes("BufferD0006");
+            Page.delBufYes("BufferF0006");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0009");
+            definePage.delConnEmsYes("ConnEMSD0009");
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0010");
+            definePage.delConnEmsYes("ConnEMSD0010");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0006");
+            definePage.delEndpointEmsYes("EndpointEMSF0006");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0006");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0009", "", false, false, "EndpointEMSE0006");
+            definePage.addEndpointEms("EndpointEMSF0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addConnEms("ConnEMSC0010", "", false, false, "EndpointEMSE0006");
+            definePage.addConnEms("ConnEMSD0009", "", false, false, "EndpointEMSF0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0009");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0010");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0009");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0010");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0009");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0010");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0009");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0010");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0006");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0006");
+            definePage.addConnEms("ConnEMSD0010", "", false, false, "EndpointEMSF0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0009", "", undefined, "", "EndpointCICSC0006");
+            definePage.delIntfImsYes("IntfIMSA0009");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0010");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0009");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0010");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0009");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0010");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0009");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0010");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0006");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0010", "", undefined, "", "EndpointCICSC0006");
+            definePage.addIntfIms("IntfIMSA0009", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0009", "", undefined, "", "EndpointCICSC0006");
+            definePage.addIntfIms("IntfIMSA0010", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0010", "", undefined, "", "EndpointCICSC0006");
+            definePage.addIntfIms("IntfIMSB0009", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0009", "", undefined, "", "EndpointCICSC0006");
+            definePage.addIntfIms("IntfIMSB0010", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0010", "", undefined, "", "EndpointCICSC0006");
+            definePage.addIntfIms("IntfIMSC0009", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0009", "", undefined, "", "EndpointCICSC0006");
+            definePage.addIntfIms("IntfIMSC0010", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0010", "", undefined, "", "EndpointCICSC0006");
+            definePage.addIntfIms("IntfIMSD0009", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0006");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0010", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -1429,39 +1357,39 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0006", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0006", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0006", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0006", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0009", "MessageD0006", "BufferD0006", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0209", "MessageF0006", "BufferF0006", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0010", "MessageD0006", "BufferD0006", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0210", "MessageF0006", "BufferF0006", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0009", "MessageD0006", "BufferD0006", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0209", "MessageF0006", "BufferF0006", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0010", "MessageD0006", "BufferD0006", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0210", "MessageF0006", "BufferF0006", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0006", "AbCdEfG", "IntfCICSA0009", true, "IntfCICSB0009", true, "IntfCICSC0009", true, "IntfCICSD0009", true, "ConnEMSC0009", true, "111", "33", "1", "ConversionI0009", true, "ConversionO0009", true, "PROGRAM1", false, "None", "Container", "MRT1", false, "RRT1", "RRS1", "CHANNEL1", "CONTAINER1", "Program", "Single", false, "PROGRAM2", "PROGRAM3", "PROGRAM4", "PROGRAM5", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
+            Page.addRecWithImsEms("RecipeIE0006", "AbCdEfG", "IntfIMSA0009", true, "IntfIMSB0009", true, "IntfIMSC0009", true, "IntfIMSD0009", true, "ConnEMSD0009", true, "111", "33", "1", "ConversionI0209", true, "ConversionO0209", true, "PROGRAM1", false, "None", "Transaction", false, "3", "User", "AAAAAAAA", "11111", "MAP1", "CMD1", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.resetRecWithCicsEms("RecipeCE0006", "HiJkLmN", "IntfCICSA0010", true, "IntfCICSB0010", true, "IntfCICSC0010", true, "IntfCICSD0010", true, "ConnEMSC0010", true, "222", "44", "2", "ConversionI0010", true, "ConversionO0010", true, "PROGRAMA", true, "None", "Storage", "MRT2", true, "RRT2", "RRS2", "CHANNEL2", "CONTAINER2", "Transaction", "Message", true, "PROGRAMB", "PROGRAMC", "PROGRAMD", "PROGRAME", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
+            Page.resetRecWithImsEms("RecipeIE0006", "HiJkLmN", "IntfIMSA0010", true, "IntfIMSB0010", true, "IntfIMSC0010", true, "IntfIMSD0010", true, "ConnEMSD0010", true, "222", "44", "2", "ConversionI0210", true, "ConversionO0210", true, "PROGRAMA", true, "None", "Command", true, "4", "Full", "bbbbbbbb", "22222", "MAP2", "CMD2", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
         }).then(function () {
             return Page.eleRecNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RecipeCE0006').to.be.true;
+            expect(message === 'RecipeIE0006').to.be.true;
         }).then(function () {
             return Page.eleRecDescInput.getAttribute('value');
         }).then(function (message) {
@@ -1469,23 +1397,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecIntfInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSA0009').to.be.true;
+            expect(message === 'IntfIMSA0009').to.be.true;
         }).then(function () {
             return Page.eleRecIntf2Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSB0009').to.be.true;
+            expect(message === 'IntfIMSB0009').to.be.true;
         }).then(function () {
             return Page.eleRecIntf3Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSC0009').to.be.true;
+            expect(message === 'IntfIMSC0009').to.be.true;
         }).then(function () {
             return Page.eleRecIntf4Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSD0009').to.be.true;
+            expect(message === 'IntfIMSD0009').to.be.true;
         }).then(function () {
             return Page.eleRecConnInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConnEMSC0009').to.be.true;
+            expect(message === 'ConnEMSD0009').to.be.true;
         }).then(function () {
             return Page.eleRecDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
@@ -1501,11 +1429,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecInputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionI0009').to.be.true;
+            expect(message === 'ConversionI0209').to.be.true;
         }).then(function () {
             return Page.eleRecOutputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionO0009').to.be.true;
+            expect(message === 'ConversionO0209').to.be.true;
         }).then(function () {
             return Page.eleRecResourceNameInput.getAttribute('value');
         }).then(function (message) {
@@ -1519,61 +1447,37 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'None').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'Container').to.be.true;
+            expect(message === 'Transaction').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'MRT1').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCsmiUserTranCheck.getAttribute("checked");
+            return Page.eleRecImsVariableLengthTransCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute('value');
+            return Page.eleRecImsTranLengthSpinner.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RRT1').to.be.true;
+            expect(message === '3').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute('value');
+            return Page.eleRecImsSecurityCheckDropdown.getText();
         }).then(function (message) {
-            expect(message === 'RRS1').to.be.true;
+            expect(message === 'User').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentBreakInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CHANNEL1').to.be.true;
+            expect(message === 'AAAAAAAA').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentLengthInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CONTAINER1').to.be.true;
+            expect(message === '11111').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
+            return Page.eleRecImsMfsMapNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Program').to.be.true;
+            expect(message === 'MAP1').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Single').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnForwardDestAsCtnCheck.getAttribute("checked");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM2').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM3').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM4').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM5').to.be.true;
+            expect(message === 'CMD1').to.be.true;
         }).then(function () {
             return Page.eleRecEmsListentoDestInput.getAttribute("value");
         }).then(function (message) {
@@ -1701,95 +1605,95 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         });
     });
 
-    // Add a Recipe with CICS Interface & EMS Connection, then add a Recipe with the same name, then confirm the overwrite operation.
+    // Add a Recipe with IMS Interface & EMS Connection, then add a Recipe with the same name, then confirm the overwrite operation.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection to overwrite an existing Recipe, then confirm the overwrite operation', function () {
-        Page.delRecYes("RecipeCE0007").then(function () {
-            Page.delCvrYes("ConversionI0011");
+    it('Add a Recipe with IMS Interface & EMS Connection to overwrite an existing Recipe, then confirm the overwrite operation', function () {
+        Page.delRecYes("RecipeIE0007").then(function () {
+            Page.delCvrYes("ConversionI0211");
         }).then(function () {
-            Page.delCvrYes("ConversionI0012");
+            Page.delCvrYes("ConversionI0212");
         }).then(function () {
-            Page.delCvrYes("ConversionO0011");
+            Page.delCvrYes("ConversionO0211");
         }).then(function () {
-            Page.delCvrYes("ConversionO0012");
+            Page.delCvrYes("ConversionO0212");
         }).then(function () {
-            Page.delMsgYes("MessageD0007");
+            Page.delMsgYes("MessageF0007");
         }).then(function () {
-            Page.delBufYes("BufferD0007");
+            Page.delBufYes("BufferF0007");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0011");
+            definePage.delConnEmsYes("ConnEMSD0011");
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0012");
+            definePage.delConnEmsYes("ConnEMSD0012");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0007");
+            definePage.delEndpointEmsYes("EndpointEMSF0007");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0007");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0011", "", false, false, "EndpointEMSE0007");
+            definePage.addEndpointEms("EndpointEMSF0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addConnEms("ConnEMSC0012", "", false, false, "EndpointEMSE0007");
+            definePage.addConnEms("ConnEMSD0011", "", false, false, "EndpointEMSF0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0011");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0012");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0011");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0012");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0011");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0012");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0011");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0012");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0007");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0007");
+            definePage.addConnEms("ConnEMSD0012", "", false, false, "EndpointEMSF0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0011", "", undefined, "", "EndpointCICSC0007");
+            definePage.delIntfImsYes("IntfIMSA0011");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0012");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0011");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0012");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0011");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0012");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0011");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0012");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0007");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0012", "", undefined, "", "EndpointCICSC0007");
+            definePage.addIntfIms("IntfIMSA0011", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0011", "", undefined, "", "EndpointCICSC0007");
+            definePage.addIntfIms("IntfIMSA0012", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0012", "", undefined, "", "EndpointCICSC0007");
+            definePage.addIntfIms("IntfIMSB0011", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0011", "", undefined, "", "EndpointCICSC0007");
+            definePage.addIntfIms("IntfIMSB0012", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0012", "", undefined, "", "EndpointCICSC0007");
+            definePage.addIntfIms("IntfIMSC0011", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0011", "", undefined, "", "EndpointCICSC0007");
+            definePage.addIntfIms("IntfIMSC0012", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0012", "", undefined, "", "EndpointCICSC0007");
+            definePage.addIntfIms("IntfIMSD0011", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0007");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0012", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0007");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -1797,35 +1701,35 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0007", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0007", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0007", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0007", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0011", "MessageD0007", "BufferD0007", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0211", "MessageF0007", "BufferF0007", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0012", "MessageD0007", "BufferD0007", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0212", "MessageF0007", "BufferF0007", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0011", "MessageD0007", "BufferD0007", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0211", "MessageF0007", "BufferF0007", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0012", "MessageD0007", "BufferD0007", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0212", "MessageF0007", "BufferF0007", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0007", "AbCdEfG", "IntfCICSA0011", true, "IntfCICSB0011", true, "IntfCICSC0011", true, "IntfCICSD0011", true, "ConnEMSC0011", true, "111", "33", "1", "ConversionI0011", true, "ConversionO0011", true, "PROGRAM1", false, "None", "Container", "MRT1", false, "RRT1", "RRS1", "CHANNEL1", "CONTAINER1", "Program", "Single", false, "PROGRAM2", "PROGRAM3", "PROGRAM4", "PROGRAM5", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
+            Page.addRecWithImsEms("RecipeIE0007", "AbCdEfG", "IntfIMSA0011", true, "IntfIMSB0011", true, "IntfIMSC0011", true, "IntfIMSD0011", true, "ConnEMSD0011", true, "111", "33", "1", "ConversionI0211", true, "ConversionO0211", true, "PROGRAM1", false, "None", "Transaction", false, "3", "User", "AAAAAAAA", "11111", "MAP1", "CMD1", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0007", "HiJkLmN", "IntfCICSA0012", true, "IntfCICSB0012", true, "IntfCICSC0012", true, "IntfCICSD0012", true, "ConnEMSC0012", true, "222", "44", "2", "ConversionI0012", true, "ConversionO0012", true, "PROGRAMA", true, "None", "Storage", "MRT2", true, "RRT2", "RRS2", "CHANNEL2", "CONTAINER2", "Transaction", "Message", true, "PROGRAMB", "PROGRAMC", "PROGRAMD", "PROGRAME", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
+            Page.addRecWithImsEms("RecipeIE0007", "HiJkLmN", "IntfIMSA0012", true, "IntfIMSB0012", true, "IntfIMSC0012", true, "IntfIMSD0012", true, "ConnEMSD0012", true, "222", "44", "2", "ConversionI0212", true, "ConversionO0212", true, "PROGRAMA", true, "None", "Command", true, "4", "Full", "bbbbbbbb", "22222", "MAP2", "CMD2", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleOKButton);
         }).then(function () {
@@ -1839,7 +1743,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RecipeCE0007').to.be.true;
+            expect(message === 'RecipeIE0007').to.be.true;
         }).then(function () {
             return Page.eleRecDescInput.getAttribute('value');
         }).then(function (message) {
@@ -1847,23 +1751,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecIntfInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSA0012').to.be.true;
+            expect(message === 'IntfIMSA0012').to.be.true;
         }).then(function () {
             return Page.eleRecIntf2Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSB0012').to.be.true;
+            expect(message === 'IntfIMSB0012').to.be.true;
         }).then(function () {
             return Page.eleRecIntf3Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSC0012').to.be.true;
+            expect(message === 'IntfIMSC0012').to.be.true;
         }).then(function () {
             return Page.eleRecIntf4Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSD0012').to.be.true;
+            expect(message === 'IntfIMSD0012').to.be.true;
         }).then(function () {
             return Page.eleRecConnInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConnEMSC0012').to.be.true;
+            expect(message === 'ConnEMSD0012').to.be.true;
         }).then(function () {
             return Page.eleRecDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
@@ -1879,11 +1783,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecInputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionI0012').to.be.true;
+            expect(message === 'ConversionI0212').to.be.true;
         }).then(function () {
             return Page.eleRecOutputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionO0012').to.be.true;
+            expect(message === 'ConversionO0212').to.be.true;
         }).then(function () {
             return Page.eleRecResourceNameInput.getAttribute('value');
         }).then(function (message) {
@@ -1897,61 +1801,37 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'None').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'Storage').to.be.true;
+            expect(message === 'Command').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'MRT2').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCsmiUserTranCheck.getAttribute("checked");
+            return Page.eleRecImsVariableLengthTransCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute('value');
+            return Page.eleRecImsTranLengthSpinner.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RRT2').to.be.true;
+            expect(message === '4').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute('value');
+            return Page.eleRecImsSecurityCheckDropdown.getText();
         }).then(function (message) {
-            expect(message === 'RRS2').to.be.true;
+            expect(message === 'Full').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentBreakInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CHANNEL2').to.be.true;
+            expect(message === 'bbbbbbbb').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentLengthInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CONTAINER2').to.be.true;
+            expect(message === '22222').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
+            return Page.eleRecImsMfsMapNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Transaction').to.be.true;
+            expect(message === 'MAP2').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Message').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnForwardDestAsCtnCheck.getAttribute("checked");
-        }).then(function (message) {
-            expect(message === 'true').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAMB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAMC').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAMD').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAME').to.be.true;
+            expect(message === 'CMD2').to.be.true;
         }).then(function () {
             return Page.eleRecEmsListentoDestInput.getAttribute("value");
         }).then(function (message) {
@@ -2079,95 +1959,95 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         });
     });
 
-    // Add a Recipe with CICS Interface & EMS Connection, then add a Recipe with the same name, then discard the overwrite operation.
+    // Add a Recipe with IMS Interface & EMS Connection, then add a Recipe with the same name, then discard the overwrite operation.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection to overwrite an existing Recipe, then discard the overwrite operation', function () {
-        Page.delRecYes("RecipeCE0008").then(function () {
-            Page.delCvrYes("ConversionI0013");
+    it('Add a Recipe with IMS Interface & EMS Connection to overwrite an existing Recipe, then discard the overwrite operation', function () {
+        Page.delRecYes("RecipeIE0008").then(function () {
+            Page.delCvrYes("ConversionI0213");
         }).then(function () {
-            Page.delCvrYes("ConversionI0014");
+            Page.delCvrYes("ConversionI0214");
         }).then(function () {
-            Page.delCvrYes("ConversionO0013");
+            Page.delCvrYes("ConversionO0213");
         }).then(function () {
-            Page.delCvrYes("ConversionO0014");
+            Page.delCvrYes("ConversionO0214");
         }).then(function () {
-            Page.delMsgYes("MessageD0008");
+            Page.delMsgYes("MessageF0008");
         }).then(function () {
-            Page.delBufYes("BufferD0008");
+            Page.delBufYes("BufferF0008");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0013");
+            definePage.delConnEmsYes("ConnEMSD0013");
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0014");
+            definePage.delConnEmsYes("ConnEMSD0014");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0008");
+            definePage.delEndpointEmsYes("EndpointEMSF0008");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0008");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0013", "", false, false, "EndpointEMSE0008");
+            definePage.addEndpointEms("EndpointEMSF0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addConnEms("ConnEMSC0014", "", false, false, "EndpointEMSE0008");
+            definePage.addConnEms("ConnEMSD0013", "", false, false, "EndpointEMSF0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0013");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0014");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0013");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0014");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0013");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0014");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0013");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0014");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0008");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0008");
+            definePage.addConnEms("ConnEMSD0014", "", false, false, "EndpointEMSF0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0013", "", undefined, "", "EndpointCICSC0008");
+            definePage.delIntfImsYes("IntfIMSA0013");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0014");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0013");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0014");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0013");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0014");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0013");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0014");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0008");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0014", "", undefined, "", "EndpointCICSC0008");
+            definePage.addIntfIms("IntfIMSA0013", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0013", "", undefined, "", "EndpointCICSC0008");
+            definePage.addIntfIms("IntfIMSA0014", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0014", "", undefined, "", "EndpointCICSC0008");
+            definePage.addIntfIms("IntfIMSB0013", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0013", "", undefined, "", "EndpointCICSC0008");
+            definePage.addIntfIms("IntfIMSB0014", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0014", "", undefined, "", "EndpointCICSC0008");
+            definePage.addIntfIms("IntfIMSC0013", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0013", "", undefined, "", "EndpointCICSC0008");
+            definePage.addIntfIms("IntfIMSC0014", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0014", "", undefined, "", "EndpointCICSC0008");
+            definePage.addIntfIms("IntfIMSD0013", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0008");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0014", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0008");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -2175,35 +2055,35 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0008", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0008", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0008", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0008", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0013", "MessageD0008", "BufferD0008", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0213", "MessageF0008", "BufferF0008", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0014", "MessageD0008", "BufferD0008", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0214", "MessageF0008", "BufferF0008", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0013", "MessageD0008", "BufferD0008", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0213", "MessageF0008", "BufferF0008", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0014", "MessageD0008", "BufferD0008", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0214", "MessageF0008", "BufferF0008", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0008", "AbCdEfG", "IntfCICSA0013", true, "IntfCICSB0013", true, "IntfCICSC0013", true, "IntfCICSD0013", true, "ConnEMSC0013", true, "111", "33", "1", "ConversionI0013", true, "ConversionO0013", true, "PROGRAM1", false, "None", "Container", "MRT1", false, "RRT1", "RRS1", "CHANNEL1", "CONTAINER1", "Program", "Single", false, "PROGRAM2", "PROGRAM3", "PROGRAM4", "PROGRAM5", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
+            Page.addRecWithImsEms("RecipeIE0008", "AbCdEfG", "IntfIMSA0013", true, "IntfIMSB0013", true, "IntfIMSC0013", true, "IntfIMSD0013", true, "ConnEMSD0013", true, "111", "33", "1", "ConversionI0213", true, "ConversionO0213", true, "PROGRAM1", false, "None", "Transaction", false, "3", "User", "AAAAAAAA", "11111", "MAP1", "CMD1", "lsnDest1", "QUEUE", "responseDest1", "QUEUE", false, "55", "77", "111", "errDest1", "QUEUE", "Reliable No-Ack", "Non-Persistent", false, false, "durCid1", false, "1", false, "33333", "Minutes", false, false, false, "Map", "Envelope", "SEL1");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0008", "HiJkLmN", "IntfCICSA0014", true, "IntfCICSB0014", true, "IntfCICSC0014", true, "IntfCICSD0014", true, "ConnEMSC0014", true, "222", "44", "2", "ConversionI0014", true, "ConversionO0014", true, "PROGRAMA", false, "None", "Storage", "MRT2", true, "RRT2", "RRS2", "CHANNEL2", "CONTAINER2", "Transaction", "Message", true, "PROGRAMB", "PROGRAMC", "PROGRAMD", "PROGRAME", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
+            Page.addRecWithImsEms("RecipeIE0008", "HiJkLmN", "IntfIMSA0014", true, "IntfIMSB0014", true, "IntfIMSC0014", true, "IntfIMSD0014", true, "ConnEMSD0014", true, "222", "44", "2", "ConversionI0214", true, "ConversionO0214", true, "PROGRAMA", false, "None", "Command", true, "4", "Full", "bbbbbbbb", "22222", "MAP2", "CMD2", "lsnDest2", "TOPIC", "responseDest2", "TOPIC", true, "66", "88", "222", "errDest2", "TOPIC", "Reliable Auto-Ack", "Reliable", true, true, "durCid2", true, "2", true, "44444", "Days", true, true, true, "Text", "Message Id", "SEL2");
         }).then(function () {
             globalCommons.waitForClickable(globalPage.eleNoButton);
         }).then(function () {
@@ -2219,7 +2099,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalCommons.waitForDisplayed(Page.eleSearchInput);
         }).then(function () {
-            Page.eleSearchInput.clear().sendKeys("RecipeCE0008");
+            Page.eleSearchInput.clear().sendKeys("RecipeIE0008");
         }).then(function () {
             Page.eleSearchIcon.click();
         }).then(function () {
@@ -2233,7 +2113,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RecipeCE0008').to.be.true;
+            expect(message === 'RecipeIE0008').to.be.true;
         }).then(function () {
             return Page.eleRecDescInput.getAttribute('value');
         }).then(function (message) {
@@ -2241,23 +2121,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecIntfInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSA0013').to.be.true;
+            expect(message === 'IntfIMSA0013').to.be.true;
         }).then(function () {
             return Page.eleRecIntf2Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSB0013').to.be.true;
+            expect(message === 'IntfIMSB0013').to.be.true;
         }).then(function () {
             return Page.eleRecIntf3Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSC0013').to.be.true;
+            expect(message === 'IntfIMSC0013').to.be.true;
         }).then(function () {
             return Page.eleRecIntf4Input.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'IntfCICSD0013').to.be.true;
+            expect(message === 'IntfIMSD0013').to.be.true;
         }).then(function () {
             return Page.eleRecConnInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConnEMSC0013').to.be.true;
+            expect(message === 'ConnEMSD0013').to.be.true;
         }).then(function () {
             return Page.eleRecDisableOnErrorNumSpinner.getAttribute('value');
         }).then(function (message) {
@@ -2273,11 +2153,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecInputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionI0013').to.be.true;
+            expect(message === 'ConversionI0213').to.be.true;
         }).then(function () {
             return Page.eleRecOutputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionO0013').to.be.true;
+            expect(message === 'ConversionO0213').to.be.true;
         }).then(function () {
             return Page.eleRecResourceNameInput.getAttribute('value');
         }).then(function (message) {
@@ -2291,61 +2171,37 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'None').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'Container').to.be.true;
+            expect(message === 'Transaction').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'MRT1').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCsmiUserTranCheck.getAttribute("checked");
+            return Page.eleRecImsVariableLengthTransCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute('value');
+            return Page.eleRecImsTranLengthSpinner.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'RRT1').to.be.true;
+            expect(message === '3').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute('value');
+            return Page.eleRecImsSecurityCheckDropdown.getText();
         }).then(function (message) {
-            expect(message === 'RRS1').to.be.true;
+            expect(message === 'User').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentBreakInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CHANNEL1').to.be.true;
+            expect(message === 'AAAAAAAA').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentLengthInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'CONTAINER1').to.be.true;
+            expect(message === '11111').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
+            return Page.eleRecImsMfsMapNameInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Program').to.be.true;
+            expect(message === 'MAP1').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'Single').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnForwardDestAsCtnCheck.getAttribute("checked");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM2').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM3').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM4').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute('value');
-        }).then(function (message) {
-            expect(message === 'PROGRAM5').to.be.true;
+            expect(message === 'CMD1').to.be.true;
         }).then(function () {
             return Page.eleRecEmsListentoDestInput.getAttribute("value");
         }).then(function (message) {
@@ -2473,61 +2329,61 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         });
     });
 
-    // Add a Recipe with CICS Interface & EMS Connection, delete it, then confirm the delete operation.
+    // Add a Recipe with IMS Interface & EMS Connection, delete it, then confirm the delete operation.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection, delete it, then confirm the delete operation', function () {
-        Page.delRecYes("RecipeCE0009").then(function () {
-            Page.delCvrYes("ConversionI0015");
+    it('Add a Recipe with IMS Interface & EMS Connection, delete it, then confirm the delete operation', function () {
+        Page.delRecYes("RecipeIE0009").then(function () {
+            Page.delCvrYes("ConversionI0215");
         }).then(function () {
-            Page.delCvrYes("ConversionO0015");
+            Page.delCvrYes("ConversionO0215");
         }).then(function () {
-            Page.delMsgYes("MessageD0009");
+            Page.delMsgYes("MessageF0009");
         }).then(function () {
-            Page.delBufYes("BufferD0009");
+            Page.delBufYes("BufferF0009");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0015");
+            definePage.delConnEmsYes("ConnEMSD0015");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0009");
+            definePage.delEndpointEmsYes("EndpointEMSF0009");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0009");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0015", "", false, false, "EndpointEMSE0009");
+            definePage.addEndpointEms("EndpointEMSF0009");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0015");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0015");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0015");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0015");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0009");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0009");
+            definePage.addConnEms("ConnEMSD0015", "", false, false, "EndpointEMSF0009");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0015", "", undefined, "", "EndpointCICSC0009");
+            definePage.delIntfImsYes("IntfIMSA0015");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0015");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0015");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0015");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0009");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0009");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0015", "", undefined, "", "EndpointCICSC0009");
+            definePage.addIntfIms("IntfIMSA0015", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0009");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0015", "", undefined, "", "EndpointCICSC0009");
+            definePage.addIntfIms("IntfIMSB0015", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0009");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0015", "", undefined, "", "EndpointCICSC0009");
+            definePage.addIntfIms("IntfIMSC0015", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0009");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0015", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0009");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -2535,31 +2391,31 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0009", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0009", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0009", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0009", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0015", "MessageD0009", "BufferD0009", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0215", "MessageF0009", "BufferF0009", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0015", "MessageD0009", "BufferD0009", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0215", "MessageF0009", "BufferF0009", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0009", "", "IntfCICSA0015", true, "IntfCICSB0015", true, "IntfCICSC0015", true, "IntfCICSD0015", true, "ConnEMSC0015", true, "0", "0", "0", "ConversionI0015", true, "ConversionO0015", true);
+            Page.addRecWithImsEms("RecipeIE0009", "", "IntfIMSA0015", true, "IntfIMSB0015", true, "IntfIMSC0015", true, "IntfIMSD0015", true, "ConnEMSD0015", true, "0", "0", "0", "ConversionI0215", true, "ConversionO0215", true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.delRecYes("RecipeCE0009");
+            Page.delRecYes("RecipeIE0009");
         }).then(function () {
             globalCommons.waitForDisplayed(Page.eleSearchInput);
         }).then(function () {
-            Page.eleSearchInput.clear().sendKeys("RecipeCE0009");
+            Page.eleSearchInput.clear().sendKeys("RecipeIE0009");
         }).then(function () {
             Page.eleSearchIcon.click();
         }).then(function () {
@@ -2569,61 +2425,61 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         });
     });
 
-    // Add a Recipe with CICS Interface & EMS Connection, delete it, then discard the delete operation.
+    // Add a Recipe with IMS Interface & EMS Connection, delete it, then discard the delete operation.
     //
-    it('Add a Recipe with CICS Interface & EMS Connection, delete it, then discard the delete operation', function () {
-        Page.delRecYes("RecipeCE0010").then(function () {
-            Page.delCvrYes("ConversionI0016");
+    it('Add a Recipe with IMS Interface & EMS Connection, delete it, then discard the delete operation', function () {
+        Page.delRecYes("RecipeIE0010").then(function () {
+            Page.delCvrYes("ConversionI0216");
         }).then(function () {
-            Page.delCvrYes("ConversionO0016");
+            Page.delCvrYes("ConversionO0216");
         }).then(function () {
-            Page.delMsgYes("MessageD0010");
+            Page.delMsgYes("MessageF0010");
         }).then(function () {
-            Page.delBufYes("BufferD0010");
+            Page.delBufYes("BufferF0010");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0016");
+            definePage.delConnEmsYes("ConnEMSD0016");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0010");
+            definePage.delEndpointEmsYes("EndpointEMSF0010");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0010");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0016", "", false, false, "EndpointEMSE0010");
+            definePage.addEndpointEms("EndpointEMSF0010");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0016");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0016");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0016");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0016");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0010");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0010");
+            definePage.addConnEms("ConnEMSD0016", "", false, false, "EndpointEMSF0010");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0016", "", undefined, "", "EndpointCICSC0010");
+            definePage.delIntfImsYes("IntfIMSA0016");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0016");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0016");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0016");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0010");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0010");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0016", "", undefined, "", "EndpointCICSC0010");
+            definePage.addIntfIms("IntfIMSA0016", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0010");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0016", "", undefined, "", "EndpointCICSC0010");
+            definePage.addIntfIms("IntfIMSB0016", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0010");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0016", "", undefined, "", "EndpointCICSC0010");
+            definePage.addIntfIms("IntfIMSC0016", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0010");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0016", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0010");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -2631,31 +2487,31 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0010", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0010", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0010", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0010", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0016", "MessageD0010", "BufferD0010", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0216", "MessageF0010", "BufferF0010", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0016", "MessageD0010", "BufferD0010", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0216", "MessageF0010", "BufferF0010", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0010", "", "IntfCICSA0016", true, "IntfCICSB0016", true, "IntfCICSC0016", true, "IntfCICSD0016", true, "ConnEMSC0016", true, "0", "0", "0", "ConversionI0016", true, "ConversionO0016", true);
+            Page.addRecWithImsEms("RecipeIE0010", "", "IntfIMSA0016", true, "IntfIMSB0016", true, "IntfIMSC0016", true, "IntfIMSD0016", true, "ConnEMSD0016", true, "0", "0", "0", "ConversionI0216", true, "ConversionO0216", true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.delRecNo("RecipeCE0010");
+            Page.delRecNo("RecipeIE0010");
         }).then(function () {
             globalCommons.waitForDisplayed(Page.eleSearchInput);
         }).then(function () {
-            Page.eleSearchInput.clear().sendKeys("RecipeCE0010");
+            Page.eleSearchInput.clear().sendKeys("RecipeIE0010");
         }).then(function () {
             Page.eleSearchIcon.click();
         }).then(function () {
@@ -2668,40 +2524,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test 'Audit' & 'Refresh' button.
     //
     it('Test Audit & Refresh button', function () {
-        Page.delRecYes("RecipeCE0011").then(function () {
-            Page.delCvrYes("ConversionI0017");
+        Page.delRecYes("RecipeIE0011").then(function () {
+            Page.delCvrYes("ConversionI0217");
         }).then(function () {
-            Page.delCvrYes("ConversionO0017");
+            Page.delCvrYes("ConversionO0217");
         }).then(function () {
-            Page.delMsgYes("MessageD0011");
+            Page.delMsgYes("MessageF0011");
         }).then(function () {
-            Page.delBufYes("BufferD0011");
+            Page.delBufYes("BufferF0011");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0017");
+            definePage.delConnEmsYes("ConnEMSD0017");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0011");
+            definePage.delEndpointEmsYes("EndpointEMSF0011");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0011");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0017", "", false, false, "EndpointEMSE0011");
+            definePage.addEndpointEms("EndpointEMSF0011");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0017");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0011");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0011");
+            definePage.addConnEms("ConnEMSD0017", "", false, false, "EndpointEMSF0011");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0017", "", undefined, "", "EndpointCICSC0011");
+            definePage.delIntfImsYes("IntfIMSA0017");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0011");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0011");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0017", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0011");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -2709,23 +2565,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0011", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0011", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0011", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0011", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0017", "MessageD0011", "BufferD0011", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0217", "MessageF0011", "BufferF0011", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0017", "MessageD0011", "BufferD0011", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0217", "MessageF0011", "BufferF0011", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0011", "", "IntfCICSA0017", false, "", false, "", false, "", false, "ConnEMSC0017", false, "0", "0", "0", "ConversionI0017", false, "ConversionO0017", false);
+            Page.addRecWithImsEms("RecipeIE0011", "", "IntfIMSA0017", false, "", false, "", false, "", false, "ConnEMSD0017", false, "0", "0", "0", "ConversionI0217", false, "ConversionO0217", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -2789,21 +2645,21 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleRecNameInput);
         }).then(function () {
-            return Page.eleRecCicsDetailsExtension.isPresent();
+            return Page.eleRecImsDetailsExtension.isPresent();
         }).then(function (result) {
             if (result = false) {
                 Page.eleRecIntfExtension.click();
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsDetailsExtension);
+            globalCommons.waitForElementPresent(Page.eleRecImsDetailsExtension);
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.isPresent();
+            return Page.eleRecImsMethodInvocationDropdown.isPresent();
         }).then(function (result) {
             if (result = false) {
-                Page.eleRecCicsDetailsExtension.click();
+                Page.eleRecImsDetailsExtension.click();
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsMethodInvocationDropdown);
+            globalCommons.waitForElementPresent(Page.eleRecImsMethodInvocationDropdown);
         }).then(function () {
             return Page.eleRecEmsDetailsExtension.isPresent();
         }).then(function (result) {
@@ -2881,61 +2737,37 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Message').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'DPL').to.be.true;
+            expect(message === 'Transaction').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCsmiUserTranCheck.getAttribute("checked");
+            return Page.eleRecImsVariableLengthTransCheck.getAttribute("checked");
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute('value');
+            return Page.eleRecImsTranLengthSpinner.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSecurityCheckDropdown.getText();
+        }).then(function (message) {
+            expect(message === 'None').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakInput.getAttribute('value');
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute('value');
+            return Page.eleRecImsSegmentLengthInput.getAttribute('value');
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMfsMapNameInput.getAttribute('value');
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute('value');
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute('value');
         }).then(function (message) {
             expect(message === '').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute('value');
-        }).then(function (message) {
-            expect(message === '').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Program').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Single').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnForwardDestAsCtnCheck.getAttribute("checked");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.isPresent();
-        }).then(function (result) {
-            expect(result).to.be.false;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.isPresent();
-        }).then(function (result) {
-            expect(result).to.be.false;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.isPresent();
-        }).then(function (result) {
-            expect(result).to.be.false;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.isPresent();
-        }).then(function (result) {
-            expect(result).to.be.false;
         }).then(function () {
             return Page.eleRecEmsListentoDestInput.getAttribute("value");
         }).then(function (message) {
@@ -3081,21 +2913,21 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleRecNameInput);
         }).then(function () {
-            return Page.eleRecCicsDetailsExtension.isPresent();
+            return Page.eleRecImsDetailsExtension.isPresent();
         }).then(function (result) {
             if (result = false) {
                 Page.eleRecIntfExtension.click();
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsDetailsExtension);
+            globalCommons.waitForElementPresent(Page.eleRecImsDetailsExtension);
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.isPresent();
+            return Page.eleRecImsMethodInvocationDropdown.isPresent();
         }).then(function (result) {
             if (result = false) {
-                Page.eleRecCicsDetailsExtension.click();
+                Page.eleRecImsDetailsExtension.click();
             }
         }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsMethodInvocationDropdown);
+            globalCommons.waitForElementPresent(Page.eleRecImsMethodInvocationDropdown);
         }).then(function () {
             return Page.eleRecEmsDetailsExtension.isPresent();
         }).then(function (result) {
@@ -3139,9 +2971,9 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecIntfInput.clear().sendKeys("IntfCICSA0017");
+            Page.eleRecIntfInput.clear().sendKeys("IntfIMSA0017");
         }).then(function () {
-            Page.eleRecConnInput.clear().sendKeys("ConnEMSC0017");
+            Page.eleRecConnInput.clear().sendKeys("ConnEMSD0017");
         }).then(function () {
             Page.eleRecEmsListentoDestInput.clear().sendKeys("tibss.recipe.listenToDest");
         }).then(function () {
@@ -3170,42 +3002,42 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'Name'
     //
     it('Test Recipe -> Name', function () {
-        Page.delRecYes("RecipeCE0012_@#$_2223333333333444444444").then(function () {
-            Page.delRecYes("RecipeCE0013_@#$_2223333333333444444444");
+        Page.delRecYes("RecipeIE0012_@#$_2223333333333444444444").then(function () {
+            Page.delRecYes("RecipeIE0013_@#$_2223333333333444444444");
         }).then(function () {
-            Page.delCvrYes("ConversionI0018");
+            Page.delCvrYes("ConversionI0218");
         }).then(function () {
-            Page.delCvrYes("ConversionO0018");
+            Page.delCvrYes("ConversionO0218");
         }).then(function () {
-            Page.delMsgYes("MessageD0012");
+            Page.delMsgYes("MessageF0012");
         }).then(function () {
-            Page.delBufYes("BufferD0012");
+            Page.delBufYes("BufferF0012");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0018");
+            definePage.delConnEmsYes("ConnEMSD0018");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0012");
+            definePage.delEndpointEmsYes("EndpointEMSF0012");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0012");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0018", "", false, false, "EndpointEMSE0012");
+            definePage.addEndpointEms("EndpointEMSF0012");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0018");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0012");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0012");
+            definePage.addConnEms("ConnEMSD0018", "", false, false, "EndpointEMSF0012");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0018", "", undefined, "", "EndpointCICSC0012");
+            definePage.delIntfImsYes("IntfIMSA0018");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0012");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0012");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0018", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0012");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -3213,35 +3045,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0012", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0012", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0012", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0012", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0018", "MessageD0012", "BufferD0012", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0218", "MessageF0012", "BufferF0012", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0018", "MessageD0012", "BufferD0012", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0218", "MessageF0012", "BufferF0012", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0012_@#$_2223333333333444444444", "", "IntfCICSA0018", false, "", false, "", false, "", false, "ConnEMSC0018", false, "0", "0", "0", "ConversionI0018", false, "ConversionO0018", false);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'RecipeCE0012_@#$_2223333333333444444444').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0013_@#$_22233333333334444444444", "", "IntfCICSA0018", false, "", false, "", false, "", false, "ConnEMSC0018", false, "0", "0", "0", "ConversionI0018", false, "ConversionO0018", false);
+            Page.addRecWithImsEms("RecipeIE0012_@#$_2223333333333444444444", "", "IntfIMSA0018", false, "", false, "", false, "", false, "ConnEMSD0018", false, "0", "0", "0", "ConversionI0218", false, "ConversionO0218", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3251,49 +3071,61 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecNameInput.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'RecipeCE0013_@#$_2223333333333444444444').to.be.true;
+            expect(message === 'RecipeIE0012_@#$_2223333333333444444444').to.be.true;
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0013_@#$_22233333333334444444444", "", "IntfIMSA0018", false, "", false, "", false, "", false, "ConnEMSD0018", false, "0", "0", "0", "ConversionI0218", false, "ConversionO0218", false);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecNameInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'RecipeIE0013_@#$_2223333333333444444444').to.be.true;
         });
     });
 
     // Test field 'Recipe Details panel' -> 'Description'
     //
     it('Test Recipe -> Description', function () {
-        Page.delRecYes("RecipeCE0014").then(function () {
-            Page.delRecYes("RecipeCE0015");
+        Page.delRecYes("RecipeIE0014").then(function () {
+            Page.delRecYes("RecipeIE0015");
         }).then(function () {
-            Page.delCvrYes("ConversionI0019");
+            Page.delCvrYes("ConversionI0219");
         }).then(function () {
-            Page.delCvrYes("ConversionO0019");
+            Page.delCvrYes("ConversionO0219");
         }).then(function () {
-            Page.delMsgYes("MessageD0013");
+            Page.delMsgYes("MessageF0013");
         }).then(function () {
-            Page.delBufYes("BufferD0013");
+            Page.delBufYes("BufferF0013");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0019");
+            definePage.delConnEmsYes("ConnEMSD0019");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0013");
+            definePage.delEndpointEmsYes("EndpointEMSF0013");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0013");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0019", "", false, false, "EndpointEMSE0013");
+            definePage.addEndpointEms("EndpointEMSF0013");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0019");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0013");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0013");
+            definePage.addConnEms("ConnEMSD0019", "", false, false, "EndpointEMSF0013");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0019", "", undefined, "", "EndpointCICSC0013");
+            definePage.delIntfImsYes("IntfIMSA0019");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0013");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0013");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0019", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0013");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -3301,23 +3133,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0013", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0013", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0013", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0013", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0019", "MessageD0013", "BufferD0013", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0219", "MessageF0013", "BufferF0013", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0019", "MessageD0013", "BufferD0013", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0219", "MessageF0013", "BufferF0013", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0014", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111", "IntfCICSA0019", false, "", false, "", false, "", false, "ConnEMSC0019", false, "0", "0", "0", "ConversionI0019", false, "ConversionO0019", false);
+            Page.addRecWithImsEms("RecipeIE0014", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111", "IntfIMSA0019", false, "", false, "", false, "", false, "ConnEMSD0019", false, "0", "0", "0", "ConversionI0219", false, "ConversionO0219", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3329,7 +3161,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444444445555555555111111111122222222223333333333444444444455555555551111').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0015", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????111111111122222222223333333333444444444455555555551111111111222222222233333333334444444444555555555511111", "IntfCICSA0019", false, "", false, "", false, "", false, "ConnEMSC0019", false, "0", "0", "0", "ConversionI0019", false, "ConversionO0019", false);
+            Page.addRecWithImsEms("RecipeIE0015", "AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????111111111122222222223333333333444444444455555555551111111111222222222233333333334444444444555555555511111", "IntfIMSA0019", false, "", false, "", false, "", false, "ConnEMSD0019", false, "0", "0", "0", "ConversionI0219", false, "ConversionO0219", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3362,40 +3194,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'Interface Name'
     //
     it('Test Recipe -> Interface Name', function () {
-        Page.delRecYes("RecipeCE0016").then(function () {
-            Page.delCvrYes("ConversionI0020");
+        Page.delRecYes("RecipeIE0016").then(function () {
+            Page.delCvrYes("ConversionI0220");
         }).then(function () {
-            Page.delCvrYes("ConversionO0020");
+            Page.delCvrYes("ConversionO0220");
         }).then(function () {
-            Page.delMsgYes("MessageD0014");
+            Page.delMsgYes("MessageF0014");
         }).then(function () {
-            Page.delBufYes("BufferD0014");
+            Page.delBufYes("BufferF0014");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0020");
+            definePage.delConnEmsYes("ConnEMSD0020");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0014");
+            definePage.delEndpointEmsYes("EndpointEMSF0014");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0014");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0020", "", false, false, "EndpointEMSE0014");
+            definePage.addEndpointEms("EndpointEMSF0014");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0020_@#$_223333333333444444444");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0014");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0014");
+            definePage.addConnEms("ConnEMSD0020", "", false, false, "EndpointEMSF0014");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0020_@#$_223333333333444444444", "", undefined, "", "EndpointCICSC0014");
+            definePage.delIntfImsYes("IntfIMSA0020_@#$_2223333333333444444444");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0014");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0014");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0020_@#$_2223333333333444444444", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0014");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -3403,39 +3235,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0014", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0014", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0014", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0014", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0020", "MessageD0014", "BufferD0014", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0220", "MessageF0014", "BufferF0014", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0020", "MessageD0014", "BufferD0014", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0220", "MessageF0014", "BufferF0014", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0016", "", "IntfCICSA0020_@#$_223333333333444444444", true, "", false, "", false, "", false, "ConnEMSC0020", false, "0", "0", "0", "ConversionI0020", false, "ConversionO0020", false);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntfInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSA0020_@#$_223333333333444444444').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntfInput.clear().sendKeys("INVALID");
-        }).then(function () {
-            Page.eleSaveButton.click();
+            Page.addRecWithImsEms("RecipeIE0016", "", "INVALID", false, "", false, "", false, "", false, "ConnEMSD0020", false, "0", "0", "0", "ConversionI0220", false, "ConversionO0220", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3447,57 +3263,67 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleCancelButton);
+            Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleCancelButton.click();
+            Page.eleRecIntfInput.clear().sendKeys("IntfIMSA0020_@#$_2223333333333444444444");
         }).then(function () {
-            globalPage.isWarningYes();
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecIntfInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfIMSA0020_@#$_223333333333444444444').to.be.true;
         });
     });
 
     // Test field 'Recipe Details panel' -> 'Interface Names (alternate) First'
     //
     it('Test Recipe -> Interface Names (alternate) First', function () {
-        Page.delRecYes("RecipeCE0017").then(function () {
-            Page.delCvrYes("ConversionI0021");
+        Page.delRecYes("RecipeIE0017").then(function () {
+            Page.delCvrYes("ConversionI0221");
         }).then(function () {
-            Page.delCvrYes("ConversionO0021");
+            Page.delCvrYes("ConversionO0221");
         }).then(function () {
-            Page.delMsgYes("MessageD0015");
+            Page.delMsgYes("MessageF0015");
         }).then(function () {
-            Page.delBufYes("BufferD0015");
+            Page.delBufYes("BufferF0015");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0021");
+            definePage.delConnEmsYes("ConnEMSD0021");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0015");
+            definePage.delEndpointEmsYes("EndpointEMSF0015");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0015");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0021", "", false, false, "EndpointEMSE0015");
+            definePage.addEndpointEms("EndpointEMSF0015");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0021");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0017_@#$_223333333333444444444");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0015");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0015");
+            definePage.addConnEms("ConnEMSD0021", "", false, false, "EndpointEMSF0015");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0021", "", undefined, "", "EndpointCICSC0015");
+            definePage.delIntfImsYes("IntfIMSA0021");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0017_@#$_2223333333333444444444");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0015");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0015");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0017_@#$_223333333333444444444", "", undefined, "", "EndpointCICSC0015");
+            definePage.addIntfIms("IntfIMSA0021", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0015");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSB0017_@#$_2223333333333444444444", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0015");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -3505,55 +3331,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0015", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0015", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0015", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0015", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0021", "MessageD0015", "BufferD0015", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0221", "MessageF0015", "BufferF0015", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0021", "MessageD0015", "BufferD0015", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0221", "MessageF0015", "BufferF0015", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0017", "", "IntfCICSA0021", true, "IntfCICSA0021", true, "", false, "", false, "ConnEMSC0021", false, "0", "0", "0", "ConversionI0021", false, "ConversionO0021", false);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntf2Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSA0021').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntf2Input.clear().sendKeys("IntfCICSB0017_@#$_223333333333444444444");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntf2Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSB0017_@#$_223333333333444444444').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntf2Input.clear().sendKeys("INVALID");
-        }).then(function () {
-            Page.eleSaveButton.click();
+            Page.addRecWithImsEms("RecipeIE0017", "", "IntfIMSA0021", true, "INVALID", false, "", false, "", false, "ConnEMSD0021", false, "0", "0", "0", "ConversionI0221", false, "ConversionO0221", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3565,63 +3359,89 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleCancelButton);
+            Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleCancelButton.click();
+            Page.eleRecIntf2Input.clear().sendKeys("IntfIMSA0021");
         }).then(function () {
-            globalPage.isWarningYes();
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecIntf2Input.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfIMSA0021').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecIntf2Input.clear().sendKeys("IntfIMSB0017_@#$_2223333333333444444444");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecIntf2Input.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfIMSB0017_@#$_223333333333444444444').to.be.true;
         });
     });
 
     // Test field 'Recipe Details panel' -> 'Interface Names (alternate) Second'
     //
     it('Test Recipe -> Interface Names (alternate) Second', function () {
-        Page.delRecYes("RecipeCE0018").then(function () {
-            Page.delCvrYes("ConversionI0022");
+        Page.delRecYes("RecipeIE0018").then(function () {
+            Page.delCvrYes("ConversionI0222");
         }).then(function () {
-            Page.delCvrYes("ConversionO0022");
+            Page.delCvrYes("ConversionO0222");
         }).then(function () {
-            Page.delMsgYes("MessageD0016");
+            Page.delMsgYes("MessageF0016");
         }).then(function () {
-            Page.delBufYes("BufferD0016");
+            Page.delBufYes("BufferF0016");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0022");
+            definePage.delConnEmsYes("ConnEMSD0022");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0016");
+            definePage.delEndpointEmsYes("EndpointEMSF0016");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0016");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0022", "", false, false, "EndpointEMSE0016");
+            definePage.addEndpointEms("EndpointEMSF0016");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0022");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0018");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0017_@#$_223333333333444444444");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0016");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0016");
+            definePage.addConnEms("ConnEMSD0022", "", false, false, "EndpointEMSF0016");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0022", "", undefined, "", "EndpointCICSC0016");
+            definePage.delIntfImsYes("IntfIMSA0022");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0018");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0017_@#$_2223333333333444444444");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0016");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0016");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0018", "", undefined, "", "EndpointCICSC0016");
+            definePage.addIntfIms("IntfIMSA0022", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0016");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0017_@#$_223333333333444444444", "", undefined, "", "EndpointCICSC0016");
+            definePage.addIntfIms("IntfIMSB0018", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0016");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSC0017_@#$_2223333333333444444444", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0016");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -3629,71 +3449,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0016", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0016", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0016", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0016", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0022", "MessageD0016", "BufferD0016", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0222", "MessageF0016", "BufferF0016", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0022", "MessageD0016", "BufferD0016", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0222", "MessageF0016", "BufferF0016", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0018", "", "IntfCICSA0022", true, "IntfCICSB0018", true, "IntfCICSA0022", true, "", false, "ConnEMSC0022", false, "0", "0", "0", "ConversionI0022", false, "ConversionO0022", false);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntf3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSA0022').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntf3Input.clear().sendKeys("IntfCICSB0018");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntf3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSB0018').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntf3Input.clear().sendKeys("IntfCICSC0017_@#$_223333333333444444444");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntf3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSC0017_@#$_223333333333444444444').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntf3Input.clear().sendKeys("INVALID");
-        }).then(function () {
-            Page.eleSaveButton.click();
+            Page.addRecWithImsEms("RecipeIE0018", "", "IntfIMSA0022", true, "IntfIMSB0018", true, "INVALID", false, "", false, "ConnEMSD0022", false, "0", "0", "0", "ConversionI0222", false, "ConversionO0222", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3705,69 +3477,111 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleCancelButton);
+            Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleCancelButton.click();
+            Page.eleRecIntf3Input.clear().sendKeys("IntfIMSA0022");
         }).then(function () {
-            globalPage.isWarningYes();
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecIntf3Input.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfIMSA0022').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecIntf3Input.clear().sendKeys("IntfIMSB0018");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecIntf3Input.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfIMSB0018').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecIntf3Input.clear().sendKeys("IntfIMSC0017_@#$_2223333333333444444444");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecIntf3Input.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfIMSC0017_@#$_2223333333333444444444').to.be.true;
         });
     });
 
     // Test field 'Recipe Details panel' -> 'Interface Names (alternate) Third'
     //
     it('Test Recipe -> Interface Names (alternate) Third', function () {
-        Page.delRecYes("RecipeCE0019").then(function () {
-            Page.delCvrYes("ConversionI0023");
+        Page.delRecYes("RecipeIE0019").then(function () {
+            Page.delCvrYes("ConversionI0223");
         }).then(function () {
-            Page.delCvrYes("ConversionO0023");
+            Page.delCvrYes("ConversionO0223");
         }).then(function () {
-            Page.delMsgYes("MessageD0017");
+            Page.delMsgYes("MessageF0017");
         }).then(function () {
-            Page.delBufYes("BufferD0017");
+            Page.delBufYes("BufferF0017");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0023");
+            definePage.delConnEmsYes("ConnEMSD0023");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0017");
+            definePage.delEndpointEmsYes("EndpointEMSF0017");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0017");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0023", "", false, false, "EndpointEMSE0017");
+            definePage.addEndpointEms("EndpointEMSF0017");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0023");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSB0019");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSC0018");
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSD0017_@#$_223333333333444444444");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0017");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0017");
+            definePage.addConnEms("ConnEMSD0023", "", false, false, "EndpointEMSF0017");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0023", "", undefined, "", "EndpointCICSC0017");
+            definePage.delIntfImsYes("IntfIMSA0023");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSB0019");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSC0018");
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSD0017_@#$_2223333333333444444444");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0017");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0017");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSB0019", "", undefined, "", "EndpointCICSC0017");
+            definePage.addIntfIms("IntfIMSA0023", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0017");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSC0018", "", undefined, "", "EndpointCICSC0017");
+            definePage.addIntfIms("IntfIMSB0019", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0017");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSD0017_@#$_223333333333444444444", "", undefined, "", "EndpointCICSC0017");
+            definePage.addIntfIms("IntfIMSC0018", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0017");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSD0017_@#$_2223333333333444444444", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0017");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -3775,87 +3589,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0017", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0017", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0017", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0017", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0023", "MessageD0017", "BufferD0017", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0223", "MessageF0017", "BufferF0017", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0023", "MessageD0017", "BufferD0017", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0223", "MessageF0017", "BufferF0017", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0019", "", "IntfCICSA0023", true, "IntfCICSB0019", true, "IntfCICSC0018", true, "IntfCICSA0023", true, "ConnEMSC0023", false, "0", "0", "0", "ConversionI0023", false, "ConversionO0023", false);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntf4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSA0023').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntf4Input.clear().sendKeys("IntfCICSB0019");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntf4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSB0019').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntf4Input.clear().sendKeys("IntfCICSC0018");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntf4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSC0018').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntf4Input.clear().sendKeys("IntfCICSD0017_@#$_223333333333444444444");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecIntf4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'IntfCICSD0017_@#$_223333333333444444444').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecIntf4Input.clear().sendKeys("INVALID");
-        }).then(function () {
-            Page.eleSaveButton.click();
+            Page.addRecWithImsEms("RecipeIE0019", "", "IntfIMSA0023", true, "IntfIMSB0019", true, "IntfIMSC0018", true, "invalid", false, "ConnEMSD0022", false, "0", "0", "0", "ConversionI0222", false, "ConversionO0222", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3867,75 +3617,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleCancelButton);
+            Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleCancelButton.click();
+            Page.eleRecIntf4Input.clear().sendKeys("IntfIMSA0023");
         }).then(function () {
-            globalPage.isWarningYes();
-        });
-    });
-
-    // Test field 'Recipe Details panel' -> 'Connection'
-    //
-    it('Test Recipe -> Connection', function () {
-        Page.delRecYes("RecipeCE0020").then(function () {
-            Page.delCvrYes("ConversionI0024");
-        }).then(function () {
-            Page.delCvrYes("ConversionO0024");
-        }).then(function () {
-            Page.delMsgYes("MessageD0018");
-        }).then(function () {
-            Page.delBufYes("BufferD0018");
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
-        }).then(function () {
-            globalNaviPage.eleDefineMenu.click();
-        }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0024_@#$_2223333333333444444444");
-        }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0018");
-        }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0018");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0024_@#$_2223333333333444444444", "", false, false, "EndpointEMSE0018");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0024");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0018");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0018");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addIntfCics("IntfCICSA0024", "", undefined, "", "EndpointCICSC0018");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
-        }).then(function () {
-            globalNaviPage.eleConfigureMenu.click();
-        }).then(function () {
-            Page.addMsg("MessageD0018", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addBuf("BufferD0018", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionI0024", "MessageD0018", "BufferD0018", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionO0024", "MessageD0018", "BufferD0018", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0020", "", "IntfCICSA0024", true, "", false, "", false, "", false, "ConnEMSC0024_@#$_2223333333333444444444", true, "0", "0", "0", "ConversionI0024", true, "ConversionO0024", true);
+            Page.eleSaveButton.click();
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3943,15 +3629,121 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecConnInput.getAttribute("value");
+            return Page.eleRecIntf4Input.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'ConnEMSC0024_@#$_2223333333333444444444').to.be.true;
+            expect(message === 'IntfIMSA0023').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecConnInput.clear().sendKeys("INVALID");
+            Page.eleRecIntf4Input.clear().sendKeys("IntfIMSB0019");
         }).then(function () {
             Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecIntf4Input.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfIMSB0019').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecIntf4Input.clear().sendKeys("IntfIMSC0018");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecIntf4Input.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfIMSC0018').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecIntf4Input.clear().sendKeys("IntfIMSD0017_@#$_2223333333333444444444");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecIntf4Input.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'IntfIMSD0017_@#$_2223333333333444444444').to.be.true;
+        });
+    });
+
+    // Test field 'Recipe Details panel' -> 'Connection'
+    //
+    it('Test Recipe -> Interface4 Name', function () {
+        Page.delRecYes("RecipeIE0020").then(function () {
+            Page.delCvrYes("ConversionI0224");
+        }).then(function () {
+            Page.delCvrYes("ConversionO0224");
+        }).then(function () {
+            Page.delMsgYes("MessageF0018");
+        }).then(function () {
+            Page.delBufYes("BufferF0018");
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
+        }).then(function () {
+            globalNaviPage.eleDefineMenu.click();
+        }).then(function () {
+            definePage.delConnEmsYes("ConnEMSD0024_@#$_2223333333333444444444");
+        }).then(function () {
+            definePage.delEndpointEmsYes("EndpointEMSF0018");
+        }).then(function () {
+            definePage.addEndpointEms("EndpointEMSF0018");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addConnEms("ConnEMSD0024_@#$_2223333333333444444444", "", false, false, "EndpointEMSF0018");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0024");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0018");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0018");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0024", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0018");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
+        }).then(function () {
+            globalNaviPage.eleConfigureMenu.click();
+        }).then(function () {
+            Page.addMsg("MessageF0018", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferF0018", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionI0224", "MessageF0018", "BufferF0018", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionO0224", "MessageF0018", "BufferF0018", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0020", "", "IntfIMSA0024", false, "", false, "", false, "", false, "invalid", false, "0", "0", "0", "ConversionI0224", false, "ConversionO0224", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -3963,11 +3755,21 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleCancelButton);
+            Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleCancelButton.click();
+            Page.eleRecConnInput.clear().sendKeys("ConnEMSD0024_@#$_2223333333333444444444");
         }).then(function () {
-            globalPage.isWarningYes();
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecConnInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'ConnEMSD0024_@#$_2223333333333444444444').to.be.true;
         });
     });
 
@@ -3975,40 +3777,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     //
     it('Test Recipe -> Disable on Error (#)', function () {
         var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
-        Page.delRecYes("RecipeCE0021").then(function () {
-            Page.delCvrYes("ConversionI0025");
+        Page.delRecYes("RecipeIE0021").then(function () {
+            Page.delCvrYes("ConversionI0225");
         }).then(function () {
-            Page.delCvrYes("ConversionO0025");
+            Page.delCvrYes("ConversionO0225");
         }).then(function () {
-            Page.delMsgYes("MessageD0019");
+            Page.delMsgYes("MessageF0019");
         }).then(function () {
-            Page.delBufYes("BufferD0019");
+            Page.delBufYes("BufferF0019");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0025");
+            definePage.delConnEmsYes("ConnEMSD0025");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0019");
+            definePage.delEndpointEmsYes("EndpointEMSF0019");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0019");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0025", "", false, false, "EndpointEMSE0019");
+            definePage.addEndpointEms("EndpointEMSF0019");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0025");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0019");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0019");
+            definePage.addConnEms("ConnEMSD0025", "", false, false, "EndpointEMSF0019");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0025", "", undefined, "", "EndpointCICSC0019");
+            definePage.delIntfImsYes("IntfIMSA0025");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0019");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0019");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0025", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0019");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -4016,23 +3818,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0019", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0019", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0019", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0019", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0025", "MessageD0019", "BufferD0019", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0225", "MessageF0019", "BufferF0019", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0025", "MessageD0019", "BufferD0019", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0225", "MessageF0019", "BufferF0019", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0021", "", "IntfCICSA0025", false, "", false, "", false, "", false, "ConnEMSC0025", false, "0", "0", "0", "ConversionI0025", false, "ConversionO0025", false);
+            Page.addRecWithImsEms("RecipeIE0021", "", "IntfIMSA0025", false, "", false, "", false, "", false, "ConnEMSD0025", false, "0", "0", "0", "ConversionI0225", false, "ConversionO0225", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4158,40 +3960,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     //
     it('Test Recipe -> Disable on Error (%)', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delRecYes("RecipeCE0022").then(function () {
-            Page.delCvrYes("ConversionI0026");
+        Page.delRecYes("RecipeIE0022").then(function () {
+            Page.delCvrYes("ConversionI0226");
         }).then(function () {
-            Page.delCvrYes("ConversionO0026");
+            Page.delCvrYes("ConversionO0226");
         }).then(function () {
-            Page.delMsgYes("MessageD0020");
+            Page.delMsgYes("MessageF0020");
         }).then(function () {
-            Page.delBufYes("BufferD0020");
+            Page.delBufYes("BufferF0020");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0026");
+            definePage.delConnEmsYes("ConnEMSD0026");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0020");
+            definePage.delEndpointEmsYes("EndpointEMSF0020");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0020");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0026", "", false, false, "EndpointEMSE0020");
+            definePage.addEndpointEms("EndpointEMSF0020");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0026");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0020");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0020");
+            definePage.addConnEms("ConnEMSD0026", "", false, false, "EndpointEMSF0020");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0026", "", undefined, "", "EndpointCICSC0020");
+            definePage.delIntfImsYes("IntfIMSA0026");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0020");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0020");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0026", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0020");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -4199,23 +4001,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0020", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0020", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0020", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0020", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0026", "MessageD0020", "BufferD0020", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0226", "MessageF0020", "BufferF0020", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0026", "MessageD0020", "BufferD0020", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0226", "MessageF0020", "BufferF0020", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0022", "", "IntfCICSA0026", false, "", false, "", false, "", false, "ConnEMSC0026", false, "0", "0", "0", "ConversionI0026", false, "ConversionO0026", false);
+            Page.addRecWithImsEms("RecipeIE0022", "", "IntfIMSA0026", false, "", false, "", false, "", false, "ConnEMSD0026", false, "0", "0", "0", "ConversionI0226", false, "ConversionO0226", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4341,40 +4143,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     //
     it('Test Recipe -> Trace Level', function () {
         var backspaceSeries = Array(2).join(protractor.Key.BACK_SPACE);
-        Page.delRecYes("RecipeCE0023").then(function () {
-            Page.delCvrYes("ConversionI0027");
+        Page.delRecYes("RecipeIE0023").then(function () {
+            Page.delCvrYes("ConversionI0227");
         }).then(function () {
-            Page.delCvrYes("ConversionO0027");
+            Page.delCvrYes("ConversionO0227");
         }).then(function () {
-            Page.delMsgYes("MessageD0021");
+            Page.delMsgYes("MessageF0021");
         }).then(function () {
-            Page.delBufYes("BufferD0021");
+            Page.delBufYes("BufferF0021");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0027");
+            definePage.delConnEmsYes("ConnEMSD0027");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0021");
+            definePage.delEndpointEmsYes("EndpointEMSF0021");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0021");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0027", "", false, false, "EndpointEMSE0021");
+            definePage.addEndpointEms("EndpointEMSF0021");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0027");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0021");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0021");
+            definePage.addConnEms("ConnEMSD0027", "", false, false, "EndpointEMSF0021");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0027", "", undefined, "", "EndpointCICSC0021");
+            definePage.delIntfImsYes("IntfIMSA0027");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0021");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0021");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0027", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0021");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -4382,23 +4184,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0021", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0021", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0021", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0021", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0027", "MessageD0021", "BufferD0021", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0227", "MessageF0021", "BufferF0021", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0027", "MessageD0021", "BufferD0021", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0227", "MessageF0021", "BufferF0021", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0023", "", "IntfCICSA0027", false, "", false, "", false, "", false, "ConnEMSC0027", false, "0", "0", "0", "ConversionI0027", false, "ConversionO0027", false);
+            Page.addRecWithImsEms("RecipeIE0023", "", "IntfIMSA0027", false, "", false, "", false, "", false, "ConnEMSD0027", false, "0", "0", "0", "ConversionI0227", false, "ConversionO0227", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4559,40 +4361,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'Input Conversion'
     //
     it('Test Recipe -> Input Conversion', function () {
-        Page.delRecYes("RecipeCE0024").then(function () {
-            Page.delCvrYes("ConversionI0028_@#$_3333333333444444444");
+        Page.delRecYes("RecipeIE0024").then(function () {
+            Page.delCvrYes("ConversionI0228_@#$_3333333333444444444");
         }).then(function () {
-            Page.delCvrYes("ConversionO0028");
+            Page.delCvrYes("ConversionO0228");
         }).then(function () {
-            Page.delMsgYes("MessageD0022");
+            Page.delMsgYes("MessageF0022");
         }).then(function () {
-            Page.delBufYes("BufferD0022");
+            Page.delBufYes("BufferF0022");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0028");
+            definePage.delConnEmsYes("ConnEMSD0028");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0022");
+            definePage.delEndpointEmsYes("EndpointEMSF0022");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0022");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0028", "", false, false, "EndpointEMSE0022");
+            definePage.addEndpointEms("EndpointEMSF0022");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0028");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0022");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0022");
+            definePage.addConnEms("ConnEMSD0028", "", false, false, "EndpointEMSF0022");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0028", "", undefined, "", "EndpointCICSC0022");
+            definePage.delIntfImsYes("IntfIMSA0028");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0022");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0022");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0028", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0022");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -4600,23 +4402,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0022", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0022", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0022", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0022", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0028_@#$_3333333333444444444", "MessageD0022", "BufferD0022", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0228_@#$_3333333333444444444", "MessageF0022", "BufferF0022", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0028", "MessageD0022", "BufferD0022", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0228", "MessageF0022", "BufferF0022", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0024", "", "IntfCICSA0028", true, "", false, "", false, "", false, "ConnEMSC0028", true, "0", "0", "0", "INVALID", false, "ConversionO0028", true);
+            Page.addRecWithImsEms("RecipeIE0024", "", "IntfIMSA0028", false, "", false, "", false, "", false, "ConnEMSD0028", false, "0", "0", "0", "INVALID", false, "ConversionO0228", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4630,7 +4432,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecInputConversionInput.clear().sendKeys("ConversionI0028_@#$_3333333333444444444");
+            Page.eleRecInputConversionInput.clear().sendKeys("ConversionI0228_@#$_3333333333444444444");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -4642,47 +4444,47 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecInputConversionInput.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'ConversionI0028_@#$_3333333333444444444').to.be.true;
+            expect(message === 'ConversionI0228_@#$_3333333333444444444').to.be.true;
         });
     });
 
     // Test field 'Recipe Details panel' -> 'Output Conversion'
     //
     it('Test Recipe -> Output Conversion', function () {
-        Page.delRecYes("RecipeCE0025").then(function () {
-            Page.delCvrYes("ConversionI0029");
+        Page.delRecYes("RecipeIE0025").then(function () {
+            Page.delCvrYes("ConversionI0229");
         }).then(function () {
-            Page.delCvrYes("ConversionO0029_@#$_3333333333444444444");
+            Page.delCvrYes("ConversionO0229_@#$_3333333333444444444");
         }).then(function () {
-            Page.delMsgYes("MessageD0023");
+            Page.delMsgYes("MessageF0023");
         }).then(function () {
-            Page.delBufYes("BufferD0023");
+            Page.delBufYes("BufferF0023");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0029");
+            definePage.delConnEmsYes("ConnEMSD0029");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0023");
+            definePage.delEndpointEmsYes("EndpointEMSF0023");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0023");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0029", "", false, false, "EndpointEMSE0023");
+            definePage.addEndpointEms("EndpointEMSF0023");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0029");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0023");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0023");
+            definePage.addConnEms("ConnEMSD0029", "", false, false, "EndpointEMSF0023");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0029", "", undefined, "", "EndpointCICSC0023");
+            definePage.delIntfImsYes("IntfIMSA0029");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0023");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0023");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0029", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0023");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -4690,23 +4492,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0023", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0023", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0023", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0023", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0029", "MessageD0023", "BufferD0023", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0229", "MessageF0023", "BufferF0023", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0029_@#$_3333333333444444444", "MessageD0023", "BufferD0023", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0229_@#$_3333333333444444444", "MessageF0023", "BufferF0023", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0025", "", "IntfCICSA0029", true, "", false, "", false, "", false, "ConnEMSC0029", true, "0", "0", "0", "ConversionI0029", true, "invalid", false);
+            Page.addRecWithImsEms("RecipeIE0025", "", "IntfIMSA0029", false, "", false, "", false, "", false, "ConnEMSD0029", false, "0", "0", "0", "ConversionI0229", false, "invalid", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -4717,10 +4519,10 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
             return Page.eleRecOutputConversionValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
-            // }).then(function () {
-            //     Page.eleSaveInfoClose.click();
+        // }).then(function () {
+        //     Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecOutputConversionInput.clear().sendKeys("ConversionI0029");
+            Page.eleRecOutputConversionInput.clear().sendKeys("ConversionI0229");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -4732,11 +4534,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecOutputConversionInput.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'ConversionI0029').to.be.true;
+            expect(message === 'ConversionI0229').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecOutputConversionInput.clear().sendKeys("ConversionO0029_@#$_3333333333444444444");
+            Page.eleRecOutputConversionInput.clear().sendKeys("ConversionO0229_@#$_3333333333444444444");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -4748,47 +4550,47 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecOutputConversionInput.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'ConversionO0029_@#$_3333333333444444444').to.be.true;
+            expect(message === 'ConversionO0229_@#$_3333333333444444444').to.be.true;
         });
     });
 
     // Test field 'Recipe Details panel' -> 'Resource Name'
     //
     it('Test Recipe -> Resource Name', function () {
-        Page.delRecYes("RecipeCE0026").then(function () {
-            Page.delCvrYes("ConversionI0030");
+        Page.delRecYes("RecipeIE0026").then(function () {
+            Page.delCvrYes("ConversionI0230");
         }).then(function () {
-            Page.delCvrYes("ConversionO0030");
+            Page.delCvrYes("ConversionO0230");
         }).then(function () {
-            Page.delMsgYes("MessageD0024");
+            Page.delMsgYes("MessageF0024");
         }).then(function () {
-            Page.delBufYes("BufferD0024");
+            Page.delBufYes("BufferF0024");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0030");
+            definePage.delConnEmsYes("ConnEMSD0030");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0024");
+            definePage.delEndpointEmsYes("EndpointEMSF0024");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0024");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0030", "", false, false, "EndpointEMSE0024");
+            definePage.addEndpointEms("EndpointEMSF0024");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0030");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0024");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0024");
+            definePage.addConnEms("ConnEMSD0030", "", false, false, "EndpointEMSF0024");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0030", "", undefined, "", "EndpointCICSC0024");
+            definePage.delIntfImsYes("IntfIMSA0030");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0024");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0024");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0030", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0024");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -4796,23 +4598,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0024", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0024", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0024", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0024", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0030", "MessageD0024", "BufferD0024", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0230", "MessageF0024", "BufferF0024", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0030", "MessageD0024", "BufferD0024", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0230", "MessageF0024", "BufferF0024", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0026", "", "IntfCICSA0030", false, "", false, "", false, "", false, "ConnEMSC0030", false, "0", "0", "0", "ConversionI0030", false, "ConversionO0030", false);
+            Page.addRecWithImsEms("RecipeIE0026", "", "IntfIMSA0030", false, "", false, "", false, "", false, "ConnEMSD0030", false, "0", "0", "0", "ConversionI0230", false, "ConversionO0230", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5065,40 +4867,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'SS-Id Filter'
     //
     it('Test Recipe -> SS-Id Filter', function () {
-        Page.delRecYes("RecipeCE0027").then(function () {
-            Page.delCvrYes("ConversionI0031");
+        Page.delRecYes("RecipeIE0027").then(function () {
+            Page.delCvrYes("ConversionI0231");
         }).then(function () {
-            Page.delCvrYes("ConversionO0031");
+            Page.delCvrYes("ConversionO0231");
         }).then(function () {
-            Page.delMsgYes("MessageD0025");
+            Page.delMsgYes("MessageF0025");
         }).then(function () {
-            Page.delBufYes("BufferD0025");
+            Page.delBufYes("BufferF0025");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0031");
+            definePage.delConnEmsYes("ConnEMSD0031");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0025");
+            definePage.delEndpointEmsYes("EndpointEMSF0025");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0025");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0031", "", false, false, "EndpointEMSE0025");
+            definePage.addEndpointEms("EndpointEMSF0025");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0031");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0025");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0025");
+            definePage.addConnEms("ConnEMSD0031", "", false, false, "EndpointEMSF0025");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0031", "", undefined, "", "EndpointCICSC0025");
+            definePage.delIntfImsYes("IntfIMSA0031");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0025");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0025");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0031", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0025");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -5106,23 +4908,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0025", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0025", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0025", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0025", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0031", "MessageD0025", "BufferD0025", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0231", "MessageF0025", "BufferF0025", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0031", "MessageD0025", "BufferD0025", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0231", "MessageF0025", "BufferF0025", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0027", "", "IntfCICSA0031", false, "", false, "", false, "", false, "ConnEMSC0031", false, "0", "0", "0", "ConversionI0031", false, "ConversionO0031", false);
+            Page.addRecWithImsEms("RecipeIE0027", "", "IntfIMSA0031", false, "", false, "", false, "", false, "ConnEMSD0031", false, "0", "0", "0", "ConversionI0231", false, "ConversionO0231", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5159,46 +4961,46 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'Method of Reply'
     //
     it('Test Recipe -> Method of Reply', function () {
-        Page.delRecYes("RecipeCE0028").then(function () {
-            Page.delRecYes("RecipeCE0029");
+        Page.delRecYes("RecipeIE0028").then(function () {
+            Page.delRecYes("RecipeIE0029");
         }).then(function () {
-            Page.delRecYes("RecipeCE0030");
+            Page.delRecYes("RecipeIE0030");
         }).then(function () {
-            Page.delRecYes("RecipeCE0031");
+            Page.delRecYes("RecipeIE0031");
         }).then(function () {
-            Page.delCvrYes("ConversionI0032");
+            Page.delCvrYes("ConversionI0232");
         }).then(function () {
-            Page.delCvrYes("ConversionO0032");
+            Page.delCvrYes("ConversionO0232");
         }).then(function () {
-            Page.delMsgYes("MessageD0026");
+            Page.delMsgYes("MessageF0026");
         }).then(function () {
-            Page.delBufYes("BufferD0026");
+            Page.delBufYes("BufferF0026");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0032");
+            definePage.delConnEmsYes("ConnEMSD0032");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0026");
+            definePage.delEndpointEmsYes("EndpointEMSF0026");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0026");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0032", "", false, false, "EndpointEMSE0026");
+            definePage.addEndpointEms("EndpointEMSF0026");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0032");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0026");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0026");
+            definePage.addConnEms("ConnEMSD0032", "", false, false, "EndpointEMSF0026");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0032", "", undefined, "", "EndpointCICSC0026");
+            definePage.delIntfImsYes("IntfIMSA0032");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0026");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0026");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0032", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0026");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -5206,23 +5008,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0026", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0026", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0026", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0026", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0032", "MessageD0026", "BufferD0026", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0232", "MessageF0026", "BufferF0026", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0032", "MessageD0026", "BufferD0026", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0232", "MessageF0026", "BufferF0026", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0028", "", "IntfCICSA0032", false, "", false, "", false, "", false, "ConnEMSC0032", false, "0", "0", "0", "ConversionI0032", false, "ConversionO0032", false, undefined, undefined, "Message");
+            Page.addRecWithImsEms("RecipeIE0028", "", "IntfIMSA0032", false, "", false, "", false, "", false, "ConnEMSD0032", false, "0", "0", "0", "ConversionI0232", false, "ConversionO0232", false, undefined, undefined, "Message");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5256,7 +5058,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Status and Message').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0029", "", "IntfCICSA0032", false, "", false, "", false, "", false, "ConnEMSC0032", false, "0", "0", "0", "ConversionI0032", false, "ConversionO0032", false, undefined, undefined, "None");
+            Page.addRecWithImsEms("RecipeIE0029", "", "IntfIMSA0032", false, "", false, "", false, "", false, "ConnEMSD0032", false, "0", "0", "0", "ConversionI0232", false, "ConversionO0232", false, undefined, undefined, "None");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5268,7 +5070,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'None').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0030", "", "IntfCICSA0032", false, "", false, "", false, "", false, "ConnEMSC0032", false, "0", "0", "0", "ConversionI0032", false, "ConversionO0032", false, undefined, undefined, "Status");
+            Page.addRecWithImsEms("RecipeIE0030", "", "IntfIMSA0032", false, "", false, "", false, "", false, "ConnEMSD0032", false, "0", "0", "0", "ConversionI0232", false, "ConversionO0232", false, undefined, undefined, "Status");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5280,7 +5082,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Status').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0031", "", "IntfCICSA0032", false, "", false, "", false, "", false, "ConnEMSC0032", false, "0", "0", "0", "ConversionI0032", false, "ConversionO0032", false, undefined, undefined, "Status and Message");
+            Page.addRecWithImsEms("RecipeIE0031", "", "IntfIMSA0032", false, "", false, "", false, "", false, "ConnEMSD0032", false, "0", "0", "0", "ConversionI0232", false, "ConversionO0232", false, undefined, undefined, "Status and Message");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5294,59 +5096,47 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         });
     });
 
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'Method of Invocation'
+    // Test field 'Recipe Details panel' -> 'IMS Details' -> 'Method of Invocation'
     //
-    it('Test Recipe -> CICS Details -> Method of Invocation', function () {
-        Page.delRecYes("RecipeCE0032").then(function () {
-            Page.delRecYes("RecipeCE0033");
+    it('Test Recipe -> IMS Details -> Method of Invocation', function () {
+        Page.delRecYes("RecipeIE0032").then(function () {
+            Page.delRecYes("RecipeIE0033");
         }).then(function () {
-            Page.delRecYes("RecipeCE0034");
+            Page.delRecYes("RecipeIE0034");
         }).then(function () {
-            Page.delRecYes("RecipeCE0035");
+            Page.delCvrYes("ConversionI0233");
         }).then(function () {
-            Page.delRecYes("RecipeCE0036");
+            Page.delCvrYes("ConversionO0233");
         }).then(function () {
-            Page.delRecYes("RecipeCE0037");
+            Page.delMsgYes("MessageF0027");
         }).then(function () {
-            Page.delRecYes("RecipeCE0038");
-        }).then(function () {
-            Page.delRecYes("RecipeCE0039");
-        }).then(function () {
-            Page.delRecYes("RecipeCE0040");
-        }).then(function () {
-            Page.delCvrYes("ConversionI0033");
-        }).then(function () {
-            Page.delCvrYes("ConversionO0033");
-        }).then(function () {
-            Page.delMsgYes("MessageD0027");
-        }).then(function () {
-            Page.delBufYes("BufferD0027");
+            Page.delBufYes("BufferF0027");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0033");
+            definePage.delConnEmsYes("ConnEMSD0033");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0027");
+            definePage.delEndpointEmsYes("EndpointEMSF0027");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0027");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0033", "", false, false, "EndpointEMSE0027");
+            definePage.addEndpointEms("EndpointEMSF0027");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0033");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0027");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0027");
+            definePage.addConnEms("ConnEMSD0033", "", false, false, "EndpointEMSF0027");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0033", "", undefined, "", "EndpointCICSC0027");
+            definePage.delIntfImsYes("IntfIMSA0033");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0027");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0027");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0033", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0027");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -5354,77 +5144,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0027", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0027", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0027", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0027", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0033", "MessageD0027", "BufferD0027", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0233", "MessageF0027", "BufferF0027", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0033", "MessageD0027", "BufferD0027", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0233", "MessageF0027", "BufferF0027", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0032", "", "IntfCICSA0033", false, "", false, "", false, "", false, "ConnEMSC0033", false, "0", "0", "0", "ConversionI0033", false, "ConversionO0033", false, undefined, undefined, undefined, "DPL");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'DPL').to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsMethodInvocationDropdown);
-        }).then(function () {
-            Page.eleRecCicsMethodInvocationDropdown.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsMethodInvocation01);
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocation01.getText();
-        }).then(function (message) {
-            expect(message === 'DPL').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocation02.getText();
-        }).then(function (message) {
-            expect(message === 'PGM').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocation03.getText();
-        }).then(function (message) {
-            expect(message === 'Start Task').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocation04.getText();
-        }).then(function (message) {
-            expect(message === 'TDQ Write').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocation05.getText();
-        }).then(function (message) {
-            expect(message === 'TSQ Write').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocation06.getText();
-        }).then(function (message) {
-            expect(message === 'DPL MRO').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocation07.getText();
-        }).then(function (message) {
-            expect(message === 'Container').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocation08.getText();
-        }).then(function (message) {
-            expect(message === 'Storage').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocation09.getText();
-        }).then(function (message) {
-            expect(message === 'DPL TSQ').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0033", "", "IntfCICSA0033", false, "", false, "", false, "", false, "ConnEMSC0033", false, "0", "0", "0", "ConversionI0033", false, "ConversionO0033", false, undefined, undefined, undefined, "PGM");
+            Page.addRecWithImsEms("RecipeIE0032", "", "IntfIMSA0033", false, "", false, "", false, "", false, "ConnEMSD0033", false, "0", "0", "0", "ConversionI0233", false, "ConversionO0233", false, undefined, undefined, undefined, "Transaction");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5432,11 +5168,29 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'PGM').to.be.true;
+            expect(message === 'Transaction').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0034", "", "IntfCICSA0033", false, "", false, "", false, "", false, "ConnEMSC0033", false, "0", "0", "0", "ConversionI0033", false, "ConversionO0033", false, undefined, undefined, undefined, "Start Task");
+            globalCommons.waitForClickable(Page.eleRecImsMethodInvocationDropdown);
+        }).then(function () {
+            Page.eleRecImsMethodInvocationDropdown.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleRecImsMethodInvocation01);
+        }).then(function () {
+            return Page.eleRecImsMethodInvocation01.getText();
+        }).then(function (message) {
+            expect(message === 'Transaction').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMethodInvocation02.getText();
+        }).then(function (message) {
+            expect(message === 'Conversational Transaction').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMethodInvocation03.getText();
+        }).then(function (message) {
+            expect(message === 'Command').to.be.true;
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0033", "", "IntfIMSA0033", false, "", false, "", false, "", false, "ConnEMSD0033", false, "0", "0", "0", "ConversionI0233", false, "ConversionO0233", false, undefined, undefined, undefined, "Conversational Transaction");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5444,11 +5198,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'Start Task').to.be.true;
+            expect(message === 'Conversational Transaction').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0035", "", "IntfCICSA0033", false, "", false, "", false, "", false, "ConnEMSC0033", false, "0", "0", "0", "ConversionI0033", false, "ConversionO0033", false, undefined, undefined, undefined, "TDQ Write");
+            Page.addRecWithImsEms("RecipeIE0034", "", "IntfIMSA0033", false, "", false, "", false, "", false, "ConnEMSD0033", false, "0", "0", "0", "ConversionI0233", false, "ConversionO0233", false, undefined, undefined, undefined, "Command");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5456,109 +5210,49 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
+            return Page.eleRecImsMethodInvocationDropdown.getText();
         }).then(function (message) {
-            expect(message === 'TDQ Write').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0036", "", "IntfCICSA0033", false, "", false, "", false, "", false, "ConnEMSC0033", false, "0", "0", "0", "ConversionI0033", false, "ConversionO0033", false, undefined, undefined, undefined, "TSQ Write");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'TSQ Write').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0037", "", "IntfCICSA0033", false, "", false, "", false, "", false, "ConnEMSC0033", false, "0", "0", "0", "ConversionI0033", false, "ConversionO0033", false, undefined, undefined, undefined, "DPL MRO");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'DPL MRO').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0038", "", "IntfCICSA0033", false, "", false, "", false, "", false, "ConnEMSC0033", false, "0", "0", "0", "ConversionI0033", false, "ConversionO0033", false, undefined, undefined, undefined, "Container");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Container').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0039", "", "IntfCICSA0033", false, "", false, "", false, "", false, "ConnEMSC0033", false, "0", "0", "0", "ConversionI0033", false, "ConversionO0033", false, undefined, undefined, undefined, "Storage");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Storage').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0040", "", "IntfCICSA0033", false, "", false, "", false, "", false, "ConnEMSC0033", false, "0", "0", "0", "ConversionI0033", false, "ConversionO0033", false, undefined, undefined, undefined, "DPL TSQ");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMethodInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'DPL TSQ').to.be.true;
+            expect(message === 'Command').to.be.true;
         });
     });
 
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'Mirror Transaction ID'
+    // Test field 'Recipe Details panel' -> 'IMS Details' -> 'Variable Length Transaction'
     //
-    it('Test Recipe -> CICS Details -> Mirror Transaction ID', function () {
-        Page.delRecYes("RecipeCE0041").then(function () {
-            Page.delCvrYes("ConversionI0034");
+    it('Test Recipe -> IMS Details -> Variable Length Transaction', function () {
+        Page.delRecYes("RecipeIE0035").then(function () {
+            Page.delCvrYes("ConversionI0234");
         }).then(function () {
-            Page.delCvrYes("ConversionO0034");
+            Page.delCvrYes("ConversionO0234");
         }).then(function () {
-            Page.delMsgYes("MessageD0028");
+            Page.delMsgYes("MessageF0028");
         }).then(function () {
-            Page.delBufYes("BufferD0028");
+            Page.delBufYes("BufferF0028");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0034");
+            definePage.delConnEmsYes("ConnEMSD0034");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0028");
+            definePage.delEndpointEmsYes("EndpointEMSF0028");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0028");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0034", "", false, false, "EndpointEMSE0028");
+            definePage.addEndpointEms("EndpointEMSF0028");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0034");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0028");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0028");
+            definePage.addConnEms("ConnEMSD0034", "", false, false, "EndpointEMSF0028");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0034", "", undefined, "", "EndpointCICSC0028");
+            definePage.delIntfImsYes("IntfIMSA0034");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0028");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0028");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0034", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0028");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -5566,23 +5260,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0028", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0028", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0028", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0028", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0034", "MessageD0028", "BufferD0028", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0234", "MessageF0028", "BufferF0028", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0034", "MessageD0028", "BufferD0028", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0234", "MessageF0028", "BufferF0028", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0041", "", "IntfCICSA0034", false, "", false, "", false, "", false, "ConnEMSC0034", false, "0", "0", "0", "ConversionI0034", false, "ConversionO0034", false);
+            Page.addRecWithImsEms("RecipeIE0035", "", "IntfIMSA0034", false, "", false, "", false, "", false, "ConnEMSD0034", false, "0", "0", "0", "ConversionI0234", false, "ConversionO0234", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5590,67 +5284,15 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute("value");
+            return Page.eleRecImsVariableLengthTransCheck.getAttribute("checked");
         }).then(function (message) {
-            expect(message === '').to.be.true;
+            expect(message === null).to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsMirrorTranIdInput.clear().sendKeys("@#$&");
+            globalCommons.waitForClickable(Page.eleRecImsVariableLengthTransCheck);
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMirrorTranIdValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z,0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsMirrorTranIdInput.clear().sendKeys("@Aa2");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMirrorTranIdValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z,0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsMirrorTranIdInput.clear().sendKeys("a");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMirrorTranIdValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z,0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsMirrorTranIdInput.clear().sendKeys("#");
+            Page.eleRecImsVariableLengthTransCheck.click();
         }).then(function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
@@ -5662,15 +5304,90 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute("value");
+            return Page.eleRecImsVariableLengthTransCheck.getAttribute("checked");
         }).then(function (message) {
-            expect(message === '#').to.be.true;
+            expect(message === "true").to.be.true;
+        });
+    });
+
+    // Test field 'Recipe Details panel' -> 'IMS Details' -> 'Transaction Length'
+    //
+    it('Test Recipe -> IMS Details -> Transaction Length', function () {
+        var backspaceSeries = Array(2).join(protractor.Key.BACK_SPACE);
+        Page.delRecYes("RecipeIE0036").then(function () {
+            Page.delCvrYes("ConversionI0235");
+        }).then(function () {
+            Page.delCvrYes("ConversionO0235");
+        }).then(function () {
+            Page.delMsgYes("MessageF0029");
+        }).then(function () {
+            Page.delBufYes("BufferF0029");
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
+        }).then(function () {
+            globalNaviPage.eleDefineMenu.click();
+        }).then(function () {
+            definePage.delConnEmsYes("ConnEMSD0035");
+        }).then(function () {
+            definePage.delEndpointEmsYes("EndpointEMSF0029");
+        }).then(function () {
+            definePage.addEndpointEms("EndpointEMSF0029");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addConnEms("ConnEMSD0035", "", false, false, "EndpointEMSF0029");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0035");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0029");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0029");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0035", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0029");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
+        }).then(function () {
+            globalNaviPage.eleConfigureMenu.click();
+        }).then(function () {
+            Page.addMsg("MessageF0029", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferF0029", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionI0235", "MessageF0029", "BufferF0029", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionO0235", "MessageF0029", "BufferF0029", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0036", "", "IntfIMSA0035", false, "", false, "", false, "", false, "ConnEMSD0035", false, "0", "0", "0", "ConversionI0235", false, "ConversionO0235", false);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsTranLengthSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '0').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsMirrorTranIdInput.clear().sendKeys("A");
+            Page.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
+            Page.eleRecImsTranLengthSpinner.clear().sendKeys("1");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -5680,15 +5397,15 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute("value");
+            return Page.eleRecImsTranLengthSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'A').to.be.true;
+            expect(message === '1').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsMirrorTranIdInput.clear().sendKeys("2");
+            Page.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
+            Page.eleRecImsTranLengthSpinner.clear().sendKeys("2");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -5698,15 +5415,15 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute("value");
+            return Page.eleRecImsTranLengthSpinner.getAttribute("value");
         }).then(function (message) {
             expect(message === '2').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsMirrorTranIdInput.clear().sendKeys("#@A2");
+            Page.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
+            Page.eleRecImsTranLengthSpinner.clear().sendKeys("5");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -5716,15 +5433,15 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute("value");
+            return Page.eleRecImsTranLengthSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '#@A2').to.be.true;
+            expect(message === '5').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsMirrorTranIdInput.clear().sendKeys("A$#2");
+            Page.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
+            Page.eleRecImsTranLengthSpinner.clear().sendKeys("7");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -5734,15 +5451,15 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute("value");
+            return Page.eleRecImsTranLengthSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'A$#2').to.be.true;
+            expect(message === '7').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsMirrorTranIdInput.clear().sendKeys("2A$@5");
+            Page.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
+            Page.eleRecImsTranLengthSpinner.clear().sendKeys("8");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -5752,49 +5469,89 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMirrorTranIdInput.getAttribute("value");
+            return Page.eleRecImsTranLengthSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '2A$@').to.be.true;
+            expect(message === '8').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleRecImsTranLengthSpinner.clear().sendKeys("9");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsTranLengthSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '8').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsTranLengthSpinner.sendKeys(backspaceSeries);
+        }).then(function () {
+            Page.eleRecImsTranLengthSpinner.clear().sendKeys("10");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsTranLengthSpinner.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '1').to.be.true;
         });
     });
 
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'CSMI User Transaction'
+    // Test field 'Recipe Details panel' -> 'IMS Details' -> 'Security Check'
     //
-    it('Test Recipe -> CICS Details -> CSMI User Transaction', function () {
-        Page.delRecYes("RecipeCE0042").then(function () {
-            Page.delCvrYes("ConversionI0035");
+    it('Test Recipe -> IMS Details -> Security Check', function () {
+        Page.delRecYes("RecipeIE0037").then(function () {
+            Page.delRecYes("RecipeIE0038");
         }).then(function () {
-            Page.delCvrYes("ConversionO0035");
+            Page.delRecYes("RecipeIE0039");
         }).then(function () {
-            Page.delMsgYes("MessageD0029");
+            Page.delCvrYes("ConversionI0236");
         }).then(function () {
-            Page.delBufYes("BufferD0029");
+            Page.delCvrYes("ConversionO0236");
+        }).then(function () {
+            Page.delMsgYes("MessageF0030");
+        }).then(function () {
+            Page.delBufYes("BufferF0030");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0035");
+            definePage.delConnEmsYes("ConnEMSD0036");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0029");
+            definePage.delEndpointEmsYes("EndpointEMSF0030");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0029");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0035", "", false, false, "EndpointEMSE0029");
+            definePage.addEndpointEms("EndpointEMSF0030");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0035");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0029");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0029");
+            definePage.addConnEms("ConnEMSD0036", "", false, false, "EndpointEMSF0030");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0035", "", undefined, "", "EndpointCICSC0029");
+            definePage.delIntfImsYes("IntfIMSA0036");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0030");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0030");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0036", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0030");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -5802,23 +5559,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0029", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0030", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0029", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0030", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0035", "MessageD0029", "BufferD0029", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0236", "MessageF0030", "BufferF0030", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0035", "MessageD0029", "BufferD0029", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0236", "MessageF0030", "BufferF0030", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0042", "", "IntfCICSA0035", false, "", false, "", false, "", false, "ConnEMSC0035", false, "0", "0", "0", "ConversionI0035", false, "ConversionO0035", false);
+            Page.addRecWithImsEms("RecipeIE0037", "", "IntfIMSA0036", false, "", false, "", false, "", false, "ConnEMSD0036", false, "0", "0", "0", "ConversionI0236", false, "ConversionO0236", false, undefined, undefined, undefined, undefined, undefined, undefined, "None");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5826,15 +5583,255 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCsmiUserTranCheck.getAttribute("checked");
+            return Page.eleRecImsSecurityCheckDropdown.getText();
         }).then(function (message) {
-            expect(message === null).to.be.true;
+            expect(message === 'None').to.be.true;
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleRecImsSecurityCheckDropdown);
+        }).then(function () {
+            Page.eleRecImsSecurityCheckDropdown.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleRecImsSecurityCheck01);
+        }).then(function () {
+            return Page.eleRecImsSecurityCheck01.getText();
+        }).then(function (message) {
+            expect(message === 'None').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSecurityCheck02.getText();
+        }).then(function (message) {
+            expect(message === 'User').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSecurityCheck03.getText();
+        }).then(function (message) {
+            expect(message === 'Full').to.be.true;
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0038", "", "IntfIMSA0033", false, "", false, "", false, "", false, "ConnEMSD0033", false, "0", "0", "0", "ConversionI0233", false, "ConversionO0233", false, undefined, undefined, undefined, undefined, undefined, undefined, "User");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSecurityCheckDropdown.getText();
+        }).then(function (message) {
+            expect(message === 'User').to.be.true;
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0039", "", "IntfIMSA0033", false, "", false, "", false, "", false, "ConnEMSD0033", false, "0", "0", "0", "ConversionI0233", false, "ConversionO0233", false, undefined, undefined, undefined, undefined, undefined, undefined, "Full");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSecurityCheckDropdown.getText();
+        }).then(function (message) {
+            expect(message === 'Full').to.be.true;
+        });
+    });
+
+    // Test field 'Recipe Details panel' -> 'IMS Details' -> 'Segment Break'
+    //
+    it('Test Recipe -> IMS Details -> Segment Break', function () {
+        Page.delRecYes("RecipeIE0040").then(function () {
+            Page.delCvrYes("ConversionI0237");
+        }).then(function () {
+            Page.delCvrYes("ConversionO0237");
+        }).then(function () {
+            Page.delMsgYes("MessageF0031");
+        }).then(function () {
+            Page.delBufYes("BufferF0031");
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
+        }).then(function () {
+            globalNaviPage.eleDefineMenu.click();
+        }).then(function () {
+            definePage.delConnEmsYes("ConnEMSD0037");
+        }).then(function () {
+            definePage.delEndpointEmsYes("EndpointEMSF0031");
+        }).then(function () {
+            definePage.addEndpointEms("EndpointEMSF0031");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addConnEms("ConnEMSD0037", "", false, false, "EndpointEMSF0031");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0037");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0031");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0031");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0037", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0031");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
+        }).then(function () {
+            globalNaviPage.eleConfigureMenu.click();
+        }).then(function () {
+            Page.addMsg("MessageF0031", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferF0031", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionI0237", "MessageF0031", "BufferF0031", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionO0237", "MessageF0031", "BufferF0031", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0040", "", "IntfIMSA0037", false, "", false, "", false, "", false, "ConnEMSD0037", false, "0", "0", "0", "ConversionI0237", false, "ConversionO0237", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "A");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakValidateMsg.getText();
+        }).then(function (message) {
+            expect(message.includes('the value is too short, must be at least 8 characters')).to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsCsmiUserTranCheck);
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("abc");
         }).then(function () {
-            Page.eleRecCicsCsmiUserTranCheck.click();
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakValidateMsg.getText();
+        }).then(function (message) {
+            expect(message.includes('the value is too short, must be at least 8 characters')).to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("AbCdEfG");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakValidateMsg.getText();
+        }).then(function (message) {
+            expect(message.includes('the value is too short, must be at least 8 characters')).to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("hijklmn");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakValidateMsg.getText();
+        }).then(function (message) {
+            expect(message.includes('the value is too short, must be at least 8 characters')).to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("@#$%&");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakValidateMsg.getText();
+        }).then(function (message) {
+            expect(message.includes('the value is too short, must be at least 8 characters')).to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("ABCDEFGH");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use A-F,a-f,0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("abcdghef");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use A-F,a-f,0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("ABC@$&DE");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use A-F,a-f,0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("ABC123de");
         }).then(function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
@@ -5846,73 +5843,17 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsCsmiUserTranCheck.getAttribute("checked");
+            return Page.eleRecImsSegmentBreakInput.getAttribute("value");
         }).then(function (message) {
-            expect(message === "true").to.be.true;
-        });
-    });
-
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'Remote Region Execution Transaction ID'
-    //
-    it('Test Recipe -> CICS Details -> Remote Region Execution Transaction ID', function () {
-        Page.delRecYes("RecipeCE0043").then(function () {
-            Page.delCvrYes("ConversionI0036");
+            expect(message === 'ABC123de').to.be.true;
         }).then(function () {
-            Page.delCvrYes("ConversionO0036");
+            Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.delMsgYes("MessageD0030");
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("deABC456");
         }).then(function () {
-            Page.delBufYes("BufferD0030");
+            globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
-        }).then(function () {
-            globalNaviPage.eleDefineMenu.click();
-        }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0036");
-        }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0030");
-        }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0030");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0036", "", false, false, "EndpointEMSE0030");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0036");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0030");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0030");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addIntfCics("IntfCICSA0036", "", undefined, "", "EndpointCICSC0030");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
-        }).then(function () {
-            globalNaviPage.eleConfigureMenu.click();
-        }).then(function () {
-            Page.addMsg("MessageD0030", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addBuf("BufferD0030", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionI0036", "MessageD0030", "BufferD0030", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionO0036", "MessageD0030", "BufferD0030", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0043", "", "IntfCICSA0036", false, "", false, "", false, "", false, "ConnEMSC0036", false, "0", "0", "0", "ConversionI0036", false, "ConversionO0036", false);
+            Page.eleSaveButton.click();
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -5920,69 +5861,123 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute("value");
+            return Page.eleRecImsSegmentBreakInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'deABC456').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("089deABC");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '089deABC').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsSegmentBreakInput.clear().sendKeys("1234567890");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsSegmentBreakInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '12345678').to.be.true;
+        });
+    });
+
+    // Test field 'Recipe Details panel' -> 'IMS Details' -> 'MFS Map Name'
+    //
+    it('Test Recipe -> IMS Details -> MFS Map Name', function () {
+        Page.delRecYes("RecipeIE0041").then(function () {
+            Page.delCvrYes("ConversionI0238");
+        }).then(function () {
+            Page.delCvrYes("ConversionO0238");
+        }).then(function () {
+            Page.delMsgYes("MessageF0032");
+        }).then(function () {
+            Page.delBufYes("BufferF0032");
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
+        }).then(function () {
+            globalNaviPage.eleDefineMenu.click();
+        }).then(function () {
+            definePage.delConnEmsYes("ConnEMSD0038");
+        }).then(function () {
+            definePage.delEndpointEmsYes("EndpointEMSF0032");
+        }).then(function () {
+            definePage.addEndpointEms("EndpointEMSF0032");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addConnEms("ConnEMSD0038", "", false, false, "EndpointEMSF0032");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0038");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0032");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0032");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0038", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0032");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
+        }).then(function () {
+            globalNaviPage.eleConfigureMenu.click();
+        }).then(function () {
+            Page.addMsg("MessageF0032", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferF0032", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionI0238", "MessageF0032", "BufferF0032", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionO0238", "MessageF0032", "BufferF0032", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0041", "", "IntfIMSA0038", false, "", false, "", false, "", false, "ConnEMSD0038", false, "0", "0", "0", "ConversionI0238", false, "ConversionO0238", false);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMfsMapNameInput.getAttribute("value");
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsRRETranIdInput.clear().sendKeys("@#$&");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRETranIdValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z,0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRETranIdInput.clear().sendKeys("@Aa2");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRETranIdValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z,0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRETranIdInput.clear().sendKeys("a");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRETranIdValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z,0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRETranIdInput.clear().sendKeys("#");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("#@$123AB");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -5992,15 +5987,13 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute("value");
+            return Page.eleRecImsMfsMapNameInput.getAttribute("value");
         }).then(function (message) {
-            expect(message === '#').to.be.true;
+            expect(message === '#@$123AB').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsRRETranIdInput.clear().sendKeys("A");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("$#@123AB");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -6010,1471 +6003,13 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'A').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRETranIdInput.clear().sendKeys("2");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '2').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRETranIdInput.clear().sendKeys("#@A2");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '#@A2').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRETranIdInput.clear().sendKeys("A$#2");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'A$#2').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRETranIdInput.clear().sendKeys("2A$@5");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRETranIdInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '2A$@').to.be.true;
-        });
-    });
-
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'Remote Region Execution System Name'
-    //
-    it('Test Recipe -> CICS Details -> Remote Region Execution System Name', function () {
-        Page.delRecYes("RecipeCE0044").then(function () {
-            Page.delCvrYes("ConversionI0037");
-        }).then(function () {
-            Page.delCvrYes("ConversionO0037");
-        }).then(function () {
-            Page.delMsgYes("MessageD0031");
-        }).then(function () {
-            Page.delBufYes("BufferD0031");
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
-        }).then(function () {
-            globalNaviPage.eleDefineMenu.click();
-        }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0037");
-        }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0031");
-        }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0031");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0037", "", false, false, "EndpointEMSE0031");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0037");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0031");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0031");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addIntfCics("IntfCICSA0037", "", undefined, "", "EndpointCICSC0031");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
-        }).then(function () {
-            globalNaviPage.eleConfigureMenu.click();
-        }).then(function () {
-            Page.addMsg("MessageD0031", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addBuf("BufferD0031", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionI0037", "MessageD0031", "BufferD0031", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionO0037", "MessageD0031", "BufferD0031", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0044", "", "IntfCICSA0037", false, "", false, "", false, "", false, "ConnEMSC0037", false, "0", "0", "0", "ConversionI0037", false, "ConversionO0037", false);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRESysNameInput.clear().sendKeys("@#$&");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z,0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRESysNameInput.clear().sendKeys("@Aa2");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z,0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRESysNameInput.clear().sendKeys("a");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z,0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRESysNameInput.clear().sendKeys("#");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '#').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRESysNameInput.clear().sendKeys("A");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'A').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRESysNameInput.clear().sendKeys("2");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '2').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRESysNameInput.clear().sendKeys("#@A2");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '#@A2').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRESysNameInput.clear().sendKeys("A$#2");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'A$#2').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsRRESysNameInput.clear().sendKeys("2A$@5");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsRRESysNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '2A$@').to.be.true;
-        });
-    });
-
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'Container Extended Options Channel Name'
-    //
-    it('Test Recipe -> CICS Details -> Container Extended Options Channel Name', function () {
-        Page.delRecYes("RecipeCE0045").then(function () {
-            Page.delCvrYes("ConversionI0038");
-        }).then(function () {
-            Page.delCvrYes("ConversionO0038");
-        }).then(function () {
-            Page.delMsgYes("MessageD0032");
-        }).then(function () {
-            Page.delBufYes("BufferD0032");
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
-        }).then(function () {
-            globalNaviPage.eleDefineMenu.click();
-        }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0038");
-        }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0032");
-        }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0032");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0038", "", false, false, "EndpointEMSE0032");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0038");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0032");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0032");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addIntfCics("IntfCICSA0038", "", undefined, "", "EndpointCICSC0032");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
-        }).then(function () {
-            globalNaviPage.eleConfigureMenu.click();
-        }).then(function () {
-            Page.addMsg("MessageD0032", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addBuf("BufferD0032", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionI0038", "MessageD0032", "BufferD0032", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionO0038", "MessageD0032", "BufferD0032", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0045", "", "IntfCICSA0038", false, "", false, "", false, "", false, "ConnEMSC0038", false, "0", "0", "0", "ConversionI0038", false, "ConversionO0038", false);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnChannelNameInput.clear().sendKeys("123@#$AB");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnChannelNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnChannelNameInput.clear().sendKeys("aBCDE");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnChannelNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnChannelNameInput.clear().sendKeys("AbCDE");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnChannelNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnChannelNameInput.clear().sendKeys("ABCDe");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnChannelNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnChannelNameInput.clear().sendKeys("@#$AB12390123456");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '@#$AB12390123456').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnChannelNameInput.clear().sendKeys("#@$123ABCDEFGHIJ");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '#@$123ABCDEFGHIJ').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnChannelNameInput.clear().sendKeys("$#@123ABCDEFG@#$");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '$#@123ABCDEFG@#$').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnChannelNameInput.clear().sendKeys("A23456@#$01234567");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnChannelNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'A23456@#$0123456').to.be.true;
-        });
-    });
-
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'Container Extended Options Container Name'
-    //
-    it('Test Recipe -> CICS Details -> Container Extended Options Container Name', function () {
-        Page.delRecYes("RecipeCE0046").then(function () {
-            Page.delCvrYes("ConversionI0039");
-        }).then(function () {
-            Page.delCvrYes("ConversionO0039");
-        }).then(function () {
-            Page.delMsgYes("MessageD0033");
-        }).then(function () {
-            Page.delBufYes("BufferD0033");
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
-        }).then(function () {
-            globalNaviPage.eleDefineMenu.click();
-        }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0039");
-        }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0033");
-        }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0033");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0039", "", false, false, "EndpointEMSE0033");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0039");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0033");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0033");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addIntfCics("IntfCICSA0039", "", undefined, "", "EndpointCICSC0033");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
-        }).then(function () {
-            globalNaviPage.eleConfigureMenu.click();
-        }).then(function () {
-            Page.addMsg("MessageD0033", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addBuf("BufferD0033", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionI0039", "MessageD0033", "BufferD0033", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionO0039", "MessageD0033", "BufferD0033", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0046", "", "IntfCICSA0039", false, "", false, "", false, "", false, "ConnEMSC0039", false, "0", "0", "0", "ConversionI0039", false, "ConversionO0039", false);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnContainerNameInput.clear().sendKeys("123@#$AB");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnContainerNameInput.clear().sendKeys("aBCDE");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnContainerNameInput.clear().sendKeys("AbCDE");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnContainerNameInput.clear().sendKeys("ABCDe");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnContainerNameInput.clear().sendKeys("@#$AB12390123456");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '@#$AB12390123456').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnContainerNameInput.clear().sendKeys("#@$123ABCDEFGHIJ");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '#@$123ABCDEFGHIJ').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnContainerNameInput.clear().sendKeys("$#@123ABCDEFG@#$");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '$#@123ABCDEFG@#$').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsCtnContainerNameInput.clear().sendKeys("A23456@#$01234567");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerNameInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'A23456@#$0123456').to.be.true;
-        });
-    });
-
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'Container Extended Options Container Invocation & Creation'
-    //
-    it('Test Recipe -> CICS Details -> Container Extended Options Container Invocation & Creation', function () {
-        Page.delRecYes("RecipeCE0047").then(function () {
-            Page.delRecYes("RecipeCE0048");
-        }).then(function () {
-            Page.delRecYes("RecipeCE0049");
-        }).then(function () {
-            Page.delRecYes("RecipeCE0050");
-        }).then(function () {
-            Page.delCvrYes("ConversionI0040");
-        }).then(function () {
-            Page.delCvrYes("ConversionO0040");
-        }).then(function () {
-            Page.delMsgYes("MessageD0034");
-        }).then(function () {
-            Page.delBufYes("BufferD0034");
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
-        }).then(function () {
-            globalNaviPage.eleDefineMenu.click();
-        }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0040");
-        }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0034");
-        }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0034");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0040", "", false, false, "EndpointEMSE0034");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0040");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0034");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0034");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addIntfCics("IntfCICSA0040", "", undefined, "", "EndpointCICSC0034");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
-        }).then(function () {
-            globalNaviPage.eleConfigureMenu.click();
-        }).then(function () {
-            Page.addMsg("MessageD0034", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addBuf("BufferD0034", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionI0040", "MessageD0034", "BufferD0034", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionO0040", "MessageD0034", "BufferD0034", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0047", "", "IntfCICSA0040", false, "", false, "", false, "", false, "ConnEMSC0040", false, "0", "0", "0", "ConversionI0040", false, "ConversionO0040", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Program", "Single");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Program').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Single').to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsCtnContainerInvocationDropdown);
-        }).then(function () {
-            Page.eleRecCicsCtnContainerInvocationDropdown.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsCtnContainerInvocation01);
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocation01.getText();
-        }).then(function (message) {
-            expect(message === 'Program').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocation02.getText();
-        }).then(function (message) {
-            expect(message === 'Transaction').to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsCtnContainerCreationDropdown);
-        }).then(function () {
-            Page.eleRecCicsCtnContainerCreationDropdown.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsCtnContainerCreation01);
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerCreation01.getText();
-        }).then(function (message) {
-            expect(message === 'Single').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerCreation02.getText();
-        }).then(function (message) {
-            expect(message === 'Message').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0048", "", "IntfCICSA0040", false, "", false, "", false, "", false, "ConnEMSC0040", false, "0", "0", "0", "ConversionI0040", false, "ConversionO0040", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Program", "Message");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Program').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Message').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0049", "", "IntfCICSA0040", false, "", false, "", false, "", false, "ConnEMSC0040", false, "0", "0", "0", "ConversionI0040", false, "ConversionO0040", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Transaction", "Single");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Transaction').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Single').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0050", "", "IntfCICSA0040", false, "", false, "", false, "", false, "ConnEMSC0040", false, "0", "0", "0", "ConversionI0040", false, "ConversionO0040", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Transaction", "Message");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerInvocationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Transaction').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnContainerCreationDropdown.getText();
-        }).then(function (message) {
-            expect(message === 'Message').to.be.true;
-        });
-    });
-
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'Container Extended Options Forward Destination as Container'
-    //
-    it('Test Recipe -> CICS Details -> Container Extended Options Forward Destination as Container', function () {
-        Page.delRecYes("RecipeCE0051").then(function () {
-            Page.delCvrYes("ConversionI0041");
-        }).then(function () {
-            Page.delCvrYes("ConversionO0041");
-        }).then(function () {
-            Page.delMsgYes("MessageD0035");
-        }).then(function () {
-            Page.delBufYes("BufferD0035");
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
-        }).then(function () {
-            globalNaviPage.eleDefineMenu.click();
-        }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0041");
-        }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0035");
-        }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0035");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0041", "", false, false, "EndpointEMSE0035");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0041");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0035");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0035");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addIntfCics("IntfCICSA0041", "", undefined, "", "EndpointCICSC0035");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
-        }).then(function () {
-            globalNaviPage.eleConfigureMenu.click();
-        }).then(function () {
-            Page.addMsg("MessageD0035", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addBuf("BufferD0035", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionI0041", "MessageD0035", "BufferD0035", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionO0041", "MessageD0035", "BufferD0035", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0051", "", "IntfCICSA0041", false, "", false, "", false, "", false, "ConnEMSC0041", false, "0", "0", "0", "ConversionI0041", false, "ConversionO0041", false);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnForwardDestAsCtnCheck.getAttribute("checked");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsCtnForwardDestAsCtnCheck);
-        }).then(function () {
-            Page.eleRecCicsCtnForwardDestAsCtnCheck.click();
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsCtnForwardDestAsCtnCheck.getAttribute("checked");
-        }).then(function (message) {
-            expect(message === "true").to.be.true;
-        });
-    });
-
-    // Test field 'Recipe Details panel' -> 'CICS Details' -> 'Multi-Execution Resource'
-    //
-    it('Test Recipe -> CICS Details -> Multi-Execution Resource', function () {
-        Page.delRecYes("RecipeCE0052").then(function () {
-            Page.delRecYes("RecipeCE0053");
-        }).then(function () {
-            Page.delRecYes("RecipeCE0054");
-        }).then(function () {
-            Page.delCvrYes("ConversionI0042");
-        }).then(function () {
-            Page.delCvrYes("ConversionO0042");
-        }).then(function () {
-            Page.delMsgYes("MessageD0036");
-        }).then(function () {
-            Page.delBufYes("BufferD0036");
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
-        }).then(function () {
-            globalNaviPage.eleDefineMenu.click();
-        }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0042");
-        }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0036");
-        }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0036");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0042", "", false, false, "EndpointEMSE0036");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0042");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0036");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0036");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addIntfCics("IntfCICSA0042", "", undefined, "", "EndpointCICSC0036");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
-        }).then(function () {
-            globalNaviPage.eleConfigureMenu.click();
-        }).then(function () {
-            Page.addMsg("MessageD0036", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addBuf("BufferD0036", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionI0042", "MessageD0036", "BufferD0036", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addCvr("ConversionO0042", "MessageD0036", "BufferD0036", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0052", "", "IntfCICSA0042", false, "", false, "", false, "", false, "ConnEMSC0042", false, "0", "0", "0", "ConversionI0042", false, "ConversionO0042", false, "", false, "Message");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === "").to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceInput.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === "true").to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsMultiExecResourceAddButton);
-        }).then(function () {
-            Page.eleRecCicsMultiExecResourceAddButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(globalPage.eleWarningInfo);
-        }).then(function () {
-            return globalPage.eleWarningInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Please specify a non-empty Resource Name to set up Multi-Execution Resource').to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(globalPage.eleWarningClose);
-        }).then(function () {
-            globalPage.eleWarningClose.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecResourceNameInput);
-        }).then(function () {
-            Page.eleRecResourceNameInput.clear().sendKeys("PROGRAM1");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === "PROGRAM1").to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceInput.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === "true").to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveInfoClose);
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsMultiExecResourceAddButton);
-        }).then(function () {
-            Page.eleRecCicsMultiExecResourceAddButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(globalPage.eleWarningInfo);
-        }).then(function () {
-            return globalPage.eleWarningInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Please select "None" for "Method of Reply" to set up Multi-Execution Resource').to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(globalPage.eleWarningClose);
-        }).then(function () {
-            globalPage.eleWarningClose.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecMethodReplyDropdown);
-        }).then(function () {
-            Page._methodOfReplyRec("None");
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsMultiExecResourceAddButton);
-        }).then(function () {
-            Page.eleRecCicsMultiExecResourceAddButton.click();
-        }).then(function () {
-            expect(Page.eleRecCicsMultiExecResource2Input.isPresent()).to.eventually.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsMultiExecResourceAddButton);
-        }).then(function () {
-            Page.eleRecCicsMultiExecResourceAddButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsMultiExecResourceValidateMsg);
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please fill in the last one.').to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleCancelButton);
-        }).then(function () {
-            Page.eleCancelButton.click();
-        }).then(function () {
-            globalPage.isWarningYes();
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0053", "", "IntfCICSA0042", false, "", false, "", false, "", false, "ConnEMSC0042", false, "0", "0", "0", "ConversionI0042", false, "ConversionO0042", false, "PROGRAM1", false, "None", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "PROGRAM2", "PROGRAM3", "PROGRAM4", "PROGRAM5");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'PROGRAM1').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceInput.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === 'true').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'PROGRAM2').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'PROGRAM3').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'PROGRAM4').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'PROGRAM5').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveInfoClose);
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsMultiExecResourceAddButton);
-        }).then(function () {
-            Page.eleRecCicsMultiExecResourceAddButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(globalPage.eleWarningInfo);
-        }).then(function () {
-            return globalPage.eleWarningInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Max number of resources is 5').to.be.true;
-        }).then(function () {
-            globalCommons.waitForClickable(globalPage.eleWarningClose);
-        }).then(function () {
-            globalPage.eleWarningClose.click();
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsMultiExecResource4RemoveButton);
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4RemoveButton.click();
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleRecCicsMultiExecResource2RemoveButton);
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource2RemoveButton.click();
-        }).then(function () {
-            globalCommons.waitForClickable(Page.eleSaveButton);
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'PROGRAM1').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'PROGRAM3').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'PROGRAM5').to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0054", "", "IntfCICSA0042", false, "", false, "", false, "", false, "ConnEMSC0042", false, "0", "0", "0", "ConversionI0042", false, "ConversionO0042", false, "PROGRAM1", false, "None", undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "@#$123AB", "@#$123AB", "@#$123AB", "@#$123AB");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceInput.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'PROGRAM1').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResourceInput.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === 'true').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '@#$123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '@#$123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '@#$123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '@#$123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute("readonly");
-        }).then(function (message) {
-            expect(message === null).to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource2Input.clear().sendKeys("123@#$AB");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource3Input.clear().sendKeys("123@#$AB");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4Input.clear().sendKeys("123@#$AB");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource5Input.clear().sendKeys("123@#$AB");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsMultiExecResource2ValidateMsg);
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource2Input.clear().sendKeys("aBCDE");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource3Input.clear().sendKeys("aBCDE");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4Input.clear().sendKeys("aBCDE");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource5Input.clear().sendKeys("aBCDE");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsMultiExecResource2ValidateMsg);
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource2Input.clear().sendKeys("AbCDE");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource3Input.clear().sendKeys("AbCDE");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4Input.clear().sendKeys("AbCDE");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource5Input.clear().sendKeys("AbCDE");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsMultiExecResource2ValidateMsg);
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource2Input.clear().sendKeys("ABCDe");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource3Input.clear().sendKeys("ABCDe");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4Input.clear().sendKeys("ABCDe");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource5Input.clear().sendKeys("ABCDe");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleRecCicsMultiExecResource2ValidateMsg);
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5ValidateMsg.getText();
-        }).then(function (message) {
-            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource2Input.clear().sendKeys("$#@123AB");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource3Input.clear().sendKeys("$#@123AB");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4Input.clear().sendKeys("$#@123AB");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource5Input.clear().sendKeys("$#@123AB");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '$#@123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '$#@123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '$#@123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute("value");
+            return Page.eleRecImsMfsMapNameInput.getAttribute("value");
         }).then(function (message) {
             expect(message === '$#@123AB').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsMultiExecResource2Input.clear().sendKeys("#$@123AB");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource3Input.clear().sendKeys("#$@123AB");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4Input.clear().sendKeys("#$@123AB");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource5Input.clear().sendKeys("#$@123AB");
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("AB120@#$");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -7484,65 +6019,13 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '#$@123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '#$@123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '#$@123AB').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === '#$@123AB').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource2Input.clear().sendKeys("AB120@#$");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource3Input.clear().sendKeys("AB120@#$");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4Input.clear().sendKeys("AB120@#$");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource5Input.clear().sendKeys("AB120@#$");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'AB120@#$').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'AB120@#$').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'AB120@#$').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute("value");
+            return Page.eleRecImsMfsMapNameInput.getAttribute("value");
         }).then(function (message) {
             expect(message === 'AB120@#$').to.be.true;
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecCicsMultiExecResource2Input.clear().sendKeys("A");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource3Input.clear().sendKeys("B");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4Input.clear().sendKeys("C");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource5Input.clear().sendKeys("D");
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("A23456789");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -7552,95 +6035,329 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'A').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'B').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'C').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'D').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource2Input.clear().sendKeys("A23456789");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource3Input.clear().sendKeys("B23456789");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource4Input.clear().sendKeys("C23456789");
-        }).then(function () {
-            Page.eleRecCicsMultiExecResource5Input.clear().sendKeys("D23456789");
-        }).then(function () {
-            Page.eleSaveButton.click();
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecCicsMultiExecResource2Input.getAttribute("value");
+            return Page.eleRecImsMfsMapNameInput.getAttribute("value");
         }).then(function (message) {
             expect(message === 'A2345678').to.be.true;
         }).then(function () {
-            return Page.eleRecCicsMultiExecResource3Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'B2345678').to.be.true;
+            Page.eleSaveInfoClose.click();
         }).then(function () {
-            return Page.eleRecCicsMultiExecResource4Input.getAttribute("value");
-        }).then(function (message) {
-            expect(message === 'C2345678').to.be.true;
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("123@#$AB");
         }).then(function () {
-            return Page.eleRecCicsMultiExecResource5Input.getAttribute("value");
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
         }).then(function (message) {
-            expect(message === 'D2345678').to.be.true;
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMfsMapNameValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("aBCDE");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMfsMapNameValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("AbCDE");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMfsMapNameValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("ABCDe");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'There is an error on this form').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMfsMapNameValidateMsg.getText();
+        }).then(function (message) {
+            expect(message === 'Please use $,#,@,A-Z, and 0-9; do not start with 0-9').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("A");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMfsMapNameInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'A').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsMfsMapNameInput.clear().sendKeys("A2");
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsMfsMapNameInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'A2').to.be.true;
+        });
+    });
+
+    // Test field 'Recipe Details panel' -> 'IMS Details' -> 'Natural Stack Command'
+    //
+    it('Test Recipe -> IMS Details -> Natural Stack Command', function () {
+        Page.delRecYes("RecipeIE0042").then(function () {
+            Page.delCvrYes("ConversionI0239");
+        }).then(function () {
+            Page.delCvrYes("ConversionO0239");
+        }).then(function () {
+            Page.delMsgYes("MessageF0033");
+        }).then(function () {
+            Page.delBufYes("BufferF0033");
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
+        }).then(function () {
+            globalNaviPage.eleDefineMenu.click();
+        }).then(function () {
+            definePage.delConnEmsYes("ConnEMSD0039");
+        }).then(function () {
+            definePage.delEndpointEmsYes("EndpointEMSF0033");
+        }).then(function () {
+            definePage.addEndpointEms("EndpointEMSF0033");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addConnEms("ConnEMSD0039", "", false, false, "EndpointEMSF0033");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.delIntfImsYes("IntfIMSA0039");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0033");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0033");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0039", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0033");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            globalCommons.waitForClickable(globalNaviPage.eleConfigureMenu);
+        }).then(function () {
+            globalNaviPage.eleConfigureMenu.click();
+        }).then(function () {
+            Page.addMsg("MessageF0033", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addBuf("BufferF0033", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionI0239", "MessageF0033", "BufferF0033", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addCvr("ConversionO0239", "MessageF0033", "BufferF0033", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0042", "", "IntfIMSA0039", false, "", false, "", false, "", false, "ConnEMSD0039", false, "0", "0", "0", "ConversionI0239", false, "ConversionO0239", false);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsNaturalStackCmdInput.clear().sendKeys("A");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'A').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsNaturalStackCmdInput.clear().sendKeys("bb");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === 'bb').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsNaturalStackCmdInput.clear().sendKeys("123");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '123').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsNaturalStackCmdInput.clear().sendKeys("!@#$%^&*()?");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '!@#$%^&*()?').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsNaturalStackCmdInput.clear().sendKeys("@&#!$%^*()abcdeHIJKL123456789");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '@&#!$%^*()abcdeHIJKL123456789').to.be.true;
+        }).then(function () {
+            Page.eleSaveInfoClose.click();
+        }).then(function () {
+            Page.eleRecImsNaturalStackCmdInput.clear().sendKeys("@&#!$%^*()abcdeHIJKL1234567890");
+        }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecImsNaturalStackCmdInput.getAttribute("value");
+        }).then(function (message) {
+            expect(message === '@&#!$%^*()abcdeHIJKL123456789').to.be.true;
         });
     });
 
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Listen-to Destination, Response Destination, Error Message Destination'
     //
     it('Test Recipe -> EMS Details -> Listen-to Destination, Response Destination, Error Message Destination', function () {
-        Page.delRecYes("RecipeCE0055").then(function () {
-            Page.delCvrYes("ConversionI0043");
+        Page.delRecYes("RecipeIE0055").then(function () {
+            Page.delCvrYes("ConversionI0243");
         }).then(function () {
-            Page.delCvrYes("ConversionO0043");
+            Page.delCvrYes("ConversionO0243");
         }).then(function () {
-            Page.delMsgYes("MessageD0037");
+            Page.delMsgYes("MessageF0037");
         }).then(function () {
-            Page.delBufYes("BufferD0037");
+            Page.delBufYes("BufferF0037");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0043");
+            definePage.delConnEmsYes("ConnEMSD0043");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0037");
+            definePage.delEndpointEmsYes("EndpointEMSF0037");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0037");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0043", "", false, false, "EndpointEMSE0037");
+            definePage.addEndpointEms("EndpointEMSF0037");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0043");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0037");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0037");
+            definePage.addConnEms("ConnEMSD0043", "", false, false, "EndpointEMSF0037");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0043", "", undefined, "", "EndpointCICSC0037");
+            definePage.delIntfImsYes("IntfIMSA0043");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0037");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0037");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0043", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0037");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -7648,23 +6365,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0037", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0037", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0037", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0037", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0043", "MessageD0037", "BufferD0037", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0243", "MessageF0037", "BufferF0037", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0043", "MessageD0037", "BufferD0037", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0243", "MessageF0037", "BufferF0037", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0055", "", "IntfCICSA0043", false, "", false, "", false, "", false, "ConnEMSC0043", false, "0", "0", "0", "ConversionI0043", false, "ConversionO0043", false);
+            Page.addRecWithImsEms("RecipeIE0055", "", "IntfIMSA0043", false, "", false, "", false, "", false, "ConnEMSD0043", false, "0", "0", "0", "ConversionI0243", false, "ConversionO0243", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -7749,54 +6466,54 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Type of Listen-to Destination, Response Destination, Error Message Destination'
     //
     it('Test Recipe -> EMS Details -> Type of Listen-to Destination, Response Destination, Error Message Destination', function () {
-        Page.delRecYes("RecipeCE0056").then(function () {
-            Page.delRecYes("RecipeCE0057");
+        Page.delRecYes("RecipeIE0056").then(function () {
+            Page.delRecYes("RecipeIE0057");
         }).then(function () {
-            Page.delRecYes("RecipeCE0058");
+            Page.delRecYes("RecipeIE0058");
         }).then(function () {
-            Page.delRecYes("RecipeCE0059");
+            Page.delRecYes("RecipeIE0059");
         }).then(function () {
-            Page.delRecYes("RecipeCE0060");
+            Page.delRecYes("RecipeIE0060");
         }).then(function () {
-            Page.delRecYes("RecipeCE0061");
+            Page.delRecYes("RecipeIE0061");
         }).then(function () {
-            Page.delRecYes("RecipeCE0062");
+            Page.delRecYes("RecipeIE0062");
         }).then(function () {
-            Page.delRecYes("RecipeCE0063");
+            Page.delRecYes("RecipeIE0063");
         }).then(function () {
-            Page.delCvrYes("ConversionI0044");
+            Page.delCvrYes("ConversionI0244");
         }).then(function () {
-            Page.delCvrYes("ConversionO0044");
+            Page.delCvrYes("ConversionO0244");
         }).then(function () {
-            Page.delMsgYes("MessageD0038");
+            Page.delMsgYes("MessageF0038");
         }).then(function () {
-            Page.delBufYes("BufferD0038");
+            Page.delBufYes("BufferF0038");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0044");
+            definePage.delConnEmsYes("ConnEMSD0044");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0038");
+            definePage.delEndpointEmsYes("EndpointEMSF0038");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0038");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0044", "", false, false, "EndpointEMSE0038");
+            definePage.addEndpointEms("EndpointEMSF0038");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0044");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0038");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0038");
+            definePage.addConnEms("ConnEMSD0044", "", false, false, "EndpointEMSF0038");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0044", "", undefined, "", "EndpointCICSC0038");
+            definePage.delIntfImsYes("IntfIMSA0044");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0038");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0038");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0044", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0038");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -7804,63 +6521,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0038", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0038", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0038", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0038", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0044", "MessageD0038", "BufferD0038", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0244", "MessageF0038", "BufferF0038", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0044", "MessageD0038", "BufferD0038", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0244", "MessageF0038", "BufferF0038", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0056", "", "IntfCICSA0044", false, "", false, "", false, "", false, "ConnEMSC0044", false, "0", "0", "0", "ConversionI0044", false, "ConversionO0044", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "QUEUE", "tibss.rec.responseDest", "QUEUE", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "QUEUE");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsListentoDestTypeDropdown.getText();
-        }).then(function (message) {
-            expect(message === "QUEUE").to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsResponseDestTypeDropdown.getText();
-        }).then(function (message) {
-            expect(message === "QUEUE").to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsErrorMsgDestTypeDropdown.getText();
-        }).then(function (message) {
-            expect(message === "QUEUE").to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0057", "", "IntfCICSA0044", false, "", false, "", false, "", false, "ConnEMSC0044", false, "0", "0", "0", "ConversionI0044", false, "ConversionO0044", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "TOPIC", "tibss.rec.responseDest", "TOPIC", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "TOPIC");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsListentoDestTypeDropdown.getText();
-        }).then(function (message) {
-            expect(message === "TOPIC").to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsResponseDestTypeDropdown.getText();
-        }).then(function (message) {
-            expect(message === "TOPIC").to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsErrorMsgDestTypeDropdown.getText();
-        }).then(function (message) {
-            expect(message === "TOPIC").to.be.true;
-        }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0058", "", "IntfCICSA0044", false, "", false, "", false, "", false, "ConnEMSC0044", false, "0", "0", "0", "ConversionI0044", false, "ConversionO0044", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "QUEUE", "tibss.rec.responseDest", "QUEUE", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "TOPIC");
+            Page.addRecWithImsEms("RecipeIE0056", "", "IntfIMSA0044", false, "", false, "", false, "", false, "ConnEMSD0044", false, "0", "0", "0", "ConversionI0244", false, "ConversionO0244", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "QUEUE", "tibss.rec.responseDest", "QUEUE", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "QUEUE");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -7878,9 +6555,49 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsErrorMsgDestTypeDropdown.getText();
         }).then(function (message) {
+            expect(message === "QUEUE").to.be.true;
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0057", "", "IntfIMSA0044", false, "", false, "", false, "", false, "ConnEMSD0044", false, "0", "0", "0", "ConversionI0244", false, "ConversionO0244", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "TOPIC", "tibss.rec.responseDest", "TOPIC", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "TOPIC");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecEmsListentoDestTypeDropdown.getText();
+        }).then(function (message) {
             expect(message === "TOPIC").to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0059", "", "IntfCICSA0044", false, "", false, "", false, "", false, "ConnEMSC0044", false, "0", "0", "0", "ConversionI0044", false, "ConversionO0044", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "QUEUE", "tibss.rec.responseDest", "TOPIC", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "QUEUE");
+            return Page.eleRecEmsResponseDestTypeDropdown.getText();
+        }).then(function (message) {
+            expect(message === "TOPIC").to.be.true;
+        }).then(function () {
+            return Page.eleRecEmsErrorMsgDestTypeDropdown.getText();
+        }).then(function (message) {
+            expect(message === "TOPIC").to.be.true;
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0058", "", "IntfIMSA0044", false, "", false, "", false, "", false, "ConnEMSD0044", false, "0", "0", "0", "ConversionI0244", false, "ConversionO0244", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "QUEUE", "tibss.rec.responseDest", "QUEUE", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "TOPIC");
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
+        }).then(function () {
+            return Page.eleSaveInfo.getText();
+        }).then(function (message) {
+            expect(message === 'Saved successfully.').to.be.true;
+        }).then(function () {
+            return Page.eleRecEmsListentoDestTypeDropdown.getText();
+        }).then(function (message) {
+            expect(message === "QUEUE").to.be.true;
+        }).then(function () {
+            return Page.eleRecEmsResponseDestTypeDropdown.getText();
+        }).then(function (message) {
+            expect(message === "QUEUE").to.be.true;
+        }).then(function () {
+            return Page.eleRecEmsErrorMsgDestTypeDropdown.getText();
+        }).then(function (message) {
+            expect(message === "TOPIC").to.be.true;
+        }).then(function () {
+            Page.addRecWithImsEms("RecipeIE0059", "", "IntfIMSA0044", false, "", false, "", false, "", false, "ConnEMSD0044", false, "0", "0", "0", "ConversionI0244", false, "ConversionO0244", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "QUEUE", "tibss.rec.responseDest", "TOPIC", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "QUEUE");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -7900,7 +6617,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === "QUEUE").to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0060", "", "IntfCICSA0044", false, "", false, "", false, "", false, "ConnEMSC0044", false, "0", "0", "0", "ConversionI0044", false, "ConversionO0044", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "TOPIC", "tibss.rec.responseDest", "QUEUE", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "QUEUE");
+            Page.addRecWithImsEms("RecipeIE0060", "", "IntfIMSA0044", false, "", false, "", false, "", false, "ConnEMSD0044", false, "0", "0", "0", "ConversionI0244", false, "ConversionO0244", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "TOPIC", "tibss.rec.responseDest", "QUEUE", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "QUEUE");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -7920,7 +6637,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === "QUEUE").to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0061", "", "IntfCICSA0044", false, "", false, "", false, "", false, "ConnEMSC0044", false, "0", "0", "0", "ConversionI0044", false, "ConversionO0044", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "QUEUE", "tibss.rec.responseDest", "TOPIC", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "TOPIC");
+            Page.addRecWithImsEms("RecipeIE0061", "", "IntfIMSA0044", false, "", false, "", false, "", false, "ConnEMSD0044", false, "0", "0", "0", "ConversionI0244", false, "ConversionO0244", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "QUEUE", "tibss.rec.responseDest", "TOPIC", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "TOPIC");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -7940,7 +6657,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === "TOPIC").to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0062", "", "IntfCICSA0044", false, "", false, "", false, "", false, "ConnEMSC0044", false, "0", "0", "0", "ConversionI0044", false, "ConversionO0044", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "TOPIC", "tibss.rec.responseDest", "QUEUE", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "TOPIC");
+            Page.addRecWithImsEms("RecipeIE0062", "", "IntfIMSA0044", false, "", false, "", false, "", false, "ConnEMSD0044", false, "0", "0", "0", "ConversionI0244", false, "ConversionO0244", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "TOPIC", "tibss.rec.responseDest", "QUEUE", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "TOPIC");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -7960,7 +6677,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === "TOPIC").to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0063", "", "IntfCICSA0044", false, "", false, "", false, "", false, "ConnEMSC0044", false, "0", "0", "0", "ConversionI0044", false, "ConversionO0044", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "TOPIC", "tibss.rec.responseDest", "TOPIC", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "QUEUE");
+            Page.addRecWithImsEms("RecipeIE0063", "", "IntfIMSA0044", false, "", false, "", false, "", false, "ConnEMSD0044", false, "0", "0", "0", "ConversionI0244", false, "ConversionO0244", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "tibss.rec.listenToDest", "TOPIC", "tibss.rec.responseDest", "TOPIC", undefined, undefined, undefined, undefined, "tibss.rec.errorMsgDest", "QUEUE");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -7985,40 +6702,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Respond Always'
     //
     it('Test Recipe -> EMS Details -> Respond Always', function () {
-        Page.delRecYes("RecipeCE0064").then(function () {
-            Page.delCvrYes("ConversionI0045");
+        Page.delRecYes("RecipeIE0064").then(function () {
+            Page.delCvrYes("ConversionI0245");
         }).then(function () {
-            Page.delCvrYes("ConversionO0045");
+            Page.delCvrYes("ConversionO0245");
         }).then(function () {
-            Page.delMsgYes("MessageD0039");
+            Page.delMsgYes("MessageF0039");
         }).then(function () {
-            Page.delBufYes("BufferD0039");
+            Page.delBufYes("BufferF0039");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0045");
+            definePage.delConnEmsYes("ConnEMSD0045");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0039");
+            definePage.delEndpointEmsYes("EndpointEMSF0039");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0039");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0045", "", false, false, "EndpointEMSE0039");
+            definePage.addEndpointEms("EndpointEMSF0039");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0045");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0039");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0039");
+            definePage.addConnEms("ConnEMSD0045", "", false, false, "EndpointEMSF0039");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0045", "", undefined, "", "EndpointCICSC0039");
+            definePage.delIntfImsYes("IntfIMSA0045");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0039");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0039");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0045", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0039");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -8026,23 +6743,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0039", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0039", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0039", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0039", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0045", "MessageD0039", "BufferD0039", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0245", "MessageF0039", "BufferF0039", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0045", "MessageD0039", "BufferD0039", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0245", "MessageF0039", "BufferF0039", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0064", "", "IntfCICSA0045", false, "", false, "", false, "", false, "ConnEMSC0045", false, "0", "0", "0", "ConversionI0045", false, "ConversionO0045", false);
+            Page.addRecWithImsEms("RecipeIE0064", "", "IntfIMSA0045", false, "", false, "", false, "", false, "ConnEMSD0045", false, "0", "0", "0", "ConversionI0245", false, "ConversionO0245", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -8080,40 +6797,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     //
     it('Test Recipe -> EMS Details -> Dynamic Destination Length', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delRecYes("RecipeCE0065").then(function () {
-            Page.delCvrYes("ConversionI0046");
+        Page.delRecYes("RecipeIE0065").then(function () {
+            Page.delCvrYes("ConversionI0246");
         }).then(function () {
-            Page.delCvrYes("ConversionO0046");
+            Page.delCvrYes("ConversionO0246");
         }).then(function () {
-            Page.delMsgYes("MessageD0040");
+            Page.delMsgYes("MessageF0040");
         }).then(function () {
-            Page.delBufYes("BufferD0040");
+            Page.delBufYes("BufferF0040");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0046");
+            definePage.delConnEmsYes("ConnEMSD0046");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0040");
+            definePage.delEndpointEmsYes("EndpointEMSF0040");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0040");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0046", "", false, false, "EndpointEMSE0040");
+            definePage.addEndpointEms("EndpointEMSF0040");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0046");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0040");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0040");
+            definePage.addConnEms("ConnEMSD0046", "", false, false, "EndpointEMSF0040");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0046", "", undefined, "", "EndpointCICSC0040");
+            definePage.delIntfImsYes("IntfIMSA0046");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0040");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0040");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0046", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0040");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -8121,23 +6838,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0040", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0040", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0040", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0040", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0046", "MessageD0040", "BufferD0040", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0246", "MessageF0040", "BufferF0040", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0046", "MessageD0040", "BufferD0040", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0246", "MessageF0040", "BufferF0040", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0065", "", "IntfCICSA0046", false, "", false, "", false, "", false, "ConnEMSC0046", false, "0", "0", "0", "ConversionI0046", false, "ConversionO0046", false);
+            Page.addRecWithImsEms("RecipeIE0065", "", "IntfIMSA0046", false, "", false, "", false, "", false, "ConnEMSD0046", false, "0", "0", "0", "ConversionI0246", false, "ConversionO0246", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -8263,40 +6980,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     //
     it('Test Recipe -> EMS Details -> Dynamic Destination Start', function () {
         var backspaceSeries = Array(8).join(protractor.Key.BACK_SPACE);
-        Page.delRecYes("RecipeCE0066").then(function () {
-            Page.delCvrYes("ConversionI0047");
+        Page.delRecYes("RecipeIE0066").then(function () {
+            Page.delCvrYes("ConversionI0247");
         }).then(function () {
-            Page.delCvrYes("ConversionO0047");
+            Page.delCvrYes("ConversionO0247");
         }).then(function () {
-            Page.delMsgYes("MessageD0041");
+            Page.delMsgYes("MessageF0041");
         }).then(function () {
-            Page.delBufYes("BufferD0041");
+            Page.delBufYes("BufferF0041");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0047");
+            definePage.delConnEmsYes("ConnEMSD0047");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0041");
+            definePage.delEndpointEmsYes("EndpointEMSF0041");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0041");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0047", "", false, false, "EndpointEMSE0041");
+            definePage.addEndpointEms("EndpointEMSF0041");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0047");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0041");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0041");
+            definePage.addConnEms("ConnEMSD0047", "", false, false, "EndpointEMSF0041");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0047", "", undefined, "", "EndpointCICSC0041");
+            definePage.delIntfImsYes("IntfIMSA0047");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0041");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0041");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0047", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0041");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -8304,23 +7021,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0041", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0041", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0041", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0041", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0047", "MessageD0041", "BufferD0041", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0247", "MessageF0041", "BufferF0041", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0047", "MessageD0041", "BufferD0041", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0247", "MessageF0041", "BufferF0041", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0066", "", "IntfCICSA0047", false, "", false, "", false, "", false, "ConnEMSC0047", false, "0", "0", "0", "ConversionI0047", false, "ConversionO0047", false);
+            Page.addRecWithImsEms("RecipeIE0066", "", "IntfIMSA0047", false, "", false, "", false, "", false, "ConnEMSD0047", false, "0", "0", "0", "ConversionI0247", false, "ConversionO0247", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -8482,40 +7199,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     //
     it('Test Recipe -> EMS Details -> Usage Limit', function () {
         var backspaceSeries = Array(4).join(protractor.Key.BACK_SPACE);
-        Page.delRecYes("RecipeCE0067").then(function () {
-            Page.delCvrYes("ConversionI0048");
+        Page.delRecYes("RecipeIE0067").then(function () {
+            Page.delCvrYes("ConversionI0248");
         }).then(function () {
-            Page.delCvrYes("ConversionO0048");
+            Page.delCvrYes("ConversionO0248");
         }).then(function () {
-            Page.delMsgYes("MessageD0042");
+            Page.delMsgYes("MessageF0042");
         }).then(function () {
-            Page.delBufYes("BufferD0042");
+            Page.delBufYes("BufferF0042");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0048");
+            definePage.delConnEmsYes("ConnEMSD0048");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0042");
+            definePage.delEndpointEmsYes("EndpointEMSF0042");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0042");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0048", "", false, false, "EndpointEMSE0042");
+            definePage.addEndpointEms("EndpointEMSF0042");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0048");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0042");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0042");
+            definePage.addConnEms("ConnEMSD0048", "", false, false, "EndpointEMSF0042");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0048", "", undefined, "", "EndpointCICSC0042");
+            definePage.delIntfImsYes("IntfIMSA0048");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0042");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0042");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0048", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0042");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -8523,23 +7240,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0042", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0042", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0042", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0042", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0048", "MessageD0042", "BufferD0042", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0248", "MessageF0042", "BufferF0042", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0048", "MessageD0042", "BufferD0042", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0248", "MessageF0042", "BufferF0042", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0067", "", "IntfCICSA0048", false, "", false, "", false, "", false, "ConnEMSC0048", false, "0", "0", "0", "ConversionI0048", false, "ConversionO0048", false);
+            Page.addRecWithImsEms("RecipeIE0067", "", "IntfIMSA0048", false, "", false, "", false, "", false, "ConnEMSD0048", false, "0", "0", "0", "ConversionI0248", false, "ConversionO0248", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -8621,8 +7338,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsUsageLimitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '998').to.be.true;
-        }).then(function () {
+            expect(message === '998').to.be.true;}).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
@@ -8639,8 +7355,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsUsageLimitSpinner.getAttribute("value");
         }).then(function (message) {
-            expect(message === '999').to.be.true;
-        }).then(function () {
+            expect(message === '999').to.be.true;}).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
             Page.eleRecEmsUsageLimitSpinner.sendKeys(backspaceSeries);
@@ -8664,54 +7379,54 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'SMSL Mode, Delivery Mode'
     //
     it('Test Recipe -> EMS Details -> SMSL Mode, Delivery Mode', function () {
-        Page.delRecYes("RecipeCE0068").then(function () {
-            Page.delRecYes("RecipeCE0069");
+        Page.delRecYes("RecipeIE0068").then(function () {
+            Page.delRecYes("RecipeIE0069");
         }).then(function () {
-            Page.delRecYes("RecipeCE0070");
+            Page.delRecYes("RecipeIE0070");
         }).then(function () {
-            Page.delRecYes("RecipeCE0071");
+            Page.delRecYes("RecipeIE0071");
         }).then(function () {
-            Page.delRecYes("RecipeCE0072");
+            Page.delRecYes("RecipeIE0072");
         }).then(function () {
-            Page.delRecYes("RecipeCE0073");
+            Page.delRecYes("RecipeIE0073");
         }).then(function () {
-            Page.delRecYes("RecipeCE0074");
+            Page.delRecYes("RecipeIE0074");
         }).then(function () {
-            Page.delRecYes("RecipeCE0075");
+            Page.delRecYes("RecipeIE0075");
         }).then(function () {
-            Page.delCvrYes("ConversionI0049");
+            Page.delCvrYes("ConversionI0249");
         }).then(function () {
-            Page.delCvrYes("ConversionO0049");
+            Page.delCvrYes("ConversionO0249");
         }).then(function () {
-            Page.delMsgYes("MessageD0043");
+            Page.delMsgYes("MessageF0043");
         }).then(function () {
-            Page.delBufYes("BufferD0043");
+            Page.delBufYes("BufferF0043");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0049");
+            definePage.delConnEmsYes("ConnEMSD0049");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0043");
+            definePage.delEndpointEmsYes("EndpointEMSF0043");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0043");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0049", "", false, false, "EndpointEMSE0043");
+            definePage.addEndpointEms("EndpointEMSF0043");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0049");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0043");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0043");
+            definePage.addConnEms("ConnEMSD0049", "", false, false, "EndpointEMSF0043");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0049", "", undefined, "", "EndpointCICSC0043");
+            definePage.delIntfImsYes("IntfIMSA0049");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0043");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0043");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0049", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0043");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -8719,23 +7434,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0043", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0043", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0043", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0043", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0049", "MessageD0043", "BufferD0043", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0249", "MessageF0043", "BufferF0043", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0049", "MessageD0043", "BufferD0043", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0249", "MessageF0043", "BufferF0043", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0068", "", "IntfCICSA0049", false, "", false, "", false, "", false, "ConnEMSC0049", false, "0", "0", "0", "ConversionI0049", false, "ConversionO0049", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable Auto-Ack", "Persistent");
+            Page.addRecWithImsEms("RecipeIE0068", "", "IntfIMSA0049", false, "", false, "", false, "", false, "ConnEMSD0049", false, "0", "0", "0", "ConversionI0249", false, "ConversionO0249", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable Auto-Ack", "Persistent");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -8823,7 +7538,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Reliable').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0069", "", "IntfCICSA0049", false, "", false, "", false, "", false, "ConnEMSC0049", false, "0", "0", "0", "ConversionI0049", false, "ConversionO0049", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable Auto-Ack", "Non-Persistent");
+            Page.addRecWithImsEms("RecipeIE0069", "", "IntfIMSA0049", false, "", false, "", false, "", false, "ConnEMSD0049", false, "0", "0", "0", "ConversionI0249", false, "ConversionO0249", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable Auto-Ack", "Non-Persistent");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -8871,7 +7586,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message).to.not.include('background-color:');
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0070", "", "IntfCICSA0049", false, "", false, "", false, "", false, "ConnEMSC0049", false, "0", "0", "0", "ConversionI0049", false, "ConversionO0049", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable Auto-Ack", "Reliable");
+            Page.addRecWithImsEms("RecipeIE0070", "", "IntfIMSA0049", false, "", false, "", false, "", false, "ConnEMSD0049", false, "0", "0", "0", "ConversionI0249", false, "ConversionO0249", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable Auto-Ack", "Reliable");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -8919,7 +7634,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message).to.not.include('background-color:');
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0071", "", "IntfCICSA0049", false, "", false, "", false, "", false, "ConnEMSC0049", false, "0", "0", "0", "ConversionI0049", false, "ConversionO0049", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable No-Ack", "Persistent");
+            Page.addRecWithImsEms("RecipeIE0071", "", "IntfIMSA0049", false, "", false, "", false, "", false, "ConnEMSD0049", false, "0", "0", "0", "ConversionI0249", false, "ConversionO0249", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable No-Ack", "Persistent");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -8967,7 +7682,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message).to.not.include('background-color:');
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0072", "", "IntfCICSA0049", false, "", false, "", false, "", false, "ConnEMSC0049", false, "0", "0", "0", "ConversionI0049", false, "ConversionO0049", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable No-Ack", "Non-Persistent");
+            Page.addRecWithImsEms("RecipeIE0072", "", "IntfIMSA0049", false, "", false, "", false, "", false, "ConnEMSD0049", false, "0", "0", "0", "ConversionI0249", false, "ConversionO0249", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable No-Ack", "Non-Persistent");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9015,7 +7730,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message).to.not.include('background-color:');
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0073", "", "IntfCICSA0049", false, "", false, "", false, "", false, "ConnEMSC0049", false, "0", "0", "0", "ConversionI0049", false, "ConversionO0049", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable No-Ack", "Reliable");
+            Page.addRecWithImsEms("RecipeIE0073", "", "IntfIMSA0049", false, "", false, "", false, "", false, "ConnEMSD0049", false, "0", "0", "0", "ConversionI0249", false, "ConversionO0249", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Reliable No-Ack", "Reliable");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9063,7 +7778,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message).to.not.include('background-color:');
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0074", "", "IntfCICSA0049", false, "", false, "", false, "", false, "ConnEMSC0049", false, "0", "0", "0", "ConversionI0049", false, "ConversionO0049", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Guaranteed All");
+            Page.addRecWithImsEms("RecipeIE0074", "", "IntfIMSA0049", false, "", false, "", false, "", false, "ConnEMSD0049", false, "0", "0", "0", "ConversionI0249", false, "ConversionO0249", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Guaranteed All");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9111,7 +7826,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message).to.not.include('background-color:');
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0075", "", "IntfCICSA0049", false, "", false, "", false, "", false, "ConnEMSC0049", false, "0", "0", "0", "ConversionI0049", false, "ConversionO0049", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "TOPIC", undefined, "TOPIC", undefined, undefined, undefined, undefined, undefined, "TOPIC", "Guaranteed SSES");
+            Page.addRecWithImsEms("RecipeIE0075", "", "IntfIMSA0049", false, "", false, "", false, "", false, "ConnEMSD0049", false, "0", "0", "0", "ConversionI0249", false, "ConversionO0249", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "TOPIC", undefined, "TOPIC", undefined, undefined, undefined, undefined, undefined, "TOPIC", "Guaranteed SSES");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9164,46 +7879,46 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Durable Subscriber & Shared Subscriber'
     //
     it('Test Recipe -> EMS Details -> Durable Subscriber & Shared Subscriber', function () {
-        Page.delRecYes("RecipeCE0076").then(function () {
-            Page.delRecYes("RecipeCE0077");
+        Page.delRecYes("RecipeIE0076").then(function () {
+            Page.delRecYes("RecipeIE0077");
         }).then(function () {
-            Page.delRecYes("RecipeCE0078");
+            Page.delRecYes("RecipeIE0078");
         }).then(function () {
-            Page.delRecYes("RecipeCE0079");
+            Page.delRecYes("RecipeIE0079");
         }).then(function () {
-            Page.delCvrYes("ConversionI0050");
+            Page.delCvrYes("ConversionI0250");
         }).then(function () {
-            Page.delCvrYes("ConversionO0050");
+            Page.delCvrYes("ConversionO0250");
         }).then(function () {
-            Page.delMsgYes("MessageD0044");
+            Page.delMsgYes("MessageF0044");
         }).then(function () {
-            Page.delBufYes("BufferD0044");
+            Page.delBufYes("BufferF0044");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0050");
+            definePage.delConnEmsYes("ConnEMSD0050");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0044");
+            definePage.delEndpointEmsYes("EndpointEMSF0044");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0044");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0050", "", false, false, "EndpointEMSE0044");
+            definePage.addEndpointEms("EndpointEMSF0044");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0050");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0044");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0044");
+            definePage.addConnEms("ConnEMSD0050", "", false, false, "EndpointEMSF0044");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0050", "", undefined, "", "EndpointCICSC0044");
+            definePage.delIntfImsYes("IntfIMSA0050");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0044");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0044");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0050", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0044");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -9211,23 +7926,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0044", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0044", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0044", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0044", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0050", "MessageD0044", "BufferD0044", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0250", "MessageF0044", "BufferF0044", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0050", "MessageD0044", "BufferD0044", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0250", "MessageF0044", "BufferF0044", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0076", "", "IntfCICSA0050", false, "", false, "", false, "", false, "ConnEMSC0050", false, "0", "0", "0", "ConversionI0050", false, "ConversionO0050", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, false);
+            Page.addRecWithImsEms("RecipeIE0076", "", "IntfIMSA0050", false, "", false, "", false, "", false, "ConnEMSD0050", false, "0", "0", "0", "ConversionI0250", false, "ConversionO0250", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9283,7 +7998,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message).to.not.include('background-color:');
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0077", "", "IntfCICSA0050", false, "", false, "", false, "", false, "ConnEMSC0050", false, "0", "0", "0", "ConversionI0050", false, "ConversionO0050", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, false);
+            Page.addRecWithImsEms("RecipeIE0077", "", "IntfIMSA0050", false, "", false, "", false, "", false, "ConnEMSD0050", false, "0", "0", "0", "ConversionI0250", false, "ConversionO0250", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9339,7 +8054,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message).to.not.include('background-color:');
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0078", "", "IntfCICSA0050", false, "", false, "", false, "", false, "ConnEMSC0050", false, "0", "0", "0", "ConversionI0050", false, "ConversionO0050", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, true);
+            Page.addRecWithImsEms("RecipeIE0078", "", "IntfIMSA0050", false, "", false, "", false, "", false, "ConnEMSD0050", false, "0", "0", "0", "ConversionI0250", false, "ConversionO0250", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9395,7 +8110,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message).to.not.include('background-color:');
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0079", "", "IntfCICSA0050", false, "", false, "", false, "", false, "ConnEMSC0050", false, "0", "0", "0", "ConversionI0050", false, "ConversionO0050", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, true);
+            Page.addRecWithImsEms("RecipeIE0079", "", "IntfIMSA0050", false, "", false, "", false, "", false, "ConnEMSD0050", false, "0", "0", "0", "ConversionI0250", false, "ConversionO0250", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9456,40 +8171,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Subscriber Client ID'
     //
     it('Test Recipe -> EMS Details -> Subscriber Client ID', function () {
-        Page.delRecYes("RecipeCE0080").then(function () {
-            Page.delCvrYes("ConversionI0051");
+        Page.delRecYes("RecipeIE0080").then(function () {
+            Page.delCvrYes("ConversionI0251");
         }).then(function () {
-            Page.delCvrYes("ConversionO0051");
+            Page.delCvrYes("ConversionO0251");
         }).then(function () {
-            Page.delMsgYes("MessageD0045");
+            Page.delMsgYes("MessageF0045");
         }).then(function () {
-            Page.delBufYes("BufferD0045");
+            Page.delBufYes("BufferF0045");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0051");
+            definePage.delConnEmsYes("ConnEMSD0051");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0045");
+            definePage.delEndpointEmsYes("EndpointEMSF0045");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0045");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0051", "", false, false, "EndpointEMSE0045");
+            definePage.addEndpointEms("EndpointEMSF0045");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0051");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0045");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0045");
+            definePage.addConnEms("ConnEMSD0051", "", false, false, "EndpointEMSF0045");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0051", "", undefined, "", "EndpointCICSC0045");
+            definePage.delIntfImsYes("IntfIMSA0051");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0045");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0045");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0051", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0045");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -9497,23 +8212,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0045", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0045", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0045", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0045", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0051", "MessageD0045", "BufferD0045", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0251", "MessageF0045", "BufferF0045", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0051", "MessageD0045", "BufferD0045", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0251", "MessageF0045", "BufferF0045", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0080", "", "IntfCICSA0051", false, "", false, "", false, "", false, "ConnEMSC0051", false, "0", "0", "0", "ConversionI0051", false, "ConversionO0051", false);
+            Page.addRecWithImsEms("RecipeIE0080", "", "IntfIMSA0051", false, "", false, "", false, "", false, "ConnEMSD0051", false, "0", "0", "0", "ConversionI0251", false, "ConversionO0251", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9639,42 +8354,42 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     //
     it('Test Recipe -> EMS Details -> Priority & Value', function () {
         var backspaceSeries = Array(2).join(protractor.Key.BACK_SPACE);
-        Page.delRecYes("RecipeCE0081").then(function () {
-            Page.delRecYes("RecipeCE0082");
+        Page.delRecYes("RecipeIE0081").then(function () {
+            Page.delRecYes("RecipeIE0082");
         }).then(function () {
-            Page.delCvrYes("ConversionI0052");
+            Page.delCvrYes("ConversionI0252");
         }).then(function () {
-            Page.delCvrYes("ConversionO0052");
+            Page.delCvrYes("ConversionO0252");
         }).then(function () {
-            Page.delMsgYes("MessageD0046");
+            Page.delMsgYes("MessageF0046");
         }).then(function () {
-            Page.delBufYes("BufferD0046");
+            Page.delBufYes("BufferF0046");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0052");
+            definePage.delConnEmsYes("ConnEMSD0052");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0046");
+            definePage.delEndpointEmsYes("EndpointEMSF0046");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0046");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0052", "", false, false, "EndpointEMSE0046");
+            definePage.addEndpointEms("EndpointEMSF0046");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0052");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0046");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0046");
+            definePage.addConnEms("ConnEMSD0052", "", false, false, "EndpointEMSF0046");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0052", "", undefined, "", "EndpointCICSC0046");
+            definePage.delIntfImsYes("IntfIMSA0052");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0046");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0046");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0052", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0046");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -9682,23 +8397,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0046", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0046", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0046", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0046", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0052", "MessageD0046", "BufferD0046", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0252", "MessageF0046", "BufferF0046", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0052", "MessageD0046", "BufferD0046", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0252", "MessageF0046", "BufferF0046", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0081", "", "IntfCICSA0052", false, "", false, "", false, "", false, "ConnEMSC0052", false, "0", "0", "0", "ConversionI0052", false, "ConversionO0052", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, "0");
+            Page.addRecWithImsEms("RecipeIE0081", "", "IntfIMSA0052", false, "", false, "", false, "", false, "ConnEMSD0052", false, "0", "0", "0", "ConversionI0252", false, "ConversionO0252", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -9846,7 +8561,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === '1').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0082", "", "IntfCICSA0052", false, "", false, "", false, "", false, "ConnEMSC0052", false, "0", "0", "0", "ConversionI0052", false, "ConversionO0052", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, "0");
+            Page.addRecWithImsEms("RecipeIE0082", "", "IntfIMSA0052", false, "", false, "", false, "", false, "ConnEMSD0052", false, "0", "0", "0", "ConversionI0252", false, "ConversionO0252", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, "0");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10000,46 +8715,46 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     //
     it('Test Recipe -> EMS Details -> Expiration, Value & Unit', function () {
         var backspaceSeries = Array(6).join(protractor.Key.BACK_SPACE);
-        Page.delRecYes("RecipeCE0083").then(function () {
-            Page.delRecYes("RecipeCE0084");
+        Page.delRecYes("RecipeIE0083").then(function () {
+            Page.delRecYes("RecipeIE0084");
         }).then(function () {
-            Page.delRecYes("RecipeCE0085");
+            Page.delRecYes("RecipeIE0085");
         }).then(function () {
-            Page.delRecYes("RecipeCE0086");
+            Page.delRecYes("RecipeIE0086");
         }).then(function () {
-            Page.delCvrYes("ConversionI0053");
+            Page.delCvrYes("ConversionI0253");
         }).then(function () {
-            Page.delCvrYes("ConversionO0053");
+            Page.delCvrYes("ConversionO0253");
         }).then(function () {
-            Page.delMsgYes("MessageD0047");
+            Page.delMsgYes("MessageF0047");
         }).then(function () {
-            Page.delBufYes("BufferD0047");
+            Page.delBufYes("BufferF0047");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0053");
+            definePage.delConnEmsYes("ConnEMSD0053");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0047");
+            definePage.delEndpointEmsYes("EndpointEMSF0047");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0047");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0053", "", false, false, "EndpointEMSE0047");
+            definePage.addEndpointEms("EndpointEMSF0047");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0053");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0047");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0047");
+            definePage.addConnEms("ConnEMSD0053", "", false, false, "EndpointEMSF0047");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0053", "", undefined, "", "EndpointCICSC0047");
+            definePage.delIntfImsYes("IntfIMSA0053");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0047");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0047");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0053", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0047");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -10047,23 +8762,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0047", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0047", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0047", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0047", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0053", "MessageD0047", "BufferD0047", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0253", "MessageF0047", "BufferF0047", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0053", "MessageD0047", "BufferD0047", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0253", "MessageF0047", "BufferF0047", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0083", "", "IntfCICSA0053", false, "", false, "", false, "", false, "ConnEMSC0053", false, "0", "0", "0", "ConversionI0053", false, "ConversionO0053", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, "0", "Seconds");
+            Page.addRecWithImsEms("RecipeIE0083", "", "IntfIMSA0053", false, "", false, "", false, "", false, "ConnEMSD0053", false, "0", "0", "0", "ConversionI0253", false, "ConversionO0253", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, "0", "Seconds");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10231,7 +8946,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === '12345').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0084", "", "IntfCICSA0053", false, "", false, "", false, "", false, "ConnEMSC0053", false, "0", "0", "0", "ConversionI0053", false, "ConversionO0053", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, '0', "Minutes");
+            Page.addRecWithImsEms("RecipeIE0084", "", "IntfIMSA0053", false, "", false, "", false, "", false, "ConnEMSD0053", false, "0", "0", "0", "ConversionI0253", false, "ConversionO0253", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, '0', "Minutes");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10377,7 +9092,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === '12345').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0085", "", "IntfCICSA0053", false, "", false, "", false, "", false, "ConnEMSC0053", false, "0", "0", "0", "ConversionI0053", false, "ConversionO0053", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, '0', "Hours");
+            Page.addRecWithImsEms("RecipeIE0085", "", "IntfIMSA0053", false, "", false, "", false, "", false, "ConnEMSD0053", false, "0", "0", "0", "ConversionI0253", false, "ConversionO0253", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false, '0', "Hours");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10523,7 +9238,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === '12345').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0086", "", "IntfCICSA0053", false, "", false, "", false, "", false, "ConnEMSC0053", false, "0", "0", "0", "ConversionI0053", false, "ConversionO0053", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, '0', "Days");
+            Page.addRecWithImsEms("RecipeIE0086", "", "IntfIMSA0053", false, "", false, "", false, "", false, "ConnEMSD0053", false, "0", "0", "0", "ConversionI0253", false, "ConversionO0253", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true, '0', "Days");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10674,42 +9389,42 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Compression'
     //
     it('Test Recipe -> EMS Details -> Compression', function () {
-        Page.delRecYes("RecipeCE0087").then(function () {
-            Page.delRecYes("RecipeCE0088");
+        Page.delRecYes("RecipeIE0087").then(function () {
+            Page.delRecYes("RecipeIE0088");
         }).then(function () {
-            Page.delCvrYes("ConversionI0054");
+            Page.delCvrYes("ConversionI0254");
         }).then(function () {
-            Page.delCvrYes("ConversionO0054");
+            Page.delCvrYes("ConversionO0254");
         }).then(function () {
-            Page.delMsgYes("MessageD0048");
+            Page.delMsgYes("MessageF0048");
         }).then(function () {
-            Page.delBufYes("BufferD0048");
+            Page.delBufYes("BufferF0048");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0054");
+            definePage.delConnEmsYes("ConnEMSD0054");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0048");
+            definePage.delEndpointEmsYes("EndpointEMSF0048");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0048");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0054", "", false, false, "EndpointEMSE0048");
+            definePage.addEndpointEms("EndpointEMSF0048");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0054");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0048");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0048");
+            definePage.addConnEms("ConnEMSD0054", "", false, false, "EndpointEMSF0048");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0054", "", undefined, "", "EndpointCICSC0048");
+            definePage.delIntfImsYes("IntfIMSA0054");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0048");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0048");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0054", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0048");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -10717,23 +9432,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0048", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0048", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0048", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0048", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0054", "MessageD0048", "BufferD0048", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0254", "MessageF0048", "BufferF0048", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0054", "MessageD0048", "BufferD0048", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0254", "MessageF0048", "BufferF0048", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0087", "", "IntfCICSA0054", false, "", false, "", false, "", false, "ConnEMSC0054", false, "0", "0", "0", "ConversionI0054", false, "ConversionO0054", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false);
+            Page.addRecWithImsEms("RecipeIE0087", "", "IntfIMSA0054", false, "", false, "", false, "", false, "ConnEMSD0054", false, "0", "0", "0", "ConversionI0254", false, "ConversionO0254", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10745,7 +9460,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0088", "", "IntfCICSA0054", false, "", false, "", false, "", false, "ConnEMSC0054", false, "0", "0", "0", "ConversionI0054", false, "ConversionO0054", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true);
+            Page.addRecWithImsEms("RecipeIE0088", "", "IntfIMSA0054", false, "", false, "", false, "", false, "ConnEMSD0054", false, "0", "0", "0", "ConversionI0254", false, "ConversionO0254", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10762,42 +9477,42 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Preserve'
     //
     it('Test Recipe -> EMS Details -> Preserve', function () {
-        Page.delRecYes("RecipeCE0089").then(function () {
-            Page.delRecYes("RecipeCE0090");
+        Page.delRecYes("RecipeIE0089").then(function () {
+            Page.delRecYes("RecipeIE0090");
         }).then(function () {
-            Page.delCvrYes("ConversionI0055");
+            Page.delCvrYes("ConversionI0255");
         }).then(function () {
-            Page.delCvrYes("ConversionO0055");
+            Page.delCvrYes("ConversionO0255");
         }).then(function () {
-            Page.delMsgYes("MessageD0049");
+            Page.delMsgYes("MessageF0049");
         }).then(function () {
-            Page.delBufYes("BufferD0049");
+            Page.delBufYes("BufferF0049");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0055");
+            definePage.delConnEmsYes("ConnEMSD0055");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0049");
+            definePage.delEndpointEmsYes("EndpointEMSF0049");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0049");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0055", "", false, false, "EndpointEMSE0049");
+            definePage.addEndpointEms("EndpointEMSF0049");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0055");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0049");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0049");
+            definePage.addConnEms("ConnEMSD0055", "", false, false, "EndpointEMSF0049");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0055", "", undefined, "", "EndpointCICSC0049");
+            definePage.delIntfImsYes("IntfIMSA0055");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0049");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0049");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0055", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0049");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -10805,23 +9520,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0049", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0049", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0049", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0049", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0055", "MessageD0049", "BufferD0049", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0255", "MessageF0049", "BufferF0049", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0055", "MessageD0049", "BufferD0049", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0255", "MessageF0049", "BufferF0049", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0089", "", "IntfCICSA0055", false, "", false, "", false, "", false, "ConnEMSC0055", false, "0", "0", "0", "ConversionI0055", false, "ConversionO0055", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false);
+            Page.addRecWithImsEms("RecipeIE0089", "", "IntfIMSA0055", false, "", false, "", false, "", false, "ConnEMSD0055", false, "0", "0", "0", "ConversionI0255", false, "ConversionO0255", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10833,7 +9548,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0090", "", "IntfCICSA0055", false, "", false, "", false, "", false, "ConnEMSC0055", false, "0", "0", "0", "ConversionI0055", false, "ConversionO0055", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true);
+            Page.addRecWithImsEms("RecipeIE0090", "", "IntfIMSA0055", false, "", false, "", false, "", false, "ConnEMSD0055", false, "0", "0", "0", "ConversionI0255", false, "ConversionO0255", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10850,42 +9565,42 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Body Trace'
     //
     it('Test Recipe -> EMS Details -> Body Trace', function () {
-        Page.delRecYes("RecipeCE0091").then(function () {
-            Page.delRecYes("RecipeCE0092");
+        Page.delRecYes("RecipeIE0091").then(function () {
+            Page.delRecYes("RecipeIE0092");
         }).then(function () {
-            Page.delCvrYes("ConversionI0056");
+            Page.delCvrYes("ConversionI0256");
         }).then(function () {
-            Page.delCvrYes("ConversionO0056");
+            Page.delCvrYes("ConversionO0256");
         }).then(function () {
-            Page.delMsgYes("MessageD0050");
+            Page.delMsgYes("MessageF0050");
         }).then(function () {
-            Page.delBufYes("BufferD0050");
+            Page.delBufYes("BufferF0050");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0056");
+            definePage.delConnEmsYes("ConnEMSD0056");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0050");
+            definePage.delEndpointEmsYes("EndpointEMSF0050");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0050");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0056", "", false, false, "EndpointEMSE0050");
+            definePage.addEndpointEms("EndpointEMSF0050");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0056");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0050");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0050");
+            definePage.addConnEms("ConnEMSD0056", "", false, false, "EndpointEMSF0050");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0056", "", undefined, "", "EndpointCICSC0050");
+            definePage.delIntfImsYes("IntfIMSA0056");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0050");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0050");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0056", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0050");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -10893,23 +9608,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0050", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0050", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0050", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0050", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0056", "MessageD0050", "BufferD0050", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0256", "MessageF0050", "BufferF0050", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0056", "MessageD0050", "BufferD0050", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0256", "MessageF0050", "BufferF0050", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0091", "", "IntfCICSA0056", false, "", false, "", false, "", false, "ConnEMSC0056", false, "0", "0", "0", "ConversionI0056", false, "ConversionO0056", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false);
+            Page.addRecWithImsEms("RecipeIE0091", "", "IntfIMSA0056", false, "", false, "", false, "", false, "ConnEMSD0056", false, "0", "0", "0", "ConversionI0256", false, "ConversionO0256", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10921,7 +9636,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === null).to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0092", "", "IntfCICSA0056", false, "", false, "", false, "", false, "ConnEMSC0056", false, "0", "0", "0", "ConversionI0056", false, "ConversionO0056", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true);
+            Page.addRecWithImsEms("RecipeIE0092", "", "IntfIMSA0056", false, "", false, "", false, "", false, "ConnEMSD0056", false, "0", "0", "0", "ConversionI0256", false, "ConversionO0256", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -10938,46 +9653,46 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Message Type'
     //
     it('Test Recipe -> EMS Details -> Message Type', function () {
-        Page.delRecYes("RecipeCE0093").then(function () {
-            Page.delRecYes("RecipeCE0094");
+        Page.delRecYes("RecipeIE0093").then(function () {
+            Page.delRecYes("RecipeIE0094");
         }).then(function () {
-            Page.delRecYes("RecipeCE0095");
+            Page.delRecYes("RecipeIE0095");
         }).then(function () {
-            Page.delRecYes("RecipeCE0096");
+            Page.delRecYes("RecipeIE0096");
         }).then(function () {
-            Page.delCvrYes("ConversionI0057");
+            Page.delCvrYes("ConversionI0257");
         }).then(function () {
-            Page.delCvrYes("ConversionO0057");
+            Page.delCvrYes("ConversionO0257");
         }).then(function () {
-            Page.delMsgYes("MessageD0051");
+            Page.delMsgYes("MessageF0051");
         }).then(function () {
-            Page.delBufYes("BufferD0051");
+            Page.delBufYes("BufferF0051");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0057");
+            definePage.delConnEmsYes("ConnEMSD0057");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0051");
+            definePage.delEndpointEmsYes("EndpointEMSF0051");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0051");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0057", "", false, false, "EndpointEMSE0051");
+            definePage.addEndpointEms("EndpointEMSF0051");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0057");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0051");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0051");
+            definePage.addConnEms("ConnEMSD0057", "", false, false, "EndpointEMSF0051");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0057", "", undefined, "", "EndpointCICSC0051");
+            definePage.delIntfImsYes("IntfIMSA0057");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0051");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0051");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0057", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0051");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -10985,23 +9700,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0051", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0051", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0051", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0051", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0057", "MessageD0051", "BufferD0051", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0257", "MessageF0051", "BufferF0051", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0057", "MessageD0051", "BufferD0051", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0257", "MessageF0051", "BufferF0051", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0093", "", "IntfCICSA0057", false, "", false, "", false, "", false, "ConnEMSC0057", false, "0", "0", "0", "ConversionI0057", false, "ConversionO0057", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Bytes");
+            Page.addRecWithImsEms("RecipeIE0093", "", "IntfIMSA0057", false, "", false, "", false, "", false, "ConnEMSD0057", false, "0", "0", "0", "ConversionI0257", false, "ConversionO0257", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Bytes");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11035,7 +9750,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Text').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0094", "", "IntfCICSA0057", false, "", false, "", false, "", false, "ConnEMSC0057", false, "0", "0", "0", "ConversionI0057", false, "ConversionO0057", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Map");
+            Page.addRecWithImsEms("RecipeIE0094", "", "IntfIMSA0057", false, "", false, "", false, "", false, "ConnEMSD0057", false, "0", "0", "0", "ConversionI0257", false, "ConversionO0257", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Map");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11047,7 +9762,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Map').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0095", "", "IntfCICSA0057", false, "", false, "", false, "", false, "ConnEMSC0057", false, "0", "0", "0", "ConversionI0057", false, "ConversionO0057", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Stream");
+            Page.addRecWithImsEms("RecipeIE0095", "", "IntfIMSA0057", false, "", false, "", false, "", false, "ConnEMSD0057", false, "0", "0", "0", "ConversionI0257", false, "ConversionO0257", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Stream");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11059,7 +9774,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Stream').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0096", "", "IntfCICSA0057", false, "", false, "", false, "", false, "ConnEMSC0057", false, "0", "0", "0", "ConversionI0057", false, "ConversionO0057", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Text");
+            Page.addRecWithImsEms("RecipeIE0096", "", "IntfIMSA0057", false, "", false, "", false, "", false, "ConnEMSD0057", false, "0", "0", "0", "ConversionI0257", false, "ConversionO0257", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Text");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11076,48 +9791,48 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Details' -> 'Copy JMSCorrelation'
     //
     it('Test Recipe -> EMS Details -> Copy JMSCorrelation', function () {
-        Page.delRecYes("RecipeCE0097").then(function () {
-            Page.delRecYes("RecipeCE0098");
+        Page.delRecYes("RecipeIE0097").then(function () {
+            Page.delRecYes("RecipeIE0098");
         }).then(function () {
-            Page.delRecYes("RecipeCE0099");
+            Page.delRecYes("RecipeIE0099");
         }).then(function () {
-            Page.delRecYes("RecipeCE0100");
+            Page.delRecYes("RecipeIE0100");
         }).then(function () {
-            Page.delRecYes("RecipeCE0101");
+            Page.delRecYes("RecipeIE0101");
         }).then(function () {
-            Page.delCvrYes("ConversionI0058");
+            Page.delCvrYes("ConversionI0258");
         }).then(function () {
-            Page.delCvrYes("ConversionO0058");
+            Page.delCvrYes("ConversionO0258");
         }).then(function () {
-            Page.delMsgYes("MessageD0052");
+            Page.delMsgYes("MessageF0052");
         }).then(function () {
-            Page.delBufYes("BufferD0052");
+            Page.delBufYes("BufferF0052");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0058");
+            definePage.delConnEmsYes("ConnEMSD0058");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0052");
+            definePage.delEndpointEmsYes("EndpointEMSF0052");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0052");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0058", "", false, false, "EndpointEMSE0052");
+            definePage.addEndpointEms("EndpointEMSF0052");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0058");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0052");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0052");
+            definePage.addConnEms("ConnEMSD0058", "", false, false, "EndpointEMSF0052");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0058", "", undefined, "", "EndpointCICSC0052");
+            definePage.delIntfImsYes("IntfIMSA0058");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0052");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0052");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0058", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0052");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -11125,23 +9840,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0052", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0052", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0052", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0052", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0058", "MessageD0052", "BufferD0052", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0258", "MessageF0052", "BufferF0052", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0058", "MessageD0052", "BufferD0052", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0258", "MessageF0052", "BufferF0052", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0097", "", "IntfCICSA0058", false, "", false, "", false, "", false, "ConnEMSC0058", false, "0", "0", "0", "ConversionI0058", false, "ConversionO0058", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Yes");
+            Page.addRecWithImsEms("RecipeIE0097", "", "IntfIMSA0058", false, "", false, "", false, "", false, "ConnEMSD0058", false, "0", "0", "0", "ConversionI0258", false, "ConversionO0258", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Yes");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11179,7 +9894,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Correlation Id or Message Id').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0098", "", "IntfCICSA0058", false, "", false, "", false, "", false, "ConnEMSC0058", false, "0", "0", "0", "ConversionI0058", false, "ConversionO0058", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "No");
+            Page.addRecWithImsEms("RecipeIE0098", "", "IntfIMSA0058", false, "", false, "", false, "", false, "ConnEMSD0058", false, "0", "0", "0", "ConversionI0258", false, "ConversionO0258", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "No");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11191,7 +9906,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'No').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0099", "", "IntfCICSA0058", false, "", false, "", false, "", false, "ConnEMSC0058", false, "0", "0", "0", "ConversionI0058", false, "ConversionO0058", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Envelope");
+            Page.addRecWithImsEms("RecipeIE0099", "", "IntfIMSA0058", false, "", false, "", false, "", false, "ConnEMSD0058", false, "0", "0", "0", "ConversionI0258", false, "ConversionO0258", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Envelope");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11203,7 +9918,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Envelope').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0100", "", "IntfCICSA0058", false, "", false, "", false, "", false, "ConnEMSC0058", false, "0", "0", "0", "ConversionI0058", false, "ConversionO0058", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Message Id");
+            Page.addRecWithImsEms("RecipeIE0100", "", "IntfIMSA0058", false, "", false, "", false, "", false, "ConnEMSD0058", false, "0", "0", "0", "ConversionI0258", false, "ConversionO0258", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Message Id");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11215,7 +9930,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'Message Id').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0101", "", "IntfCICSA0058", false, "", false, "", false, "", false, "ConnEMSC0058", false, "0", "0", "0", "ConversionI0058", false, "ConversionO0058", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Correlation Id or Message Id");
+            Page.addRecWithImsEms("RecipeIE0101", "", "IntfIMSA0058", false, "", false, "", false, "", false, "ConnEMSD0058", false, "0", "0", "0", "ConversionI0258", false, "ConversionO0258", false, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, "Correlation Id or Message Id");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11232,40 +9947,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Properties Type'
     //
     it('Test Recipe -> EMS Properties Type', function () {
-        Page.delRecYes("RecipeCE0102").then(function () {
-            Page.delCvrYes("ConversionI0059");
+        Page.delRecYes("RecipeIE0102").then(function () {
+            Page.delCvrYes("ConversionI0259");
         }).then(function () {
-            Page.delCvrYes("ConversionO0059");
+            Page.delCvrYes("ConversionO0259");
         }).then(function () {
-            Page.delMsgYes("MessageD0053");
+            Page.delMsgYes("MessageF0053");
         }).then(function () {
-            Page.delBufYes("BufferD0053");
+            Page.delBufYes("BufferF0053");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0059");
+            definePage.delConnEmsYes("ConnEMSD0059");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0053");
+            definePage.delEndpointEmsYes("EndpointEMSF0053");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0053");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0059", "", false, false, "EndpointEMSE0053");
+            definePage.addEndpointEms("EndpointEMSF0053");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0059");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0053");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0053");
+            definePage.addConnEms("ConnEMSD0059", "", false, false, "EndpointEMSF0053");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0059", "", undefined, "", "EndpointCICSC0053");
+            definePage.delIntfImsYes("IntfIMSA0059");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0053");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0053");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0059", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0053");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -11273,23 +9988,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0053", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0053", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0053", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0053", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0059", "MessageD0053", "BufferD0053", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0259", "MessageF0053", "BufferF0053", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0059", "MessageD0053", "BufferD0053", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0259", "MessageF0053", "BufferF0053", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0102", "", "IntfCICSA0059", false, "", false, "", false, "", false, "ConnEMSC0059", false, "0", "0", "0", "ConversionI0059", false, "ConversionO0059", false);
+            Page.addRecWithImsEms("RecipeIE0102", "", "IntfIMSA0059", false, "", false, "", false, "", false, "ConnEMSD0059", false, "0", "0", "0", "ConversionI0259", false, "ConversionO0259", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11341,7 +10056,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'System').to.be.true;
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V02", "Property_Value01");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V01", "Property_Value01");
         }).then(function () {
             Page._addEmsPropertyRec("Buffer", "Reply", "prop-B01", "bufField0002");
         }).then(function () {
@@ -11378,42 +10093,42 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Properties Name'
     // Related jiras: ZWUI-1139
     it('Test Recipe -> EMS Properties Name', function () {
-        Page.delRecYes("RecipeCE0103").then(function () {
-            Page.delRecYes("RecipeCE0104");
+        Page.delRecYes("RecipeIE0103").then(function () {
+            Page.delRecYes("RecipeIE0104");
         }).then(function () {
-            Page.delCvrYes("ConversionI0060");
+            Page.delCvrYes("ConversionI0260");
         }).then(function () {
-            Page.delCvrYes("ConversionO0060");
+            Page.delCvrYes("ConversionO0260");
         }).then(function () {
-            Page.delMsgYes("MessageD0054");
+            Page.delMsgYes("MessageF0054");
         }).then(function () {
-            Page.delBufYes("BufferD0054");
+            Page.delBufYes("BufferF0054");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0060");
+            definePage.delConnEmsYes("ConnEMSD0060");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0054");
+            definePage.delEndpointEmsYes("EndpointEMSF0054");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0054");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0060", "", false, false, "EndpointEMSE0054");
+            definePage.addEndpointEms("EndpointEMSF0054");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0060");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0054");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0054");
+            definePage.addConnEms("ConnEMSD0060", "", false, false, "EndpointEMSF0054");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0060", "", undefined, "", "EndpointCICSC0054");
+            definePage.delIntfImsYes("IntfIMSA0060");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0054");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0054");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0060", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0054");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -11421,23 +10136,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0054", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0054", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0054", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0054", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0060", "MessageD0054", "BufferD0054", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0260", "MessageF0054", "BufferF0054", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0060", "MessageD0054", "BufferD0054", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0260", "MessageF0054", "BufferF0054", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0103", "", "IntfCICSA0060", false, "", false, "", false, "", false, "ConnEMSC0060", false, "0", "0", "0", "ConversionI0060", false, "ConversionO0060", false);
+            Page.addRecWithImsEms("RecipeIE0103", "", "IntfIMSA0060", false, "", false, "", false, "", false, "ConnEMSD0060", false, "0", "0", "0", "ConversionI0260", false, "ConversionO0260", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11595,7 +10310,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
             // }).then(function (message) {
             //     expect(message === 'XYZ').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0104", "", "IntfCICSA0060", false, "", false, "", false, "", false, "ConnEMSC0060", false, "0", "0", "0", "ConversionI0060", false, "ConversionO0060", false);
+            Page.addRecWithImsEms("RecipeIE0104", "", "IntfIMSA0060", false, "", false, "", false, "", false, "ConnEMSD0060", false, "0", "0", "0", "ConversionI0260", false, "ConversionO0260", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11776,42 +10491,42 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test field 'Recipe Details panel' -> 'EMS Properties Value'
     //
     it('Test Recipe -> EMS Properties Value', function () {
-        Page.delRecYes("RecipeCE0105").then(function () {
-            Page.delRecYes("RecipeCE0106");
+        Page.delRecYes("RecipeIE0105").then(function () {
+            Page.delRecYes("RecipeIE0106");
         }).then(function () {
-            Page.delCvrYes("ConversionI0061");
+            Page.delCvrYes("ConversionI0261");
         }).then(function () {
-            Page.delCvrYes("ConversionO0061");
+            Page.delCvrYes("ConversionO0261");
         }).then(function () {
-            Page.delMsgYes("MessageD0055");
+            Page.delMsgYes("MessageF0055");
         }).then(function () {
-            Page.delBufYes("BufferD0055");
+            Page.delBufYes("BufferF0055");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0061");
+            definePage.delConnEmsYes("ConnEMSD0061");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0055");
+            definePage.delEndpointEmsYes("EndpointEMSF0055");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0055");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0061", "", false, false, "EndpointEMSE0055");
+            definePage.addEndpointEms("EndpointEMSF0055");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0061");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0055");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0055");
+            definePage.addConnEms("ConnEMSD0061", "", false, false, "EndpointEMSF0055");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0061", "", undefined, "", "EndpointCICSC0055");
+            definePage.delIntfImsYes("IntfIMSA0061");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0055");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0055");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0061", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0055");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -11819,23 +10534,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0055", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0055", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0055", "", undefined, "bufField00012222222233333333334444444444555555555566666666667777777777888888888", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField00032222222233333333334444444444555555555566666666667777777777888888888", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0055", "", undefined, "bufField00012222222233333333334444444444555555555566666666667777777777888888888", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField00032222222233333333334444444444555555555566666666667777777777888888888", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0061", "MessageD0055", "BufferD0055", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField00032222222233333333334444444444555555555566666666667777777777888888888", "msgField0003", "bufField00012222222233333333334444444444555555555566666666667777777777888888888", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0261", "MessageF0055", "BufferF0055", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField00032222222233333333334444444444555555555566666666667777777777888888888", "msgField0003", "bufField00012222222233333333334444444444555555555566666666667777777777888888888", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0061", "MessageD0055", "BufferD0055", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField00032222222233333333334444444444555555555566666666667777777777888888888", "msgField0003", "bufField00012222222233333333334444444444555555555566666666667777777777888888888", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0261", "MessageF0055", "BufferF0055", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField00032222222233333333334444444444555555555566666666667777777777888888888", "msgField0003", "bufField00012222222233333333334444444444555555555566666666667777777777888888888", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0105", "", "IntfCICSA0061", false, "", false, "", false, "", false, "ConnEMSC0061", false, "0", "0", "0", "ConversionI0061", false, "ConversionO0061", false);
+            Page.addRecWithImsEms("RecipeIE0105", "", "IntfIMSA0061", false, "", false, "", false, "", false, "ConnEMSD0061", false, "0", "0", "0", "ConversionI0261", false, "ConversionO0261", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11939,7 +10654,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0106", "", "IntfCICSA0061", false, "", false, "", false, "", false, "ConnEMSC0061", false, "0", "0", "0", "ConversionI0061", false, "ConversionO0061", false);
+            Page.addRecWithImsEms("RecipeIE0106", "", "IntfIMSA0061", false, "", false, "", false, "", false, "ConnEMSD0061", false, "0", "0", "0", "ConversionI0261", false, "ConversionO0261", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -11967,9 +10682,9 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'tibss-BES').to.be.true;
         }).then(function () {
-            return Page.eleRecEmsPropValueInput.getAttribute("aria-hidden");
+            return Page.eleRecEmsPropSysValueInput.getAttribute("readonly");
         }).then(function (message) {
-            expect(message === 'true').to.be.true;
+            expect(message === "true").to.be.true;
         }).then(function () {
             Page._addEmsPropertyRec("Value", "Reply", "prop03", "");
         }).then(function () {
@@ -11999,7 +10714,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'For type "Buffer", please pick a buffer field').to.be.true;
         }).then(function () {
-            return Page.eleRecEmsPropBufValueInput.getAttribute("readonly");
+            return Page.eleRecEmsPropValueInput.getAttribute("readonly");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
@@ -12007,7 +10722,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page.eleRecEmsPropDelButton.click();
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop05", "");
+            Page._addEmsPropertyRec("Message", "Required-Optional", "prop05", "");
         }).then(function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
@@ -12019,7 +10734,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'For type "Message", please pick a buffer field').to.be.true;
         }).then(function () {
-            return Page.eleRecEmsPropMsgValueInput.getAttribute("readonly");
+            return Page.eleRecEmsPropValueInput.getAttribute("readonly");
         }).then(function (message) {
             expect(message === 'true').to.be.true;
         }).then(function () {
@@ -12031,7 +10746,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);  //There is an issue here, no response after click Save button
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -12042,40 +10757,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test Recipe -> Add hundreds of EMS Properties for a recipe
     //
     it('Test Recipe -> Add hundreds of EMS Properties for a recipe', function () {
-        Page.delRecYes("RecipeCE0107").then(function () {
-            Page.delCvrYes("ConversionI0062");
+        Page.delRecYes("RecipeIE0107").then(function () {
+            Page.delCvrYes("ConversionI0262");
         }).then(function () {
-            Page.delCvrYes("ConversionO0062");
+            Page.delCvrYes("ConversionO0262");
         }).then(function () {
-            Page.delMsgYes("MessageD0056");
+            Page.delMsgYes("MessageF0056");
         }).then(function () {
-            Page.delBufYes("BufferD0056");
+            Page.delBufYes("BufferF0056");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0062");
+            definePage.delConnEmsYes("ConnEMSD0062");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0056");
+            definePage.delEndpointEmsYes("EndpointEMSF0056");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0056");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0062", "", false, false, "EndpointEMSE0056");
+            definePage.addEndpointEms("EndpointEMSF0056");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0062");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0056");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0056");
+            definePage.addConnEms("ConnEMSD0062", "", false, false, "EndpointEMSF0056");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0062", "", undefined, "", "EndpointCICSC0056");
+            definePage.delIntfImsYes("IntfIMSA0062");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0056");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0056");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0062", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0056");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -12083,23 +10798,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0056", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0056", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0056", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0056", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0062", "MessageD0056", "BufferD0056", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0262", "MessageF0056", "BufferF0056", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0062", "MessageD0056", "BufferD0056", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0262", "MessageF0056", "BufferF0056", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0107", "", "IntfCICSA0062", true, "", false, "", false, "", false, "ConnEMSC0062", true, "0", "0", "0", "ConversionI0062", true, "ConversionO0062", true);
+            Page.addRecWithImsEms("RecipeIE0107", "", "IntfIMSA0062", false, "", false, "", false, "", false, "ConnEMSD0062", false, "0", "0", "0", "ConversionI0262", false, "ConversionO0262", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -12307,405 +11022,405 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page._addEmsPropertyRec("Buffer", "Reply", "prop-B0100", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0201", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0101", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0202", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0102", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0203", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0103", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0204", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0104", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0205", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0105", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0206", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0106", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0207", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0107", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0208", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0108", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0209", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0109", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0210", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0110", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0211", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0111", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0212", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0112", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0213", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0113", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0214", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0114", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0215", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0115", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0216", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0116", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0217", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0117", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0218", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0118", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0219", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0119", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0220", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0120", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0221", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0121", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0222", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0122", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0223", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0123", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0224", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0124", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0225", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0125", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0226", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0126", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0227", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0127", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0228", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0128", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0229", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0129", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0230", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0130", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0231", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0131", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0232", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0132", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0233", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0133", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0234", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0134", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0235", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0135", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0236", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0136", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0237", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0137", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0238", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0138", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0239", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0139", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0240", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0140", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0241", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0141", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0242", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0142", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0243", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0143", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0244", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0144", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0245", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0145", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0246", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0146", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0247", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0147", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0248", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0148", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0249", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0149", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0250", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0150", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0251", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0151", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0252", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0152", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0253", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0153", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0254", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0154", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0255", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0155", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0256", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0156", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0257", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0157", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0258", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0158", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0259", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0159", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0260", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0160", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0261", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0161", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0262", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0162", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0263", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0163", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0264", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0164", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0265", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0165", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0266", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0166", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0267", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0167", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0268", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0168", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0269", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0169", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0270", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0170", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0271", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0171", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0272", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0172", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0273", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0173", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0274", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0174", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0275", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0175", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0276", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0176", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0277", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0177", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0278", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0178", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0279", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0179", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0280", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0180", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0281", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0181", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0282", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0182", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0283", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0183", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0284", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0184", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0285", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0185", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0286", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0186", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0287", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0187", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0288", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0188", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0289", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0189", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0290", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0190", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0291", "value0001");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0191", "value0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0292", "value0002");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0192", "value0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0293", "value0003");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0193", "value0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0294", "value0004");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0194", "value0004");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0295", "value0005");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0195", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0296", "value0006");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0196", "value0006");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0297", "value0007");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0197", "value0007");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0298", "value0008");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0198", "value0008");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0299", "value0009");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0199", "value0009");
         }).then(function () {
-            Page._addEmsPropertyRec("Value", "Reply", "prop-V0300", "value0010");
+            Page._addEmsPropertyRec("Value", "Reply", "prop-V0200", "value0010");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0101", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0201", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0102", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0202", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0103", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0203", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0104", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0204", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0105", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0205", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0106", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0206", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0107", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0207", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0108", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0208", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0109", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0209", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0110", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0210", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0111", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0211", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0112", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0212", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0113", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0213", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0114", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0214", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0115", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0215", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0116", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0216", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0117", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0217", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0118", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0218", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0119", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0219", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0120", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0220", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0121", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0221", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0122", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0222", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0123", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0223", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0124", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0224", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0125", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0225", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0126", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0226", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0127", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0227", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0128", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0228", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0129", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0229", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0130", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0230", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0131", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0231", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0132", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0232", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0133", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0233", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0134", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0234", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0135", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0235", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0136", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0236", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0137", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0237", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0138", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0238", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0139", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0239", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0140", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0240", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0141", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0241", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0142", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0242", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0143", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0243", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0144", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0244", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0145", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0245", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0146", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0246", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0147", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0247", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0148", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0248", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0149", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0249", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0150", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0250", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0151", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0251", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0152", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0252", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0153", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0253", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0154", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0254", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0155", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0255", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0156", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0256", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0157", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0257", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0158", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0258", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0159", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0259", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0160", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0260", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0161", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0261", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0162", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0262", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0163", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0263", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0164", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0264", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0165", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0265", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0166", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0266", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0167", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0267", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0168", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0268", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0169", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0269", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0170", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0270", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0171", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0271", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0172", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0272", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0173", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0273", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0174", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0274", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0175", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0275", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0176", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0276", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0177", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0277", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0178", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0278", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0179", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0279", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0180", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0280", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0181", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0281", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0182", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0282", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0183", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0283", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0184", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0284", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0185", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0285", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0186", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0286", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0187", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0287", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0188", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0288", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0189", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0289", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0190", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0290", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0191", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0291", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0192", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0292", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0193", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0293", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0194", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0294", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0195", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0295", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0196", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0296", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0197", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0297", "bufField0001");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0198", "bufField0002");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0298", "bufField0002");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0199", "bufField0003");
+            Page._addEmsPropertyRec("Message", "Request-Optional", "prop-M0299", "bufField0003");
         }).then(function () {
-            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0200", "bufField0001");
+            Page._addEmsPropertyRec("Message", "Request-Required", "prop-M0300", "bufField0001");
         }).then(function () {
             Page._addEmsPropertyRec("System", "Reply", "tibss-BES");
         }).then(function () {
@@ -12753,63 +11468,63 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(150).getAttribute("textContent");
         }).then(function (message) {
-            expect(message === 'prop-M0150').to.be.true;
+            expect(message === 'prop-V0150').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(200).getAttribute("textContent");
         }).then(function (message) {
-            expect(message === 'prop-M0200').to.be.true;
+            expect(message === 'prop-V0200').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(250).getAttribute("textContent");
         }).then(function (message) {
-            expect(message === 'prop-V0250').to.be.true;
+            expect(message === 'prop-M0250').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(300).getAttribute("textContent");
         }).then(function (message) {
-            expect(message === 'prop-V0300').to.be.true;
+            expect(message === 'prop-M0300').to.be.true;
         }).then(function () {
-            return Page.eleRecEmsPropName(304).getAttribute("textContent");
+            return Page.eleRecEmsPropName(204).getAttribute("textContent");
         }).then(function (message) {
-            expect(message === 'tibss-password').to.be.true;
+            expect(message === 'tibss-ss-id').to.be.true;
         });
     });
 
     // Test Recipe -> Delete several EMS Properties
     //
     it('Test Recipe -> Delete several EMS Properties', function () {
-        Page.delRecYes("RecipeCE0108").then(function () {
-            Page.delCvrYes("ConversionI0063");
+        Page.delRecYes("RecipeIE0108").then(function () {
+            Page.delCvrYes("ConversionI0263");
         }).then(function () {
-            Page.delCvrYes("ConversionO0063");
+            Page.delCvrYes("ConversionO0263");
         }).then(function () {
-            Page.delMsgYes("MessageD0057");
+            Page.delMsgYes("MessageF0057");
         }).then(function () {
-            Page.delBufYes("BufferD0057");
+            Page.delBufYes("BufferF0057");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0063");
+            definePage.delConnEmsYes("ConnEMSD0063");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0057");
+            definePage.delEndpointEmsYes("EndpointEMSF0057");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0057");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0063", "", false, false, "EndpointEMSE0057");
+            definePage.addEndpointEms("EndpointEMSF0057");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0063");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0057");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0057");
+            definePage.addConnEms("ConnEMSD0063", "", false, false, "EndpointEMSF0057");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0063", "", undefined, "", "EndpointCICSC0057");
+            definePage.delIntfImsYes("IntfIMSA0063");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0057");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0057");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0063", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0057");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -12817,23 +11532,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0057", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0057", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0057", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0057", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0063", "MessageD0057", "BufferD0057", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0263", "MessageF0057", "BufferF0057", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0063", "MessageD0057", "BufferD0057", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0263", "MessageF0057", "BufferF0057", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0108", "", "IntfCICSA0063", true, "", false, "", false, "", false, "ConnEMSC0063", true, "0", "0", "0", "ConversionI0063", true, "ConversionO0063", true);
+            Page.addRecWithImsEms("RecipeIE0108", "", "IntfIMSA0063", false, "", false, "", false, "", false, "ConnEMSD0063", false, "0", "0", "0", "ConversionI0263", false, "ConversionO0263", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -12871,13 +11586,13 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page._addEmsPropertyRec("Value", "Reply", "prop-V0005", "value0005");
         }).then(function () {
-            Page._addEmsPropertyRec("System", "Request-Optional", "tibss-BES");
+            Page._addEmsPropertyRec("System", "tibss-BES");
         }).then(function () {
-            Page._addEmsPropertyRec("System", "Request-Required", "tibss-envelope");
+            Page._addEmsPropertyRec("System", "tibss-envelope");
         }).then(function () {
-            Page._addEmsPropertyRec("System", "Reply", "tibss-service-id");
+            Page._addEmsPropertyRec("System", "tibss-service-id");
         }).then(function () {
-            Page._addEmsPropertyRec("System", "Reply", "tibss-ss-id");
+            Page._addEmsPropertyRec("System", "tibss-ss-id");
         }).then(function () {
             Page._addEmsPropertyRec("System", "Request-Optional", "tibss-MFS-Name");
         }).then(function () {
@@ -12902,40 +11617,30 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
-            // }).then(function () {
-            //     browser.actions().mouseMove(Page.eleRecEmsSelectorInput).perform();
         }).then(function () {
-            Page._delEmsPropertyRec("tibss-tran-code");
-        }).then(function () {
-            Page._delEmsPropertyRec("tibss-ss-id");
-        }).then(function () {
-            Page._delEmsPropertyRec("tibss-RRO-Tran-Code");
+            Page._delEmsPropertyRec("tibss-BES");
         }).then(function () {
             Page._delEmsPropertyRec("tibss-resource");
         }).then(function () {
-            Page._delEmsPropertyRec("prop-M0005");
+            Page._delEmsPropertyRec("tibss-ss-id");
         }).then(function () {
-            Page._delEmsPropertyRec("prop-B0005");
+            Page._delEmsPropertyRec("tibss-tran-code");
         }).then(function () {
-            Page._delEmsPropertyRec("prop-V0002");
+            Page._delEmsPropertyRec("tibss-password");
         }).then(function () {
             Page._delEmsPropertyRec("tibss-MFS-Name");
         }).then(function () {
             Page._delEmsPropertyRec("prop-M0003");
         }).then(function () {
+            Page._delEmsPropertyRec("prop-B0001");
+        }).then(function () {
             Page._delEmsPropertyRec("prop-V0004");
         }).then(function () {
-            Page._delEmsPropertyRec("prop-M0004");
+            Page._delEmsPropertyRec("prop-V0002");
         }).then(function () {
             Page._delEmsPropertyRec("prop-B0003");
         }).then(function () {
-            Page._delEmsPropertyRec("prop-V0001");
-        }).then(function () {
-            Page._delEmsPropertyRec("tibss-BES");
-        }).then(function () {
-            Page._delEmsPropertyRec("tibss-password");
-        }).then(function () {
-            Page._delEmsPropertyRec("prop-B0001");
+            Page._delEmsPropertyRec("prop-M0005");
         }).then(function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
@@ -12957,11 +11662,11 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(3).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0001').to.be.true;
+            expect(message === 'prop-B0005').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(4).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0002').to.be.true;
+            expect(message === 'prop-V0001').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(5).getText();
         }).then(function (message) {
@@ -12977,55 +11682,47 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(8).getText();
         }).then(function (message) {
-            expect(message === 'tibss-RRO-SysId').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(9).getText();
-        }).then(function (message) {
             expect(message === 'tibss-service-id').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(10).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-userid').to.be.true;
         });
     });
 
     // Test Recipe -> Replicate several EMS Properties
     //
     it('Test Recipe -> Replicate several EMS Properties', function () {
-        Page.delRecYes("RecipeCE0109").then(function () {
-            Page.delCvrYes("ConversionI0064");
+        Page.delRecYes("RecipeIE0109").then(function () {
+            Page.delCvrYes("ConversionI0264");
         }).then(function () {
-            Page.delCvrYes("ConversionO0064");
+            Page.delCvrYes("ConversionO0264");
         }).then(function () {
-            Page.delMsgYes("MessageD0058");
+            Page.delMsgYes("MessageF0058");
         }).then(function () {
-            Page.delBufYes("BufferD0058");
+            Page.delBufYes("BufferF0058");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0064");
+            definePage.delConnEmsYes("ConnEMSD0064");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0058");
+            definePage.delEndpointEmsYes("EndpointEMSF0058");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0058");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0064", "", false, false, "EndpointEMSE0058");
+            definePage.addEndpointEms("EndpointEMSF0058");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0064");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0058");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0058");
+            definePage.addConnEms("ConnEMSD0064", "", false, false, "EndpointEMSF0058");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0064", "", undefined, "", "EndpointCICSC0058");
+            definePage.delIntfImsYes("IntfIMSA0064");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0058");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0058");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0064", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0058");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -13033,23 +11730,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0058", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0058", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0058", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0058", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0064", "MessageD0058", "BufferD0058", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0264", "MessageF0058", "BufferF0058", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0064", "MessageD0058", "BufferD0058", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0264", "MessageF0058", "BufferF0058", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0109", "", "IntfCICSA0064", true, "", false, "", false, "", false, "ConnEMSC0064", true, "0", "0", "0", "ConversionI0064", true, "ConversionO0064", true);
+            Page.addRecWithImsEms("RecipeIE0109", "", "IntfIMSA0064", false, "", false, "", false, "", false, "ConnEMSD0064", false, "0", "0", "0", "ConversionI0264", false, "ConversionO0264", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -13151,73 +11848,63 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(11).getAttribute("textContent");
         }).then(function (message) {
-            expect(message === 'tibss-MFS-Name').to.be.true;
+            expect(message === 'tibss-BES').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(12).getAttribute("textContent");
         }).then(function (message) {
-            expect(message === 'tibss-password').to.be.true;
+            expect(message === 'tibss-envelope').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(13).getAttribute("textContent");
         }).then(function (message) {
-            expect(message === 'tibss-resource').to.be.true;
+            expect(message === 'tibss-service-id').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(14).getAttribute("textContent");
         }).then(function (message) {
-            expect(message === 'tibss-service-id').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(15).getAttribute("textContent");
-        }).then(function (message) {
             expect(message === 'tibss-ss-id').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(16).getAttribute("textContent");
-        }).then(function (message) {
-            expect(message === 'tibss-userid').to.be.true;
         });
     });
 
     // Test Recipe -> Reset Output Conversion, and then all the buffer type EMS properties will be cleared
     //
     it('Test Recipe -> Reset Output Conversion, and then all the buffer type EMS properties will be cleared', function () {
-        Page.delRecYes("RecipeCE0110").then(function () {
-            Page.delRecYes("RecipeCE0111");
+        Page.delRecYes("RecipeIE0110").then(function () {
+            Page.delRecYes("RecipeIE0111");
         }).then(function () {
-            Page.delRecYes("RecipeCE0112");
+            Page.delRecYes("RecipeIE0112");
         }).then(function () {
-            Page.delCvrYes("ConversionI0065");
+            Page.delCvrYes("ConversionI0265");
         }).then(function () {
-            Page.delCvrYes("ConversionO0065");
+            Page.delCvrYes("ConversionO0265");
         }).then(function () {
-            Page.delCvrYes("Conversion_O0065");
+            Page.delMsgYes("MessageF0059");
         }).then(function () {
-            Page.delMsgYes("MessageD0059");
-        }).then(function () {
-            Page.delBufYes("BufferD0059");
+            Page.delBufYes("BufferF0059");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0065");
+            definePage.delConnEmsYes("ConnEMSD0065");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0059");
+            definePage.delEndpointEmsYes("EndpointEMSF0059");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0059");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0065", "", false, false, "EndpointEMSE0059");
+            definePage.addEndpointEms("EndpointEMSF0059");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0065");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0059");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0059");
+            definePage.addConnEms("ConnEMSD0065", "", false, false, "EndpointEMSF0059");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0065", "", undefined, "", "EndpointCICSC0059");
+            definePage.delIntfImsYes("IntfIMSA0065");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0059");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0059");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0065", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0059");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -13225,27 +11912,27 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0059", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0059", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0059", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0059", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0065", "MessageD0059", "BufferD0059", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0265", "MessageF0059", "BufferF0059", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0065", "MessageD0059", "BufferD0059", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0265", "MessageF0059", "BufferF0059", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("Conversion_O0065", "MessageD0059", "BufferD0059", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("Conversion_O0065", "MessageF0059", "BufferF0059", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0110", "", "IntfCICSA0065", true, "", false, "", false, "", false, "ConnEMSC0065", true, "0", "0", "0", "ConversionI0065", true, "ConversionO0065", true);
+            Page.addRecWithImsEms("RecipeIE0110", "", "IntfIMSA0065", false, "", false, "", false, "", false, "ConnEMSD0065", false, "0", "0", "0", "ConversionI0265", false, "ConversionO0265", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -13288,7 +11975,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecOutputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionO0065').to.be.true;
+            expect(message === 'ConversionO0265').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(1).getText();
         }).then(function (message) {
@@ -13300,33 +11987,21 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(3).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0001').to.be.true;
+            expect(message === 'prop-V0001').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(4).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0002').to.be.true;
+            expect(message === 'prop-V0002').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(5).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0001').to.be.true;
+            expect(message === 'tibss-BES').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(6).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0002').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(7).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-MFS-Name').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(8).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-password').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(9).getText();
-        }).then(function (message) {
             expect(message === 'tibss-service-id').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0111", "", "IntfCICSA0065", true, "", false, "", false, "", false, "ConnEMSC0065", true, "0", "0", "0", "ConversionI0065", true, "ConversionO0065", true);
+            Page.addRecWithImsEms("RecipeIE0111", "", "IntfIMSA0065", false, "", false, "", false, "", false, "ConnEMSD0065", false, "0", "0", "0", "ConversionI0265", false, "ConversionO0265", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -13354,7 +12029,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page._outputConversionRec("Conversion_O0065", true);
+            Page._outputConversionRec("Conversion_O0065");
         }).then(function () {
             globalCommons.waitForElementPresent(globalPage.eleWarningInfo);
         }).then(function () {
@@ -13383,37 +12058,25 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(1).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0001').to.be.true;
+            expect(message === 'prop-V0001').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(2).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0002').to.be.true;
+            expect(message === 'prop-V0002').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(3).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0001').to.be.true;
+            expect(message === 'tibss-BES').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(4).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0002').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(5).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-MFS-Name').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(6).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-password').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(7).getText();
-        }).then(function (message) {
             expect(message === 'tibss-service-id').to.be.true;
         }).then(function () {
-            return Page.eleRecEmsPropName(8).isPresent();
+            return Page.eleRecEmsPropName(5).isPresent();
         }).then(function (result) {
             expect(result).to.be.false;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0112", "", "IntfCICSA0065", true, "", false, "", false, "", false, "ConnEMSC0065", true, "0", "0", "0", "ConversionI0065", true, "ConversionO0065", true);
+            Page.addRecWithImsEms("RecipeIE0112", "", "IntfIMSA0065", false, "", false, "", false, "", false, "ConnEMSD0065", false, "0", "0", "0", "ConversionI0265", false, "ConversionO0265", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -13445,6 +12108,10 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page.eleRecOutputConversionInput.clear();
         }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
             globalCommons.waitForElementPresent(globalPage.eleWarningInfo);
         }).then(function () {
             return globalPage.eleWarningInfo.getText();
@@ -13472,33 +12139,21 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(1).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0001').to.be.true;
+            expect(message === 'prop-V0001').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(2).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0002').to.be.true;
+            expect(message === 'prop-V0002').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(3).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0001').to.be.true;
+            expect(message === 'tibss-BES').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(4).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0002').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(5).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-MFS-Name').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(6).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-password').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(7).getText();
-        }).then(function (message) {
             expect(message === 'tibss-service-id').to.be.true;
         }).then(function () {
-            return Page.eleRecEmsPropName(8).isPresent();
+            return Page.eleRecEmsPropName(5).isPresent();
         }).then(function (result) {
             expect(result).to.be.false;
         });
@@ -13507,46 +12162,44 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test Recipe -> Reset Input Conversion, and then all the message type EMS properties will be cleared
     //
     it('Test Recipe -> Reset Input Conversion, and then all the message type EMS properties will be cleared', function () {
-        Page.delRecYes("RecipeCE0113").then(function () {
-            Page.delRecYes("RecipeCE0114");
+        Page.delRecYes("RecipeIE0113").then(function () {
+            Page.delRecYes("RecipeIE0114");
         }).then(function () {
-            Page.delRecYes("RecipeCE0115");
+            Page.delRecYes("RecipeIE0115");
         }).then(function () {
-            Page.delCvrYes("ConversionI0066");
+            Page.delCvrYes("ConversionI0266");
         }).then(function () {
-            Page.delCvrYes("ConversionO0066");
+            Page.delCvrYes("ConversionO0266");
         }).then(function () {
-            Page.delCvrYes("Conversion_I0066");
+            Page.delMsgYes("MessageF0060");
         }).then(function () {
-            Page.delMsgYes("MessageD0060");
-        }).then(function () {
-            Page.delBufYes("BufferD0060");
+            Page.delBufYes("BufferF0060");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0066");
+            definePage.delConnEmsYes("ConnEMSD0066");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0060");
+            definePage.delEndpointEmsYes("EndpointEMSF0060");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0060");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0066", "", false, false, "EndpointEMSE0060");
+            definePage.addEndpointEms("EndpointEMSF0060");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0066");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0060");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0060");
+            definePage.addConnEms("ConnEMSD0066", "", false, false, "EndpointEMSF0060");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0066", "", undefined, "", "EndpointCICSC0060");
+            definePage.delIntfImsYes("IntfIMSA0066");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0060");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0060");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0066", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0060");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -13554,27 +12207,27 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0060", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0060", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0060", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0060", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0066", "MessageD0060", "BufferD0060", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0266", "MessageF0060", "BufferF0060", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0066", "MessageD0060", "BufferD0060", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0266", "MessageF0060", "BufferF0060", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("Conversion_I0066", "MessageD0060", "BufferD0060", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("Conversion_I0066", "MessageF0060", "BufferF0060", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0113", "", "IntfCICSA0066", true, "", false, "", false, "", false, "ConnEMSC0066", true, "0", "0", "0", "ConversionI0066", true, "ConversionO0066", true);
+            Page.addRecWithImsEms("RecipeIE0113", "", "IntfIMSA0066", false, "", false, "", false, "", false, "ConnEMSD0066", false, "0", "0", "0", "ConversionI0266", false, "ConversionO0266", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -13617,7 +12270,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecInputConversionInput.getAttribute('value');
         }).then(function (message) {
-            expect(message === 'ConversionI0066').to.be.true;
+            expect(message === 'ConversionI0266').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(1).getText();
         }).then(function (message) {
@@ -13629,33 +12282,21 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(3).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0001').to.be.true;
+            expect(message === 'prop-V0001').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(4).getText();
         }).then(function (message) {
-            expect(message === 'prop-M0002').to.be.true;
+            expect(message === 'prop-V0002').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(5).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0001').to.be.true;
+            expect(message === 'tibss-BES').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(6).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0002').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(7).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-MFS-Name').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(8).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-password').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(9).getText();
-        }).then(function (message) {
             expect(message === 'tibss-service-id').to.be.true;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0114", "", "IntfCICSA0066", true, "", false, "", false, "", false, "ConnEMSC0066", true, "0", "0", "0", "ConversionI0066", true, "ConversionO0066", true);
+            Page.addRecWithImsEms("RecipeIE0114", "", "IntfIMSA0066", false, "", false, "", false, "", false, "ConnEMSD0066", false, "0", "0", "0", "ConversionI0266", false, "ConversionO0266", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -13683,7 +12324,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page._inputConversionRec("Conversion_I0066", true);
+            Page._inputConversionRec("Conversion_I0066");
         }).then(function () {
             globalCommons.waitForElementPresent(globalPage.eleWarningInfo);
         }).then(function () {
@@ -13712,37 +12353,25 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(1).getText();
         }).then(function (message) {
-            expect(message === 'prop-B0001').to.be.true;
+            expect(message === 'prop-V0001').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(2).getText();
         }).then(function (message) {
-            expect(message === 'prop-B0002').to.be.true;
+            expect(message === 'prop-V0002').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(3).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0001').to.be.true;
+            expect(message === 'tibss-BES').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(4).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0002').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(5).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-MFS-Name').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(6).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-password').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(7).getText();
-        }).then(function (message) {
             expect(message === 'tibss-service-id').to.be.true;
         }).then(function () {
-            return Page.eleRecEmsPropName(8).isPresent();
+            return Page.eleRecEmsPropName(5).isPresent();
         }).then(function (result) {
             expect(result).to.be.false;
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0115", "", "IntfCICSA0066", true, "", false, "", false, "", false, "ConnEMSC0066", true, "0", "0", "0", "ConversionI0066", true, "ConversionO0066", true);
+            Page.addRecWithImsEms("RecipeIE0115", "", "IntfIMSA0066", false, "", false, "", false, "", false, "ConnEMSD0066", false, "0", "0", "0", "ConversionI0266", false, "ConversionO0266", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -13774,6 +12403,10 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page.eleRecInputConversionInput.clear();
         }).then(function () {
+            globalCommons.waitForClickable(Page.eleSaveButton);
+        }).then(function () {
+            Page.eleSaveButton.click();
+        }).then(function () {
             globalCommons.waitForElementPresent(globalPage.eleWarningInfo);
         }).then(function () {
             return globalPage.eleWarningInfo.getText();
@@ -13801,33 +12434,21 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsPropName(1).getText();
         }).then(function (message) {
-            expect(message === 'prop-B0001').to.be.true;
+            expect(message === 'prop-V0001').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(2).getText();
         }).then(function (message) {
-            expect(message === 'prop-B0002').to.be.true;
+            expect(message === 'prop-V0002').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(3).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0001').to.be.true;
+            expect(message === 'tibss-BES').to.be.true;
         }).then(function () {
             return Page.eleRecEmsPropName(4).getText();
         }).then(function (message) {
-            expect(message === 'prop-V0002').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(5).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-MFS-Name').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(6).getText();
-        }).then(function (message) {
-            expect(message === 'tibss-password').to.be.true;
-        }).then(function () {
-            return Page.eleRecEmsPropName(7).getText();
-        }).then(function (message) {
             expect(message === 'tibss-service-id').to.be.true;
         }).then(function () {
-            return Page.eleRecEmsPropName(8).isPresent();
+            return Page.eleRecEmsPropName(5).isPresent();
         }).then(function (result) {
             expect(result).to.be.false;
         });
@@ -13836,40 +12457,40 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
     // Test Recipe -> EMS Selector
     //
     it('Test Recipe -> EMS Selector', function () {
-        Page.delRecYes("RecipeCE0116").then(function () {
-            Page.delCvrYes("ConversionI0067");
+        Page.delRecYes("RecipeIE0116").then(function () {
+            Page.delCvrYes("ConversionI0267");
         }).then(function () {
-            Page.delCvrYes("ConversionO0067");
+            Page.delCvrYes("ConversionO0267");
         }).then(function () {
-            Page.delMsgYes("MessageD0061");
+            Page.delMsgYes("MessageF0061");
         }).then(function () {
-            Page.delBufYes("BufferD0061");
+            Page.delBufYes("BufferF0061");
         }).then(function () {
             globalCommons.waitForClickable(globalNaviPage.eleDefineMenu);
         }).then(function () {
             globalNaviPage.eleDefineMenu.click();
         }).then(function () {
-            definePage.delConnEmsYes("ConnEMSC0067");
+            definePage.delConnEmsYes("ConnEMSD0067");
         }).then(function () {
-            definePage.delEndpointEmsYes("EndpointEMSE0061");
+            definePage.delEndpointEmsYes("EndpointEMSF0061");
         }).then(function () {
-            definePage.addEndpointEms("EndpointEMSE0061");
-        }).then(function () {
-            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
-        }).then(function () {
-            definePage.addConnEms("ConnEMSC0067", "", false, false, "EndpointEMSE0061");
+            definePage.addEndpointEms("EndpointEMSF0061");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.delIntfCicsYes("IntfCICSA0067");
-        }).then(function () {
-            definePage.delEndpointCicsYes("EndpointCICSC0061");
-        }).then(function () {
-            definePage.addEndpointCics("EndpointCICSC0061");
+            definePage.addConnEms("ConnEMSD0067", "", false, false, "EndpointEMSF0061");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
-            definePage.addIntfCics("IntfCICSA0067", "", undefined, "", "EndpointCICSC0061");
+            definePage.delIntfImsYes("IntfIMSA0067");
+        }).then(function () {
+            definePage.delEndpointImsYes("EndpointIMSB0061");
+        }).then(function () {
+            definePage.addEndpointIms("EndpointIMSB0061");
+        }).then(function () {
+            globalCommons.waitForElementPresent(definePage.eleSaveInfo);
+        }).then(function () {
+            definePage.addIntfIms("IntfIMSA0067", undefined, undefined, undefined, undefined, undefined, undefined, "EndpointIMSB0061");
         }).then(function () {
             globalCommons.waitForElementPresent(definePage.eleSaveInfo);
         }).then(function () {
@@ -13877,23 +12498,23 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            Page.addMsg("MessageD0061", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
+            Page.addMsg("MessageF0061", "", "msgField0001", "STR", "11", "33", "1", "msgField0002", "BOL", "333", "555", "3", "msgField0003", "I32", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addBuf("BufferD0061", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
+            Page.addBuf("BufferF0061", "", undefined, "bufField0001", "BIN", "11", "33", "1", "bufField0002", "STR", "333", "555", "3", "bufField0003", "TEXT", "5555", "7777", "5");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionI0067", "MessageD0061", "BufferD0061", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionI0267", "MessageF0061", "BufferF0061", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addCvr("ConversionO0067", "MessageD0061", "BufferD0061", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
+            Page.addCvr("ConversionO0267", "MessageF0061", "BufferF0061", "0", "Bytes", "Message", "Y", "msgField0001", "bufField0002", "msgField0002", "bufField0003", "msgField0003", "bufField0001", "1", true, true, false, "2", false, true, true, "3", true, false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            Page.addRecWithCicsEms("RecipeCE0116", "", "IntfCICSA0067", true, "", false, "", false, "", false, "ConnEMSC0067", true, "0", "0", "0", "ConversionI0067", true, "ConversionO0067", true);
+            Page.addRecWithImsEms("RecipeIE0116", "", "IntfIMSA0067", false, "", false, "", false, "", false, "ConnEMSD0067", false, "0", "0", "0", "ConversionI0267", false, "ConversionO0267", false);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -14009,7 +12630,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecEmsSelectorInput.clear().sendKeys("AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????6666666666777777777788888888889999999999000000000011111111112222222222333333333344444");
+            Page.eleRecEmsSelectorInput.clear().sendKeys("AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????11111111112222222222333333333344444");
         }).then(function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
@@ -14021,7 +12642,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function (message) {
             expect(message === 'There is an error on this form').to.be.true;
         }).then(function () {
-            return Page.eleRecEmsSelectorValidateMsg.getText();
+            return Page.eleRecEmsSelectorValidateMsg.getAttribute("value");
         }).then(function (message) {
             expect(message === '"AAAAAAAAAA...": the value is too long, must be at most 234 characters').to.be.true;
         }).then(function () {
@@ -14029,7 +12650,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             Page.eleSaveInfoClose.click();
         }).then(function () {
-            Page.eleRecEmsSelectorInput.clear().sendKeys("AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????666666666677777777778888888888999999999900000000001111111111222222222233333333334444");
+            Page.eleRecEmsSelectorInput.clear().sendKeys("AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????1111111111222222222233333333334444");
         }).then(function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
@@ -14043,7 +12664,7 @@ describe('6.6.5 Configure Recipe With CICS & EMS Page', function () {
         }).then(function () {
             return Page.eleRecEmsSelectorInput.getAttribute("value");
         }).then(function (message) {
-            expect(message === 'AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????666666666677777777778888888888999999999900000000001111111111222222222233333333334444').to.be.true;
+            expect(message === 'AAAAAAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeee@@@@@@@@@@##########$$$$$$$$$$&&&&&&&&&&??????????1111111111222222222233333333334444').to.be.true;
         });
     });
 

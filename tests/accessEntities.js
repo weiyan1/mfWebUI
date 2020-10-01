@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var accessPage = require('../pageObject/accessPage.js');
@@ -183,6 +183,8 @@ describe('6.9.1 Access Entities Page', function () {
         }).then(function () {
             Page.eleDetailSlideBar.click();
         }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
             globalCommons.waitForElementPresent(Page.eleEntitySecuName);
         }).then(function () {
             return Page.eleEntitySecuName.getText();
@@ -254,6 +256,8 @@ describe('6.9.1 Access Entities Page', function () {
             globalCommons.waitForClickable(Page.eleDetailSlideBar);
         }).then(function () {
             Page.eleDetailSlideBar.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleEntitySecuName);
         }).then(function () {
@@ -369,7 +373,9 @@ describe('6.9.1 Access Entities Page', function () {
         }).then(function () {
             Page.eleDetailSlideBar.click();
         }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleEntitySecuName);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForDisplayed(Page.eleEntitySecuName);
         }).then(function () {
             return Page.eleEntitySecuName.getText();
         }).then(function (message) {
@@ -619,6 +625,8 @@ describe('6.9.1 Access Entities Page', function () {
         }).then(function () {
             Page.eleDetailSlideBar.click();
         }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
             globalCommons.waitForElementPresent(Page.eleEntitySecuName);
         }).then(function () {
             return Page.eleEntitySecuName.getText();
@@ -654,6 +662,8 @@ describe('6.9.1 Access Entities Page', function () {
             globalCommons.waitForClickable(Page.eleDetailSlideBar);
         }).then(function () {
             Page.eleDetailSlideBar.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleEntitySecuName);
         }).then(function () {
@@ -726,6 +736,8 @@ describe('6.9.1 Access Entities Page', function () {
             globalCommons.waitForClickable(Page.eleDetailSlideBar);
         }).then(function () {
             Page.eleDetailSlideBar.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleEntitySecuName);
         }).then(function () {
@@ -820,6 +832,8 @@ describe('6.9.1 Access Entities Page', function () {
             globalCommons.waitForClickable(Page.eleDetailSlideBar);
         }).then(function () {
             Page.eleDetailSlideBar.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleEntitySecuName);
         }).then(function () {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var definePage = require('../pageObject/definePage.js');
@@ -17,57 +17,57 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         globalNaviPage.eleDefineMenu.click();
     });
 
-    // Add a Admin Interface.
+    // // Add a Admin Interface.
+    // //
+    // it('Should add a Admin Interface successfully', function () {
+    //     browser.sleep(1000).then(function () {
+    //         Page.delIntfAdmYes("IntfAdmin0001");
+    //     }).then(function () {
+    //         Page.delEndpointAdmYes("EndpointAdminA0001");
+    //     }).then(function () {
+    //         Page.addEndpointAdm("EndpointAdminA0001");
+    //     }).then(function () {
+    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
+    //     }).then(function () {
+    //         Page.addIntfAdm("IntfAdmin0001", "", undefined, "EndpointAdminA0001");
+    //     }).then(function () {
+    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
+    //     }).then(function () {
+    //         return Page.eleSaveInfo.getText();
+    //     }).then(function (message) {
+    //         expect(message === 'Saved successfully.').to.be.true;
+    //     });
+    // });
     //
-    it('Should add a Admin Interface successfully', function () {
-        browser.sleep(1000).then(function () {
-            Page.delIntfAdmYes("IntfAdmin0001");
-        }).then(function () {
-            Page.delEndpointAdmYes("EndpointAdminA0001");
-        }).then(function () {
-            Page.addEndpointAdm("EndpointAdminA0001");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addIntfAdm("IntfAdmin0001", "", undefined, "EndpointAdminA0001");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        });
-    });
-
-    // Add a Admin Interface, then replicate it.
-    //
-    it('Should add a Admin Interface, then replicate it successfully', function () {
-        Page.delIntfAdmYes("IntfAdmin0002-copy").then(function () {
-            Page.delIntfAdmYes("IntfAdmin0002");
-        }).then(function () {
-            Page.delEndpointAdmYes("EndpointAdminA0002");
-        }).then(function () {
-            Page.addEndpointAdm("EndpointAdminA0002");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            Page.addIntfAdm("IntfAdmin0002", "", undefined, "EndpointAdminA0002");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        }).then(function () {
-            Page.replicateIntfAdm("IntfAdmin0002");
-        }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'Saved successfully.').to.be.true;
-        });
-    });
+    // // Add a Admin Interface, then replicate it.
+    // //
+    // it('Should add a Admin Interface, then replicate it successfully', function () {
+    //     Page.delIntfAdmYes("IntfAdmin0002-copy").then(function () {
+    //         Page.delIntfAdmYes("IntfAdmin0002");
+    //     }).then(function () {
+    //         Page.delEndpointAdmYes("EndpointAdminA0002");
+    //     }).then(function () {
+    //         Page.addEndpointAdm("EndpointAdminA0002");
+    //     }).then(function () {
+    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
+    //     }).then(function () {
+    //         Page.addIntfAdm("IntfAdmin0002", "", undefined, "EndpointAdminA0002");
+    //     }).then(function () {
+    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
+    //     }).then(function () {
+    //         return Page.eleSaveInfo.getText();
+    //     }).then(function (message) {
+    //         expect(message === 'Saved successfully.').to.be.true;
+    //     }).then(function () {
+    //         Page.replicateIntfAdm("IntfAdmin0002");
+    //     }).then(function () {
+    //         globalCommons.waitForElementPresent(Page.eleSaveInfo);
+    //     }).then(function () {
+    //         return Page.eleSaveInfo.getText();
+    //     }).then(function (message) {
+    //         expect(message === 'Saved successfully.').to.be.true;
+    //     });
+    // });
 
     // Add a Admin Interface successfully, then update it.
     //
@@ -125,11 +125,11 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            configurePage.addTrg("TriggerA0001", "", "ConnEMSB0001");
+            configurePage.addTrgWithEms("TriggerA0001", "", "ConnEMSB0001");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            configurePage.addTrg("TriggerA0002", "", "ConnEMSB0001");
+            configurePage.addTrgWithEms("TriggerA0002", "", "ConnEMSB0001");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -189,7 +189,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === 'TriggerA0002').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfInput.getAttribute('value');
+            return Page.eleIntfAdmEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVE0001').to.be.true;
         }).then(function () {
@@ -271,11 +271,11 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            configurePage.addTrg("TriggerA0003", "", "ConnEMSB0002");
+            configurePage.addTrgWithEms("TriggerA0003", "", "ConnEMSB0002");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            configurePage.addTrg("TriggerA0004", "", "ConnEMSB0002");
+            configurePage.addTrgWithEms("TriggerA0004", "", "ConnEMSB0002");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -347,7 +347,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === 'TriggerA0003').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfInput.getAttribute('value');
+            return Page.eleIntfAdmEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSE0002').to.be.true;
         }).then(function () {
@@ -429,11 +429,11 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            configurePage.addTrg("TriggerA0005", "", "ConnEMSB0003");
+            configurePage.addTrgWithEms("TriggerA0005", "", "ConnEMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            configurePage.addTrg("TriggerA0006", "", "ConnEMSB0003");
+            configurePage.addTrgWithEms("TriggerA0006", "", "ConnEMSB0003");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -487,7 +487,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === 'TriggerA0006').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfInput.getAttribute('value');
+            return Page.eleIntfAdmEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVE0003').to.be.true;
         }).then(function () {
@@ -569,11 +569,11 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            configurePage.addTrg("TriggerA0007", "", "ConnEMSB0004");
+            configurePage.addTrgWithEms("TriggerA0007", "", "ConnEMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            configurePage.addTrg("TriggerA0008", "", "ConnEMSB0004");
+            configurePage.addTrgWithEms("TriggerA0008", "", "ConnEMSB0004");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -627,7 +627,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === 'TriggerA0007').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfInput.getAttribute('value');
+            return Page.eleIntfAdmEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSE0004').to.be.true;
         }).then(function () {
@@ -709,11 +709,11 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            configurePage.addTrg("TriggerA0009", "", "ConnEMSB0005");
+            configurePage.addTrgWithEms("TriggerA0009", "", "ConnEMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            configurePage.addTrg("TriggerA0010", "", "ConnEMSB0005");
+            configurePage.addTrgWithEms("TriggerA0010", "", "ConnEMSB0005");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -773,7 +773,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === 'TriggerA0010').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfInput.getAttribute('value');
+            return Page.eleIntfAdmEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfRVE0005').to.be.true;
         }).then(function () {
@@ -855,11 +855,11 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            configurePage.addTrg("TriggerA0011", "", "ConnEMSB0006");
+            configurePage.addTrgWithEms("TriggerA0011", "", "ConnEMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
-            configurePage.addTrg("TriggerA0012", "", "ConnEMSB0006");
+            configurePage.addTrgWithEms("TriggerA0012", "", "ConnEMSB0006");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -937,7 +937,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === 'TriggerA0011').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfInput.getAttribute('value');
+            return Page.eleIntfAdmEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === 'IntfEMSE0006').to.be.true;
         }).then(function () {
@@ -1039,7 +1039,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             Page.addIntfAdm("IntfAdmin0011", "", undefined, "EndpointAdminA0017");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1143,7 +1143,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfInput.getAttribute('value');
+            return Page.eleIntfAdmEsbIntfInput.getAttribute('value');
         }).then(function (message) {
             expect(message === '').to.be.true;
         }).then(function () {
@@ -1187,7 +1187,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             Page.eleIntfAdmServiceTrgInput.clear();
         }).then(function () {
-            Page.eleIntfAdmOutputIntfInput.clear();
+            Page.eleIntfAdmEsbIntfInput.clear();
         }).then(function () {
             Page.eleIntfAdmHeartbeatCmdInput.clear();
         }).then(function () {
@@ -1195,7 +1195,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1301,7 +1301,9 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            browser.sleep(500);
+        }).then(function () {
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
@@ -1714,7 +1716,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            configurePage.addTrg("TriggerA0013", "", "ConnEMSB0007");
+            configurePage.addTrgWithEms("TriggerA0013", "", "ConnEMSB0007");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1754,7 +1756,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === 'A value is required').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfValidateMsg.getText();
+            return Page.eleIntfAdmEsbIntfValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'A value is required').to.be.true;
         }).then(function () {
@@ -1764,13 +1766,15 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             Page.eleIntfAdmServiceTrgInput.clear().sendKeys("TriggerA0013");
         }).then(function () {
-            Page.eleIntfAdmOutputIntfInput.clear().sendKeys("IntfEMSE0007");
+            Page.eleIntfAdmEsbIntfInput.clear().sendKeys("IntfEMSE0007");
         }).then(function () {
             Page.eleIntfAdmHeartbeatCmdInput.clear().sendKeys("SHOW,INTF,CONN");
         }).then(function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
             Page.eleSaveButton.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1910,7 +1914,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             globalNaviPage.eleConfigureMenu.click();
         }).then(function () {
-            configurePage.addTrg("TriggerA0014_@#$_2223333333333444444444", "", "ConnEMSB0008");
+            configurePage.addTrgWithEms("TriggerA0014_@#$_2223333333333444444444", "", "ConnEMSB0008");
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -1972,7 +1976,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === 'There is an error on this form').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfValidateMsg.getText();
+            return Page.eleIntfAdmEsbIntfValidateMsg.getText();
         }).then(function (message) {
             expect(message === 'Invalid Reference').to.be.true;
         }).then(function () {
@@ -1980,7 +1984,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             browser.sleep(500);
         }).then(function () {
-            Page.eleIntfAdmOutputIntfInput.clear().sendKeys("IntfEMSE0008_@#$_2223333333333444444444");
+            Page.eleIntfAdmEsbIntfInput.clear().sendKeys("IntfEMSE0008_@#$_2223333333333444444444");
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
@@ -1990,7 +1994,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function (message) {
             expect(message === 'Saved successfully.').to.be.true;
         }).then(function () {
-            return Page.eleIntfAdmOutputIntfInput.getAttribute("value");
+            return Page.eleIntfAdmEsbIntfInput.getAttribute("value");
         }).then(function (message) {
             expect(message === 'IntfEMSE0008_@#$_2223333333333444444444').to.be.true;
         });
@@ -2036,19 +2040,19 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForElementPresent(Page.eleSaveInfo);
-        }).then(function () {
-            return Page.eleSaveInfo.getText();
-        }).then(function (message) {
-            expect(message === 'There is an error on this form').to.be.true;
+            globalCommons.waitForElementPresent(Page.eleIntfAdmHeartbeatCmdValidateMsg);
+        // }).then(function () {
+        //     return Page.eleSaveInfo.getText();
+        // }).then(function (message) {
+        //     expect(message === 'There is an error on this form').to.be.true;
         }).then(function () {
             return Page.eleIntfAdmHeartbeatCmdValidateMsg.getText();
         }).then(function (message) {
             expect(message === '"!@#$%^&*()...": the value is too long, must be at most 40 characters').to.be.true;
-        }).then(function () {
-            Page.eleSaveInfoClose.click();
-        }).then(function () {
-            browser.sleep(500);
+        // }).then(function () {
+        //     Page.eleSaveInfoClose.click();
+        // }).then(function () {
+        //     browser.sleep(500);
         }).then(function () {
             Page.eleIntfAdmHeartbeatCmdInput.clear().sendKeys("!@#$%^&*()ZXCVBNM<>?asdfghjklz4444444444");
         }).then(function () {
@@ -2088,7 +2092,7 @@ describe('6.8.17 Define Interfaces Admin Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {

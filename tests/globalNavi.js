@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var globalNaviPage = require('../pageObject/globalNaviPage.js');
@@ -16,7 +16,7 @@ describe('6.2 Global Navigation Page', function () {
      * To signin with incorrect username.
      * Expect error occurs.
      */
-    it('Should display signin error message', function () {
+    it('Signin with incorrect username, should display signin error message', function () {
         browser.sleep(1000).then(function () {
             Page.signout();
         }).then(function () {
@@ -27,6 +27,10 @@ describe('6.2 Global Navigation Page', function () {
             browser.sleep(500);
         }).then(function () {
             expect(Page.eleSigninError.isDisplayed()).to.eventually.be.true;
+        }).then(function () {
+            return Page.eleSigninError.getText();
+        }).then(function (message) {
+            expect(message === 'Username or password is incorrect').to.be.true;
         });
     });
 
@@ -34,13 +38,17 @@ describe('6.2 Global Navigation Page', function () {
      * To signin with incorrect password.
      * Expect error occurs.
      */
-    it('Should display signin error message', function () {
+    it('Signin with incorrect password, should display signin error message', function () {
         Page.visitPage("/MF_WebUI").then(function () {
             Page.signin(undefined, "incorrect password");
         }).then(function () {
             browser.sleep(500);
         }).then(function () {
             expect(Page.eleSigninError.isDisplayed()).to.eventually.be.true;
+        }).then(function () {
+            return Page.eleSigninError.getText();
+        }).then(function (message) {
+            expect(message === 'Username or password is incorrect').to.be.true;
         });
     });
 
@@ -49,7 +57,7 @@ describe('6.2 Global Navigation Page', function () {
      * username: defined in conf.js
      * password: defined in conf.js
      */
-    it('Should Signin System by user defined in conf.js', function () {
+    it('Signin with correct username & password, should signin System by user defined in conf.js', function () {
         Page.visitPage("/MF_WebUI").then(function () {
             Page.signin();
         }).then(function () {
@@ -65,7 +73,7 @@ describe('6.2 Global Navigation Page', function () {
      * username: defined in conf.js
      * password: defined in conf.js
      */
-    it('Should re-signin after signout', function () {
+    it('Re-signin with correct username & password, should re-signin after signout', function () {
         Page.signout().then(function () {
             globalCommons.waitForElementPresent(Page.eleWorkspaceMenu, false, {timeout: 10000});
         }).then(function () {
@@ -95,6 +103,8 @@ describe('6.2 Global Navigation Page', function () {
             globalCommons.waitForClickable(Page.eleMyAccountMenu);
         }).then(function () {
             Page.eleMyAccountMenu.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleMyAccountTitle, true, {timeout: 10000});
         }).then(function () {
@@ -158,7 +168,7 @@ describe('6.2 Global Navigation Page', function () {
     /**
      * To click 'Contact Master' in signin dialog .
      */
-    it('Should display Contact Master info', function () {
+    it('Test "Contact Master"', function () {
         Page.visitPage("/MF_WebUI").then(function () {
             globalCommons.waitForClickable(Page.eleSigninMenu);
         }).then(function () {
@@ -177,7 +187,7 @@ describe('6.2 Global Navigation Page', function () {
     /**
      * To test About Dialog.
      */
-    it('Should display the About Dialog', function () {
+    it('Test "ABOUT"', function () {
         Page.visitPage("/MF_WebUI").then(function () {
             globalCommons.waitForClickable(Page.eleAboutMenu);
         }).then(function () {

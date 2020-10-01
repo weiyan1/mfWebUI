@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var accessPage = require('../pageObject/accessPage.js');
@@ -22,6 +22,8 @@ describe('6.9.2 Access My Account Page', function () {
             globalCommons.waitForClickable(Page.eleMyAccountLeftmenu);
         }).then(function () {
             Page.eleMyAccountLeftmenu.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleMyAccountUserNameInput);
         }).then(function () {
@@ -979,6 +981,8 @@ describe('6.9.2 Access My Account Page', function () {
     it('Test My Account -> Workspace Status', function () {
         globalCommons.waitForClickable(Page.eleMyAccountLeftmenu).then(function () {
             Page.eleMyAccountLeftmenu.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleMyAccountWorkspaceStatus);
         }).then(function () {

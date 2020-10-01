@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var accessPage = require('../pageObject/accessPage.js');
@@ -20,6 +20,8 @@ describe('6.9.4 Access Usage Management Page', function () {
     it('Test Usage Management -> Save Usage', function () {
         browser.sleep(1000).then(function () {
             Page.saveUsage(false, false, false, true, false, true, false, true);
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -217,6 +219,8 @@ describe('6.9.4 Access Usage Management Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
@@ -320,6 +324,8 @@ describe('6.9.4 Access Usage Management Page', function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
             Page.eleSaveButton.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -429,6 +435,8 @@ describe('6.9.4 Access Usage Management Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
@@ -537,6 +545,8 @@ describe('6.9.4 Access Usage Management Page', function () {
         }).then(function () {
             Page.eleSaveButton.click();
         }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
@@ -644,6 +654,8 @@ describe('6.9.4 Access Usage Management Page', function () {
             globalCommons.waitForClickable(Page.eleSaveButton);
         }).then(function () {
             Page.eleSaveButton.click();
+        }).then(function () {
+            browser.sleep(500);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
@@ -791,6 +803,8 @@ describe('6.9.4 Access Usage Management Page', function () {
     //
     it('Test Usage Management -> All the checkboxs can be checked together', function () {
         Page.saveUsage(true, true, true, true, true, true, true, true).then(function () {
+            browser.sleep(500);
+        }).then(function () {
             globalCommons.waitForClickable(Page.eleUsageManageSsesOpsCheck);
         }).then(function () {
             return Page.eleUsageManageSsesOpsCheck.getAttribute("checked");

@@ -1,13 +1,15 @@
 /*
- * Copyright (c) 2016 TIBCO Software Inc.
+ * Copyright (c) 2018 TIBCO Software Inc.
  * All Rights Reserved.
  */
 var accessPage = require('../pageObject/accessPage.js');
+var DeployPage = require('../pageObject/deployPage.js');
 var globalCommons = require('../utility/common.js');
 var GlobalPage = require('../pageObject/globalPage.js');
 var GlobalNaviPage = require('../pageObject/globalNaviPage.js');
 describe('6.9.3 Access User Management Page', function () {
     var Page = new accessPage();
+    var deployPage = new DeployPage();
     var globalPage = new GlobalPage();
     var globalNaviPage = new GlobalNaviPage();
     beforeEach(function () {
@@ -47,6 +49,8 @@ describe('6.9.3 Access User Management Page', function () {
         }).then(function () {
             Page.replicateUser("User0002");
         }).then(function () {
+            browser.sleep(500);
+        }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
@@ -79,6 +83,22 @@ describe('6.9.3 Access User Management Page', function () {
     //
     it('Should add a User, then update it successfully', function () {
         Page.delUserYes("User0003").then(function () {
+        //     globalCommons.waitForClickable(globalNaviPage.eleDeployMenu);
+        // }).then(function () {
+        //     globalNaviPage.eleDeployMenu.click();
+        // }).then(function () {
+        //     deployPage.delWorkspaceYes("WorkspaceA0001");
+        // }).then(function () {
+        //     deployPage.delWorkspaceYes("WorkspaceA0002");
+        // }).then(function () {
+        //     deployPage.addWorkspace("WorkspaceA0001");
+        // }).then(function () {
+        //     deployPage.addWorkspace("WorkspaceA0002");
+        // }).then(function () {
+        //     globalCommons.waitForClickable(globalNaviPage.eleAccessMenu);
+        // }).then(function () {
+        //     globalNaviPage.eleAccessMenu.click();
+        // }).then(function () {
             Page.addUser("User0003", "Pswd0003", "ABCD", "EFG", browser.params.access.userDetailsWorkspace, false, false, false, false, false, false, false, "Connection", false, true);
         }).then(function () {
             globalCommons.waitForElementPresent(Page.eleSaveInfo);
@@ -601,7 +621,7 @@ describe('6.9.3 Access User Management Page', function () {
         Page.delUserYes("User0010").then(function () {
             Page.addUser("User0010", "Pswd0010");
         }).then(function () {
-            globalCommons.waitForDisplayed(Page.eleSaveInfo);
+            globalCommons.waitForElementPresent(Page.eleSaveInfo);
         }).then(function () {
             return Page.eleSaveInfo.getText();
         }).then(function (message) {
