@@ -51,10 +51,6 @@
 4. Check the test result:
   /Users/xxx/e2e/mfWebUI/report/dockerReports/protractor/.../report.html
 
-## Setup Headless Protractor inside docker on Windows
-Haven't found the solution, will do more research later.
-
-
 
 
 # Instruction to run the Mainframe WebUI QA Automation
