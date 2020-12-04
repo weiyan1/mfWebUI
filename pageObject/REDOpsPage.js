@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2018 TIBCO Software Inc.
- * All Rights Reserved.
+ * 
  */
 var Page = require('../utility/page.js');
 var globalCommons = require('../utility/common.js');
